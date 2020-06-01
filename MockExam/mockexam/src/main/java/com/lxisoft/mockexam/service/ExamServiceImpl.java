@@ -46,4 +46,10 @@ public class ExamServiceImpl implements ExamService {
 		return examDao.getExamData();
 	}
 
+	@Override
+	public Exam getExamById(int examSlNo) {
+		// TODO Auto-generated method stub
+		return examDao.getExamById(examSlNo);
+	}
+
 }

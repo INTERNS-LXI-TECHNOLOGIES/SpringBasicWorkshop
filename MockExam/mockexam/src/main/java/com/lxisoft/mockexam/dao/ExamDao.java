@@ -10,5 +10,6 @@ public interface ExamDao {
 	public void delQuestion(int qid);
 	public void updQuestion(Exam exam);
 	public List<Exam> getExamData();
+	public Exam getExamById(int examSlNo);
 
 }

@@ -44,4 +44,10 @@ public class ExamDaoImpl implements ExamDao {
 		return sessionFactory.getCurrentSession().createQuery("From Exam").list();
 	}
 
+	@Override
+	public Exam getExamById(int examSlNo) {
+		
+		return (Exam)sessionFactory.getCurrentSession().get(Exam.class, examSlNo);
+	}
+
 }
