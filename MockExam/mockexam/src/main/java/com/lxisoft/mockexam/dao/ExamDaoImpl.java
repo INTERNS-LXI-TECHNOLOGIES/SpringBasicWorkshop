@@ -32,9 +32,10 @@ public class ExamDaoImpl implements ExamDao {
 	}
 
 	@Override
-	public void updQuestion(Exam exam) {
+	public Exam updQuestion(Exam exam) {
 		
 		sessionFactory.getCurrentSession().update(exam);
+		return exam;
 	}
 
 	@SuppressWarnings("unchecked")

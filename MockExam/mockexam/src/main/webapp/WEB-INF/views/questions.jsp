@@ -72,6 +72,13 @@
 			if(qCount<data.size())
 			{
 		%>
+		<form action="checkAnswer" method="GET">
+			<div id="clock">
+				<!-- <input type="hidden" name="count" value="<%=qCount%>"> -->
+				<label id="timerclock">Time : <span id="timer"></span></label>		
+			</div>
+		</form>
+		
 		<div id="question">
 		<p style="font-size:40px;">Q<%out.println(qCount+1);%>---><%out.println(data.get(qCount).getQuestion());%></p>
 		<form action="checkAnswer" method="GET">
@@ -97,7 +104,7 @@
 			<%
 				qCount ++;
 			%>
-			<input type="hidden" name="count" value="<%=qCount%>">
+			<input type="hidden" name="count" value="<%=qCount%>" id="cnt">
 			<a href=""><button type="submit" id="btn" style="height: 35px;width: 85px;">Next</button></a>
 			
 		</form>
@@ -109,6 +116,22 @@
 		}
 		%>
 		</div>	
-			
+		<script type="text/javascript">
+		var qCount=document.getElementById('cnt').value;
+		var sec = 10;
+		var time = setInterval(myTimer, 1000);
+		function myTimer() 
+		{
+    		document.getElementById('timer').innerHTML = sec + "sec left";
+    		sec--;
+    		if (sec == -1) 
+    		{
+        		clearInterval(time);
+        		alert("Time out!! :(");
+        		// console.log(qCount);
+        		window.location.href="http://localhost:1546/mockexam/checkAnswer?count="+qCount;
+    		}
+		}
+	</script>	
 </body>
 </html>

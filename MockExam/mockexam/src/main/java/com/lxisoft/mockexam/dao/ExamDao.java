@@ -8,7 +8,7 @@ public interface ExamDao {
 		
 	public void addQuestion(Exam exam);
 	public void delQuestion(int qid);
-	public void updQuestion(Exam exam);
+	public Exam updQuestion(Exam exam);
 	public List<Exam> getExamData();
 	public Exam getExamById(int examSlNo);
 

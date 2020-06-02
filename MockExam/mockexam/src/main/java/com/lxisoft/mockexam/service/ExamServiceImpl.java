@@ -34,9 +34,9 @@ public class ExamServiceImpl implements ExamService {
 
 	@Override
 	@Transactional
-	public void updQuestion(Exam exam) {
+	public Exam updQuestion(Exam exam) {
 		
-		examDao.updQuestion(exam);
+		return examDao.updQuestion(exam);
 	}
 
 	@Override
@@ -48,7 +48,7 @@ public class ExamServiceImpl implements ExamService {
 
 	@Override
 	public Exam getExamById(int examSlNo) {
-		// TODO Auto-generated method stub
+		
 		return examDao.getExamById(examSlNo);
 	}
 

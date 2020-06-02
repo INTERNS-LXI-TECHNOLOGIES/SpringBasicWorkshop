@@ -32,6 +32,11 @@
 			text-align: center;
 			margin-top: 10px;
 		}
+		#bbbtn{
+			text-align: center;
+			margin-right: -55px;
+			margin-top:-35px;
+		}
 	</style>
 		
 </head>
@@ -68,6 +73,12 @@
 		<form action="home" method="GET">
 			<button id="btn" style="height: 50px;width: 100px">Home</button>
 		</form>
+	</div>
+	<div id="bbbtn" >
+		<form action="checkAnwser" method="GET">
+			<button id="btn" style="height: 50px;width: 100px">Check</button>
+		</form>
+		
 	</div>
 </body>
 </html>

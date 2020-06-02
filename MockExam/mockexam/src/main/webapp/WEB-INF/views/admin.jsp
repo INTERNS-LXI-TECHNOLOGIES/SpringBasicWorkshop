@@ -103,15 +103,10 @@
 			<td><%out.println(questions.get(i).getOpt4());%></td> 
 			<td><%out.println(questions.get(i).getAnswer());%></td>
 			<td><a href="${pageContext.request.contextPath}/updateQuestion?
-					id=<%=questions.get(i).getId()%>&
-				question=<%=questions.get(i).getQuestion()%>&
-				opt1=<%=questions.get(i).getOpt1()%>&
-				opt2=<%=questions.get(i).getOpt2()%>&
-				opt3=<%=questions.get(i).getOpt3()%>&
-				opt4=<%=questions.get(i).getOpt4()%>&
-				answer=<%=questions.get(i).getAnswer()%>"
+					id=<%=questions.get(i).getId()%>"
 				><button>Update</button></a></td>
-			<td><a><button>Delete</button></a></td>	
+			<td><a href="${pageContext.request.contextPath}/deleteQuestion?
+					id=<%=questions.get(i).getId()%>"><button>Delete</button></a></td>	
 			</tr>			
 			<%} 
 			}%>

@@ -81,7 +81,7 @@
 					</tr>
 					<tr>
 						
-						<td colspan = "2" align = "center"><input type = "submit" value="save"></td>
+						<td colspan = "2" align = "center"><button type = "submit">Save</button></td>
 					</tr>
 				</table>
 			</form:form>	

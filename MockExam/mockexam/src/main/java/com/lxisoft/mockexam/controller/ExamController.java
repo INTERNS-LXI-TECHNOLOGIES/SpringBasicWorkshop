@@ -138,18 +138,37 @@ public class ExamController {
 	public ModelAndView saveQuestion(@ModelAttribute Exam exam)
 	{
 		examService.addQuestion(exam);
-		return new ModelAndView("admin");
+		return new ModelAndView("redirect:/admin");
 	}
 	
 	
 	@RequestMapping(value = "/updateQuestion",method=RequestMethod.GET)
-	public String updateQuestion(HttpServletRequest request,@ModelAttribute Exam exam)
+	public ModelAndView updateQuestion(HttpServletRequest request)
 	{
+		int qno = Integer.parseInt(request.getParameter("id"));
+		Exam exam = examService.getExamById(qno);
+		ModelAndView model = new ModelAndView();
+		model.addObject("questById", exam);
+		model.setViewName("update");
+		return model;
+	}
+	
+	@RequestMapping(value="/update",method=RequestMethod.GET)
+	public ModelAndView update(@ModelAttribute Exam exam)
+	{
+		examService.updQuestion(exam);
+		return new ModelAndView("redirect:/admin");
 		
-		return "update";
 	}
 	
 	
+	@RequestMapping(value="/deleteQuestion")
+	public ModelAndView deleteQuestion(HttpServletRequest request)
+	{
+		int qno = Integer.parseInt(request.getParameter("id"));
+		examService.delQuestion(qno);
+		return new ModelAndView("redirect:/admin");
+	}
 	
 	@RequestMapping(value="/logout",method=RequestMethod.GET)
 	public String logout(HttpServletRequest request,HttpServletRequest response)
