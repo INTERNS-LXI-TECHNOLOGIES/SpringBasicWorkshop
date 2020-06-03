@@ -81,11 +81,17 @@
 					</tr>
 					<tr>
 						
-						<td colspan = "2" align = "center"><button type = "submit">Save</button></td>
+						<td colspan = "2" align = "center"><button type = "submit" onclick="myFunction()">Save</button></td>
 					</tr>
 				</table>
 			</form:form>	
 			
 		</div>
+		<script type="text/javascript">
+		function myFunction()
+		{
+			confirm("Successfully Added.....");
+		}
+		</script>
 </body>
 </html>

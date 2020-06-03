@@ -68,8 +68,11 @@
 			int qCount = Integer.parseInt(request.getParameter("count"));
 			ArrayList<Exam> data = new  ArrayList<Exam>();
 			data  = (ArrayList<Exam>)session.getAttribute("examdatas");
-			
-			if(qCount<data.size())
+			if(data.size() == 0)
+			{
+				response.sendRedirect("introduction");
+			}
+			else if(qCount<data.size())
 			{
 		%>
 		<form action="checkAnswer" method="GET">

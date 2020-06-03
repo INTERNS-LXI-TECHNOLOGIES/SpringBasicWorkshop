@@ -57,31 +57,31 @@
 				<table>
 					<tr>
 						<td>SL.NO:</td>
-						<td><form:input path="id" type="text" name="id" value="${questById.getId()}" readonly="readonly" /></td>
+						<td><form:input path="id"  readonly="readonly" /></td>
 					</tr>
 					<tr>
 						<td>QUESTION:</td>
-						<td><form:input path="question" type="text" id="que" name="ques" value="${questById.getQuestion()}" required="required"/></td>
+						<td><form:input path="question"  required="required"/></td>
 					</tr>
 					<tr>
 						<td>OPT_1:</td>
-						<td><form:input path="opt1" type="text" name="op1" value="${questById.getOpt1()}" required="required"/></td>	
+						<td><form:input path="opt1"  required="required"/></td>	
 					</tr>
 					<tr>
 						<td>OPT_2:</td>
-						<td><form:input path="opt2" type="text" name="op2" value="${questById.getOpt2()}" required="required"/></td>
+						<td><form:input path="opt2"  required="required"/></td>
 					</tr>
 					<tr>
 						<td>OPT_3:</td>
-						<td><form:input path="opt3" type="text" name="op3" value="${questById.getOpt3()}" required="required"/></td>
+						<td><form:input path="opt3"  required="required"/></td>
 					</tr>
 					<tr>
 						<td>OPT_4:</td>
-						<td><form:input path="opt4" type="text" name="op4" value="${questById.getOpt4()}" required="required"/></td>
+						<td><form:input path="opt4"  required="required"/></td>
 					</tr>
 					<tr>
 						<td>ANSWER:</td>
-						<td><form:input path="answer" type="text" name="ans" value="${questById.getAnswer()}" required="required"/></td>
+						<td><form:input path="answer"  required="required"/></td>
 					</tr>
 					<tr>
 						<td colspan = "2" align = "center" ><button type = "submit" onclick="myFunction()">Save</button></td>
