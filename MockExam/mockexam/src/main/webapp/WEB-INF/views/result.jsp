@@ -2,57 +2,15 @@
  <%@ page import = "com.lxisoft.mockexam.model.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>  
+ 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 		<title>Result</title>
-	<style type="text/css">
-		head,body{
-			background-color: #7fcdcd;
-		}
-		#heading{
-			text-align: center;
-		}
-		#box{
-			background-color: lightgrey;
-			width: 1150px;
-			border:15px solid green;
-			padding: 50px;
-			padding-top: 5px;
-			margin: 35px;
-			border-radius: 45px;
-
-		}
-		#boxx{
-			background-color: lightgrey;
-			width: 1150px;
-			border:15px solid green;
-			padding: 50px;
-			padding-top: 5px;
-			margin: 35px;
-			border-radius: 45px;
-
-		}
-		#btn{
-			border-radius: 15px;
-			border-color: black;
-			background-color: red;
-			margin-top: -20px;
-		}
-		#bbtn{
-			text-align: center;
-			margin-top: 10px;
-			padding-right: 200px;
-		}
-		#bbbtn{
-			text-align: center;
-			margin-right: -55px;
-			margin-top:-35px;
-		}
-	</style>
-		
+		<link href='<c:url value="resources/css/resultcss.css"></c:url>' rel="stylesheet" type="text/css"/>	
 </head>
 <body>
 	<%

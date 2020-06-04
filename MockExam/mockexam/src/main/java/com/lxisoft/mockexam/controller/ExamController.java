@@ -163,12 +163,24 @@ public class ExamController {
 	
 	
 	@RequestMapping(value="/deleteQuestion")
-	public ModelAndView deleteQuestion(HttpServletRequest request)
+	public String deleteQuestion(HttpServletRequest request)
+	{
+		int qno = Integer.parseInt(request.getParameter("id"));
+		HttpSession session = request.getSession();
+		session.setAttribute("qId", qno);
+		return "delete";
+	}
+	
+	@RequestMapping(value="/delete")
+	public ModelAndView delete(HttpServletRequest request)
 	{
 		int qno = Integer.parseInt(request.getParameter("id"));
 		examService.delQuestion(qno);
 		return new ModelAndView("redirect:/admin");
+		
 	}
+	
+	
 	
 	@RequestMapping(value="/logout",method=RequestMethod.GET)
 	public String logout(HttpServletRequest request,HttpServletRequest response)

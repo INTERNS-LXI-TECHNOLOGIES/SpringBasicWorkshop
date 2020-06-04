@@ -1,53 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>    
+    <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>  
+ 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>       
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 		<title>ADD</title>
-	<style type="text/css">
-		.container
-		{
-			text-align:center;
-			width: 100%;
-			height: 100%;
-			margin: 0 auto;
-			padding-top: 40px;
-			background:#009b77;
-		}
-		html,body
-		{
-			width: 100%;
-			height: 100%;
-			position: fixed;
-			margin:0;
-		}
-		input
-		{
-			border-radius: 8px;
-			border-spacing: 20px;
-			width: 250px;
-			height: 26px;
-
-			
-		}
-		textarea
-		{
-			width: 300px;
-			height: 50px;
-		}
-		button
-		{
-			width: 60px;
-			height: 35px;
-			border-radius: 10px;
-		}
-		form
-		{
-			padding-left:450px;
-		}
-	</style>
+		<link href='<c:url value="resources/css/addcss.css"></c:url>' rel="stylesheet" type="text/css"/>
 </head>
 <body>
 		<div class="container">

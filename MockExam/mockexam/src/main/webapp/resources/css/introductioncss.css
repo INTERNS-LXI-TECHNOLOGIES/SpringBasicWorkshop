@@ -1,0 +1,27 @@
+@charset "UTF-8";
+head,body{
+			background:#009b77;
+		}
+		#heading{
+			text-align: center;
+		}
+		#box{
+			background-color: lightgrey;
+			width: 1150px;
+			border:15px solid green;
+			padding: 50px;
+			padding-top: 5px;
+			margin: 35px;
+			border-radius: 45px;
+
+		}
+		#btn{
+			border-radius: 15px;
+			border-color: black;
+			background-color: red;
+			margin-top: -20px;
+		}
+		#bbtn{
+			text-align: center;
+			margin-top: 10px;
+		}

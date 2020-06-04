@@ -9,48 +9,10 @@
 <head>
 <meta charset="UTF-8">
 	<title>ADMIN</title>
-	
-	<style type="text/css">
-		
-		html,body{
-			padding: 5px;margin: 10px;
-			background:#009b77;
-		}
-
-		.button1{
-			background-color: #008cba;
-			color: white;
-			padding: 15px 30px;
-			text-align: center;
-			text-decoration: none;
-			display: inline-block;
-			font-size: 15px;
-			border-radius: 10px;
-		}
-		#logout
-		{
-			float: right;
-			position: relative;
-			top: -50px;	
-			left: 50px;
-		}
-		#exam
-		{
-			float: right;
-			position: relative;
-			top: -50px;	
-			left: -210px;
-		}
-		table
-		{
-    		align-content: center;
-   			margin: inherit;
-    		width: 100%;
-		}
-		
-	</style>
+	<link href='<c:url value="resources/css/admincss.css"></c:url>' rel="stylesheet" type="text/css"/>
 </head>
 <body>
+	
 		<form action="${pageContext.request.contextPath}/add" id="addQuestion" method="GET">
 			<button class="button1">Add Question</button>
 		</form>
@@ -112,6 +74,7 @@
 			}%>
 		</table>
 	</div>
+	
 	<div id="pageNavPosition" class="pager-nav" style="float: right;"></div>
 		
 	
