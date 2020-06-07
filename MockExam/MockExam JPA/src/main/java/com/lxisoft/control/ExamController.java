@@ -1,6 +1,7 @@
-package com.lxisoft.controller;
+package com.lxisoft.control;
 
 import java.util.List;
+
 
 
 import org.slf4j.Logger;
