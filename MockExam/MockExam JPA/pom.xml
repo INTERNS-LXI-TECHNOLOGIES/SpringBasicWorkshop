@@ -96,11 +96,16 @@
             <version>${jsp.version}</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
+        <!-- <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.47</version>
-        </dependency>
+        </dependency> -->
+        <dependency>
+   <groupId>mysql</groupId>
+   <artifactId>mysql-connector-java</artifactId>
+   <version>5.1.36</version>
+</dependency>
         <!-- logging -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -126,8 +131,9 @@
 </dependency>
       
   </dependencies>
-  
-  <build>
+ <pluginRepositories></pluginRepositories>
+
+ <build>
     <finalName>MockExamJPA</finalName>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>

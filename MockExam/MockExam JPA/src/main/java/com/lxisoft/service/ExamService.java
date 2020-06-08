@@ -2,17 +2,23 @@ package com.lxisoft.service;
 
 import java.util.List;
 
-
-
-import com.lxisoft.entity.Exam;
+import com.lxisoft.entity.ExamModel;
 
 public interface ExamService {
+	
+	public void addExam(ExamModel examModel);
 
-    public List <Exam> getExams();
+	public List<ExamModel> getAllExams();
 
-    public void saveExam(Exam theExam);
+	public void deleteExam(Integer examId);
 
-    public Exam getExam(int theId) ;
+	public ExamModel getExam(int examid);
 
-    public void deleteExam(int theId);
+	public ExamModel updateExam(ExamModel examModel);
 }
+
+
+
+
+
+
