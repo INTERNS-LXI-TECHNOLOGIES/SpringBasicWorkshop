@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.lxisoft.mockexam.model.Exam;
@@ -33,7 +34,22 @@ public class ExamController {
 		return "index";
 	}
 	
-	@RequestMapping(value = "/admin",method = RequestMethod.GET)
+	@RequestMapping(value="/login" , method=RequestMethod.GET)
+	public ModelAndView loginPage(@RequestParam(value="error",required=false) String error,@RequestParam(value="logout",required=false)String logout)
+	{
+		ModelAndView model = new ModelAndView();
+		if (error != null) {
+			model.addObject("errorLogin", "Invalid username Or password!");
+		}
+
+		if (logout != null) {
+			model.addObject("logoutMsg", "You've been logged out successfully.");
+		}
+		model.setViewName("login");
+		return model;
+	}
+	
+	@RequestMapping(value = "/admin**",method = RequestMethod.POST)
 	public ModelAndView adminView(HttpServletRequest request,HttpServletResponse response)
 	{
 		HttpSession session = request.getSession();
@@ -188,5 +204,11 @@ public class ExamController {
 		HttpSession session = request.getSession();
 		session.invalidate();
 		return "index";
+	}
+	
+	@RequestMapping(value="/register")
+	public String registerUser()
+	{
+		return "register";
 	}
 }

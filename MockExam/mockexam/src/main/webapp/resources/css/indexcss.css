@@ -1,14 +1,30 @@
-@charset "UTF-8";
-		head,body{
-			/*background-color: #7fcdcd;*/
-			position: fixed;
+		body
+		{
 			
-		}
-		#heading{
+			position: fixed;
+		}	
+
+		#heading
+		{
 			text-align: center;
 			position: relative;
-			left:-40px;
+			left:480px;
 			top: 100px;
+
+		}
+		h1
+		{
+			font-size: 50px;
+			color: #66CDAA;
+		}
+		#btn{
+
+			border-radius: 15px;
+			border-color: black;
+			margin-top: -20px;
+			position: relative;
+			top: 40px;
+			left: 580px;
 		}
 		button
 		{
@@ -29,29 +45,4 @@
 			outline: none;
 			margin-top: 200px;
 			margin-left: auto;
-		}
-		#box{
-			background-color: lightgrey;
-			width: 1150px;
-			border:15px solid green;
-			padding: 50px;
-			padding-top: 5px;
-			margin: 35px;
-			border-radius: 45px;
-			height: 400px;
-
-		}
-		#btn{
-
-			border-radius: 15px;
-			border-color: black;
-			margin-top: -20px;
-			position: relative;
-			top: 30px;
-			left: 480px;
-			down: 40px;
-		}
-		h1
-		{
-			font-size: 50px;
 		}

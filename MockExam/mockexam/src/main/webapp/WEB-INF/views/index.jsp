@@ -8,17 +8,14 @@
 	<title>MockExam</title>
 	<link href='<c:url value="/resources/css/indexcss.css"></c:url>' rel="stylesheet" type="text/css"/>
 </head>
-<body>
+<body background="<c:url value='resources/images/MojaveNight-1920x1080.jpg'/>">
 	
-	<div id="box">
 		<div id="heading">
 			<h1>Mock Exam</h1>
 		</div>
 		<div id="btn">
-		<a href="introduction"><button>Attend Exam</button></a>
-		
+			<a href="introduction"><button>Attend Exam</button></a>
 		</div>
-	</div>
 </body>
 </html>
 	
