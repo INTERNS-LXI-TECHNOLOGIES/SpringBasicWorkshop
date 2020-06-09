@@ -1,0 +1,39 @@
+@charset "UTF-8";
+.container
+		{
+			text-align:center;
+			width: 100%;
+			height: 100%;
+			margin: 0 auto;
+			padding-top: 40px;
+			background:#009b77;
+		}
+		html,body
+		{
+			width: 100%;
+			height: 100%;
+			position: fixed;
+			margin:0;
+		}
+		input
+		{
+			border-radius: 8px;
+			border-spacing: 20px;
+			width: 250px;
+			height: 26px;
+		}
+		textarea
+		{
+			width: 300px;
+			height: 50px;
+		}
+		button
+		{
+			width: 60px;
+			height: 35px;
+			border-radius: 10px;
+		}
+		form
+		{
+			padding-left:500px;
+		}

@@ -1,0 +1,17 @@
+package com.lxisoft.mockexamjavaconfig.service;
+
+import java.util.List;
+
+import com.lxisoft.mockexamjavaconfig.model.Exam;
+
+public interface ExamService {
+	
+	
+	public void addQuestion(Exam exam);
+	public void delQuestion(int qid);
+	public Exam updQuestion(Exam exam);
+	public List<Exam> getExamData();
+	public Exam getExamById(int examSlNo);
+	
+	
+}
