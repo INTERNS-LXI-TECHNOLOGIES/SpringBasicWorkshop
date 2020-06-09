@@ -2,6 +2,7 @@ package com.lxisoft.controller;
 
 import java.io.IOException;
 
+
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,14 +31,8 @@ import  com.lxisoft.service.ExamService;
 @SuppressWarnings("unused")
 @Controller
 public class ExamController {
-
-	private static final Logger logger = Logger
-			.getLogger(ExamController.class);
-
-	public ExamController() {
-		System.out.println("ExamController()");
-	}	
-
+	
+	
 	@Autowired
 	private ExamService examService;
 	
