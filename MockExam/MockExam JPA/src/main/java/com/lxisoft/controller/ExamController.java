@@ -1,4 +1,4 @@
-package com.lxisoft.control;
+package com.lxisoft.controller;
 
 import java.io.IOException;
 

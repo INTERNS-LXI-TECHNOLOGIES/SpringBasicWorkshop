@@ -3,6 +3,8 @@ package com.lxisoft.config;
 import java.util.Properties;
 
 
+
+
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
@@ -23,12 +25,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@PropertySource({
-    "classpath:database.properties"
-})
-@ComponentScan({
-    "com.lxisoft"
-})
+@PropertySource({ "classpath:database.properties"})
+@ComponentScan({ "com.lxisoft"})
 @EnableJpaRepositories(basePackages = "com.lxisoft.repository")
 public class PersistenceJPAConfig {
 
@@ -36,7 +34,7 @@ public class PersistenceJPAConfig {
     private Environment env;
 
     public PersistenceJPAConfig() {
-        super();
+     //   super();
     }
 
     @Bean

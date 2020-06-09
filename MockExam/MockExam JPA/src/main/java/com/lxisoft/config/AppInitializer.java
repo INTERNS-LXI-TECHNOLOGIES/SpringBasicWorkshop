@@ -1,8 +1,9 @@
 package com.lxisoft.config;
-
+import com.lxisoft.config.PersistenceJPAConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 
+@SuppressWarnings("unused")
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Override

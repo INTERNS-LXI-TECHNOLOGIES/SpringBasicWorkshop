@@ -3,8 +3,6 @@ package com.lxisoft.entity;
 import javax.persistence.Column;
 
 
-
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,10 +13,7 @@ import javax.persistence.Table;
 @Table(name = "MockExamJPA")
 public class ExamModel {
     	
-    	
-//	private static final long serialVersionUID = -3465813074586302847L;
-
-	@Id
+   	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
@@ -41,7 +36,7 @@ public class ExamModel {
 	private String ans;
 
 	
-		public void setQuestion(String question)
+	public void setQuestion(String question)
 	{
 		this.question = question;
 	}
@@ -97,7 +92,6 @@ public class ExamModel {
 	{
 		return ans;
 	}
-
 
 }
 
