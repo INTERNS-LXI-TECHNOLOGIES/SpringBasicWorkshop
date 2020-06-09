@@ -1,5 +1,6 @@
 package com.lxisoft.config;
 
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
@@ -15,7 +16,7 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
     @Override
     protected Class < ? > [] getServletConfigClasses() {
         return new Class[] {
-            WebMvcConfig.class
+            WebMvcConfigurer.class
         };
     }
 

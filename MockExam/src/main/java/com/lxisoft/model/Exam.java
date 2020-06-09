@@ -102,5 +102,11 @@ public class Exam implements Serializable
     public void setOption(String option) {
         this.option = option;
     }
+
+
+     @Override
+    public String toString() {
+        return "Exam [id=" + id +",question="+question+",option1="+option1+",option2="+option2+",option3="+option3+",option4="+option4+",answer="+answer+"]";
+    }
  
 }
