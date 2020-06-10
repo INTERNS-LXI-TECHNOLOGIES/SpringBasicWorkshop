@@ -2,6 +2,7 @@ package com.lxisoft.entity;
 
 import java.io.Serializable;
 
+
 import javax.persistence.Column;
 
 
@@ -97,11 +98,7 @@ public class ExamModel implements Serializable {
 		this.ans = ans;
 	}
 
-	public Object getAnswer() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 	
 	
 

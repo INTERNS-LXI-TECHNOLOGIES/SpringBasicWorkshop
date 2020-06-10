@@ -3,6 +3,7 @@ package com.lxisoft.service;
 import java.util.List;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,34 +21,29 @@ public class ExamServiceImpl  {
     	
 	@Transactional
 	public void addExam(ExamModel examModel) {
-		examRepository.addExam(examModel);
+		examRepository.save(examModel);
 	}
 
 	
 	@Transactional
 	public List<ExamModel> getAllExams() {
-		return examRepository.getAllExam();
+		return examRepository.findAll();
 	}
 
 	
-	@Transactional
-	public void deleteExam(Integer examId) {
-		examRepository.deleteExam(examId);
-	}
-
-	public ExamModel getExam(int exmid) {
-		return examRepository.getExam(exmid);
-	}
-
-	public ExamModel updateExam(ExamModel examModel) {
-		
-		return examRepository.updateExam(examModel);
-	}
-
-	public void setExamDAO(ExamRepository examRepository) {
-		this.examRepository = examRepository;
-	}
-
+	
+	  @Transactional public void deleteExam(Integer examId) {
+	  examRepository.deleteById(examId); }
+	  
+	 /* * public ExamModel getExam(int exmid) { return examRepository.getExam(exmid); }
+	 * 
+	 * public ExamModel updateExam(ExamModel examModel) {
+	 * 
+	 * return examRepository.updateExam(examModel); }
+	 * 
+	 * public void setExamDAO(ExamRepository examRepository) { this.examRepository =
+	 * examRepository; }
+	 */
 
 }
 
