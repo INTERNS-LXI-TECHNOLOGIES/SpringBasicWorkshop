@@ -1,5 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>  
- 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,12 +10,11 @@
 </head>
 <body onload='document.loginForm.username.focus();'>
     <div class="login-page">
-    	<c:if test="{not empty errorLogin}">
-    		<div class="errormsg">${errorLogin}</div>
+    	
+    	<c:if test="{not empty error}">
+    		<div class="errormsg">${error}</div>
     	</c:if>
-    	<c:if test="{not empty logoutMsg}">
-    		<div class="logoutmsg">${logoutMsg}</div>
-    	</c:if>
+    	
       <div class="form">
         <form name='loginForm' action="${pageContext.request.contextPath}/login" method="POST" class="login-form">
            <input type="text" name="username" placeholder="username" required="required" />

@@ -30,12 +30,21 @@ public class ExamController {
 	
 	private ArrayList<String> answerList = new  ArrayList<String>();
 	
+
+	@RequestMapping(value= "/introduction")
+	public String introductionPage()
+	{
+		
+		return "introduction";
+		
+	}
 	@GetMapping(value = {"/","/home"})
 	public String getAdminstration()
 	{
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		boolean hasUserRole = authentication.getAuthorities().stream()
 								.anyMatch(r -> r.getAuthority().equals("ADMIN"));
+		System.out.print(hasUserRole);
 		if(hasUserRole)
 		{
 			return "admin";
@@ -74,14 +83,6 @@ public class ExamController {
 		return model;
 	}
 	
-	@RequestMapping(value= "/introduction")
-	public String introductionPage()
-	{
-		
-		return "introduction";
-		
-	}
-	
 	@RequestMapping(value = "/getExamData", method = RequestMethod.GET)
 	public ModelAndView startExam(HttpServletRequest request,HttpServletRequest response) 
 	{
@@ -94,6 +95,62 @@ public class ExamController {
 		return model;
 		
 	}
+	
+	@RequestMapping(value = "/add" ,method=RequestMethod.GET)
+	public ModelAndView addQuestion(ModelAndView model)
+	{
+		Exam exam = new Exam();
+		model.addObject("exam",exam);
+		model.setViewName("add");
+		return model;
+	}
+	
+	@RequestMapping(value = "/addQuestion",method = RequestMethod.GET)
+	public ModelAndView saveQuestion(@ModelAttribute Exam exam)
+	{
+		examService.addQuestion(exam);
+		return new ModelAndView("redirect:/admin");
+	}
+	
+	
+	@RequestMapping(value = "/updateQuestion",method=RequestMethod.GET)
+	public ModelAndView updateQuestion(HttpServletRequest request)
+	{
+		int qno = Integer.parseInt(request.getParameter("id"));
+		Exam exam = examService.getExamById(qno);
+		ModelAndView model = new ModelAndView();
+		model.addObject("questById", exam);
+		model.setViewName("update");
+		return model;
+	}
+	
+	@RequestMapping(value="/update",method=RequestMethod.GET)
+	public ModelAndView update(@ModelAttribute Exam exam)
+	{
+		examService.updQuestion(exam);
+		return new ModelAndView("redirect:/admin");
+		
+	}
+	
+	
+	@RequestMapping(value="/deleteQuestion")
+	public String deleteQuestion(HttpServletRequest request)
+	{
+		int qno = Integer.parseInt(request.getParameter("id"));
+		HttpSession session = request.getSession();
+		session.setAttribute("qId", qno);
+		return "delete";
+	}
+	
+	@RequestMapping(value="/delete")
+	public ModelAndView delete(HttpServletRequest request)
+	{
+		int qno = Integer.parseInt(request.getParameter("id"));
+		examService.delQuestion(qno);
+		return new ModelAndView("redirect:/admin");
+		
+	}
+	
 	
 	@RequestMapping(value = "/checkAnswer" ,method = RequestMethod.GET)
 	public ModelAndView getAnswer(HttpServletRequest request,HttpServletResponse response)throws IOException
@@ -154,73 +211,19 @@ public class ExamController {
 		return "result";
 	}
 	
-	@RequestMapping(value = "/add" ,method=RequestMethod.GET)
-	public ModelAndView addQuestion(ModelAndView model)
-	{
-		Exam exam = new Exam();
-		model.addObject("exam",exam);
-		model.setViewName("add");
-		return model;
-	}
+
 	
-	@RequestMapping(value = "/addQuestion",method = RequestMethod.GET)
-	public ModelAndView saveQuestion(@ModelAttribute Exam exam)
-	{
-		examService.addQuestion(exam);
-		return new ModelAndView("redirect:/admin");
-	}
-	
-	
-	@RequestMapping(value = "/updateQuestion",method=RequestMethod.GET)
-	public ModelAndView updateQuestion(HttpServletRequest request)
-	{
-		int qno = Integer.parseInt(request.getParameter("id"));
-		Exam exam = examService.getExamById(qno);
-		ModelAndView model = new ModelAndView();
-		model.addObject("questById", exam);
-		model.setViewName("update");
-		return model;
-	}
-	
-	@RequestMapping(value="/update",method=RequestMethod.GET)
-	public ModelAndView update(@ModelAttribute Exam exam)
-	{
-		examService.updQuestion(exam);
-		return new ModelAndView("redirect:/admin");
 		
-	}
-	
-	
-	@RequestMapping(value="/deleteQuestion")
-	public String deleteQuestion(HttpServletRequest request)
-	{
-		int qno = Integer.parseInt(request.getParameter("id"));
-		HttpSession session = request.getSession();
-		session.setAttribute("qId", qno);
-		return "delete";
-	}
-	
-	@RequestMapping(value="/delete")
-	public ModelAndView delete(HttpServletRequest request)
-	{
-		int qno = Integer.parseInt(request.getParameter("id"));
-		examService.delQuestion(qno);
-		return new ModelAndView("redirect:/admin");
-		
-	}
-	
-	
-	
 	@RequestMapping(value="/logout",method=RequestMethod.GET)
 	public String logout(HttpServletRequest request,HttpServletRequest response)
 	{
 		HttpSession session = request.getSession();
 		session.invalidate();
-		return "index";
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value="/register")
-	public String registerUser()
+	public String register()
 	{
 		return "register";
 	}

@@ -9,14 +9,14 @@ public class FrontController extends AbstractAnnotationConfigDispatcherServletIn
 		
 		return new Class[]
 				{
-					 AppContext.class
+					 AppContext.class,SecurityConfig.class 
 				};
 	}
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
 		
-		return new Class[] { WebConfig.class  };
+		return new Class[] { WebConfig.class };
 	}
 
 	@Override

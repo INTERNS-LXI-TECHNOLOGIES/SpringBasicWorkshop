@@ -31,15 +31,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	{
 		http.csrf().disable()
 		.authorizeRequests()
-			.antMatchers("/","introduction").access("hasRole('ADMIN') or hasRole('USER')")
-			.antMatchers("/admin").access("hasRole('ADMIN')")
-			.antMatchers("/introduction").access("hasRole('ADMIN') or hasRole('USER')")
+			.antMatchers("/","introduction","/home").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
+			.antMatchers("/admin").access("hasRole('ROLE_ADMIN')")
+//			.antMatchers("/introduction").access("hasRole('ADMIN') or hasRole('USER')")
 			.and().formLogin().loginPage("/login")
 			.and()
 			.httpBasic()
 			.and()
 			.logout()
-			.logoutUrl("/j_spring_security_logout")
+			.logoutUrl("/logout")
 			.logoutSuccessUrl("/");
 	}
 }

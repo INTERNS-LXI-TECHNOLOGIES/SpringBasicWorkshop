@@ -11,11 +11,11 @@
 <body>
     <div class="login-page">
       <div class="form">
-        <form action="userRegistration" method="GET" class="login-form">
+        <form action="userRegistration" method="GET" class="login-form" modelAttribute="reg">
            <input type="text" name="uname" placeholder="name" autocomplete="off" required="required" />
           <input type="password" name="pass" placeholder="password" autocomplete="off" required="required" />
            <button>Register</button>
-           <p class="message">Already registered? <a href="login.jsp">Login</a></p>
+           <p class="message">Already registered? <a href="${pageContext.request.contextPath}/login">Login</a></p>
         </form>
      </div>
    </div>
