@@ -1,48 +1,49 @@
 package com.lxisoft.service;
+
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.lxisoft.dao.ExamDAO;
-import com.lxisoft.model.Exam;
+import com.lxisoft.entity.Exam;
+import com.lxisoft.repository.ExamRepository;
+
 @Service
 @Transactional
-public class ExamServiceImpl implements ExamService {
+public class ExamServiceImpl  {
 
-	@Autowired
-    private ExamDAO examDAO;
- 
-	
-	@Override
+    @Autowired
+    private ExamRepository examRepository;
+
+    	
 	@Transactional
 	public void addExam(Exam exam) {
-		examDAO.addExam(exam);
+		examRepository.addExam(exam);
 	}
 
-	@Override
+	
 	@Transactional
-	public List<Exam> getAllExam() {
-		return examDAO.getAllExam();
-	}
-	
-	@Override
-    @Transactional
-    public void deleteExam(Integer examId) {
-	examDAO.deleteExam(examId);
+	public List<Exam> getAllExams() {
+		return examRepository.getAllExam();
 	}
 
 	
+	@Transactional
+	public void deleteExam(Integer examId) {
+		examRepository.deleteExam(examId);
+	}
+
 	public Exam getExam(int exmid) {
-		return examDAO.getExam(exmid);
+		return examRepository.getExam(exmid);
 	}
-	
-	public Exam updateExam(Exam exam) {
-       return examDAO.updateExam(exam);
-    }
- 
-    public void setExamDAO(ExamDAO examDAO) {
-        this.examDAO = examDAO;
-    }
- 
-}
 
+	public Exam updateExam(Exam exam) {
+		
+		return examRepository.updateExam(exam);
+	}
+
+	public void setExamDAO(ExamRepository examRepository) {
+		this.examRepository = examRepository;
+	}
+
+
+}

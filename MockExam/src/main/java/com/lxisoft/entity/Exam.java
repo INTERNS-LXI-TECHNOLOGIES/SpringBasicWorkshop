@@ -1,4 +1,4 @@
-package com.lxisoft.model;
+package com.lxisoft.entity;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;

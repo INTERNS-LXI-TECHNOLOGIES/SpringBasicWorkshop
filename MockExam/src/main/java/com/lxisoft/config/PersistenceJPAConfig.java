@@ -1,10 +1,8 @@
 package com.lxisoft.config;
 
 import java.util.Properties;
-
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -26,9 +24,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
     "classpath:database.properties"
 })
 @ComponentScan({
-    "net.javaguides.springmvc"
+    "com.lxisoft"
 })
-@EnableJpaRepositories(basePackages = "net.javaguides.springmvc.repository")
+@EnableJpaRepositories(basePackages = "com.lxisoft.repository")
 public class PersistenceJPAConfig {
 
     @Autowired
@@ -43,7 +41,7 @@ public class PersistenceJPAConfig {
         final LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource());
         entityManagerFactoryBean.setPackagesToScan(new String[] {
-            "net.javaguides.springmvc.entity"
+            "com.lxisoft.entity"
         });
 
         final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
