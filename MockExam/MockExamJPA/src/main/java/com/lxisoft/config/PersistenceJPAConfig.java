@@ -35,7 +35,7 @@ public class PersistenceJPAConfig {
     private Environment env;
 
     public PersistenceJPAConfig() {
-     //   super();
+        super();
     }
 
     @Bean
