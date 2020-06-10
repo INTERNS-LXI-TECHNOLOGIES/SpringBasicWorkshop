@@ -1,20 +1,9 @@
 package com.lxisoft.repository;
 
-import java.util.List;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.repository.CrudRepository;
 import com.lxisoft.entity.Exam;
+import java.util.List;
 
-@Repository("examRepository")
-public interface ExamRepository extends JpaRepository<Exam, Integer> {
-
-	void addExam(Exam exam);
-
-	List<Exam> getAllExam();
-
-	void deleteExam(Integer examId);
-
-	Exam getExam(int exmid);
-
-	Exam updateExam(Exam exam);
+public interface ExamRepository<P> extends CrudRepository<Exam, Long> {
+    List<Exam> findByQuestion(String question);
 }
