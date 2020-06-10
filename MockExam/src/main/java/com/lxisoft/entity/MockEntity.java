@@ -1,5 +1,4 @@
-
-package com.lxisoft.model;
+package com.lxisoft.entity;
 
 import java.io.Serializable;
 
@@ -13,14 +12,13 @@ import javax.persistence.Transient;
 
 @Entity
 @Table(name = "MockExam")
-public class MockModel implements Serializable {
+public class MockEntity implements Serializable {
 	
 	private static final long serialVersionUID = -3465813074586302847L;
 
 	@Id
-
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 	
 	@Column(name="question")
@@ -41,13 +39,14 @@ public class MockModel implements Serializable {
 	@Column(name="option4")
 	private String option4;
 	
-	@Transient
-	private String selectedOption;
-	
+
 	public int getId()
 	{
 		return id;
 	}
+	public void setId(int id) {
+        this.id = id;
+    }
 	public void setQuestion(String question)
 	{
 		this.question = question;
@@ -104,4 +103,5 @@ public class MockModel implements Serializable {
 	{
 		return selectedOption;
 	}
+
 }
