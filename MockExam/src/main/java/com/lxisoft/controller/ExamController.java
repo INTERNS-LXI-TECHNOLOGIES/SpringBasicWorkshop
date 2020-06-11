@@ -13,13 +13,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import com.lxisoft.entity.Exam;
 import com.lxisoft.service.ExamService;
- 
-@Controller
 
+@Controller
 public class ExamController {
 	private static final Logger logger = Logger
             .getLogger(ExamController.class);
  
+	
+	@Autowired
+	private ExamService examService;
+
+	
     public ExamController() {
         System.out.println("ExamController()");
     }
@@ -28,9 +32,6 @@ public class ExamController {
         model.put("message", "HowToDoInJava Reader !!");
         return "index";
     }
- 
-    @Autowired
-    private ExamService examService;
  
     @RequestMapping(value = "/home")
     public ModelAndView listExam(ModelAndView model) throws IOException {
@@ -47,17 +48,17 @@ public class ExamController {
         model.setViewName("Add");
         return model;
     }
-    @RequestMapping(value = "/addsucc", method = RequestMethod.POST)
-	 public String addQuestion(@ModelAttribute Exam exam) {
-		        if (exam.getId() == 0) {
-	            examService.addExam(exam);
-	            return "AddSuccess";
-	        } else {
-	            examService.updateExam(exam);
-	            return "EditSuccess";
-	        }    
-	        
-	    }
+//    @RequestMapping(value = "/addsucc", method = RequestMethod.POST)
+//	 public String addQuestion(@ModelAttribute Exam exam) {
+//		        if (exam.getId() == 0) {
+//	            examService.saveExam(exam);
+//	            return "AddSuccess";
+//	        } else {
+//	            examService.updateExam(exam);
+//	            return "EditSuccess";
+//	        }    
+//	        
+//	    }
    
 //    @RequestMapping(value = "/deleteExam")
 //    public ModelAndView questionsForDelete(ModelAndView model) throws IOException {

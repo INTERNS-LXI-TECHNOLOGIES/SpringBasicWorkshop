@@ -1,30 +1,30 @@
 package com.lxisoft.config;
-import com.lxisoft.config.PersistenceJPAConfig;
+
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 
-@SuppressWarnings("unused")
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
-    @Override
-    protected Class < ? > [] getRootConfigClasses() {
-        return new Class[] {
-        		 PersistenceJPAConfig.class
-        };
-        //return null;
-    }
+	 @Override
+	    protected Class <?> [] getRootConfigClasses() {
+	        return new Class[] {
+	            PersistenceJPAConfig.class
+	        };
+	        //return null;
+	    }
 
-    @Override
-    protected Class < ? > [] getServletConfigClasses() {
-        return new Class[] {
-            WebMvcConfig.class
-        };
-    }
+	    @Override
+	    protected Class <?> [] getServletConfigClasses() {
+	        return new Class[] {
+	            WebMvcConfig.class
+	        };
+	    }
 
-    @Override
-    protected String[] getServletMappings() {
-        return new String[] {
-            "/"
-        };
-    }
+	    @Override
+	    protected String[] getServletMappings() {
+	        return new String[] {
+	            "/"
+	        };
+	    }
+	
 }

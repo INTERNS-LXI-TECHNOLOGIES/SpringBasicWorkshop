@@ -1,9 +1,10 @@
 package com.lxisoft.repository;
 
-import org.springframework.data.repository.CrudRepository;
-import com.lxisoft.entity.Exam;
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import com.lxisoft.entity.*;
 
-public interface ExamRepository<P> extends CrudRepository<Exam, Long> {
-    List<Exam> findByQuestion(String question);
+@Repository("ExamRepository")
+public interface ExamRepository extends JpaRepository<Exam, Integer> {
+
 }
