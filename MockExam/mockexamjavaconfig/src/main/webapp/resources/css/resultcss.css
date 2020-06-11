@@ -1,6 +1,6 @@
 @charset "UTF-8";
 head,body{
-			background-color: #7fcdcd;
+			background-color: #d3d7cf;
 		}
 		#heading{
 			text-align: center;
@@ -28,8 +28,9 @@ head,body{
 		#btn{
 			border-radius: 15px;
 			border-color: black;
-			background-color: red;
+			background-color: #008cba;
 			margin-top: -20px;
+			color:white;
 		}
 		#bbtn{
 			text-align: center;
@@ -40,4 +41,10 @@ head,body{
 			text-align: center;
 			margin-right: -55px;
 			margin-top:-35px;
+		}
+		#bbbbtn
+		{
+			text-align: center;
+			margin-right: -325px;
+			margin-top:-35px;	
 		}

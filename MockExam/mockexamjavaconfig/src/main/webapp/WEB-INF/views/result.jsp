@@ -50,6 +50,11 @@
 	<div id="bbbtn" >
 		<button id="btn" style="height: 50px;width: 100px" onclick="show()">Check</button>
 	</div>
+	<div id="bbbbtn" >
+		<form action="${pageContext.request.contextPath}/logout" method="GET">
+		<button id="btn" style="height: 50px;width: 100px" ">Logout</button>
+		</form>
+	</div>
 	
 	<div id="boxx" >
 	<%

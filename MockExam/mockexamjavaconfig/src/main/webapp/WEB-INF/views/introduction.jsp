@@ -27,7 +27,7 @@
 	<div id="bbtn" >
 		<form action="getExamData" method="GET">
 			<input type="hidden" name="count" value="0">
-			<button id="btn" style="height: 50px;width: 100px;color:black">Start Exam</button>
+			<button id="btn" style="height: 50px;width: 130px;color:white">Start Exam</button>
 		</form>
 	</div>
 </body>

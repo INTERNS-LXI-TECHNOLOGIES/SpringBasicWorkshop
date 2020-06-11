@@ -28,7 +28,7 @@ public class ExamController {
 	@Autowired
 	private ExamService examService;
 	
-	private ArrayList<String> answerList = new  ArrayList<String>();
+	private static ArrayList<String> answerList = new  ArrayList<String>();
 	
 
 	@RequestMapping(value= "/introduction")
@@ -155,23 +155,17 @@ public class ExamController {
 	@RequestMapping(value = "/checkAnswer" ,method = RequestMethod.GET)
 	public ModelAndView getAnswer(HttpServletRequest request,HttpServletResponse response)throws IOException
 	{
-		if(answerList.size()==10)
-		{
-			answerList.clear();
-			HttpSession session = request.getSession();		
+		HttpSession session = request.getSession();	
+		ArrayList mockExam = (ArrayList<Exam>)session.getAttribute("examdatas");
+			if(answerList.size() == mockExam.size())
+			{	
+				answerList.clear();
+			}
 			String answers = request.getParameter("ans");
 			answerList.add(answers);
-			System.out.println("answer ="+answerList.size());
+			System.out.println("answers ="+answerList);
 			session.setAttribute("ansSelected",answerList);
-		}
-		else
-		{
-		HttpSession session = request.getSession();		
-		String answers = request.getParameter("ans");
-		answerList.add(answers);
-		System.out.println("answer ="+answerList.size());
-		session.setAttribute("ansSelected",answerList);
-		}
+			
 		return new ModelAndView("questions");
 		
 	}
