@@ -13,7 +13,6 @@ import org.springframework.web.servlet.view.JstlView;
 @EnableWebMvc
 @ComponentScan(basePackages = {"com.lxisoft.*"})
 public class WebMvcConfig {
-	
 	 @Bean
 	    public InternalResourceViewResolver resolver() {
 	        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
