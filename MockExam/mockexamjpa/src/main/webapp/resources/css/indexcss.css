@@ -1,0 +1,48 @@
+		body
+		{
+			
+			position: fixed;
+		}	
+
+		#heading
+		{
+			text-align: center;
+			position: relative;
+			left:480px;
+			top: 100px;
+
+		}
+		h1
+		{
+			font-size: 50px;
+			color: #66CDAA;
+		}
+		#btn{
+
+			border-radius: 15px;
+			border-color: black;
+			margin-top: -20px;
+			position: relative;
+			top: 40px;
+			left: 580px;
+		}
+		button
+		{
+			background-color: #008cba;
+			text-indent: 0px;
+			border:1px solid dark;
+			display:inline-block;
+			font-family: Arial;
+			color: black;
+			font-size: 16px;
+			height: 45px;
+			width: 145px;
+			text-decoration: none;
+			text-align: center;text-shadow: 1px 1px 0px;
+			line-height: 10px;
+			overflow: hidden;
+			border-radius: 15px; 
+			outline: none;
+			margin-top: 200px;
+			margin-left: auto;
+		}
