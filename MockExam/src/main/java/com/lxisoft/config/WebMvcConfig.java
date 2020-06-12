@@ -13,7 +13,7 @@ import org.springframework.web.servlet.view.JstlView;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = {"com.lxisoft.*"})
-@Import({SecurityConfig.class})
+//@Import({SecurityConfig.class})
 public class WebMvcConfig {
 	
 	 @Bean

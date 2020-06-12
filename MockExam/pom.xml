@@ -5,11 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.lxisoft</groupId>
-  <artifactId>MockTest</artifactId>
+  <artifactId>MockExam</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
 
-  <name>MockTest Maven Webapp</name>
+  <name>MockExam Maven Webapp</name>
   <url>http://maven.apache.org</url>
 
   <properties>
@@ -24,10 +24,17 @@
 
   <dependencies>
   
+
     <dependency>
-    <groupId>javax.servlet</groupId>
-    <artifactId>jstl</artifactId>
-    <version>1.2</version>
+        <groupId>org.springframework.data</groupId>
+        <artifactId>spring-data-jpa</artifactId>
+        <version>2.1.0.RELEASE</version>
+    </dependency>
+
+    <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>jstl</artifactId>
+        <version>1.2</version>
     </dependency>
   
     <dependency>
@@ -57,23 +64,38 @@
       <scope>test</scope>
     </dependency>
     
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-beans</artifactId>
+        <version>5.2.5.RELEASE</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>5.2.5.RELEASE</version>
+    </dependency>
+   <!--  <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-core</artifactId>
+        <version>4.3.7.RELEASE</version>
+    </dependency> -->
         <!-- Spring 3 dependencies -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-core</artifactId>
-      <version>${spring.version}</version>
+      <version>5.2.5.RELEASE</version>
     </dependency>
 
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-web</artifactId>
-      <version>${spring.version}</version>
+      <version>5.2.5.RELEASE</version>
     </dependency>
 
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-webmvc</artifactId>
-      <version>${spring.version}</version>
+      <version>5.2.5.RELEASE</version>
     </dependency>
     
     <dependency>
@@ -83,7 +105,7 @@
     </dependency>
 
         <!-- Spring Security -->
-    <dependency>
+   <!--  <dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-web</artifactId>
       <version>${spring.security.version}</version>
@@ -99,32 +121,32 @@
         <groupId>org.springframework.security</groupId>
         <artifactId>spring-security-core</artifactId>
         <version>${spring.security.version}</version>
-    </dependency>
+    </dependency> -->
 
 
-    <dependency>
+<dependency>
     <groupId>org.springframework</groupId>
     <artifactId>spring-orm</artifactId>
-    <version>4.0.0.RELEASE</version>
+    <version>5.2.5.RELEASE</version>
 </dependency>
 
 
 <dependency>
     <groupId>org.hibernate</groupId>
     <artifactId>hibernate-entitymanager</artifactId>
-    <version>4.2.2.Final</version>
+    <version>5.3.7.Final</version>
 </dependency>
 
 <dependency>
     <groupId>org.hibernate</groupId>
     <artifactId>hibernate-core</artifactId>
-    <version>4.2.2.Final</version>
+    <version>5.3.7.Final</version>
 </dependency>
 
 <dependency>
     <groupId>org.hibernate</groupId>
     <artifactId>hibernate-validator</artifactId>
-    <version>4.1.0.Final</version>
+    <version>5.4.1.Final</version>
 </dependency>
 <!-- MySQL Connector-->
 <dependency>
@@ -140,7 +162,7 @@
 
 
   <build>
-    <finalName>MockTest</finalName>
+    <finalName>MockExam</finalName>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <plugin>
@@ -173,7 +195,7 @@
           <version>2.8.2</version>
         </plugin>
         
-          <plugin>
+        <plugin>
         <groupId>org.apache.tomcat.maven</groupId>
         <artifactId>tomcat7-maven-plugin</artifactId>
         <version>2.2</version>

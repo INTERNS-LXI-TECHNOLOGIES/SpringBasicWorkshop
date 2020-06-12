@@ -95,13 +95,10 @@ public class MockEntity implements Serializable {
 	{
 		return option4;
 	}
-	public void setSelectedOption(String selectedOption)
-	{
-		this.selectedOption = selectedOption;
-	}
-	public String getSelectedOption() 
-	{
-		return selectedOption;
-	}
+	/*
+	 * public void setSelectedOption(String selectedOption) { this.selectedOption =
+	 * selectedOption; } public String getSelectedOption() { return selectedOption;
+	 * }
+	 */
 
 }

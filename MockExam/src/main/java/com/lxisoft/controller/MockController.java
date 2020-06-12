@@ -6,9 +6,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
+//import org.springframework.security.core.Authentication;
+//import org.springframework.security.core.context.SecurityContextHolder;
+//import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -31,7 +31,7 @@ public class MockController {
 		return "Home";
 	}
 	
-	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String getadministeration()
 	{
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -46,8 +46,21 @@ public class MockController {
 			return "Introduction";
 		}
 		
+	}*/
+	
+	/*@RequestMapping(value = "/admin",method = RequestMethod.GET)
+	public String getAdmin()
+	{
+		return "Admin";
 	}
 	
+	@RequestMapping(value = "/introduction",method = RequestMethod.GET)
+	public String getUserPage()
+	{
+		return "Introduction";
+	}*/
+
+
 	@RequestMapping(value = "/user",method = RequestMethod.GET)
 	public String getUser()
 	{
@@ -60,7 +73,7 @@ public class MockController {
 		return "Logout";
 	}
 	
-	@RequestMapping(value="/logout", method=RequestMethod.POST)  
+	/*@RequestMapping(value="/logout", method=RequestMethod.POST)  
     public String logoutPage(HttpServletRequest request, HttpServletResponse response) {  
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();  
         if (auth != null){      
@@ -72,7 +85,7 @@ public class MockController {
 	@RequestMapping(value="/admin", method=RequestMethod.GET)
     public String admin() { 
         return "Admin";  
-    }
+    }*/
 	
 	 @RequestMapping(value = "/displayAll")
      public ModelAndView getAllQuestions(ModelAndView model) throws IOException {
