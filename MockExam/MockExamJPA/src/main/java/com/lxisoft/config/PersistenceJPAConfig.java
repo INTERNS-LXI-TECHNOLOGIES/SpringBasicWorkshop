@@ -2,10 +2,6 @@ package com.lxisoft.config;
 
 import java.util.Properties;
 
-
-
-
-
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
