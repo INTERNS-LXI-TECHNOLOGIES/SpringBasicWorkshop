@@ -32,14 +32,20 @@ public class ExamServiceImpl  {
 
 	
 	
-	  @Transactional public void deleteExam(Integer examId) {
+	  @Transactional
+	  public void deleteExam(Integer examId) {
 	  examRepository.deleteById(examId); }
+	  @Transactional
+	  public ExamModel updateExam(ExamModel examModel) {
+			 
+			 return examRepository.save(examModel); }
+			 
 	  
-	 /* * public ExamModel getExam(int exmid) { return examRepository.getExam(exmid); }
+	/*
+	 * @Transactional public ExamModel getExam(int exmid) { return
+	 * examRepository.findById(exmid); }	 */
+	 /* * 
 	 * 
-	 * public ExamModel updateExam(ExamModel examModel) {
-	 * 
-	 * return examRepository.updateExam(examModel); }
 	 * 
 	 * public void setExamDAO(ExamRepository examRepository) { this.examRepository =
 	 * examRepository; }

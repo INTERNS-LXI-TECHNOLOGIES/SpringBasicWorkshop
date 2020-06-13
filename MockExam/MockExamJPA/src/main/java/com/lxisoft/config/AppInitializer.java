@@ -14,7 +14,6 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
         };
         //return null;
     }
-
     @Override
     protected Class < ? > [] getServletConfigClasses() {
         return new Class[] {

@@ -72,13 +72,7 @@ public class ExamController {
 	 * return ("DeleteConfirmation"); }
 	 * 
 	 * 
-	 * @RequestMapping(value = "/editExam", method = RequestMethod.GET) public
-	 * ModelAndView editQuestiont(HttpServletRequest request) { int examId =
-	 * Integer.parseInt(request.getParameter("id")); ExamModel examModel =
-	 * examService.getExam(examId); ModelAndView model = new
-	 * ModelAndView("ExamForm"); model.addObject("examModel", examModel);
 	 * 
-	 * return model; }
 	 * 
 	 * @RequestMapping(value = "/userPage", method = RequestMethod.GET) public
 	 * ModelAndView displayInstruction(HttpServletRequest request) { return new
