@@ -42,7 +42,7 @@
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
       <version>4.0.1</version>
-      <scope>provided</scope>
+      
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
@@ -59,7 +59,7 @@
       <groupId>javax.servlet.jsp</groupId>
       <artifactId>javax.servlet.jsp-api</artifactId>
       <version>2.3.3</version>
-      <scope>provided</scope>
+    
     </dependency>
 
 
@@ -96,12 +96,7 @@
       <version>6.0.0.Alpha5</version>
     </dependency>
 	
-	<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-	<dependency>
-    	<groupId>mysql</groupId>
-    	<artifactId>mysql-connector-java</artifactId>
-    	<version>8.0.20</version>
-	</dependency>
+	
 		
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
 <dependency>
@@ -109,6 +104,14 @@
     <artifactId>spring-orm</artifactId>
     <version>5.2.7.RELEASE</version>
 </dependency>
+
+<!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-context</artifactId>
+    <version>5.2.7.RELEASE</version>
+</dependency>
+
 		
 	<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager -->
 <dependency>
@@ -117,7 +120,19 @@
     <version>6.0.0.Alpha5</version>
     <type>pom</type>
 </dependency>
-	
+		
+	<dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>2.0.0-alpha1</version>
+    </dependency>
+    	
+	<dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>2.0.0-alpha1</version>
+    </dependency>
+		
   </dependencies>
 
   <build>

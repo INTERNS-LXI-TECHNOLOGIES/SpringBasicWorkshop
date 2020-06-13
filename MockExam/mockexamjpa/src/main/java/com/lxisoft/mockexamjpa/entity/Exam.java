@@ -7,7 +7,10 @@ import java.io.Serializable;
 @Entity
 public class Exam implements Serializable {
 
-    @Id
+   
+	private static final long serialVersionUID = 2209194659595400290L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
