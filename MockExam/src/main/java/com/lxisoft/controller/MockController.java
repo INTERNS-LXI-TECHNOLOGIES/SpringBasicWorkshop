@@ -48,7 +48,7 @@ public class MockController {
 		
 	}*/
 	
-	/*@RequestMapping(value = "/admin",method = RequestMethod.GET)
+	@RequestMapping(value = "/admin",method = RequestMethod.GET)
 	public String getAdmin()
 	{
 		return "Admin";
@@ -58,7 +58,7 @@ public class MockController {
 	public String getUserPage()
 	{
 		return "Introduction";
-	}*/
+	}
 
 
 	@RequestMapping(value = "/user",method = RequestMethod.GET)
