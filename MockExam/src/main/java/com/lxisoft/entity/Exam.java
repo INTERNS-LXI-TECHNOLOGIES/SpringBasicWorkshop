@@ -9,13 +9,13 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name = "EXM_TBL")
+@Table(name = "mockexam")
 public class Exam implements Serializable 
 {
-	private static final long serialVersionUID = -3465813074586302847L;
+	private static final long serialVersionUID = 2209194659595400290L;
 	 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
  
     @Column

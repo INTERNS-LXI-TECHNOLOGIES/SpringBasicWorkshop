@@ -16,29 +16,22 @@ import com.lxisoft.entity.Exam;
 import com.lxisoft.service.ExamService;
 
 @Controller
+
 public class ExamController {
 	private static final Logger logger = Logger
             .getLogger(ExamController.class);
  
-	
-	@Autowired
-	private ExamService examService;
-
-	
     public ExamController() {
         System.out.println("ExamController()");
     }
-    @RequestMapping(value = "/",method = RequestMethod.GET)
-	public String home()
-	{
-		return "index";
-	}
-    
-//    @RequestMapping(value="/")
-//    public String home(Map<String, Object> model) {
-//        model.put("message", "HowToDoInJava Reader !!");
-//        return "index";
-//    }
+    @RequestMapping(value="/")
+    public String home(Map<String, Object> model) {
+        model.put("message", "HowToDoInJava Reader !!");
+        return "index";
+    }
+ 
+    @Autowired
+    private ExamService examService;
  
     @RequestMapping(value = "/home")
     public ModelAndView listExam(ModelAndView model) throws IOException {
