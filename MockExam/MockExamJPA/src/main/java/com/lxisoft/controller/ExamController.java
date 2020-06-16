@@ -29,6 +29,12 @@ public class ExamController {
 	
 	@Autowired
 	private ExamServiceImpl examService;
+
+	
+	@RequestMapping(value = "/")
+ 	public String indexPage(){
+ 	return "index";
+ 	}
 	
 	@RequestMapping(value = "/firstpage")
 	public ModelAndView listExam(ModelAndView model) throws IOException {
