@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @PropertySource({"classpath:database.properties"})
 @ComponentScan({"com.lxisoft"})
-@EnableJpaRepositories(basePackages = "com.lxisoft.Repository")
+@EnableJpaRepositories(basePackages = "com.lxisoft.entity")
 public class PersistanceJpaConfig {
 	
 	 @Autowired
@@ -33,9 +33,11 @@ public class PersistanceJpaConfig {
 	    @Bean
 	    public LocalContainerEntityManagerFactoryBean entityManagerFactory()
 	    {
+	       
 	        final LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
 	        entityManagerFactoryBean.setDataSource(dataSource());
 	        entityManagerFactoryBean.setPackagesToScan(new String[] {"com.lxisoft.entity"});
+
 	        final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 	        entityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter);
 	        entityManagerFactoryBean.setJpaProperties(additionalProperties());
@@ -49,8 +51,9 @@ public class PersistanceJpaConfig {
 	        hibernateProperties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
 	        hibernateProperties.setProperty("hibernate.cache.use_second_level_cache", env.getProperty("hibernate.cache.use_second_level_cache"));
 	        hibernateProperties.setProperty("hibernate.cache.use_query_cache", env.getProperty("hibernate.cache.use_query_cache"));
-	        // hibernateProperties.setProperty("hibernate.globally_quoted_identifiers", "true");
 	        return hibernateProperties;
+	        
+
 	    }
 	    
 	    @Bean

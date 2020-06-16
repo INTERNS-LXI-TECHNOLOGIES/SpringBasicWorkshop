@@ -2,13 +2,10 @@ package com.lxisoft.controller;
 
 import java.io.IOException;
 import java.util.List;
-
+import java.util.Map;
+import org.jboss.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-//import org.springframework.security.core.Authentication;
-//import org.springframework.security.core.context.SecurityContextHolder;
-//import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,16 +19,26 @@ import com.lxisoft.service.*;
 @Controller
 public class MockController {
 	
-	@Autowired
-	MockService mockService;
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String homePage()
-	{
-		return "Home";
+
+	private static final Logger logger = Logger.getLogger(MockController.class);
+ 
+    public MockController() {
+        System.out.println("MockController()");
+    }
+
+	
+
+	@RequestMapping(value= "/")
+	public String home(Map<String, Object> model) {
+        model.put("message", "HowToDoInJava Reader !!");
+        return "index";
+		
 	}
 	
-	/*@RequestMapping(value = "/home", method = RequestMethod.GET)
+	@Autowired
+	private MockService mockService;
+	/*@GetMapping(value = "/home", method = RequestMethod.GET)
 	public String getadministeration()
 	{
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -48,7 +55,7 @@ public class MockController {
 		
 	}*/
 	
-	@RequestMapping(value = "/admin",method = RequestMethod.GET)
+	/*@RequestMapping(value = "/admin",method = RequestMethod.GET)
 	public String getAdmin()
 	{
 		return "Admin";
@@ -71,7 +78,7 @@ public class MockController {
 	public String userLogOut()
 	{
 		return "Logout";
-	}
+	}*/
 	
 	/*@RequestMapping(value="/logout", method=RequestMethod.POST)  
     public String logoutPage(HttpServletRequest request, HttpServletResponse response) {  

@@ -10,7 +10,7 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 	        return new Class[] {
 	            PersistanceJpaConfig.class
 	        };
-	        //return null;
+	        
 	    }
 
 	    @Override
@@ -22,7 +22,8 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 
 	    @Override
 	    protected String[] getServletMappings() {
-	        return new String[] {
+	        return new String[] 
+	        {
 	            "/"
 	        };
 	    }

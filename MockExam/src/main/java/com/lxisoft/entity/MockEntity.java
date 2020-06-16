@@ -18,7 +18,7 @@ public class MockEntity implements Serializable {
 
 	@Id
     @Column(name="id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY	)
     private int id;
 	
 	@Column(name="question")
@@ -95,6 +95,12 @@ public class MockEntity implements Serializable {
 	{
 		return option4;
 	}
+
+	@Override
+    public String toString() 
+    {
+        return "Exam [id=" + id +",question="+question+",option1="+option1+",option2="+option2+",option3="+option3+",option4="+option4+",answer="+answer+"]";
+    }
 	/*
 	 * public void setSelectedOption(String selectedOption) { this.selectedOption =
 	 * selectedOption; } public String getSelectedOption() { return selectedOption;
