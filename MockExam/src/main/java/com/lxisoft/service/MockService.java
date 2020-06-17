@@ -1,16 +1,16 @@
 package com.lxisoft.service;
 
 import java.util.List;
-
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.stereotype.Component;
+
 import com.lxisoft.Repository.*;
 import com.lxisoft.entity.*;
 
 @Service
-@Component
+@Transactional
 public class MockService {
 
 	 @Autowired
@@ -34,5 +34,10 @@ public class MockService {
 	  		mockRepository.deleteById(question);
 	    }
 
+	     @Transactional
+	    public Optional<MockEntity> getQuestionId(int id) 
+	    {
+	        return mockRepository.findById(id);
+	    }
 	  
 }

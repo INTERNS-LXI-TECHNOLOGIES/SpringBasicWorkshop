@@ -1,8 +1,10 @@
 <%@page contentType = "text/html;charset=UTF-8" pageEncoding = "UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content_Type" content="text/html;charset=UTF-8"/>
+    <title>--- New Question ---</title>
 <style type="text/css">
 .button {
   height: 52px;
@@ -38,12 +40,13 @@ input[type=text] {
   border: none;
   border-bottom:2px solid darkmagenta;
 }
+
 td{
 font-size: x-large;
 }
 </style>
 </head>
-<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <body>
 	<div class="wrapper">
         
@@ -55,7 +58,7 @@ font-size: x-large;
             <br>
         </div>
   <div align="center" style="padding-left: 2%;text-align: -webkit-right;">
-        <form:form action="add" method="GET" modelAttribute="mockModel">
+        <form:form action="add" method="post" modelAttribute="mockModel">
         <table style="width:84%;" >
             <form:hidden path="id" />
             <tr>

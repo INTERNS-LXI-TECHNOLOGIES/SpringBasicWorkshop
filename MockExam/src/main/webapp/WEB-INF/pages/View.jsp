@@ -93,14 +93,16 @@ int i =1;
                     <td>${listQuestions.option2}</td>
                     <td>${listQuestions.option3}</td>
                     <td>${listQuestions.option4}</td>
+                    <td><a href="editQuestion?id=${exam.id}">Edit</a> 
+                        <a href="delete?id=${exam.id}">Delete</a></td>
                 </tr>
                 <%i++; %>
             </c:forEach>
         </table>
         <form >
-        <button formaction="admin" class="button">BACK</button>
+        <button formaction="home" class="button">BACK</button>
     	</form>
-    </DIV>
+    </div>
     </div>
 </body>
 </HTML>

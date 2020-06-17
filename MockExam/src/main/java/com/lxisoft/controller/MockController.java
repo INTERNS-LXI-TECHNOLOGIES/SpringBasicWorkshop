@@ -1,8 +1,10 @@
 package com.lxisoft.controller;
-
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import org.jboss.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,17 +19,13 @@ import com.lxisoft.entity.*;
 import com.lxisoft.service.*;
 
 @Controller
-public class MockController {
-	
+public class MockController 
+{
 
 
-	private static final Logger logger = Logger.getLogger(MockController.class);
- 
-    public MockController() {
-        System.out.println("MockController()");
-    }
+	@Autowired
+	private MockService mockService;
 
-	
 
 	@RequestMapping(value= "/")
 	public String home(Map<String, Object> model) {
@@ -36,64 +34,27 @@ public class MockController {
 		
 	}
 	
-	@Autowired
-	private MockService mockService;
-	/*@GetMapping(value = "/home", method = RequestMethod.GET)
-	public String getadministeration()
-	{
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		boolean hasUserRole = authentication.getAuthorities().stream()
-		          .anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"));
-		if(hasUserRole)
-		{
-			return "Admin";
-		}
-		else
-		{
-			return "Introduction";
-		}
-		
-	}*/
-	
-	/*@RequestMapping(value = "/admin",method = RequestMethod.GET)
-	public String getAdmin()
-	{
-		return "Admin";
-	}
-	
-	@RequestMapping(value = "/introduction",method = RequestMethod.GET)
-	public String getUserPage()
-	{
-		return "Introduction";
-	}
-
-
-	@RequestMapping(value = "/user",method = RequestMethod.GET)
-	public String getUser()
-	{
-		return "Introduction";
-	}
-	
-	@RequestMapping(value = "/logoutUser",method = RequestMethod.GET)
-	public String userLogOut()
-	{
-		return "Logout";
-	}*/
-	
-	/*@RequestMapping(value="/logout", method=RequestMethod.POST)  
-    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {  
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();  
-        if (auth != null){      
-           new SecurityContextLogoutHandler().logout(request, response, auth);  
-        }  
-         return "redirect:/";  
-     }
-	
-	@RequestMapping(value="/admin", method=RequestMethod.GET)
-    public String admin() { 
-        return "Admin";  
+	/*private static final Logger logger = Logger.getLogger(MockController.class);
+   
+    public MockController() {
+        System.out.println("MockController()");
     }*/
 	
+	
+	
+	@RequestMapping(value = "/home")
+    public String getAdmin()
+	{
+		return "Admin";
+    }
+
+    @RequestMapping(value = "/introduction")
+    public String getUser()
+	{
+		return "introduction";
+    }
+
+
 	 @RequestMapping(value = "/displayAll")
      public ModelAndView getAllQuestions(ModelAndView model) throws IOException {
         List<MockEntity> listQuestions = mockService.getAllQuestions();
@@ -113,23 +74,92 @@ public class MockController {
 	 @RequestMapping(value = "/add", method = RequestMethod.GET)
 	 public String addQuestion(@ModelAttribute MockEntity mockModel) {
 		
+	 		if (mockModel.getId() == 0)
+	 		{
 	            mockService.saveQuestion(mockModel);
-	            return "Admin";
-	            
+	            return "AddSuccess";
+	        } else 
+	        {
+	            mockService.saveQuestion(mockModel);
+	            return "EditSuccess";
+	        }   
 	 }
 	 
-	 @RequestMapping(value = "/delete")
+	 @RequestMapping(value = "/deleteQuestion")
      public ModelAndView questionsForDelete(ModelAndView model) throws IOException {
         List<MockEntity> listQuestions = mockService.getAllQuestions();
         model.addObject("listQuestions", listQuestions);
-        model.setViewName("Delete");
+        model.setViewName("View");
         return model;
 	 }
-	 
-	 @RequestMapping(value = "/deleteQuestion", method = RequestMethod.GET)
+	 @RequestMapping(value = "/delete", method = RequestMethod.GET)
 	    public String deleteQuestion(HttpServletRequest request) {
 	        int questionId = Integer.parseInt(request.getParameter("id"));
 	        mockService.deleteQuestion(questionId);
-	        return "Admin";
+	        return "DeleteConfirmation";
 	    }
+
+	 @RequestMapping(value = "/editQuestion", method = RequestMethod.GET)
+    	public ModelAndView editQuestion(HttpServletRequest request) 
+    	{
+        int questionId = Integer.parseInt(request.getParameter("id"));
+        Optional<MockEntity> mockEntity = mockService.getQuestionId(questionId);
+        ModelAndView model = new ModelAndView("Edit");
+        model.addObject("mockEntity", mockEntity);
+        return model;
+    	}
+
+
+ 	@RequestMapping(value = "/selectOption", method = RequestMethod.GET)
+	  public ModelAndView seletedOption(HttpServletRequest request,HttpServletResponse res)
+	  {
+
+	  	ModelAndView model=null;
+		  HttpSession sessions = request.getSession(true);
+		  //int selected =  Integer.parseInt(request.getParameter("option"));
+		  String quest=request.getParameter("option");
+		  int count = Integer.parseInt(request.getParameter("count"));
+		  @SuppressWarnings("unchecked")
+		  int mark=0;
+		  List<MockEntity> listQuestions = (List<MockEntity>)sessions.getAttribute("listQuestions");
+
+
+			
+
+				if(quest.equals(listQuestions.get(count).getAnswer()));
+				{
+					mark=mark+1;
+					
+				}
+
+				//model = new ModelAndView("Exam");
+				count++;
+				sessions.setAttribute("count", count);
+				sessions.setAttribute("Mrk", mark);
+				model = new ModelAndView("Exam");
+
+	
+			
+		  	sessions.setAttribute("listQuestions", listQuestions);
+		  	
+		  	return model;
+	  }
+
+
+     @RequestMapping(value = "/result", method = RequestMethod.GET)
+	public String showResult(HttpServletRequest request)
+	  {
+		 
+		HttpSession sessions = request.getSession(true);
+		int mark = Integer.parseInt(sessions.getAttribute("Mrk").toString());
+		sessions.setAttribute("Mark", mark);
+		@SuppressWarnings("unchecked")
+		List<MockEntity> listQuestions = (List<MockEntity>)sessions.getAttribute("listQuestions");
+
+		return "Result";
+
+
+
+
+}
 }

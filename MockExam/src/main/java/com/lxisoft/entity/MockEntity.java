@@ -14,29 +14,28 @@ import javax.persistence.Transient;
 @Table(name = "MockExam")
 public class MockEntity implements Serializable {
 	
-	private static final long serialVersionUID = -3465813074586302847L;
+	private static final long serialVersionUID = 3465813074586302847L;
 
 	@Id
-    @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY	)
     private int id;
 	
-	@Column(name="question")
+	@Column
 	private String question;
 	
-	@Column(name="answer")
+	@Column
 	private String answer;
 	
-	@Column(name="option1")
+	@Column
 	private String option1;
 	
-	@Column(name="option2")
+	@Column
 	private String option2;
 	
-	@Column(name="option3")
+	@Column
 	private String option3;
 	
-	@Column(name="option4")
+	@Column
 	private String option4;
 	
 
@@ -101,10 +100,6 @@ public class MockEntity implements Serializable {
     {
         return "Exam [id=" + id +",question="+question+",option1="+option1+",option2="+option2+",option3="+option3+",option4="+option4+",answer="+answer+"]";
     }
-	/*
-	 * public void setSelectedOption(String selectedOption) { this.selectedOption =
-	 * selectedOption; } public String getSelectedOption() { return selectedOption;
-	 * }
-	 */
+	
 
 }

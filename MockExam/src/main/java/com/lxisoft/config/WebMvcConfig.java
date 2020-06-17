@@ -7,16 +7,13 @@ import org.springframework.context.annotation.Import;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = {"com.lxisoft.controller"})
-
-public class WebMvcConfig implements WebMvcConfigurer {
-	
-	 	@Bean
+public class WebMvcConfig {
+	 @Bean
 	    public InternalResourceViewResolver resolver() {
 	        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
 	        resolver.setViewClass(JstlView.class);
@@ -24,10 +21,11 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	        resolver.setSuffix(".jsp");
 	        return resolver;
 	    }
-	    @Override
-	    public void addResourceHandlers(ResourceHandlerRegistry registry) 
-	    {
-	        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+	 @Bean
+	    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+	        registry
+	            .addResourceHandler("/resources/**")
+	            .addResourceLocations("/resources/");
 	    }
 
 }
