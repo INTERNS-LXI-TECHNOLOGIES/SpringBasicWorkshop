@@ -21,7 +21,7 @@ public class WebMvcConfig {
 	        resolver.setSuffix(".jsp");
 	        return resolver;
 	    }
-	 @Bean
+	 
 	    public void addResourceHandlers(ResourceHandlerRegistry registry) {
 	        registry
 	            .addResourceHandler("/resources/**")

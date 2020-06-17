@@ -11,7 +11,7 @@
      width: 186px;
      border: none;
      border-radius: 20px;
-     background: linear-gradient(to left, #ab68ca, #de67a3);
+     background-color:#566573 ;
      color: #fff;
      font-weight: bolder;
      margin-top: 30px;
@@ -19,9 +19,9 @@
      outline: none;
      font-size: 21px;
 }
-.button:hover {background-color: #3e8e41}
+.button:hover {background-color: #566573}
 .button:active {
-  background-color: #3e8e41;
+  background-color: #566573;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
@@ -38,7 +38,7 @@ input[type=text] {
   margin: 8px 0;
   box-sizing: border-box;
   border: none;
-  border-bottom:2px solid darkmagenta;
+  border-bottom:2px  #566573;
 }
 
 td{
@@ -50,7 +50,7 @@ font-size: x-large;
 <body>
 	<div class="wrapper">
         
-		<div align="center" style="background-color: darkmagenta;" >
+		<div align="center" style="background-color: #566573;" >
             <br>
             <br>
       		<h1><font size="50px" color="white" >Enter Question</font></h1>
@@ -58,7 +58,7 @@ font-size: x-large;
             <br>
         </div>
   <div align="center" style="padding-left: 2%;text-align: -webkit-right;">
-        <form:form action="add" method="post" modelAttribute="mockModel">
+        <form:form action="add" method="post" modelAttribute="mockEntity">
         <table style="width:84%;" >
             <form:hidden path="id" />
             <tr>

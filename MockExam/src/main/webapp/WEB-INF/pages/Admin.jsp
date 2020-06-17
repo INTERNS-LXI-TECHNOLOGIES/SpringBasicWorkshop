@@ -8,7 +8,7 @@
      width: 186px;
      border: none;
      border-radius: 20px;
-     background: linear-gradient(to left, #ab68ca, #de67a3);
+     background-color:#566573 ;
      color: #fff;
      font-weight: bolder;
      margin-top: 30px;
@@ -16,9 +16,9 @@
      outline: none;
      font-size: 21px;
 }
-.button:hover {background-color: #3e8e41}
+.button:hover {background-color: #566573}
 .button:active {
-  background-color: #3e8e41;
+  background-color: #566573;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
@@ -34,7 +34,7 @@
 <body>
 <form>
 	<div class = "wrapper">
-		<div  align="center" style="background-color: darkmagenta;">
+		<div  align="center" style="background-color:  #566573;">
 			<br>
 			<br>
 		<h1><font style="font-size:50px;" color="white">!! WELCOME ADMIN !!</font></h1>
@@ -47,8 +47,8 @@
 		<button formaction="addQuestion" class="button">ADD</button>
 		<button formaction="update" class="button">UPDATE</button>
 		<button formaction="delete" class="button">DELETE</button>
-		<button formaction="introduction" class="button">TEST EXAM</button>
-		<button formaction="logout" class="button">LOGOUT</button>
+		<button formaction="introduction" class="button">TEST MockExam</button>
+		<!-- <button formaction="logout" class="button">LOGOUT</button> -->
 		<button formaction="index" class="button">BACK</button>
 		<br>
 		<br>

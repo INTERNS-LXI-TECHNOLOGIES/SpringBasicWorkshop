@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Mock Exam</title>
-<style type="text/css">
+<!-- <style type="text/css">
 .button {
   height: 52px;
      width: 186px;
@@ -57,14 +57,14 @@ text-align:center;
 border: 1px solid darkmagenta;
   height: 50px;
 }
-</style>
+</style> -->
 </head>
 <body>
 <%
 int i =1;
 %>
 <div class = "wrapper">
-		<div  align="center" style="background-color: darkmagenta;">
+		<div  align="center" style="background-color: #566573;">
 			<br>
 			<br>
 		<h1><font style="font-size:50px;" color="white">DISPLAY ALL QUESTIONS</font></h1>
@@ -84,17 +84,17 @@ int i =1;
             <th>Option4</th>
             </tr>
  
-            <c:forEach var="listQuestions" items="${listQuestions}">
+            <c:forEach var="mockEntity" items="${listQuestions}">
                 <tr>
 					<td><%out.print(i); %></td>	 
-                    <td>${listQuestions.question}</td>
-                    <td>${listQuestions.answer}</td>
-                    <td>${listQuestions.option1}</td>
-                    <td>${listQuestions.option2}</td>
-                    <td>${listQuestions.option3}</td>
-                    <td>${listQuestions.option4}</td>
-                    <td><a href="editQuestion?id=${exam.id}">Edit</a> 
-                        <a href="delete?id=${exam.id}">Delete</a></td>
+                    <td>${mockEntity.question}</td>
+                    <td>${mockEntity.answer}</td>
+                    <td>${mockEntity.option1}</td>
+                    <td>${mockEntity.option2}</td>
+                    <td>${mockEntity.option3}</td>
+                    <td>${mockEntity.option4}</td>
+                    <td><a href="update?id=${mockEntity.id}">Edit</a> 
+                        <a href="delete?id=${mockEntity.id}">Delete</a></td>
                 </tr>
                 <%i++; %>
             </c:forEach>

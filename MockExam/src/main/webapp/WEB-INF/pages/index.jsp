@@ -12,7 +12,7 @@
 </div>
 <div align="center">
 <form>
-<button class="button" formaction ="Admin">Admin</button><button class="button" formaction ="introduction">User</button>
+<button class="button" formaction ="home">Admin</button><button class="button" formaction ="intro">User</button>
 </form>
 </div>
 </div>

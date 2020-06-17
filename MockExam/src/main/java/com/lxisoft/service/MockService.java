@@ -6,15 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.lxisoft.Repository.*;
-import com.lxisoft.entity.*;
+import com.lxisoft.repository.MockRepository;
+import com.lxisoft.entity.MockEntity;
 
 @Service
-@Transactional
 public class MockService {
 
 	 @Autowired
-	 private MockRepository mockRepository;
+	 MockRepository mockRepository;
 	 
 	  	@Transactional
 	    public List < MockEntity > getAllQuestions() 

@@ -15,17 +15,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.lxisoft.entity.*;
-import com.lxisoft.service.*;
+import com.lxisoft.entity.MockEntity;
+import com.lxisoft.service.MockService;
 
 @Controller
 public class MockController 
 {
-
-
-	@Autowired
-	private MockService mockService;
-
+	public MockController() 
+	{
+        System.out.println("MockController()");
+    }
+	
 
 	@RequestMapping(value= "/")
 	public String home(Map<String, Object> model) {
@@ -33,25 +33,38 @@ public class MockController
         return "index";
 		
 	}
-	
-	/*private static final Logger logger = Logger.getLogger(MockController.class);
+
+	@Autowired
+	private MockService mockService;
+	/*private static final Logger logger = Logger.getLogger(MockController.class);*/
    
-    public MockController() {
-        System.out.println("MockController()");
-    }*/
-	
+   
 	
 	
 	@RequestMapping(value = "/home")
-    public String getAdmin()
+    public ModelAndView getAdmin(ModelAndView model)
 	{
-		return "Admin";
+		List<MockEntity> listQuestions = mockService.getAllQuestions();
+        model.addObject("listQuestions", listQuestions);
+        model.setViewName("Admin");
+        return model;
     }
 
-    @RequestMapping(value = "/introduction")
-    public String getUser()
+    @RequestMapping(value = "/intro")
+    public ModelAndView getUser(ModelAndView model)
 	{
-		return "introduction";
+		List<MockEntity> listQuestions = mockService.getAllQuestions();
+        model.addObject("listQuestions", listQuestions);
+        model.setViewName("Introduction");
+        return model;
+    }
+
+    @RequestMapping(value = "/exam")
+     public ModelAndView examStart(ModelAndView model) throws IOException {
+        List<MockEntity> listQuestions = mockService.getAllQuestions();
+        model.addObject("listQuestions", listQuestions);
+        model.setViewName("Exam");
+        return model;
     }
 
 
@@ -64,14 +77,14 @@ public class MockController
     }
 	 
 	 @RequestMapping(value = "/addQuestion", method = RequestMethod.GET)
-     public ModelAndView newContact(ModelAndView model) {
-        MockEntity mockModel = new MockEntity();
-        model.addObject("mockModel", mockModel);
+     public ModelAndView newQuestion(ModelAndView model) {
+        MockEntity mockEntity = new MockEntity();
+        model.addObject("mockEntity", mockEntity);
         model.setViewName("Add");
         return model;
     }
 	 
-	 @RequestMapping(value = "/add", method = RequestMethod.GET)
+	 @RequestMapping(value = "/add", method = RequestMethod.POST)
 	 public String addQuestion(@ModelAttribute MockEntity mockModel) {
 		
 	 		if (mockModel.getId() == 0)
@@ -85,6 +98,16 @@ public class MockController
 	        }   
 	 }
 	 
+	 @RequestMapping(value = "/update", method = RequestMethod.GET)
+    	public ModelAndView editQuestion(HttpServletRequest request) 
+    	{
+        int questionId = Integer.parseInt(request.getParameter("id"));
+        Optional<MockEntity> mockEntity = mockService.getQuestionId(questionId);
+        ModelAndView model = new ModelAndView("Edit");
+        model.addObject("mockEntity", mockEntity);
+        return model;
+    	}
+
 	 @RequestMapping(value = "/deleteQuestion")
      public ModelAndView questionsForDelete(ModelAndView model) throws IOException {
         List<MockEntity> listQuestions = mockService.getAllQuestions();
@@ -99,15 +122,7 @@ public class MockController
 	        return "DeleteConfirmation";
 	    }
 
-	 @RequestMapping(value = "/editQuestion", method = RequestMethod.GET)
-    	public ModelAndView editQuestion(HttpServletRequest request) 
-    	{
-        int questionId = Integer.parseInt(request.getParameter("id"));
-        Optional<MockEntity> mockEntity = mockService.getQuestionId(questionId);
-        ModelAndView model = new ModelAndView("Edit");
-        model.addObject("mockEntity", mockEntity);
-        return model;
-    	}
+	 
 
 
  	@RequestMapping(value = "/selectOption", method = RequestMethod.GET)
@@ -119,9 +134,10 @@ public class MockController
 		  //int selected =  Integer.parseInt(request.getParameter("option"));
 		  String quest=request.getParameter("option");
 		  int count = Integer.parseInt(request.getParameter("count"));
-		  @SuppressWarnings("unchecked")
+		  //@SuppressWarnings("unchecked")
 		  int mark=0;
-		  List<MockEntity> listQuestions = (List<MockEntity>)sessions.getAttribute("listQuestions");
+		  @SuppressWarnings("unchecked")
+		List<MockEntity> listQuestions = (List<MockEntity>)sessions.getAttribute("listQuestions");
 
 
 			

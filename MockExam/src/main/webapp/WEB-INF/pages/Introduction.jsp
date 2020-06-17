@@ -7,7 +7,7 @@
      width: 186px;
      border: none;
      border-radius: 20px;
-     background: linear-gradient(to left, #ab68ca, #de67a3);
+     background-color:#566573 ;
      color: #fff;
      font-weight: bolder;
      margin-top: 30px;
@@ -15,9 +15,9 @@
      outline: none;
      font-size: 21px;
 }
-.button:hover {background-color: #3e8e41}
+.button:hover {background-color: #566573}
 .button:active {
-  background-color: #3e8e41;
+  background-color: #566573;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }

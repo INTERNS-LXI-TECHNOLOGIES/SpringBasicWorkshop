@@ -11,14 +11,14 @@
   text-decoration: none;
   outline: none;
   color: #fff;
-  background-color: #FFC312;
+  background-color:  #566573;
   border: none;
   border-radius: 15px;
   box-shadow: 0 9px #999;
 }
-.button:hover {background-color: #FFC312}
+.button:hover {background-color:  #566573}
 .button:active {
-  background-color: #FFC312;
+  background-color:  #566573;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
