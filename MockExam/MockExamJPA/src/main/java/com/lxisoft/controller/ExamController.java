@@ -31,9 +31,9 @@ public class ExamController {
 	private ExamServiceImpl examService;
 
 	
-	@RequestMapping(value = "/")
+	@RequestMapping(value = "/",method = RequestMethod.GET)
  	public String indexPage(){
- 	return "index";
+ 	return "Instruction";
  	}
 	
 	@RequestMapping(value = "/firstpage")

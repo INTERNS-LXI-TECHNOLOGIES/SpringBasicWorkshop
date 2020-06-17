@@ -57,8 +57,8 @@
 	
 		 <dependency>
 		    <groupId>org.hibernate.javax.persistence</groupId>
-		    <artifactId>hibernate-jpa-2.1-api</artifactId>
-		    <version>1.0.0.Final</version>
+		    <artifactId>hibernate-jpa-2.0-api</artifactId>
+		    <version>1.0.1.Final</version>
 		</dependency>
 		
 		<dependency>
@@ -71,7 +71,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>${hibernate.validator}</version>
+            <version>5.4.1.Final</version>
         </dependency>
 		
 		 <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
@@ -88,9 +88,7 @@
             <version>${jstl.version}</version>
         </dependency>
 		
-       
- 
-    
+     
        <dependency>
             <groupId>taglibs</groupId>
             <artifactId>standard</artifactId>
