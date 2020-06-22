@@ -1,7 +1,7 @@
 <%@page contentType = "text/html;charset=UTF-8" pageEncoding = "UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@page import="java.util.List"%>
-<%@page import="com.lxisoft.model.entity.MockEntity" %>
+<%@page import="com.lxisoft.entity.MockEntity" %>
 <html>
 <head>
 <meta http-equiv="Content_Type" content="text/html;charset=UTF-8"/>

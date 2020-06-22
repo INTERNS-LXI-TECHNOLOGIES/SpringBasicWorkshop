@@ -35,32 +35,29 @@
  }
 </style>
 </head>
-<body>
+<body background="space.jpg">
 <div class = "wrapper">
-	<!-- <div align = "center"> -->
-		<div  align="center" style="background-color: darkmagenta;">
-			<br>
-			<br>
-		<h1><font style="font-size:50px;" color="white">INTRODUCTION</font></h1>
-			<br>
-			<br>
-			</div>
-			<div class = "intro">
-				<ul>
-				
-					<li><h1>  Exam has Total 10 Questions. </h1></li>
-					<li><h1>  Each Question has 20 sec. </h1></li>
-					<li><h1>  No Negative Marks.</h1></li>
-					<li><h1>  Minimum 6 Right Answers For Pass.</h1></li>
-			
-				</ul>
-			</div>
-<div style="padding-top: 18px;" align="center">
-<form>
-<input type="hidden" name = "count" value = "0" >
-<button formaction = "userQuestion" class="button">Start Exam</button> <button formaction="logout" class="button">LOGOUT</button> <button class="button" formaction="index" >Back</button>
-</form>
-</div>
-</div>
+
+<div  align="center" style="background-color: darkmagenta;">
+      <br>
+      <br>
+    <h1><font style="font-size:50px;" color="white">INTRODUCTION</font></h1>
+      <br>
+      <br>
+      </div>
+      <div class = "intro">
+
+        <header>
+          <h3><font color="black">* You have got 10 minutes to complete the exam</font></h3>
+          <h3><font color="black">* Answer all questions</font></h3>
+          <h3><font color="black">* Read questions carefully and select the answer given below</font></h3>
+          <h3><font color="black">* Any malpractice will lead to debar</font></h3>
+         <div style="padding-top: 18px;" align="center">
+      <form>
+      <input type="hidden" name = "count" value = "0" >
+      <button formaction = "exam" class="button">Start</button> <button class="button" formaction="/" >Back</button>
+    </form>
+  </div>
+</header>
 </body>
 </html>
