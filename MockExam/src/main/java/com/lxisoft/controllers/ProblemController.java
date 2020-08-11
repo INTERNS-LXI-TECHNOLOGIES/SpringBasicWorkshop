@@ -1,4 +1,4 @@
-package com.lxisoft.mockexam.controller;
+package com.lxisoft.controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -31,18 +32,43 @@ public class ProblemController {
     }
 
     @RequestMapping(value = "/view")
-    public String adminView()
+//    public String adminView()
+//    {
+//        return "view";
+//    }
+
+    public ModelAndView adminView(HttpServletRequest request,HttpServletResponse response)
     {
-        return "view";
+        HttpSession session = request.getSession();
+        List<Problem> questList = problemService.getProblemData();
+        session.setAttribute("qList",questList);
+        ModelAndView model = new ModelAndView();
+        model.addObject("questList",questList);
+        model.setViewName("view");
+        return model;
     }
 
-    @RequestMapping(value = "/add")
-    public String addquestion()
+//    @RequestMapping(value = "/add")
+//    public ModelAndView addProblem()
+//    {
+//        return "add";
+//    }
+
+    @RequestMapping(value = "/add" ,method=RequestMethod.GET)
+    public ModelAndView addQuestion(ModelAndView model)
     {
-        return "add";
+        Problem problem = new Problem();
+        model.addObject("problem",problem);
+        model.setViewName("add");
+        return model;
     }
 
-
+    @RequestMapping(value = "/addQuestion",method = RequestMethod.GET)
+    public ModelAndView saveQuestion(@ModelAttribute Problem problem)
+    {
+        problemService.addProblem(problem);
+        return new ModelAndView("redirect:/home");
+    }
 
 
 }

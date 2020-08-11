@@ -1,6 +1,6 @@
-com\lxisoft\model\Problem.class
-com\lxisoft\service\ProblemServiceImpl.class
+com\lxisoft\controllers\ProblemController.class
 com\lxisoft\dao\ProblemDao.class
 com\lxisoft\dao\ProblemDaoImpl.class
-com\lxisoft\mockexam\controller\ProblemController.class
 com\lxisoft\service\ProblemService.class
+com\lxisoft\model\Problem.class
+com\lxisoft\service\ProblemServiceImpl.class
