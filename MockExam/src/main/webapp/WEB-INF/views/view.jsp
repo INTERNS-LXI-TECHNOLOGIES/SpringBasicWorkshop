@@ -53,7 +53,7 @@
         			<td><%out.println(questions.get(i).getOption3());%></td>
         			<td><%out.println(questions.get(i).getOption4());%></td>
         			<td><%out.println(questions.get(i).getAnswer());%></td>
-        			<td><a href="${pageContext.request.contextPath}/updateQuestion?
+        			<td><a href="${pageContext.request.contextPath}/editQuestion?
         					id=<%=questions.get(i).getId()%>"
         				><button>Update</button></a></td>
         			<td><a href="${pageContext.request.contextPath}/deleteQuestion?

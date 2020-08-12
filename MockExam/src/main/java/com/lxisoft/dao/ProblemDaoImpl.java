@@ -32,7 +32,7 @@ public class ProblemDaoImpl implements ProblemDao {
     }
 
     @Override
-    public void updateProblem(Problem prblm) {
+    public void editProblem(Problem prblm) {
 
         sessionFactory.getCurrentSession().update(prblm);
     }
@@ -42,6 +42,12 @@ public class ProblemDaoImpl implements ProblemDao {
     public List<Problem> getProblemData() {
 
         return sessionFactory.getCurrentSession().createQuery("From Problem").list();
+    }
+
+    @Override
+    public Problem getQuestionById(int examSlNo) {
+
+        return (Problem) sessionFactory.getCurrentSession().get(Problem.class, examSlNo);
     }
 
 }

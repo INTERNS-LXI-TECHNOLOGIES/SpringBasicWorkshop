@@ -34,9 +34,9 @@ public class ProblemServiceImpl implements ProblemService {
 
     @Override
     @Transactional
-    public void updateProblem(Problem prblm) {
+    public void editProblem(Problem prblm) {
 
-       problemDao.updateProblem(prblm);
+       problemDao.editProblem(prblm);
     }
 
     @Override
@@ -45,5 +45,9 @@ public class ProblemServiceImpl implements ProblemService {
 
         return problemDao.getProblemData();
     }
-
+    @Override
+    public Problem getQuestionById(int examSlNo)
+    {
+        return problemDao.getQuestionById(examSlNo);
+    }
 }

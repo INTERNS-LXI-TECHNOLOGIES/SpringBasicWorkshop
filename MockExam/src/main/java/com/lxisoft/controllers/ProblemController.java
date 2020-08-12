@@ -70,5 +70,41 @@ public class ProblemController {
         return new ModelAndView("redirect:/home");
     }
 
+    @RequestMapping(value = "/editQuestion",method=RequestMethod.GET)
+    public ModelAndView editQuestion(HttpServletRequest request)
+    {
+        int qno = Integer.parseInt(request.getParameter("id"));
+        Problem exam = problemService.getQuestionById(qno);
+        ModelAndView model = new ModelAndView();
+        model.addObject("questById", exam);
+        model.setViewName("edit");
+        return model;
+    }
+
+    @RequestMapping(value="/edit",method=RequestMethod.GET)
+    public ModelAndView edit(@ModelAttribute Problem problem)
+    {
+        problemService.editProblem(problem);
+        return new ModelAndView("redirect:/admin");
+
+    }
+
+    @RequestMapping(value="/deleteQuestion")
+    public String deleteQuestion(HttpServletRequest request)
+    {
+        int qid = Integer.parseInt(request.getParameter("id"));
+        HttpSession session = request.getSession();
+        session.setAttribute("qId", qid);
+        return "delete";
+    }
+
+    @RequestMapping(value="/delete")
+    public ModelAndView delete(HttpServletRequest request)
+    {
+        int qid = Integer.parseInt(request.getParameter("id"));
+        problemService.deleteProblem(qid);
+        return new ModelAndView("redirect:/admin");
+
+    }
 
 }

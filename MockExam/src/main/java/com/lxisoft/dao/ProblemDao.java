@@ -8,7 +8,7 @@ public interface ProblemDao {
 
     public void addProblem(Problem prblm);
     public void deleteProblem(int qid);
-    public void updateProblem(Problem prblm);
+    public void editProblem(Problem prblm);
     public List<Problem> getProblemData();
-
+    public Problem getQuestionById(int examSlNo);
 }
