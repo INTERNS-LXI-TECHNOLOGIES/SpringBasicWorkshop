@@ -14,9 +14,8 @@
 <body>
 <div>
 <h1>Confirm Delete!</h1>
-<a href="${pageContext.request.contextPath}/delete?
-        id=${qId}"><button>Yes</button></a>
-<a href="${pageContext.request.contextPath}/admin"><button>No</button></a>
+<a href="delete?id=${qId}"><button>Yes</button></a>
+<a href="view"><button>No</button></a>
 </div>
 
 </body>

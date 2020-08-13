@@ -85,7 +85,7 @@ public class ProblemController {
     public ModelAndView edit(@ModelAttribute Problem problem)
     {
         problemService.editProblem(problem);
-        return new ModelAndView("redirect:/admin");
+        return new ModelAndView("redirect:/view");
 
     }
 
@@ -103,7 +103,7 @@ public class ProblemController {
     {
         int qid = Integer.parseInt(request.getParameter("id"));
         problemService.deleteProblem(qid);
-        return new ModelAndView("redirect:/admin");
+        return new ModelAndView("redirect:/view");
 
     }
 
