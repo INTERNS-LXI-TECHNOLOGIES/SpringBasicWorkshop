@@ -90,7 +90,7 @@ input[type=text] {
 		</div>
 		<div>
 		<a href="view"><button class="button">Admin view</button></a>
-        <a href="introduction"><button class="button">Write Exam</button></a>
+        <a href="intro"><button class="button">Write Exam</button></a>
 		</div>
 	</div>
 </body>

@@ -87,7 +87,7 @@ input[type=text] {
 
 
  
- <form action="question" method="GET">
+ <form action="getQueslist" method="GET">
   
   <h3>1.Students  should take Hallticket</h3>
   <h3>2.Student should have ID cards</h3>
@@ -99,6 +99,6 @@ input[type=text] {
   <button class="button">Start Exam</button>
  
 		</form>
-      <button class="button">Create New User</button></a>
+      <button class="button">Create New User</button>
 </body>
 </html>

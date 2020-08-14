@@ -1,4 +1,8 @@
 
+<%@ page import = "com.lxisoft.model.*"%>
+<%@page import = "java.util.*" %>
+ <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+ 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,14 +40,13 @@
 	<h1>Question</h1>
 	
 		<%  int i = Integer.parseInt(request.getParameter("count"));
-			ExamDatabase db = new ExamDatabase();
 			ArrayList<Problem> questions = new ArrayList<Problem>();
-			questions = db.viewDatabase(questions);
-			session.setAttribute("examqus",questions);	%>
+			questions = (ArrayList<Problem>)session.getAttribute("examquestions");
+		%>
 		
 		<%	if(i<questions.size()) {%>
 		
-		<form id="Question"; style= "text-align:left" action="addMark">				
+		<form id="Question"; style= "text-align:left" action="checkAnswer">
 			<li>Question :<%out.println(questions.get(i).getQuestion()+"?");%></li>
 			<input type="radio" name="scores" id="1" value="1">
  			<label><%out.println(questions.get(i).getOption1());%></label><br>
@@ -55,10 +58,10 @@
  			<label><%out.println(questions.get(i).getOption4());%></label><br>
             <%i++;%>
             <input type="hidden" name="count" value="<%=i%>">
- 			 <a href="addMark"><button id="myBtn" class="button">Submit</button></a>
+ 			 <a href="checkAnswer"><button id="myBtn" class="button">Submit</button></a>
  			 <input type="hidden" name="count" value="<%=i%>">
 
- 			 <a href="addMark"><button id="myBtn2" class="button button2">Skip</button></a>
+ 			 <a href="checkAnswer"><button id="myBtn2" class="button button2">Skip</button></a>
 			<div><span id="countdown">10</span></div>	
  			</form>
 
@@ -77,13 +80,7 @@ var countdown = setInterval(function() {
     	document.getElementById("1").disabled = true;
     	document.getElementById("2").disabled = true;
     	document.getElementById("3").disabled = true; 
-	   	document.getElementById("4").disabled = true;   	
-
-	   	// document.getElementById("myBtn").disabled = true;
-    	// document.getElementById("1").disabled = true;
-    	// document.getElementById("2").disabled = true;
-    	// document.getElementById("3").disabled = true; 
-	   	// document.getElementById("4").disabled = true;   	
+	   	document.getElementById("4").disabled = true;
     }
 }, 1000);
 </script>

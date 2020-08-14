@@ -130,11 +130,12 @@ input[type=text] {
         			<td><%out.println(questions.get(i).getOption4());%></td>
         			<td><%out.println(questions.get(i).getAnswer());%></td>
         			<td><a href="editQuestion?id=<%=questions.get(i).getId()%>"><button class="button">Update</button></a></td>
-        			<td><a href="deleteQuestion?id=<%=questions.get(i).getId()%>"><button class="button">Delete</button></a></td>
+        			<td><a href="deleteQuestion?id=<%=questions.get(i).getId()%>"><button class="button button2">Delete</button></a></td>
         			</tr>
         			<%}
         			}%>
 		</table>
+		      <a href="home"><button class="button">Close</button></a>
 	</div>
 </body>
 </html>

@@ -31,6 +31,12 @@ public class ProblemController {
         return "index";
     }
 
+    @GetMapping(value = "/intro")
+    public String introductionPage()
+    {
+        return "introduction";
+    }
+
     @RequestMapping(value = "/view")
 //    public String adminView()
 //    {
@@ -104,6 +110,43 @@ public class ProblemController {
         int qid = Integer.parseInt(request.getParameter("id"));
         problemService.deleteProblem(qid);
         return new ModelAndView("redirect:/view");
+
+    }
+
+    @RequestMapping(value = "/getQueslist", method = RequestMethod.GET)
+    public ModelAndView startExam(HttpServletRequest request,HttpServletRequest response)
+    {
+        HttpSession session = request.getSession();
+        List<Problem> questionList = problemService.getProblemData();
+        session.setAttribute("examquestions",questionList);
+        ModelAndView model = new ModelAndView();
+        model.addObject("examData",questionList);
+        model.setViewName("question");
+        return model;
+
+    }
+    private ArrayList<String> answerList = new  ArrayList<String>();
+    @RequestMapping(value = "/checkAnswer" ,method = RequestMethod.GET)
+    public ModelAndView getAnswer(HttpServletRequest request,HttpServletResponse response)throws IOException
+    {
+        if(answerList.size()==10)
+        {
+            answerList.clear();
+            HttpSession session = request.getSession();
+            String answers = request.getParameter("scores");
+            answerList.add(answers);
+            System.out.println("answer ="+answerList.size());
+            session.setAttribute("ansSelected",answerList);
+        }
+        else
+        {
+            HttpSession session = request.getSession();
+            String answers = request.getParameter("scores");
+            answerList.add(answers);
+            System.out.println("answer ="+answerList.size());
+            session.setAttribute("ansSelected",answerList);
+        }
+        return new ModelAndView("question");
 
     }
 
