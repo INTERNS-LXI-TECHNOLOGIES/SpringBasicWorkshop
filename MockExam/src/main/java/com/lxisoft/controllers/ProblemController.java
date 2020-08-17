@@ -150,4 +150,38 @@ public class ProblemController {
 
     }
 
+    @RequestMapping(value = "/validateResult" ,method = RequestMethod.GET)
+    public String viewResult(HttpServletRequest request,HttpServletResponse response)throws IOException
+    {
+        int mark = 0;
+        HttpSession session = request.getSession();
+        ArrayList<String> anslist = new ArrayList<String>();
+        System.out.println("before clear = "+anslist.size());
+
+        anslist.clear();
+
+        anslist	= (ArrayList<String>)session.getAttribute("ansSelected");
+
+        ArrayList<Problem> data = new  ArrayList<Problem>();
+        data = (ArrayList<Problem>)session.getAttribute("examdatas");
+
+        System.out.println("examdata = "+data.size());
+
+        System.out.println("After Clear = "+anslist.size());
+        for (int x=0;x<data.size();x++)
+        {
+            for (int y=0;y<anslist.size();y++)
+            {
+                if(data.get(x).getAnswer().equals(anslist.get(y)))
+                {
+                    mark ++;
+                }
+            }
+        }
+        System.out.println(mark);
+        request.setAttribute("totalScore",mark);
+        mark=0;
+        return "result";
+    }
+
 }
