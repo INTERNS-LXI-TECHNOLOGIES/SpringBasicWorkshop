@@ -163,7 +163,7 @@ public class ProblemController {
         anslist	= (ArrayList<String>)session.getAttribute("ansSelected");
 
         ArrayList<Problem> data = new  ArrayList<Problem>();
-        data = (ArrayList<Problem>)session.getAttribute("examdatas");
+        data = (ArrayList<Problem>)session.getAttribute("examquestions");
 
         System.out.println("examdata = "+data.size());
 
