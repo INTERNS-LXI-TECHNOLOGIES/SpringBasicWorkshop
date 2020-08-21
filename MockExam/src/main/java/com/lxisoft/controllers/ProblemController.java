@@ -150,11 +150,13 @@ public class ProblemController {
 
     }
 
-    @RequestMapping(value = "/validateResult" ,method = RequestMethod.GET)
+    @RequestMapping(value = "/checkResult" ,method = RequestMethod.GET)
     public String viewResult(HttpServletRequest request,HttpServletResponse response)throws IOException
     {
         int mark = 0;
         HttpSession session = request.getSession();
+        List<Problem> questList = problemService.getProblemData();
+        session.setAttribute("qList",questList);
         ArrayList<String> anslist = new ArrayList<String>();
         System.out.println("before clear = "+anslist.size());
 

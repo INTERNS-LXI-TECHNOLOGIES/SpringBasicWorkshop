@@ -67,7 +67,7 @@
 
 		<%}					
 			else
-				{ response.sendRedirect("viewMark"); }%>	
+				{ response.sendRedirect("checkResult"); }%>
 
 <script type="text/javascript">
 	var seconds = document.getElementById("countdown").textContent;
