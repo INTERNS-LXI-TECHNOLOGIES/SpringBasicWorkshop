@@ -4,3 +4,4 @@ com\lxisoft\dao\ProblemDaoImpl.class
 com\lxisoft\service\ProblemService.class
 com\lxisoft\model\Problem.class
 com\lxisoft\service\ProblemServiceImpl.class
+com\lxisoft\jpa\AppConfig.class
