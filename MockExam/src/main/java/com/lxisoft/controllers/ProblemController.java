@@ -72,7 +72,7 @@ public class ProblemController {
     @RequestMapping(value = "/addQuestion",method = RequestMethod.GET)
     public ModelAndView saveQuestion(@ModelAttribute Problem problem)
     {
-        problemService.addProblem(problem);
+        problemService.saveProblem(problem);
         return new ModelAndView("redirect:/home");
     }
 
@@ -90,7 +90,7 @@ public class ProblemController {
     @RequestMapping(value="/edit",method=RequestMethod.GET)
     public ModelAndView edit(@ModelAttribute Problem problem)
     {
-        problemService.editProblem(problem);
+        problemService.saveProblem(problem);
         return new ModelAndView("redirect:/view");
 
     }
