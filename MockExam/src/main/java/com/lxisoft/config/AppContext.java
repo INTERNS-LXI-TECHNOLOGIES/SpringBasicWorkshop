@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @PropertySource({"classpath:application.properties"})
 @EnableTransactionManagement
 @ComponentScan(basePackages= {"com.lxisoft"})
-public class AppContext {
+public class    AppContext {
 
     @Autowired
     Environment env;
