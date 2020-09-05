@@ -15,11 +15,11 @@ public interface ProblemDao extends JpaRepository<Problem,Integer> {
 //    public List<Problem> getProblemData();
 //    public Problem getQuestionById(int examSlNo);
 
-   public Problem getQuestionById(int examSlNo) ;
+ //  public Problem getQuestionById(int examSlNo) ;
 //
 //        return (Problem) sessionFactory.getCurrentSession().get(Problem.class, examSlNo);
 //
-    public void deleteProblem(int qid) ;
+   // public void deleteProblem(int qid) ;
 //
 //        Problem prblm = (Problem) sessionFactory.getCurrentSession().load(Problem.class, qid);
 //        if(prblm != null)

@@ -21,7 +21,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = "com.lxisoft.Dao")
+@EnableJpaRepositories(basePackages = "com.lxisoft.dao")
 @ComponentScan({"com.lxisoft"})
 @PropertySource({"classpath:application.properties"})
 
@@ -34,16 +34,28 @@ public class AppConfig
       super();
    }
    @Bean
-   public LocalContainerEntityManagerFactoryBean entityManagerFactory()
-   {
+   public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
       final LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
       entityManagerFactoryBean.setDataSource(dataSource());
-      entityManagerFactoryBean.setPackagesToScan(new String[]{"com.lxisoft.model"});
+      entityManagerFactoryBean.setPackagesToScan(new String[] {"com.lxisoft.model" });
+
       final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
       entityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter);
       entityManagerFactoryBean.setJpaProperties(jpaProperties());
+
       return entityManagerFactoryBean;
    }
+//   public LocalContainerEntityManagerFactoryBean entityManagerFactory()
+//   {
+//      final LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
+//      entityManagerFactoryBean.setDataSource(dataSource());
+//      entityManagerFactoryBean.setPackagesToScan(new String[]{"com.lxisoft.model"});
+//      final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+//      entityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter);
+//      entityManagerFactoryBean.setJpaProperties(jpaProperties());
+//      return entityManagerFactoryBean;
+//   }
+
 
    @Bean
    public DataSource dataSource()

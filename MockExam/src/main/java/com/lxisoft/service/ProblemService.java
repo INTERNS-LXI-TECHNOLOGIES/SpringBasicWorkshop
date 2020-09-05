@@ -28,13 +28,13 @@ public class ProblemService
     @Transactional
     public  void deleteProblem(int questionId)
     {
-        problemDao.deleteProblem(questionId);
+        problemDao.delete(questionId);
     }
 
     @Transactional
     public Problem getQuestionById(int id)
     {
-        return problemDao.getQuestionById(id);
+        return problemDao.getOne(id);
     }
 
 
