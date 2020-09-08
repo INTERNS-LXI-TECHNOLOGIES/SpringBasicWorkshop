@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>OP Booking</title>
+<meta charset="UTF-8">
+		<title>New Doctor</title>
  <style>
     body{
      background-color: lightblue;
@@ -69,17 +71,37 @@ input[type=text] {
 
   </style>
 </head>
-<body >
+<body>
+		<div class="container">
+			<h2>ADD Doctor</h2>
+			<form:form action="addUser" method="GET" modelAttribute="user">
+				<table>
+					<tr>
+						<td>Name :</td>
+						<td><form:input path = "name" /></td>
+					</tr>
 
-	<div id="box">
-		<div>
-			<h1>OP Booking.</h1>
+					<tr>
+						<label for="branch">Choose a Branch:</label>
+
+                        <select id="branches">
+                          <option value="general">General</option>
+                          <option value="cardiologist">Cardiologist</option>
+                          <option value="neurologist">Neurologist</option>
+                          <option value="ophthamologist">Ophthamologist</option>
+                        </select>
+					</tr>
+					<tr>
+						<td>Time:</td>
+						<td><form:input path="time"/></td>
+					</tr>
+
+					<tr>
+						<td colspan = "2" align = "center" ><input type = "submit" value="save"></td>
+					</tr>
+				</table>
+			</form:form>
+
 		</div>
-		<div>
-		<a href="new"><button class="button">New User</button></a>
-        <a href="view"><button class="button">View Booking</button></a>
-        <a href="admin"><button class="button">Admin</button></a>
-		</div>
-	</div>
 </body>
 </html>
