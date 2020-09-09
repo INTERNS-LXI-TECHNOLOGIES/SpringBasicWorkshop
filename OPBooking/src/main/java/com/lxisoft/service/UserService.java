@@ -25,9 +25,9 @@ public class UserService {
         userReppo.save(user);
     }
     @Transactional
-    public  void deleteProblem(int questionId)
+    public  void deleteProblem(int userId)
     {
-        userReppo.delete(questionId);
+        userReppo.delete(userId);
     }
 
 }

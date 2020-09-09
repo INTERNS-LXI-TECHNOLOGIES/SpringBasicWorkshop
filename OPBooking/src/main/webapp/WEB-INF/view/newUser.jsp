@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-		<title>New Doctor</title>
+		<title>New User</title>
  <style>
     body{
      background-color: lightblue;
@@ -73,27 +73,31 @@ input[type=text] {
 </head>
 <body>
 		<div class="container">
-			<h2>ADD Doctor</h2>
+			<h2>ADD User Details</h2>
 			<form:form action="addUser" method="GET" modelAttribute="user">
 				<table>
 					<tr>
 						<td>Name :</td>
 						<td><form:input path = "name" /></td>
 					</tr>
-
+					<tr>
+						<td>Place :</td>
+						<td><form:input path="place"/></td>
+					</tr>
+					<tr>
+						<td>Number :</td>
+						<td><form:input path="number"/></td>
+					</tr>
 					<tr>
 						<label for="branch">Choose a Branch:</label>
 
                         <select id="branches">
                           <option value="general">General</option>
-                          <option value="cardiologist">Cardiologist</option>
-                          <option value="neurologist">Neurologist</option>
-                          <option value="ophthamologist">Ophthamologist</option>
                         </select>
 					</tr>
 					<tr>
-						<td>Time:</td>
-						<td><form:input path="time"/></td>
+						<td>Doctor:</td>
+						<td><form:input path="doctor"/></td>
 					</tr>
 
 					<tr>
