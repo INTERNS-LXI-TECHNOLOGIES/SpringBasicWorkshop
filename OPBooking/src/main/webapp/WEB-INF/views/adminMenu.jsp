@@ -1,3 +1,5 @@
+<%@ page import = "com.lxisoft.model.*"%>
+<%@page import = "java.util.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
         pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -99,7 +101,6 @@
         				{%>
 
         				<tr>
-        				<td><%out.println(i+1);%></td>
         			<td><%out.println(doctors.get(i).getId());%></td>
         			<td><%out.println(doctors.get(i).getName());%></td>
         			<td><%out.println(doctors.get(i).getBranch());%></td>
@@ -112,7 +113,7 @@
 		</table>
 
 
-<a href="newdoctor"><button class="button">Doctor</button></a>
+<a href="newDoctor"><button class="button">Add Doctor</button></a>
 
 <a href="home"><button class="button">Home</button></a>
 </div>

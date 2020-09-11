@@ -44,7 +44,7 @@ public class UserController {
         session.setAttribute("dList",doctorList);
         ModelAndView model = new ModelAndView();
         model.addObject("doctorlist",doctorList);
-        model.setViewName("view");
+        model.setViewName("adminMenu");
         return model;
     }
 
@@ -53,7 +53,7 @@ public class UserController {
     {
         User user = new User();
         model.addObject("user",user);
-        model.setViewName("add");
+        model.setViewName("newUser");
         return model;
     }
 
@@ -76,8 +76,44 @@ public class UserController {
     @RequestMapping(value = "/addDoctor",method = RequestMethod.GET)
     public ModelAndView saveDoctor(@ModelAttribute Doctor doctor)
     {
-        doctorService.saveUser(doctor);
+        doctorService.saveDoctor(doctor);
         return new ModelAndView("redirect:/home");
     }
 
+    @RequestMapping(value = "/editDoctor",method=RequestMethod.GET)
+    public ModelAndView editDoctor(HttpServletRequest request)
+    {
+        int num = Integer.parseInt(request.getParameter("id"));
+        Doctor doctor = doctorService.getDoctorById(num);
+        ModelAndView model = new ModelAndView();
+        model.addObject("doctorById", doctor);
+        model.setViewName("edit");
+        return model;
+    }
+
+    @RequestMapping(value="/edit",method=RequestMethod.GET)
+    public ModelAndView edit(@ModelAttribute Doctor doctor)
+    {
+        doctorService.saveDoctor(doctor);
+        return new ModelAndView("redirect:/admin");
+
+    }
+
+    @RequestMapping(value="/deleteDoctor")
+    public String deleteDoctor(HttpServletRequest request)
+    {
+        int did = Integer.parseInt(request.getParameter("id"));
+        HttpSession session = request.getSession();
+        session.setAttribute("dId", did);
+        return "delete";
+    }
+
+    @RequestMapping(value="/delete")
+    public ModelAndView delete(HttpServletRequest request)
+    {
+        int did = Integer.parseInt(request.getParameter("id"));
+        doctorService.deleteProblem(did);
+        return new ModelAndView("redirect:/admin");
+
+    }
 }

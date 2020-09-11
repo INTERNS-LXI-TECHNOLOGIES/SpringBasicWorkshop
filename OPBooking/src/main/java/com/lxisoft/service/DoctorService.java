@@ -20,7 +20,7 @@ public class DoctorService {
     }
 
     @Transactional
-    public void saveUser(Doctor doctor)
+    public void saveDoctor(Doctor doctor)
     {
         doctorReppo.save(doctor);
     }
@@ -30,4 +30,9 @@ public class DoctorService {
         doctorReppo.delete(doctorId);
     }
 
+    @Transactional
+    public Doctor getDoctorById(int id)
+    {
+        return doctorReppo.getOne(id);
+    }
 }
