@@ -1,12 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
+<%@ page import="com.lxisoft.model.*"%>
+<%@ page import="com.lxisoft.repository.*"%>
+<%@page import="java.util.*"%>
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert Details</title>
+<style>
+#doctor_table
+ {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
 
-<style type="text/css">
 input[type=text], select {
   width: 100%;
   padding: 12px 20px;
@@ -31,18 +39,24 @@ input[type=submit] {
 input[type=submit]:hover {
   background-color: #45a049;
 }
-
-
 </style>
+<meta charset="ISO-8859-1">
+<title>Edit Doctor</title>
 </head>
 <body>
-	<form>
+<%
+int id=Integer.parseInt(request.getParameter("id"));
+DatabaseRepo db = new DatabaseRepo();
+ArrayList<Doctor> doctors = new ArrayList<Doctor>();
+doctors = db.getDoctorRecords();
+%>
+<form>
 		<fieldset>
 			<legend>Doctor Details</legend>
-			<table align="center">
+			<table align="center" id="doctor_table">
 				<tr>
 					<td>Doctor Name</td>
-					<td><input type="text" placeholder="Name" name="dname"></td>
+					<td><input type="text" placeholder=<%out.println(doctors.get(id).getName()); %> name="dname"></td>
 				</tr>
 				<tr>
 					<td>Department</td>
@@ -54,8 +68,8 @@ input[type=submit]:hover {
 					</select></td>
 				</tr>
 				<tr>
-				<td></td>
-				<td><input type="submit" formaction="saveDoctor"></td>
+				<td><input type="hidden" value=<%=id%> name="id"></td>
+				<td><input type="submit" formaction="updateDoctor" value="Update"></td>
 				</tr>
 			</table>
 		</fieldset>

@@ -30,7 +30,7 @@
 	<fieldset>
 		<legend> Admin Actions</legend>
 		<button class="button" onclick="document.location='DoctorDetails.jsp'">Add Doctor</button>
-		<button class="button" onclick="document.location='index.jsp'">View Doctors Available</button>
+		<button class="button" onclick="document.location='viewdoctor.jsp'">View Doctors Available</button>
 	</fieldset>
 </body>
 </html>
