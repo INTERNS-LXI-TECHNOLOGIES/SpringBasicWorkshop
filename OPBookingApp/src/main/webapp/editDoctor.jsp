@@ -36,6 +36,9 @@ input[type=submit] {
   cursor: pointer;
 }
 
+input[type=text]:focus {
+  background-color: lightblue;
+}
 input[type=submit]:hover {
   background-color: #45a049;
 }
@@ -50,6 +53,8 @@ DatabaseRepo db = new DatabaseRepo();
 ArrayList<Doctor> doctors = new ArrayList<Doctor>();
 doctors = db.getDoctorRecords();
 %>
+<div align="center" style="background-color: #c89666;"> <font size="8"> Edit Doctor Details</font> <br> <br>
+	</div>
 <form>
 		<fieldset>
 			<legend>Doctor Details</legend>

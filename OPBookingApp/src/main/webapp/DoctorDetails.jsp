@@ -8,34 +8,46 @@
 
 <style type="text/css">
 input[type=text], select {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
 }
 
 input[type=submit] {
-  width: 100%;
-  background-color: #4CAF50;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+	width: 100%;
+	background-color: #4CAF50;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
 }
 
 input[type=submit]:hover {
-  background-color: #45a049;
+	background-color: #45a049;
 }
 
+input[type=text]:focus {
+	background-color: #f1f1f1;
+}
 
+select {
+	width: 100%;
+	padding: 16px 20px;
+	border: none;
+	border-radius: 4px;
+	background-color: #f1f1f1;
+}
 </style>
 </head>
 <body>
+	<div align="center" style="background-color: #c89666;"> <font size="8"> Add Doctor</font> <br> <br>
+	</div>
 	<form>
 		<fieldset>
 			<legend>Doctor Details</legend>
@@ -54,8 +66,8 @@ input[type=submit]:hover {
 					</select></td>
 				</tr>
 				<tr>
-				<td></td>
-				<td><input type="submit" formaction="saveDoctor"></td>
+					<td></td>
+					<td><input type="submit" formaction="saveDoctor"></td>
 				</tr>
 			</table>
 		</fieldset>

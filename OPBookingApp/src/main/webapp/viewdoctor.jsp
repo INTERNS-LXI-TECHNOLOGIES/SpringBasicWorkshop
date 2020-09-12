@@ -38,6 +38,9 @@
 </style>
 </head>
 <body>
+
+<div align="center" style="background-color: #c89666;"> <font size="8"> Available Doctors</font> <br> <br>
+	</div>
 	<table id="doctor_table">
 		<tr>
 			<th>Doctor Name</th>
@@ -64,7 +67,7 @@
 			</td>
 			<td><a href="editDoctor.jsp?id=<%=i%>"><button
 						class="button">Update</button></a></td>
-			<td><a href="deleteDoctor?id=<%=i%>"><button class="button">Delete</button></a>
+			<td><a href="deleteDoctor?id=<%=i%>"><button class="button" onclick="confirm()">Delete</button></a>
 			</td>
 		</tr>
 		<%
@@ -73,6 +76,12 @@
 		<tr>
 			<td><a href="adminaction.jsp"><button class="button">Back</button></a>
 	</table>
+<script>
+function confirm()
+{
+	confirm("Press OK To Delete");
+}
 
+</script>
 </body>
 </html>

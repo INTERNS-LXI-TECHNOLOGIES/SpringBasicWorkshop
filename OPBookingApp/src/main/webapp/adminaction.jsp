@@ -27,6 +27,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div align="center" style="background-color: #c89666;"> <font size="8"> Admin Menu</font> <br> <br>
+	</div>
 	<fieldset>
 		<legend> Admin Actions</legend>
 		<button class="button" onclick="document.location='DoctorDetails.jsp'">Add Doctor</button>
