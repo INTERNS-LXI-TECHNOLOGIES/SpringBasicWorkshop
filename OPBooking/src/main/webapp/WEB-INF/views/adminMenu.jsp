@@ -80,6 +80,9 @@
 <div>
 
 <table id="pager" border="2px" width="100%">
+
+		<h3>Doctors Details</h3>
+
 		<tr>
 			<th>ID</th>
 			<th>Name</th>

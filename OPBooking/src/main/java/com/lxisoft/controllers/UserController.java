@@ -87,7 +87,7 @@ public class UserController {
         Doctor doctor = doctorService.getDoctorById(num);
         ModelAndView model = new ModelAndView();
         model.addObject("doctorById", doctor);
-        model.setViewName("edit");
+        model.setViewName("editDoctor");
         return model;
     }
 
