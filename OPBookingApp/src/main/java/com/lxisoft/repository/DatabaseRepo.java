@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.lxisoft.model.Doctor;
+import com.lxisoft.model.Patient;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 
@@ -93,7 +94,21 @@ public class DatabaseRepo {
 		}
 		
 	}
+	
+	public void addPatient(Patient p)
+	{
+		createDatabaseConnection();
+		try
+		{
+			s=(Statement) con.createStatement();
+			s.executeUpdate("insert into Patient values('"+p.getName()+"','"+p.getDoctorName()+"')");	
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 		
+	}
 	
 		
 	
