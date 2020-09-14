@@ -75,7 +75,7 @@
 <body>
 
 		<div class="container">
-			<h2>EDIT Doctor</h2>
+			<h2>EDIT User</h2>
 			<form:form action="edit" method="GET" modelAttribute="doctorById">
 				<table>
 					<tr>
@@ -89,7 +89,7 @@
 					<tr>
                     						<label for="branch">Choose a Branch:</label>
 
-                                            <select id="branches">
+                                            <select id="branch">
                                               <option value="general">General</option>
                                               <option value="cardiologist">Cardiologist</option>
                                               <option value="neurologist">Neurologist</option>
