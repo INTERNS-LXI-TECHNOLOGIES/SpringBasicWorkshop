@@ -2,7 +2,7 @@ package com.lxisoft.model;
 
 public class Patient 
 {
-	private String name,doctorName;
+	private String name,doctorName,phoneNumber;
 
 	public String getDoctorName() {
 		return doctorName;
@@ -18,6 +18,14 @@ public class Patient
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 	
 
