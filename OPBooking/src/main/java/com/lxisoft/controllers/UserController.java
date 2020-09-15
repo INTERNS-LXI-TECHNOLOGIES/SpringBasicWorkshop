@@ -111,4 +111,26 @@ public class UserController {
         return new ModelAndView("redirect:/admin");
 
     }
+
+    @GetMapping(value = "/viewBooking")
+    public ModelAndView adminBookingView(HttpServletRequest request,HttpServletResponse response)
+    {
+        HttpSession session = request.getSession();
+        List<User> userList = userService.getAllUsers();
+        session.setAttribute("uList",userList);
+        ModelAndView model = new ModelAndView();
+        model.addObject("userlist",userList);
+        model.setViewName("bookingview");
+        return model;
+    }
+
+    @RequestMapping(value="/checkBooking")
+    public String checkBooking(HttpServletRequest request)
+    {
+        int did = Integer.parseInt(request.getParameter("id"));
+        HttpSession session = request.getSession();
+        session.setAttribute("dId", did);
+        return "viewbyid";
+    }
+
 }

@@ -73,3 +73,19 @@
       </style>
 </head>
 <body>
+
+    <div class="container">
+    			<h2>ADD User Details</h2>
+    			<form:form method="GET" modelAttribute="user">
+    				<table>
+    					<tr>
+    						<td>Enter ID :</td>
+    						<td><form:input path = "id" /></td>
+    						<td><a href="viewById?id"><button class="button">Check</button></a></td>
+    					</tr>
+    				</table>
+          		</form:form>
+
+    </div>
+</body>
+</html>

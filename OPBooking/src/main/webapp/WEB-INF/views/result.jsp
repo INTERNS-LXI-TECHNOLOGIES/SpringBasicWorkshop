@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>OP Booking</title>
+	<title>OP Booking Details</title>
  <style>
     body{
      background-color: lightblue;
@@ -73,7 +73,7 @@ input[type=text] {
 
 	<div id="box">
 		<div>
-			<h1>OP Booking.</h1>
+			<h1>OP Booking Details</h1>
 		<h3>Hospital Name</h3>
 		<h3>Adress</h3>
 		<h3>Contact Number</h3>
@@ -81,7 +81,7 @@ input[type=text] {
 		<div>
 		<a href="new"><button class="button">New User</button></a>
         <a href="checkBooking"><button class="button">View Booking</button></a>
-        <a href="admin"><button class="button">Admin</button></a>
+        <a href="home"><button class="button">Home</button></a>
 		</div>
 	</div>
 </body>
