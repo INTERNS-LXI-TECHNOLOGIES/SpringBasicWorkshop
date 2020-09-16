@@ -28,7 +28,7 @@ public class User implements Serializable {
     private String number;
 
     @Column
-    private String session;
+    private String branch;
 
     @Column
     private String doctor;
@@ -66,12 +66,12 @@ public class User implements Serializable {
         this.number = number;
     }
 
-    public String getSession() {
-        return session;
+    public String getBranch() {
+        return branch;
     }
 
-    public void setSession(String session) {
-        this.session = session;
+    public void setBranch(String session) {
+        this.branch = session;
     }
 
     public String getDoctor() { return doctor; }

@@ -90,7 +90,6 @@
 			<th>Ph.No</th>
 			<th>Branch</th>
 			<th>Doctor</th>
-			<th>Time</th>
 		</tr>
 		<%
         				ArrayList<User> users = new ArrayList<User>();
@@ -114,7 +113,7 @@
         			<td><%out.println(users.get(i).getBranch());%></td>
         			<td><%out.println(users.get(i).getDoctor());%></td>
         			<td><%out.println(users.get(i).getDateandTime());%></td>
-        			<td><a href="deleteUser?id=<%=users.get(i).getId()%>"><button class="button button2">Delete</button></a></td>
+        			<td><a href="cancelBooking?id=<%=users.get(i).getId()%>"><button class="button button2">Cancel</button></a></td>
         			</tr>
         			<%}
         			}%>

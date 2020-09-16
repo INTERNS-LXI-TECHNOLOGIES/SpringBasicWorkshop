@@ -1,4 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page import = "com.lxisoft.model.*"%>
+<%@page import = "java.util.*" %>
+%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
@@ -91,14 +93,25 @@ input[type=text] {
 					<tr>
 						<label for="branch">Choose a Branch:</label>
 
-                        <select id="branches">
-                          <option value="general">General</option>
+                        <select id="branch">
+                    	<%
+                    	ArrayList<Doctor> doctors = new ArrayList<Doctor>();
+                    	doctors = (ArrayList<Doctor>)session.getAttribute("dList");
+                 		for (int i=0;i<doctors.size();i++)
+                         {%>
+                          <option value="<%=doctors.get(i).getBranch()%>"><%out.println(doctors.get(i).getBranch());%></option>
+                            <%}%>
                         </select>
 					</tr>
 					<tr>
-						<td>Doctor:</td>
-						<td><form:input path="doctor"/></td>
-					</tr>
+                			<label for="branch">Choose a Branch:</label>
+                			<select id="branch">
+                            <%for (int i=0;i<doctors.size();i++)
+                             {%>
+                             <option value="<%=doctors.get(i).getName()%>"><%out.println(doctors.get(i).getName());%></option>
+                             <%}%>
+                             </select>
+                    </tr>
 
 					<tr>
 						<td colspan = "2" align = "center" ><input type = "submit" value="save"></td>

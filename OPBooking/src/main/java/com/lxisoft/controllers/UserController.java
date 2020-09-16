@@ -103,6 +103,33 @@ public class UserController {
         return "delete";
     }
 
+    @RequestMapping(value="/deleteUser")
+    public String deleteUser(HttpServletRequest request)
+    {
+        int did = Integer.parseInt(request.getParameter("id"));
+        HttpSession session = request.getSession();
+        session.setAttribute("dId", did);
+        return "delete";
+    }
+
+    @RequestMapping(value="/cancelBooking")
+    public String cancelBooking(HttpServletRequest request)
+    {
+        int uid = Integer.parseInt(request.getParameter("id"));
+        HttpSession session = request.getSession();
+        session.setAttribute("uId", uid);
+        return "deleteuser";
+    }
+
+    @RequestMapping(value="/deleteuser")
+    public ModelAndView cancelUser(HttpServletRequest request)
+    {
+        int did = Integer.parseInt(request.getParameter("id"));
+        doctorService.deleteProblem(did);
+        return new ModelAndView("redirect:/home");
+
+    }
+
     @RequestMapping(value="/delete")
     public ModelAndView delete(HttpServletRequest request)
     {
@@ -127,10 +154,22 @@ public class UserController {
     @RequestMapping(value="/checkBooking")
     public String checkBooking(HttpServletRequest request)
     {
-        int did = Integer.parseInt(request.getParameter("id"));
+       return "viewbyid";
+    }
+
+    @RequestMapping(value="/viewById")
+    public ModelAndView viewBooking(HttpServletRequest request)
+    {
+       String name = request.getParameter("name");
         HttpSession session = request.getSession();
-        session.setAttribute("dId", did);
-        return "viewbyid";
+        session.setAttribute("name", name);
+
+        List<User> userList = userService.getAllUsers();
+        session.setAttribute("uList",userList);
+        ModelAndView model = new ModelAndView();
+        model.addObject("userlist",userList);
+        model.setViewName("bookingview");
+        return model;
     }
 
 }

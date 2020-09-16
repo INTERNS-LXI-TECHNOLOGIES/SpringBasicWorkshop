@@ -117,7 +117,7 @@
 
 
 <a href="newDoctor"><button class="button">Add Doctor</button></a>
-<a href="viewBooking"><button class="button">Add Doctor</button></a>
+<a href="viewBooking"><button class="button">View Booking</button></a>
 <a href="home"><button class="button">Home</button></a>
 </div>
 </div>
