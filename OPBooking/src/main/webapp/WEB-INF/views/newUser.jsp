@@ -91,26 +91,25 @@ input[type=text] {
 						<td><form:input path="number"/></td>
 					</tr>
 					<tr>
-						<label for="branch">Choose a Branch:</label>
-
-                        <select id="branch">
+						<form:select path="branch">
                     	<%
                     	ArrayList<Doctor> doctors = new ArrayList<Doctor>();
                     	doctors = (ArrayList<Doctor>)session.getAttribute("dList");
                  		for (int i=0;i<doctors.size();i++)
                          {%>
-                          <option value="<%=doctors.get(i).getBranch()%>"><%out.println(doctors.get(i).getBranch());%></option>
+                          <form:option value="<%=doctors.get(i).getBranch()%>" label="<%out.println(doctors.get(i).getBranch());%>"/>
                             <%}%>
-                        </select>
+                          </form:select>
 					</tr>
 					<tr>
-                			<label for="branch">Choose a Branch:</label>
-                			<select id="branch">
-                            <%for (int i=0;i<doctors.size();i++)
+					<form:select path="doctor">
+                            <%ArrayList<Doctor> doctors = new ArrayList<Doctor>();
+                             doctors = (ArrayList<Doctor>)session.getAttribute("dList");
+                            for (int i=0;i<doctors.size();i++)
                              {%>
-                             <option value="<%=doctors.get(i).getName()%>"><%out.println(doctors.get(i).getName());%></option>
-                             <%}%>
-                             </select>
+                             <form:option value="<%=doctors.get(i).getName()%>" label="<%out.println(doctors.get(i).getName());%>"/>
+                            <%}%>
+                            </form:select>
                     </tr>
 
 					<tr>

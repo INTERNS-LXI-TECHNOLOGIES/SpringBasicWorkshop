@@ -80,16 +80,16 @@ input[type=text] {
 						<td>Name :</td>
 						<td><form:input path = "name"/></td>
 					</tr>
-
 					<tr>
-						<label for="branch">Choose a Branch:</label>
-
-                        <select id="branch">
-                          <option value="general">General</option>
-                          <option value="cardiologist">Cardiologist</option>
-                          <option value="neurologist">Neurologist</option>
-                          <option value="ophthamologist">Ophthamologist</option>
-                        </select>
+						<td>Choose a Branch: </td>
+                        <td>
+                        <form:select path="branch">
+                          <form:option value="general" label="General"/>
+                          <form:option value="cardiologist" label="Cardiologist"/>
+                          <form:option value="neurologist" label="Neurologist"/>
+                          <form:option value="ophthamologist" label="Ophthamologist"/>
+                        </form:select>
+                        </td>
 					</tr>
 					<tr>
 						<td>Time:</td>

@@ -95,16 +95,12 @@
 		<%
         				ArrayList<User> users = new ArrayList<User>();
         				users = (ArrayList<User>)session.getAttribute("uList");
-        				if(users.size() == 0)
-        				{%>
-        				<script type="text/javascript">
-        					window.alert("No Records To Display");
-        				</script>
-        			<%}
-        			else
-        			{
+        				name = session.getAttribute("name");
         				for (int i=0;i<users.size();i++)
-        				{%>
+        				{
+        				if(name.equals(users.get(i).getName()))
+        				{
+        				%>
 
         				<tr>
         			<td><%out.println(users.get(i).getId());%></td>
@@ -116,6 +112,12 @@
         			<td><%out.println(users.get(i).getDateandTime());%></td>
         			<td><a href="deleteUser?id=<%=users.get(i).getId()%>"><button class="button button2">Delete</button></a></td>
         			</tr>
+        			<%}
+        			else
+        			{%>
+        			    <script type="text/javascript">
+                        window.alert("No Records To Display");
+                        </script>
         			<%}
         			}%>
 		</table>
