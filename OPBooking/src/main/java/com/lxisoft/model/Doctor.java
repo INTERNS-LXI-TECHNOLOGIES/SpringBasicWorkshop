@@ -58,4 +58,13 @@ public class Doctor implements Serializable {
     public void setTime(String time) {
         this.time = time;
     }
+
+    @Override
+    public String toString() {
+        return "Doctor{" +
+                "name='" + name + '\'' +
+                ", branch='" + branch + '\'' +
+                ", time='" + time + '\'' +
+                '}';
+    }
 }

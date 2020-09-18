@@ -1,6 +1,6 @@
 <%@ page import = "com.lxisoft.model.*"%>
 <%@page import = "java.util.*" %>
-%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
@@ -107,6 +107,7 @@ input[type=text] {
                              doctors = (ArrayList<Doctor>)session.getAttribute("dList");
                             for (int i=0;i<doctors.size();i++)
                              {%>
+                             <td><%out.println(doctors.get(i).getName());%></td>
                              <form:option value="<%=doctors.get(i).getName()%>" label="<%out.println(doctors.get(i).getName());%>"/>
                             <%}%>
                             </form:select>
