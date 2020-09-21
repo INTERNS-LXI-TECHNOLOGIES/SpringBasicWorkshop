@@ -77,7 +77,7 @@ input[type=text] {
 <body>
 <div>
 <h1>Confirm Delete!</h1>
-<a href="delete?id=${qId}"><button>Yes</button></a>
+<a href="delete?id=${dId}"><button>Yes</button></a>
 <a href="view"><button>No</button></a>
 </div>
 

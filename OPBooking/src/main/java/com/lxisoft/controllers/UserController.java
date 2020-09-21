@@ -118,14 +118,14 @@ public class UserController {
         int uid = Integer.parseInt(request.getParameter("id"));
         HttpSession session = request.getSession();
         session.setAttribute("uId", uid);
-        return "deleteuser";
+        return "cancel";
     }
 
     @RequestMapping(value="/deleteuser")
     public ModelAndView cancelUser(HttpServletRequest request)
     {
         int did = Integer.parseInt(request.getParameter("id"));
-        doctorService.deleteProblem(did);
+        userService.deleteUser(did);
         return new ModelAndView("redirect:/home");
 
     }
@@ -134,7 +134,7 @@ public class UserController {
     public ModelAndView delete(HttpServletRequest request)
     {
         int did = Integer.parseInt(request.getParameter("id"));
-        doctorService.deleteProblem(did);
+        doctorService.deleteDoctor(did);
         return new ModelAndView("redirect:/admin");
 
     }
@@ -147,7 +147,7 @@ public class UserController {
         session.setAttribute("uList",userList);
         ModelAndView model = new ModelAndView();
         model.addObject("userlist",userList);
-        model.setViewName("bookingview");
+        model.setViewName("userBookingView");
         return model;
     }
 
@@ -160,9 +160,9 @@ public class UserController {
     @RequestMapping(value="/viewById")
     public ModelAndView viewBooking(HttpServletRequest request)
     {
-       String name = request.getParameter("name");
+       String sname = request.getParameter("name");
         HttpSession session = request.getSession();
-        session.setAttribute("name", name);
+        session.setAttribute("sname", sname);
 
         List<User> userList = userService.getAllUsers();
         session.setAttribute("uList",userList);

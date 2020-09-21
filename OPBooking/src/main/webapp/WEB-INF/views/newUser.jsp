@@ -56,8 +56,8 @@
   margin-top: 8px;
   margin-right: 16px;
   background: #4CAF50;
-  font-size: 17px;
-  border: none;
+  font-size: 17px;8137952715
+  border: none;7034043856
   cursor: pointer;
 }
 
@@ -91,33 +91,29 @@ input[type=text] {
 						<td><form:input path="number"/></td>
 					</tr>
 					<tr>
-						<form:select path="branch">
-                    	<%
-                    	ArrayList<Doctor> doctors = new ArrayList<Doctor>();
-                    	doctors = (ArrayList<Doctor>)session.getAttribute("dList");
-                 		for (int i=0;i<doctors.size();i++)
-                         {%>
-                          <form:option value="<%=doctors.get(i).getBranch()%>" label="<%out.println(doctors.get(i).getBranch());%>"/>
-                            <%}%>
-                          </form:select>
-					</tr>
-					<tr>
-					<form:select path="doctor">
-                            <%ArrayList<Doctor> doctors = new ArrayList<Doctor>();
-                             doctors = (ArrayList<Doctor>)session.getAttribute("dList");
-                            for (int i=0;i<doctors.size();i++)
-                             {%>
-                             <td><%out.println(doctors.get(i).getName());%></td>
-                             <form:option value="<%=doctors.get(i).getName()%>" label="<%out.println(doctors.get(i).getName());%>"/>
-                            <%}%>
-                            </form:select>
+					 <%ArrayList<Doctor> doctors = new ArrayList<Doctor>();
+                     doctors = (ArrayList<Doctor>)session.getAttribute("dList");%>
+
+                          <%
+                          for (int i=0;i<doctors.size();i++)
+                          {%>
+								<input type="radio"  id="1" value=<%doctors.get(i).getId();%> name="browser" onclick="myFunction(this.value)">
+								<label>Name : <%out.println(doctors.get(i).getName());%> Branch : <%out.println(doctors.get(i).getBranch());%></label><br>
+                    	 <%}%>
                     </tr>
 
 					<tr>
+					 Your Selected  is: <input type="text" id="result">
 						<td colspan = "2" align = "center" ><input type = "submit" value="save"></td>
 					</tr>
 				</table>
 			</form:form>
+
+			<script>
+            function myFunction(browser) {
+              document.getElementById("result").value = browser;
+            }
+            </script>
 
 		</div>
 </body>

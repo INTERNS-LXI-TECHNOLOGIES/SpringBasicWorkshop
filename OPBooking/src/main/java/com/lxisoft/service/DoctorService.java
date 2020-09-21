@@ -25,7 +25,7 @@ public class DoctorService {
         doctorReppo.save(doctor);
     }
     @Transactional
-    public  void deleteProblem(int doctorId)
+    public  void deleteDoctor(int doctorId)
     {
         doctorReppo.delete(doctorId);
     }

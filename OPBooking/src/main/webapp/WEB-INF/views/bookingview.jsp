@@ -95,7 +95,7 @@
 		<%
         				ArrayList<User> users = new ArrayList<User>();
         				users = (ArrayList<User>)session.getAttribute("uList");
-        				name = session.getAttribute("name");
+        				name = session.getAttribute("sname");
         				for (int i=0;i<users.size();i++)
         				{
         				if(name.equals(users.get(i).getName()))

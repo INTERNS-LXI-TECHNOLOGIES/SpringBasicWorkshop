@@ -81,7 +81,7 @@
 
 <table id="pager" border="2px" width="100%">
 
-		<h3>Doctors Details</h3>
+		<h3>Booking Details</h3>
 
 		<tr>
 			<th>ID</th>
@@ -90,6 +90,8 @@
 			<th>Ph.No</th>
 			<th>Branch</th>
 			<th>Doctor</th>
+			<th>Date and Time</th>
+
 		</tr>
 		<%
         				ArrayList<User> users = new ArrayList<User>();
@@ -108,7 +110,7 @@
         				<tr>
         			<td><%out.println(users.get(i).getId());%></td>
         			<td><%out.println(users.get(i).getName());%></td>
-        			<td><%out.println(users.get(i).getPlace());%></td>cd
+        			<td><%out.println(users.get(i).getPlace());%></td>
         			<td><%out.println(users.get(i).getNumber());%></td>
         			<td><%out.println(users.get(i).getBranch());%></td>
         			<td><%out.println(users.get(i).getDoctor());%></td>
