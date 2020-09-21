@@ -101,7 +101,7 @@ public class DatabaseRepo {
 		try
 		{
 			s=(Statement) con.createStatement();
-			s.executeUpdate("insert into Patient values('"+p.getName()+"','"+p.getDoctorName()+"','" + p.getPhoneNumber()+"')");	
+			s.executeUpdate("insert into Patient values('"+p.getName()+"','"+p.getPhoneNumber()+"','" + p.getAddress()+"','"+p.getDoctorName()+"')");	
 		}
 		catch(Exception e)
 		{

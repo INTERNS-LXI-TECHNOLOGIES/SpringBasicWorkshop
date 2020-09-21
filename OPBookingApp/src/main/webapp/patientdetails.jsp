@@ -40,15 +40,23 @@ input[type=submit]:hover {
 		<table>
 			<tr>
 				<td>Name Of Patient</td>
-				<td><input type="text" value="Enter your Name"></td>
+				<td><input type="text" value="Enter your Name" name="pname"></td>
 			</tr>
 			<tr>
 				<td>Contact Number Of Patient</td>
-				<td><input type="text" value="Enter your Number"></td>
+				<td><input type="text" value="Enter your Number" name="pnum"></td>
+			</tr>
+			<tr>
+				<td>Address : </td>
+				<td><input type="text" value="Enter your Number" name="paddress"></td>
+			</tr>
+				<tr>
+				<td>Doctor : </td>
+				<td><input type="text" value="Enter your Number" name="pdoctor"></td>
 			</tr>
 			<tr>
 				<td></td>
-				<td><input type="submit" formaction="index.jsp"></td>
+				<td><input type="submit" formaction="savePatient"></td>
 			</tr>
 		</table>
 	</form>
