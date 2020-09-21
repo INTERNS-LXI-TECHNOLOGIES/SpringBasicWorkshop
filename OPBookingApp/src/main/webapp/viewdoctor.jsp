@@ -74,7 +74,7 @@
 			}
 		%>
 		<tr>
-			<td><a href="adminaction.jsp"><button class="button">Back</button></a>
+			<td><a href="adminaction.jsp"><button class="button">Back</button></a></td></tr>
 	</table>
 <script>
 function confirm()

@@ -1,6 +1,7 @@
 package com.lxisoft.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -10,7 +11,8 @@ import com.lxisoft.repository.DatabaseRepo;
 @Controller
 public class PatientAction 
 {
-	public ModelAndView saveUser(@RequestParam("pname") String name, @RequestParam("pnumber") String number , @RequestParam("pdoctor") String doctorName , @RequestParam("paddress") String address)
+	@RequestMapping("/savePatient")
+	public ModelAndView saveUser(@RequestParam("pname") String name, @RequestParam("pnum") String number , @RequestParam("pdoctor") String doctorName , @RequestParam("paddress") String address)
 	{
 		Patient p = new Patient();
 		DatabaseRepo db = new DatabaseRepo();
