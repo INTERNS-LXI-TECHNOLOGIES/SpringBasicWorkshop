@@ -76,7 +76,7 @@
 
 		<div class="container">
 			<h2>EDIT Doctor</h2>
-			<form:form action="edit" method="GET" modelAttribute="doctorById">
+			<form:form action="edit" method="GET" modelAttribute="doctor">
 				<table>
 					<tr>
 						<td>ID .:</td>
@@ -87,15 +87,16 @@
 						<td><form:input path="name"  required="required"/></td>
 					</tr>
 					<tr>
-                    						<label for="branch">Choose a Branch:</label>
-
-                                            <select id="branches">
-                                              <option value="general">General</option>
-                                              <option value="cardiologist">Cardiologist</option>
-                                              <option value="neurologist">Neurologist</option>
-                                              <option value="ophthamologist">Ophthamologist</option>
-                                            </select>
-                    					</tr>
+                    	<td>Choose a Branch: </td>
+                        <td>
+                        <form:select path="branch">
+                        <form:option value="general" label="General"/>
+                        <form:option value="cardiologist" label="Cardiologist"/>
+                        <form:option value="neurologist" label="Neurologist"/>
+                        <form:option value="ophthamologist" label="Ophthamologist"/>
+                        </form:select>
+                        </td>
+                    </tr>
 					<tr>
 						<td>TIME:</td>
 						<td><form:input path="time"  required="required"/></td>

@@ -95,11 +95,13 @@
 		<%
         				ArrayList<User> users = new ArrayList<User>();
         				users = (ArrayList<User>)session.getAttribute("uList");
-        				name = session.getAttribute("sname");
+        				String name = (String)session.getAttribute("sname");
+        				int z=0;
         				for (int i=0;i<users.size();i++)
         				{
         				if(name.equals(users.get(i).getName()))
         				{
+        				z++;
         				%>
 
         				<tr>
@@ -113,13 +115,14 @@
         			<td><a href="deleteUser?id=<%=users.get(i).getId()%>"><button class="button button2">Delete</button></a></td>
         			</tr>
         			<%}
-        			else
+        			}
+        			if(z==0)
         			{%>
         			    <script type="text/javascript">
                         window.alert("No Records To Display");
                         </script>
         			<%}
-        			}%>
+        			%>
 		</table>
 
 <a href="home"><button class="button">Home</button></a>

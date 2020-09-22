@@ -97,21 +97,30 @@ input[type=text] {
                           <%
                           for (int i=0;i<doctors.size();i++)
                           {%>
-								<input type="radio"  id="1" value=<%doctors.get(i).getId();%> name="browser" onclick="myFunction(this.value)">
+								<input type="radio"  id="1" value=<%=i%> name="browser" onclick="myFunction(this.value)">
 								<label>Name : <%out.println(doctors.get(i).getName());%> Branch : <%out.println(doctors.get(i).getBranch());%></label><br>
                     	 <%}%>
                     </tr>
 
 					<tr>
-					 Your Selected  is: <input type="text" id="result">
-						<td colspan = "2" align = "center" ><input type = "submit" value="save"></td>
+					 Your Doctors Name : <input type="text" id="dname" path="doctor">
+
 					</tr>
+					<tr>
+                        Your Session Name : <input type="text" id="branch" path="branch">
+                    </tr>
+                    <tr>
+                        Your Time : <input type="text" id="time" path="dateandTime">
+                    </tr>
 				</table>
 			</form:form>
 
 			<script>
             function myFunction(browser) {
-              document.getElementById("result").value = browser;
+            int val=browser;
+              document.getElementById("dname").value =doctors.get(val).getName() ;
+              document.getElementById("branch").value =doctors.get(val).getBranch() ;
+              document.getElementById("time").value =doctors.get(val).getDateandTime() ;
             }
             </script>
 
