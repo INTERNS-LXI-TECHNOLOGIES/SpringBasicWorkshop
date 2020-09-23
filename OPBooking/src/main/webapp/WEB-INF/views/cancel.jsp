@@ -78,7 +78,7 @@ input[type=text] {
 <div>
 <h1>Confirm Cancel..!</h1>
 <a href="deleteuser?id=${uId}"><button>Yes</button></a>
-<a href="home"><button>No</button></a>
+<a href="admin"><button>No</button></a>
 </div>
 
 </body>

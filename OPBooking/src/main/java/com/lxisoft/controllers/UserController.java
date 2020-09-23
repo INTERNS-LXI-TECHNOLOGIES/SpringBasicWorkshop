@@ -126,7 +126,7 @@ public class UserController {
     {
         int did = Integer.parseInt(request.getParameter("id"));
         userService.deleteUser(did);
-        return new ModelAndView("redirect:/home");
+        return new ModelAndView("redirect:/admin");
 
     }
 

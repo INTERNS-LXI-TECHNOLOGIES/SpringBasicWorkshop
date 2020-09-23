@@ -8,9 +8,11 @@
 <title>OP Booking</title>
 <style>
     body{
+             font-family: "Sofia";
+              font-size: 22px;
             background-color: lightblue;
             /* margin-top:250px;*/
-            /* text-align:center;*/
+           text-align:center;
             }
 
             a {
@@ -79,19 +81,11 @@
 </div>
 <div>
 
-<table id="pager" border="2px" width="100%">
 
-		<h3>Doctors Details</h3>
 
-		<tr>
-			<th>ID</th>
-			<th>Name</th>
-			<th>Place</th>
-			<th>Ph.No</th>
-			<th>Branch</th>
-			<th>Doctor</th>
-			<th>Time</th>
-		</tr>
+		<h3>Your Details</h3>
+
+
 		<%
         				ArrayList<User> users = new ArrayList<User>();
         				users = (ArrayList<User>)session.getAttribute("uList");
@@ -103,29 +97,28 @@
         				{
         				z++;
         				%>
+                    <td><b>Name :</b><%out.println(users.get(i).getName());%></td><br>
+        			<td><b>ID :</b><%out.println(users.get(i).getId());%></td><br>
+        			<td><b>Place :</b><%out.println(users.get(i).getPlace());%></td><br>
+        			<td><b>Contact Number :</b><%out.println(users.get(i).getNumber());%></td><br>
+        			<td><b>Selected Session :</b><%out.println(users.get(i).getBranch());%></td><br>
+        			<td><b>Doctors Name :</b><%out.println(users.get(i).getDoctor());%></td><br>
+        			<td><b>Time :</b><%out.println(users.get(i).getDateandTime());%></td><br>
+        			<td><a href="deleteUser?id=<%=users.get(i).getId()%>"><button class="button button2">Cancel</button></a></td>
 
-        				<tr>
-        			<td><%out.println(users.get(i).getId());%></td>
-        			<td><%out.println(users.get(i).getName());%></td>
-        			<td><%out.println(users.get(i).getPlace());%></td>cd
-        			<td><%out.println(users.get(i).getNumber());%></td>
-        			<td><%out.println(users.get(i).getBranch());%></td>
-        			<td><%out.println(users.get(i).getDoctor());%></td>
-        			<td><%out.println(users.get(i).getDateandTime());%></td>
-        			<td><a href="deleteUser?id=<%=users.get(i).getId()%>"><button class="button button2">Delete</button></a></td>
-        			</tr>
         			<%}
         			}
         			if(z==0)
         			{%>
         			    <script type="text/javascript">
                         window.alert("No Records To Display");
+                        window.location.href="home";
                         </script>
         			<%}
         			%>
 		</table>
 
-<a href="home"><button class="button">Home</button></a>
+<a href="home"><button class="button">Close</button></a>
 </div>
 </div>
 </body>

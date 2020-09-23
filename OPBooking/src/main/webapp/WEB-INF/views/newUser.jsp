@@ -103,24 +103,28 @@ input[type=text] {
                     </tr>
 
 					<tr>
-					 Your Doctors Name : <input type="text" id="dname" path="doctor">
-
+					<td>Doctor Name :</td>
+						<td><form:input path="doctor"/></td>
 					</tr>
 					<tr>
-                        Your Session Name : <input type="text" id="branch" path="branch">
+					<td>Selected Session :</td>
+						<td><form:input path="branch"/></td>
                     </tr>
                     <tr>
-                        Your Time : <input type="text" id="time" path="dateandTime">
-                    </tr>
+					<td>Time :</td>
+					<td><form:input path="dateandTime"/></td>
+					</tr>
 				</table>
+							<button class="button" type="submit">Save</button>
 			</form:form>
 
 			<script>
-            function myFunction(browser) {
-            int val=browser;
-              document.getElementById("dname").value =doctors.get(val).getName() ;
-              document.getElementById("branch").value =doctors.get(val).getBranch() ;
-              document.getElementById("time").value =doctors.get(val).getDateandTime() ;
+            function myFunction(browser)
+			{
+			var val =browser;
+			  document.getElementById("doctor").value= browser;
+              document.getElementById("branch").value = val;
+              document.getElementById("dateandTime").value = val;
             }
             </script>
 
