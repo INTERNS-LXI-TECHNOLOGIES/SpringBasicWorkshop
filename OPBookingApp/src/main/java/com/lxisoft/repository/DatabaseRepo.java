@@ -111,15 +111,6 @@ public class DatabaseRepo {
 		return patients;
 	}
 	
-	public void updateDatabase(ArrayList<Patient> patients) {
-		createDatabaseConnection();
-		try {
-			s = (Statement) con.createStatement();
-			s.executeUpdate("truncate table patient");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-	}
+	
 
 }
