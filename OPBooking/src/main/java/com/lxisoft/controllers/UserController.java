@@ -147,6 +147,11 @@ public class UserController {
         session.setAttribute("uList",userList);
         ModelAndView model = new ModelAndView();
         model.addObject("userlist",userList);
+
+        List<Doctor> doctorList = doctorService.getAllUsers();
+        session.setAttribute("dList",doctorList);
+        model.addObject("doctorlist",doctorList);
+
         model.setViewName("userBookingView");
         return model;
     }
@@ -168,6 +173,12 @@ public class UserController {
         session.setAttribute("uList",userList);
         ModelAndView model = new ModelAndView();
         model.addObject("userlist",userList);
+
+        List<Doctor> doctorList = doctorService.getAllUsers();
+        session.setAttribute("dList",doctorList);
+        model.addObject("doctorlist",doctorList);
+
+
         model.setViewName("bookingview");
         return model;
     }

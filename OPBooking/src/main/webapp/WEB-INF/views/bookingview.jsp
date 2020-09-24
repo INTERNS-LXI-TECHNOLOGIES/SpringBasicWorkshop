@@ -89,6 +89,8 @@
 		<%
         				ArrayList<User> users = new ArrayList<User>();
         				users = (ArrayList<User>)session.getAttribute("uList");
+        				ArrayList<Doctor> doctors = new ArrayList<Doctor>();
+                        doctors = (ArrayList<Doctor>)session.getAttribute("dList");
         				String name = (String)session.getAttribute("sname");
         				int z=0;
         				for (int i=0;i<users.size();i++)
@@ -101,9 +103,10 @@
         			<td><b>ID :</b><%out.println(users.get(i).getId());%></td><br>
         			<td><b>Place :</b><%out.println(users.get(i).getPlace());%></td><br>
         			<td><b>Contact Number :</b><%out.println(users.get(i).getNumber());%></td><br>
-        			<td><b>Selected Session :</b><%out.println(users.get(i).getBranch());%></td><br>
-        			<td><b>Doctors Name :</b><%out.println(users.get(i).getDoctor());%></td><br>
-        			<td><b>Time :</b><%out.println(users.get(i).getDateandTime());%></td><br>
+        		    <%int x = Integer.parseInt(users.get(i).getDoctor());%>
+                    <td><b>Doctors Name :</b> Dr.<%out.println(doctors.get(x).getName());%></td><br>
+        			<td><b>Selected Session :</b><%out.println(doctors.get(x).getBranch());%></td><br>
+        			<td><b>Time :</b><%out.println(doctors.get(x).getTime());%></td><br>
         			<td><a href="deleteUser?id=<%=users.get(i).getId()%>"><button class="button button2">Cancel</button></a></td>
 
         			<%}

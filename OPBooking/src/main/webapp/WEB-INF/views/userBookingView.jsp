@@ -96,6 +96,8 @@
 		<%
         				ArrayList<User> users = new ArrayList<User>();
         				users = (ArrayList<User>)session.getAttribute("uList");
+        				ArrayList<Doctor> doctors = new ArrayList<Doctor>();
+                        doctors = (ArrayList<Doctor>)session.getAttribute("dList");
         				if(users.size() == 0)
         				{%>
         				<script type="text/javascript">
@@ -112,9 +114,10 @@
         			<td><%out.println(users.get(i).getName());%></td>
         			<td><%out.println(users.get(i).getPlace());%></td>
         			<td><%out.println(users.get(i).getNumber());%></td>
-        			<td><%out.println(users.get(i).getBranch());%></td>
-        			<td><%out.println(users.get(i).getDoctor());%></td>
-        			<td><%out.println(users.get(i).getDateandTime());%></td>
+        			<%int x = Integer.parseInt(users.get(i).getDoctor());%>
+        			<td><%out.println(doctors.get(x).getBranch());%></td>
+        			<td><%out.println(doctors.get(x).getName());%></td>
+        			<td><%out.println(doctors.get(x).getTime());%></td>
         			<td><a href="cancelBooking?id=<%=users.get(i).getId()%>"><button class="button button2">Cancel</button></a></td>
         			</tr>
         			<%}
