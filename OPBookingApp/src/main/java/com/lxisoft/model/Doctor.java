@@ -1,5 +1,8 @@
 package com.lxisoft.model;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Doctor {
 
 	private String name, department;

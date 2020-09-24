@@ -8,34 +8,6 @@
 <head>
 <meta charset="ISO-8859-1">
 
-<style>
-#patient_table {
-	text-align: left;
-	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-	width: 100%;
-}
-
-
-#patient_table td, #patient_table th {
-	border: 1px solid #ddd;
-	padding: 8px;
-}
-#patient_table th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #4CAF50;
-  color: white;
-}
-
-#patient_table tr:nth-child(even) {
-	background-color: #f2f2f2;
-}
-
-#patient_table tr:hover {
-	background-color: #ddd;
-}
-</style>
 
 <title>Appointments</title>
 
@@ -84,7 +56,7 @@
 			<% } %>
 			
 			<tr>
-				<td><a href="adminaction.jsp"><button class="button">Back</button></a></td>
+				<td><a href="homepage.jsp"><button class="button">Back</button></a></td>
 			</tr>
 	</table>
 </body>
