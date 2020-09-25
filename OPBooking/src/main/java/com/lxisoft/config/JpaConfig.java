@@ -81,4 +81,29 @@ public class JpaConfig
    public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
       return new PersistenceExceptionTranslationPostProcessor();
    }
+
+//   final Properties jpaProperties()
+//   {
+//      final Properties hibernateProperties = new Properties();
+//      hibernateProperties.setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
+//      hibernateProperties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
+//      hibernateProperties.setProperty("hibernate.cache.use_second_level_cache", env.getProperty("hibernate.cache.use_second_level_cache"));
+//      hibernateProperties.setProperty("hibernate.cache.use_query_cache", env.getProperty("hibernate.cache.use_query_cache"));
+//      return hibernateProperties;
+//
+//   }
+//
+//   @Bean
+//   public PlatformTransactionManager transactionManager(final EntityManagerFactory emf)
+//   {
+//      final JpaTransactionManager transactionManager = new JpaTransactionManager();
+//      transactionManager.setEntityManagerFactory(emf);
+//      return transactionManager;
+//   }
+//
+//   @Bean
+//   public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
+//      return new PersistenceExceptionTranslationPostProcessor();
+//   }
+//
 }
