@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.lxisoft.model.Doctor;
+import com.lxisoft.repository.Database;
 import com.lxisoft.repository.DatabaseRepo;
 
 @Controller
@@ -20,10 +21,13 @@ public class DoctorController {
 	public ModelAndView saveDoctor(@RequestParam("dname") String name, @RequestParam("departments") String department) 
 	{
 		 Doctor d = new Doctor();
-		 DatabaseRepo db = new DatabaseRepo();
+		 Database db = new Database();
+		 
 
-		d.setName(name);
-		d.setDepartment(department);
+		
+		 d.setName(name);
+		 d.setDepartment(department);
+		// d.setDoctorId(100);
 
 		db.addDoctor(d);
 		return new ModelAndView("redirect:/adminaction.jsp");
@@ -33,14 +37,10 @@ public class DoctorController {
 	public ModelAndView updateDoctor(@RequestParam("dname") String name, @RequestParam("departments") String department, @RequestParam("id") int id)
 	{
 		Doctor d = new Doctor();
-		ArrayList<Doctor> doctors = new ArrayList<Doctor>();
-		DatabaseRepo db = new DatabaseRepo();
-		doctors=db.getDoctorRecords();
+		Database db = new Database();
 		d.setName(name);
 		d.setDepartment(department);		
-		doctors.remove(id);
-		doctors.add(id, d);
-		db.updateDatabase(doctors);
+		db.updateDatabase(d,id);
 		return new ModelAndView("redirect:/adminaction.jsp");
 	}
 	@RequestMapping("/deleteDoctor")

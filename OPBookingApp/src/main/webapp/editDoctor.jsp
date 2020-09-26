@@ -49,7 +49,7 @@ input[type=submit]:hover {
 <body>
 <%
 int id=Integer.parseInt(request.getParameter("id"));
-DatabaseRepo db = new DatabaseRepo();
+Database db = new Database();
 ArrayList<Doctor> doctors = new ArrayList<Doctor>();
 doctors = db.getDoctorRecords();
 %>

@@ -49,7 +49,7 @@
 			<th>Delete</th>
 		</tr>
 		<%
-			DatabaseRepo db = new DatabaseRepo();
+			Database db = new Database();
 		ArrayList<Doctor> doctors = new ArrayList<Doctor>();
 		doctors = db.getDoctorRecords();
 		for (int i = 0; i < doctors.size(); i++) {
