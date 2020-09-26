@@ -46,10 +46,7 @@ public class UserController {
     @RequestMapping(value = "/new" ,method=RequestMethod.GET)
     public ModelAndView addUser(ModelAndView model)
     {
-        HttpSession session = request.getSession();
-        List<Doctor> doctorList = doctorService.getAllUsers();
-        session.setAttribute("dList",doctorList);
-        ModelAndView model = new ModelAndView();
+
         User user = new User();
         model.addObject("user",user);
         model.setViewName("newUser");
