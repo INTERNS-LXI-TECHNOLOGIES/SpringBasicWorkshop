@@ -8,7 +8,7 @@
 <head>
 	<title></title>
 </head>
-<body>
+<body><%if (request.isUserInRole("admin")) {%>
     	    <div id="login">
         <h3 class="text-center text-white pt-5">Add Contact</h3>
         <div class="container">
@@ -41,6 +41,10 @@
             </div>
         </div>
     </div>
+    <%}
+        else{
+                response.sendRedirect("WrongUser.jsp");
+    }%>
 
 </body>
 </html>

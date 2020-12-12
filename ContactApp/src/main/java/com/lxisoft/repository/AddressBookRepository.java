@@ -15,11 +15,10 @@ public class AddressBookRepository {
 	int row;
 
 	//ArrayList<Contact> contactList=new ArrayList<Contact>();
-	public void save(com.lxisoft.model.Contact contact) {
+	public void save(Contact contact) {
 
 		try {
-			Connection con = null;
-			PreparedStatement ps = null;
+
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/contact", "root", "Karthik1996$");
 
@@ -32,6 +31,50 @@ public class AddressBookRepository {
 
 
 
+	}
+	public void edit(String id,String name,String number,String email)
+	{
+		try
+		{
+
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/contact","root","Karthik1996$");
+			Statement stm = con.createStatement();
+			ps = con.prepareStatement("update contact set NAME=?,Number=?,Email=? where ID =?");
+			ps.setString(1,name);
+			ps.setString(2,number);
+			ps.setString(3,email);
+			ps.setString(4,id);
+
+
+			ps.executeUpdate();
+		}
+		catch(Exception e)
+		{
+
+		}
+
+	}
+	public void deleteName(String name)
+	{
+		try{
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/contact","root","Karthik1996$");
+			Statement stmt = con.createStatement();
+
+			String query="delete from contact where name=?";
+			ps=con.prepareStatement(query);
+			ps.setString(1,name);
+			ps.executeUpdate();
+
+
+
+		}
+		catch(Exception e){
+
+		}
 	}
 
 	public ArrayList<Contact> read()
