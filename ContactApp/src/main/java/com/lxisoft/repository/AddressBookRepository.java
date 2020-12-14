@@ -14,33 +14,16 @@ public class AddressBookRepository {
 	PreparedStatement ps = null;
 	int row;
 
-	//ArrayList<Contact> contactList=new ArrayList<Contact>();
-//	public void save(Contact contact) {
-//
-//		try {
-//
-//			Class.forName("com.mysql.cj.jdbc.Driver");
-//			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/contact", "root", "Karthik1996$");
-//
-//			ps = con.prepareStatement("insert into contact(NAME,Number,Email) values(?,?,?)");
-//			ps.setString(1, contact.getName());
-//			ps.setString(2, contact.getNumber());
-//			ps.setString(3, contact.getEmail());
-//		} catch (Exception e) {
-//		}
-//
-//
-//
-//	}
 
 
-	public int save(Contact model)
+
+	public int save(Contact contact)
 	{
 		try
 		{
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/contact", "root", "Karthik1996$");
-			ps = con.prepareStatement("insert into contact(NAME,Number,Email) values('"+model.getName()+"','"+model.getNumber()+"','"+model.getEmail()+"')");
+			ps = con.prepareStatement("insert into contact(NAME,Number,Email) values('"+contact.getName()+"','"+contact.getNumber()+"','"+contact.getEmail()+"')");
 			row = ps.executeUpdate();
 			ps.close();
 			con.close();
