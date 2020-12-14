@@ -15,22 +15,41 @@ public class AddressBookRepository {
 	int row;
 
 	//ArrayList<Contact> contactList=new ArrayList<Contact>();
-	public void save(Contact contact) {
+//	public void save(Contact contact) {
+//
+//		try {
+//
+//			Class.forName("com.mysql.cj.jdbc.Driver");
+//			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/contact", "root", "Karthik1996$");
+//
+//			ps = con.prepareStatement("insert into contact(NAME,Number,Email) values(?,?,?)");
+//			ps.setString(1, contact.getName());
+//			ps.setString(2, contact.getNumber());
+//			ps.setString(3, contact.getEmail());
+//		} catch (Exception e) {
+//		}
+//
+//
+//
+//	}
 
-		try {
 
+	public int save(Contact model)
+	{
+		try
+		{
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/contact", "root", "Karthik1996$");
-
-			ps = con.prepareStatement("insert into contact(NAME,Number,Email) values(?,?,?)");
-			ps.setString(1, contact.getName());
-			ps.setString(2, contact.getNumber());
-			ps.setString(3, contact.getEmail());
-		} catch (Exception e) {
+			ps = con.prepareStatement("insert into contact(NAME,Number,Email) values('"+model.getName()+"','"+model.getNumber()+"','"+model.getEmail()+"')");
+			row = ps.executeUpdate();
+			ps.close();
+			con.close();
 		}
-
-
-
+		catch(SQLException | ClassNotFoundException e)
+		{
+			e.printStackTrace();
+		}
+		return row;
 	}
 	public void edit(String id,String name,String number,String email)
 	{

@@ -18,8 +18,6 @@ import java.util.ArrayList;
 public class ContactController {
     AddressBookRepository addressBookRepository=new AddressBookRepository();
 
-//    @Autowired
-//    private ProblemService problemService;
 
     @GetMapping(value = {"/", "/home"})
     public String indexPage() {
@@ -40,10 +38,10 @@ public class ContactController {
     {
         ModelAndView model =new ModelAndView();
         addressBookRepository.save(contact);
-        model.setViewName("ViewContactUser");
-        return model;
+        //model.setViewName("ViewContactUser");
+        //return model;
+        return new ModelAndView("redirect:/ViewServletUser");
 
-    //return new ModelAndView("redirect:/index.jsp");
     }
 
     @RequestMapping(value = "/ViewServletUser",method=RequestMethod.GET )
@@ -67,6 +65,7 @@ public class ContactController {
         return model;
 
     }
+
     @GetMapping (value = "/UpdateContactSelected")
     public String UpdateContactSelected()
     {
