@@ -1,117 +1,50 @@
 package com.lxisoft.repository;
 
-import java.sql.*;
+import com.mysql.cj.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.lxisoft.model.*;
+
+import javax.persistence.EntityManager;
 import java.util.ArrayList;
+import java.util.List;
 
-import com.lxisoft.model.Contact;
-
+@Repository
 public class AddressBookRepository {
-	ArrayList<Contact> contactList=new ArrayList<Contact>();
 
+	@Autowired
+	private SessionFactory sessionFactory;
+	private EntityManager session;
 
+	public Contact getContactById(int id) {
 
-	Connection con = null;
-	PreparedStatement ps = null;
-	int row;
-
-
-
-
-	public int save(Contact contact)
-	{
-		try
-		{
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/contact", "root", "Karthik1996$");
-			ps = con.prepareStatement("insert into contact(NAME,Number,Email) values('"+contact.getName()+"','"+contact.getNumber()+"','"+contact.getEmail()+"')");
-			row = ps.executeUpdate();
-			ps.close();
-			con.close();
-		}
-		catch(SQLException | ClassNotFoundException e)
-		{
-			e.printStackTrace();
-		}
-		return row;
+	return sessionFactory.getCurrentSession().get(Contact.class,id);
 	}
-	public void edit(String id,String name,String number,String email)
+	public void saveContact(Contact contact)
 	{
-		try
-		{
-
-			Class.forName("com.mysql.cj.jdbc.Driver");
-
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/contact","root","Karthik1996$");
-			Statement stm = con.createStatement();
-			ps = con.prepareStatement("update contact set NAME=?,Number=?,Email=? where ID =?");
-			ps.setString(1,name);
-			ps.setString(2,number);
-			ps.setString(3,email);
-			ps.setString(4,id);
-
-
-			ps.executeUpdate();
-		}
-		catch(Exception e)
-		{
-
-		}
-
-	}
-	public void deleteName(String name)
-	{
-		try{
-			Class.forName("com.mysql.cj.jdbc.Driver");
-
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/contact","root","Karthik1996$");
-			Statement stmt = con.createStatement();
-
-			String query="delete from contact where name=?";
-			ps=con.prepareStatement(query);
-			ps.setString(1,name);
-			ps.executeUpdate();
-
-
-
-		}
-		catch(Exception e){
-
-		}
+		sessionFactory.getCurrentSession().saveOrUpdate(contact);
 	}
 
-	public ArrayList<Contact> read()
+	@SuppressWarnings("unchecked")
+
+	public List<Contact> viewData() {
+		return sessionFactory.getCurrentSession().createQuery("From contact").list();
+
+	}
+	public void delete(int id)
 	{
-		try
+		Contact contact = (Contact) sessionFactory.getCurrentSession().load(Contact.class, id);
+		if(contact != null)
 		{
-
-			Class.forName("com.mysql.cj.jdbc.Driver");
-
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/contact","root","Karthik1996$");
-
-			contactList.clear();
-
-			Statement stmt = con.createStatement();
-
-			PreparedStatement ps=con.prepareStatement("select * from contact");
-			ResultSet rs=ps.executeQuery();
-
-			while(rs.next())
-			{
-				Contact contact=new Contact();
-
-				contact.setID(rs.getInt("id"));
-				contact.setName(rs.getString("name"));
-				contact.setNumber(rs.getString("number"));
-				contact.setEmail(rs.getString("email"));
-				contactList.add(contact);
-			}
-			stmt.close();
+			this.sessionFactory.getCurrentSession().delete(contact);
 		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		return contactList;
+	}
+	public void add(Contact contact)
+	{
+		sessionFactory.getCurrentSession().saveOrUpdate(contact);
 	}
 }
-			
+
+

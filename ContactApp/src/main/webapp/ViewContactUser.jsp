@@ -27,7 +27,7 @@
 
 				
 			</tr>
-<% ArrayList<Contact> contactList=(ArrayList<Contact>) request.getAttribute("contactList");
+<% List<Contact> contactList=(List<Contact>) request.getAttribute("contactList");
 	
 	for(Contact contact : contactList)
 		{ %>

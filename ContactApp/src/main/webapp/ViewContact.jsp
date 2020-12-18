@@ -36,7 +36,7 @@
 			<b>
 			<tr style=" font-style:oblique;  ">
 			<td>
-		<a href="UpdateContactSelected.jsp?id=<%=contact.getID()%>&temp=<%=contact.getName()%>&temp1=<%=contact.getNumber()%>&temp2=<%=contact.getEmail()%>"><input type="button" name="submit" value="<%=contact.getName() %>"></a>
+		<a href="UpdateContactSelected?id=<%=contact.getID()%>&temp=<%=contact.getName()%>&temp1=<%=contact.getNumber()%>&temp2=<%=contact.getEmail()%>"><input type="button" name="submit" value="<%=contact.getName() %>"></a>
 				</td>
 				<td>
 					<%out.println(contact.getNumber());%>
