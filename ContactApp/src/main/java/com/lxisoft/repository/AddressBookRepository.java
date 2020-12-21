@@ -1,8 +1,10 @@
 package com.lxisoft.repository;
 
+import com.lxisoft.service.ContactService;
 import com.mysql.cj.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.lxisoft.model.*;
@@ -14,8 +16,12 @@ import java.util.List;
 @Repository
 public class AddressBookRepository {
 
+
 	@Autowired
+	private ContactService contactService;
 	private SessionFactory sessionFactory;
+
+
 	private EntityManager session;
 
 	public Contact getContactById(int id) {
@@ -30,9 +36,11 @@ public class AddressBookRepository {
 	@SuppressWarnings("unchecked")
 
 	public List<Contact> viewData() {
-		return sessionFactory.getCurrentSession().createQuery("From contact").list();
+		return sessionFactory.getCurrentSession().createQuery("select * from contact").list();
+
 
 	}
+
 	public void delete(int id)
 	{
 		Contact contact = (Contact) sessionFactory.getCurrentSession().load(Contact.class, id);

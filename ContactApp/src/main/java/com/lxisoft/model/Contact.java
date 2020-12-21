@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.*;
 
 @Entity
-@Table(name="contact")
+@Table(name="Contact")
 
 public class Contact implements Serializable
 {
@@ -57,6 +57,7 @@ public int getID() {
 	{
 		return email;
 	}
+	@Override
 	public String toString()
 	{
 		return "\n"+"name :"+name+"    number :"+number+"  email :"+email+"\n";

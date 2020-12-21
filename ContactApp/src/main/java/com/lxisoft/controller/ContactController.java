@@ -63,9 +63,9 @@ public class ContactController {
     {
 
        // HttpSession session = request.getSession();
-        List<Contact> contactListAdmin = contactservice.viewData();
+        List<Contact> contactListAdmin =  contactservice.viewData();
        // ModelAndView model = new ModelAndView();
-       // session.setAttribute("contactList",contactListAdmin);
+       //session.setAttribute("contactList",contactListAdmin);
         model.addObject("contactList",contactListAdmin);
         model.setViewName("ViewContact");
         return model;
