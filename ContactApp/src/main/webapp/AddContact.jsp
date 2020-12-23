@@ -18,7 +18,7 @@
                         <form id="login-form" class="form" modelAttribute="contact" action="AddServlet" method="GET">
                             <h3 class="text-center text-info">Add Contact</h3>
                             <div class="form-group">
-                                <label for="number" class="text-info">Enter the Name</label><br>
+                                <label for="name" class="text-info">Enter the Name</label><br>
                                 <input type="name" name="name" id="name" class="form-control">
                             </div>
                             <div class="form-group">

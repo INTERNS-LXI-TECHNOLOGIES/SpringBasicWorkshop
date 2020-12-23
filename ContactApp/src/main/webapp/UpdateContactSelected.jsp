@@ -20,17 +20,17 @@
                             <h3 class="text-center text-info">Update Contact</h3>
                             <div class="form-group">
                                 <label for="name" class="text-info">Name</label><br>
-                                <input type="text" name="name" id="name" class="form-control " value="<%= contact.getName()%>">
-                                <input type="hidden" name="id" id="id" class="form-control " value="<%= contact.getId()%>">
+                                <input type="text" name="name" id="name" class="form-control " value="<%= request.getParameter("temp")%>">
+                                <input type="hidden" name="id" id="id" class="form-control " value="<%= request.getParameter("id")%>">
 
                             </div>
                             <div class="form-group">
                                 <label for="name" class="text-info">Number</label><br>
-                                <input type="text" name="number" id="number" class="form-control " value="<%= contact.getNumber()%>">
+                                <input type="text" name="number" id="number" class="form-control " value="<%= request.getParameter("temp1")%>">
                             </div>
                             <div class="form-group">
                                 <label for="name" class="text-info">Email</label><br>
-                                <input type="email" name="email" id="email" class="form-control" value="<%= contact.getEmail()%>">
+                                <input type="email" name="email" id="email" class="form-control" value="<%= request.getParameter("temp2")%>">
                             </div>
 
                             <div class="form-group">

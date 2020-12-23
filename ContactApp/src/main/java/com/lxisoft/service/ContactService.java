@@ -1,15 +1,12 @@
 package com.lxisoft.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.transaction.Transactional;
-
+import com.lxisoft.model.Contact;
+import com.lxisoft.repository.AddressBookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.lxisoft.repository.*;
-import com.lxisoft.model.*;
+import java.util.List;
 
 @Service
 @Transactional
@@ -29,15 +26,21 @@ public class ContactService {
     {
         addressBookRepository.saveContact(contact);
     }
+
+    @Transactional
     public List<Contact> viewData()
     {
        return addressBookRepository.viewData();
 
     }
+    @Transactional
+
     public void delete(int id)
     {
         addressBookRepository.delete(id);
     }
+    @Transactional
+
     public void add(Contact contact)
     {
         addressBookRepository.add(contact);

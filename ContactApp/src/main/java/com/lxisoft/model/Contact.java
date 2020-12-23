@@ -1,27 +1,24 @@
 package com.lxisoft.model;
-import org.springframework.data.jpa.repository.EntityGraph;
-
-import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name="Contact")
 
 public class Contact implements Serializable
 {
+
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+
+	private int ID;
 	@Column
 	private String name;
 	@Column
-	private String email;
-	@Column
 	private String number;
-	@Id
-	private int ID;
+	@Column
+	private String email;
 
 
 public int getID() {

@@ -2,7 +2,7 @@ package com.lxisoft.controller;
 
 import com.lxisoft.model.Contact;
 import com.lxisoft.service.ContactService;
-import com.lxisoft.repository.AddressBookRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -10,18 +10,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
 
 @Controller
 public class ContactController {
-    AddressBookRepository addressBookRepository=new AddressBookRepository();
-    ContactService contactservice=new ContactService();
+
+
+    @Autowired ContactService contactservice;
 
 
     @GetMapping(value = {"/", "/home"})
@@ -46,7 +44,7 @@ public class ContactController {
     }
 
     @RequestMapping(value = "/ViewServletUser",method=RequestMethod.GET )
-    public ModelAndView ViewServletUser(HttpServletRequest request,ModelAndView model)
+    public ModelAndView ViewServletUser(ModelAndView model)
     {
        // HttpSession session = request.getSession();
         List<Contact> contactList = contactservice.viewData();
@@ -54,42 +52,38 @@ public class ContactController {
         //session.setAttribute("contactList",contactList);
 
         model.addObject("contactList",contactList);
-        model.setViewName("ViewContact");
+        model.setViewName("ViewContactUser");
         return model;
     }
 
     @RequestMapping(value = "/ViewServlet",method = RequestMethod.GET)
-    public ModelAndView ViewServletAdmin(HttpServletRequest request, ModelAndView model)
+    public ModelAndView ViewServletAdmin(ModelAndView model)
     {
 
-       // HttpSession session = request.getSession();
         List<Contact> contactListAdmin =  contactservice.viewData();
-       // ModelAndView model = new ModelAndView();
-       //session.setAttribute("contactList",contactListAdmin);
+
         model.addObject("contactList",contactListAdmin);
         model.setViewName("ViewContact");
         return model;
     }
 
     @GetMapping (value = "/UpdateContactSelected")
-    public ModelAndView UpdateContactSelected(HttpServletRequest request)
+    public ModelAndView UpdateContactSelected(HttpServletRequest request,ModelAndView model)
     {
         int id=Integer.parseInt(request.getParameter("id"));
         Contact contact=new Contact();
         contact=contactservice.getContactById(id);
-        ModelAndView model=new ModelAndView();
         model.addObject("contact",contact);
         model.setViewName("UpdateContactSelected");
         return model;
     }
 
     @RequestMapping(value = "/edit",method = RequestMethod.GET)
-    public ModelAndView edit(@ModelAttribute Contact contact)
+    public ModelAndView edit(@ModelAttribute Contact contact,ModelAndView model)
     {
             contactservice.saveContact(contact);
 //        return new ModelAndView("redirect:/ViewContact");
         List<Contact> contactListUpdate=new ArrayList<Contact>();
-        ModelAndView model=new ModelAndView();
         contactListUpdate=contactservice.viewData();
         model.addObject("contactList",contactListUpdate);
         model.setViewName("ViewContact");
@@ -97,13 +91,23 @@ public class ContactController {
     }
 
     @GetMapping(value = "/DeleteContact")
-    public ModelAndView DeleteContact(HttpServletRequest request)
+    public void DeleteContact(HttpServletRequest request)
     {
         ModelAndView model=new ModelAndView();
     int id=Integer.parseInt(request.getParameter("id"));
-    contactservice.delete(id);
-        return new ModelAndView("redirect:/ViewContact");
 
+
+    }
+    @RequestMapping(value = "/DeleteContactServlet",method = RequestMethod.GET)
+    public ModelAndView DeleteContactServlet(ModelAndView model,HttpServletRequest request)
+    {
+        int id=Integer.parseInt(request.getParameter("id"));
+        contactservice.delete(id);
+        List<Contact> contactListUpdate=new ArrayList<Contact>();
+        contactListUpdate=contactservice.viewData();
+        model.addObject("contactList",contactListUpdate);
+        model.setViewName("ViewContact");
+        return model;
     }
 
 }
