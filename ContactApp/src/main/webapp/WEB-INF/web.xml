@@ -5,44 +5,6 @@
                              http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
 
-<!--  <display-name>Archetype Created Web Application</display-name>-->
-<!--  <servlet>-->
-<!--    <servlet-name>contact</servlet-name>-->
-<!--    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>-->
-
-<!--    <init-param>-->
-<!--      <param-name>contextConfigLocation</param-name>-->
-<!--      <param-value>/WEB-INF/contact-servlet.xml</param-value>-->
-<!--    </init-param>-->
-<!--  </servlet>-->
-<!--  <servlet-mapping>-->
-<!--    <servlet-name>contact</servlet-name>-->
-<!--    <url-pattern>/</url-pattern>-->
-<!--  </servlet-mapping>-->
-
-  <display-name>contact</display-name>
-
-  <context-param>
-    <param-name>contextConfigLocation</param-name>
-    <param-value>/WEB-INF/contact-servlet.xml</param-value>
-  </context-param>
-  <listener>
-    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-  </listener>
-  <servlet>
-    <servlet-name>contact</servlet-name>
-    <servlet-class>
-      org.springframework.web.servlet.DispatcherServlet
-    </servlet-class>
-    <load-on-startup>1</load-on-startup>
-  </servlet>
-
-  <servlet-mapping>
-    <servlet-name>contact</servlet-name>
-    <url-pattern>/</url-pattern>
-  </servlet-mapping>
-
-
 
 
   <security-constraint>

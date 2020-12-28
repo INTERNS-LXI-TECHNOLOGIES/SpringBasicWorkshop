@@ -10,7 +10,7 @@ public class Contact implements Serializable
 
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.Identity)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 
 	private int ID;
 	@Column

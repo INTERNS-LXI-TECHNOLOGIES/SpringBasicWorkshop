@@ -81,8 +81,8 @@ public class ContactController {
     @RequestMapping(value = "/edit",method = RequestMethod.GET)
     public ModelAndView edit(@ModelAttribute Contact contact, ModelAndView model,HttpServletRequest request)
     {
-       //int id=Integer.parseInt(request.getParameter("id"));
-        //contactservice.delete(id);
+       int id=Integer.parseInt(request.getParameter("id"));
+        contactservice.delete(id);
 
         //Contact contact=new Contact();
        // contact=contactservice.getContactById(id);
