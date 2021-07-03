@@ -54,6 +54,17 @@
 		<url-pattern>/viewServlet</url-pattern>
 	</servlet-mapping>
 
+   <!-- Spring MVC -->
+	 <servlet>
+        <servlet-name>spring-mvc</servlet-name>
+        <servlet-class>com.lxisoft.servlet.viewServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>spring-mvc</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
 	<security-constraint>
         <web-resource-collection>
             <web-resource-name>Secured</web-resource-name>
