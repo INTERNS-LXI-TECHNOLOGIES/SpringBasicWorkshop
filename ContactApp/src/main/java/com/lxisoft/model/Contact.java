@@ -1,0 +1,45 @@
+package com.lxisoft.model;
+
+public class Contact {
+
+    private String name,number,eMail;
+    private int id;
+
+    public void setId(int id)
+    {
+        this.id = id;
+    }
+
+    public void setName(String cname)
+    {
+        this.name = cname;
+    }
+
+    public void setNumber(String contactNumber)
+    {
+        this.number= contactNumber;
+    }
+
+    public void setEmail(String mail)
+    {
+        this.eMail=mail;
+    }
+
+    public int getId()
+    {
+        return id;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public String getNumber(){
+        return number;
+    }
+
+    public String getEmail()
+    {
+        return eMail;
+    }
+}
