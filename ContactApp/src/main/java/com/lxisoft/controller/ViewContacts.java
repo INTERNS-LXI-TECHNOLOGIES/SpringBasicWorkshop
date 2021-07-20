@@ -3,9 +3,9 @@ package com.lxisoft.controller;
 import com.lxisoft.model.Contact;
 import com.lxisoft.repository.ContactDatabase;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
@@ -15,8 +15,8 @@ public class ViewContacts {
     public String root(){
         return "index";
     } */
-    @RequestMapping("/view")
-    public String view() {
+    @RequestMapping(value="/view")
+    public String view(ModelMap model) {
         ContactDatabase contacts = new ContactDatabase();
         int pageNumber = 1;
         int totalContacts = 0;
@@ -24,10 +24,7 @@ public class ViewContacts {
         int start = 0;
         int numOfPage = 0;
 
-        if(request.getParameter("page") != null){
-            pageNumber = Integer.parseInt(request.getParameter("page"));
-        }
-        //ContactDatabase contacts = new ContactDatabase();
+
         start = (pageNumber-1)*contactPerPage;
         ArrayList<Contact> list = contacts.viewDatabase(start,contactPerPage);
         totalContacts = contacts.numOfContacts();
@@ -35,6 +32,10 @@ public class ViewContacts {
         if(totalContacts > numOfPage * contactPerPage){
             numOfPage = numOfPage+1;
         }
+        model.addAttribute("contactList",list);
+        model.addAttribute("numofPage",numOfPage);
+        model.addAttribute("currentPage",pageNumber);
+
         return "view.jsp";
     }
 }
