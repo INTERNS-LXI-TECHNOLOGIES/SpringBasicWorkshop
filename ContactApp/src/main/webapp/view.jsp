@@ -12,7 +12,7 @@
     <br>
     <br>
     <center>
-    ArrayList<Contact> contacts = (ArrayList<Contact>)request.getAttribute("contactList");
+    ArrayList<Contact> contacts = request.getAttribute("contactList");
     int id = 0;
     String name = null;
 	<table style="width:50%" border="1" cellpadding="10" cellspacing="10">
@@ -23,10 +23,8 @@
     		</tr>
     		<%
     		for(Contact contact : contacts){
-    		    id = contact.getId();
-    		    name = contact.getName();
     		%>
-    		<!--<c:forEach var="contacts" items="${contactList}">-->
+
     		<tr>
     		   	<td><%out.print(contact.getName());%></td>
     			<td><%out.print(contact.getNumber());%></td>
@@ -34,7 +32,7 @@
     			</tr>
     		</tr>
     		<%}%>
-    	    <!--</c:forEach>-->
+
     </table>
     <br>
 
