@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>Contact App</title>
+	<link href="<c:url value="/css/common.css"/>" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<center>

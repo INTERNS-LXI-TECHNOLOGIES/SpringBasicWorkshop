@@ -8,6 +8,7 @@
   <servlet>
       <servlet-name>contacts</servlet-name>
       <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+
   </servlet>
   <servlet-mapping>
       <servlet-name>contacts</servlet-name>

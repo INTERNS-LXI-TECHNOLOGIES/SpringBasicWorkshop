@@ -4,6 +4,7 @@ import com.lxisoft.model.Contact;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ContactDatabase {
     Contact model = new Contact();
@@ -28,14 +29,14 @@ public class ContactDatabase {
             e.printStackTrace();
         }
     }
-    public ArrayList<Contact> viewDatabase(int start, int num)
+    public List<Contact> viewDatabase()
     {
         createDatabaseConnection();
-        ArrayList<Contact> list = new ArrayList<Contact>();
+        List<Contact> list = new ArrayList<Contact>();
         Contact contact = null;
         try
         {
-            String sql  = "select SQL_CALC_FOUND_ROWS * from contacts order by name limit "+start+","+num;
+            String sql  = "select * from contacts order by name";
             stmt = con.createStatement();
             rs = stmt.executeQuery(sql);
             //rs.absolute(start);
