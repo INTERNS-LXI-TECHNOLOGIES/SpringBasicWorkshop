@@ -74,4 +74,21 @@ public class ContactDatabase {
         }
         return total;
     }
+
+    public int addToDatabase(Contact model)
+    {
+        createDatabaseConnection();
+        try
+        {
+            ps = con.prepareStatement("insert into contacts(name,number,email) values('"+model.getName()+"','"+model.getNumber()+"','"+model.getEmail()+"')");
+            row = ps.executeUpdate();
+            ps.close();
+            con.close();
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return row;
+    }
 }

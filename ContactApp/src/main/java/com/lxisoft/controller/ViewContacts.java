@@ -4,9 +4,11 @@ import com.lxisoft.model.Contact;
 import com.lxisoft.repository.ContactDatabase;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -30,4 +32,22 @@ public class ViewContacts {
         return "view.jsp";
     }
 
+    @RequestMapping(value = "/contactAdd")
+    public String contactAdd(@RequestParam(required = false) String name,String number,String mail){
+
+        try {
+            ContactDatabase db = new ContactDatabase();
+            List<Contact> contactList = new ArrayList<Contact>();
+            Contact contact = new Contact();
+            contact.setName(name);
+            contact.setNumber(number);
+            contact.setEmail(mail);
+            db.addToDatabase(contact);
+
+            this.view("list",contactList);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }
