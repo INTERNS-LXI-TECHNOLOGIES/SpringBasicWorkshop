@@ -91,4 +91,35 @@ public class ContactDatabase {
         }
         return row;
     }
+
+    public void deleteRecord(String delete)
+    {
+        createDatabaseConnection();
+        try
+        {
+            String sql = "delete from contacts where name ='"+delete+"'";
+            stmt = con.createStatement();
+            stmt.executeUpdate(sql);
+
+            stmt.close();
+            con.close();
+        }catch(SQLException e)
+        {
+            System.out.println(e);
+        }
+    }
+
+    public void editList(Contact contact)
+    {
+        createDatabaseConnection();
+        try
+        {
+            ps = con.prepareStatement("update contacts set name = '"+contact.getName()+"', number ='"+contact.getNumber()+"', email='"+contact.getEmail()+"' where sno='"+contact.getId()+"'");
+            ps.executeUpdate();
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
+    }
 }

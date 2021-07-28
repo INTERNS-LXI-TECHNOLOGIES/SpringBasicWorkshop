@@ -19,6 +19,7 @@
     			<th>Name</th>
     			<th>Number</th>
     			<th>E-Mail</th>
+    			<th>Actions</th>
     		</tr>
     		<%
     		List<Contact> contacts = (List<Contact>)request.getAttribute("contactList");
@@ -30,6 +31,8 @@
     		   	<td><%out.print(contact.getName());%></td>
     			<td><%out.print(contact.getNumber());%></td>
     			<td><%out.print(contact.getEmail());%></td>
+    			<td><a href="editContact.jsp?id=<%=contact.getName()%>"><button class="button">Edit</button></a>
+                 	<a href="contactDelete?name=<%=contact.getName()%>"><button class="button button2">Delete</button></a></td>
     		</tr>
     		<%}%>
      </table>
@@ -38,8 +41,10 @@
 
     	<br>
     	<br>
+    	<a href="addContact.jsp"><button class="button">Add Contacts</button></a>
     	<br>
-    	<a href="logout.jsp"><button class="button">Logout</button></a>
+    	<br>
+    	<a href="index.jsp"><button class="button">Back</button></a>
 	</center>
 </body>
 </html>

@@ -4,15 +4,17 @@ import com.lxisoft.model.Contact;
 import com.lxisoft.repository.ContactDatabase;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class ViewContacts {
+public class ControllerClass {
 
     @RequestMapping(value="/view")
     public String view(ModelMap model) {
@@ -33,7 +35,7 @@ public class ViewContacts {
     }
 
     @RequestMapping(value = "/contactAdd")
-    public String contactAdd(@RequestParam(required = false) String name,String number,String mail){
+    public void contactAdd(@RequestParam(required = false) String name, String number, String mail , HttpServletResponse response){
 
         try {
             ContactDatabase db = new ContactDatabase();
@@ -44,9 +46,36 @@ public class ViewContacts {
             contact.setEmail(mail);
             db.addToDatabase(contact);
 
-            this.view("list",contactList);
+            response.sendRedirect("view");
         }
         catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @RequestMapping(value = "/contactEdit")
+    public void editContact(@RequestParam String name,String number,String email, HttpServletResponse response) throws IOException {
+        ContactDatabase database = new ContactDatabase();
+
+        Contact contact = new Contact();
+
+        contact.setName(name);
+        contact.setNumber(number);
+        contact.setEmail(email);
+        database.editList(contact);
+        response.sendRedirect("view");
+    }
+
+    @RequestMapping(value = "/contactDelete")
+    public void deleteContact(@RequestParam String name, HttpServletResponse response){
+        try
+        {
+            ContactDatabase db = new ContactDatabase();
+            db.deleteRecord(name);
+            response.sendRedirect("deleteContact.jsp");
+        }
+        catch(Exception e)
+        {
             e.printStackTrace();
         }
     }

@@ -12,6 +12,8 @@
 			Email:<input type="text" placeholder="Enter Email id" name="mail" required><br><br>
 		    <input type="submit" class="button" value="Add">
 		</form>
-		<a href="view"><input type="submit" class="button" value="Home"></a>
+		<br>
+		<br>
+		<a href="view"><input type="submit" class="button" value="Back"></a>
 </body>
 </html>
