@@ -23,11 +23,7 @@ public class ControllerClass {
 
         List<Contact> list = contacts.viewDatabase();
 
-        for(Contact contact : list){
-            System.out.println(contact.getName());
-            System.out.println(contact.getNumber());
-            System.out.println(contact.getEmail());
-        }
+
         model.addAttribute("contactList",list);
 
 
@@ -54,11 +50,12 @@ public class ControllerClass {
     }
 
     @RequestMapping(value = "/contactEdit")
-    public void editContact(@RequestParam String name,String number,String email, HttpServletResponse response) throws IOException {
+    public void editContact(@RequestParam String sno,String name,String number,String email, HttpServletResponse response) throws IOException {
         ContactDatabase database = new ContactDatabase();
 
         Contact contact = new Contact();
 
+        contact.setId(Integer.parseInt(sno));
         contact.setName(name);
         contact.setNumber(number);
         contact.setEmail(email);
