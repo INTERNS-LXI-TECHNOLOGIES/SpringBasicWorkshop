@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,5 +76,21 @@ public class ControllerClass {
         {
             e.printStackTrace();
         }
+    }
+
+    @RequestMapping(value = "/search")
+    public String searchContact(@RequestParam String name, ModelMap model){
+        try {
+            ContactDatabase contacts = new ContactDatabase();
+
+
+            List<Contact> list = contacts.searchDatabase(name);
+
+
+            model.addAttribute("contactList",list);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return "search.jsp";
     }
 }

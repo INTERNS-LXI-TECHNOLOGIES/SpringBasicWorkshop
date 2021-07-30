@@ -8,7 +8,7 @@
 	<title>Contacts</title>
 </head>
 <body>
-	<center><h1>Contact List</h1></center>
+	<center><h1>Search List</h1></center>
     <br>
     <br>
     <div align="center">
@@ -49,10 +49,7 @@
 
     	<br>
     	<br>
-    	<a href="addContact.jsp"><button class="button">Add Contacts</button></a>
-    	<br>
-    	<br>
-    	<a href="index.jsp"><button class="button">Back</button></a>
+    	<a href="view"><button class="button">Back</button></a>
 	</center>
 </body>
 </html>

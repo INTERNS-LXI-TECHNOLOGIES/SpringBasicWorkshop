@@ -122,4 +122,22 @@ public class ContactDatabase {
             e.printStackTrace();
         }
     }
+
+    public List<Contact> searchDatabase(String name) throws SQLException {
+        createDatabaseConnection();
+        List<Contact> searchList = new ArrayList<Contact>();
+        Contact search = null;
+        stmt = con .createStatement();
+        rs = stmt.executeQuery("select * from contacts where name like '%"+name+"%' order by name");
+        if(rs != null){
+            while(rs.next()){
+                search = new Contact();
+                search.setName(rs.getString("name"));
+                search.setNumber(rs.getString("number"));
+                search.setEmail(rs.getString("email"));
+                searchList.add(search);
+            }
+        }
+        return searchList;
+    }
 }
