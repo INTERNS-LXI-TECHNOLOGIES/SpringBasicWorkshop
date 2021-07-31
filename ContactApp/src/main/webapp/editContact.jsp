@@ -53,7 +53,7 @@
 	%>
 
 	<br>
-	<a href="view"><button class="button">Back</button></a>
+	<a href="view?page=1"><button class="button">Back</button></a>
 
 </body>
 </html>

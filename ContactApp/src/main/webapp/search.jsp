@@ -13,8 +13,9 @@
     <br>
     <div align="center">
         <div class="search-container">
+
             <form action="search">
-    		    <input type="text" placeholder="Enter name to search" name="name">
+    		    <input type="text" placeholder="Search" name="name">
     		    <button type="submit">Search</button>
     	    </form>
         </div>
@@ -44,12 +45,10 @@
     		</tr>
     		<%}%>
      </table>
-    <br>
-
-
+     <br>
     	<br>
     	<br>
-    	<a href="view"><button class="button">Back</button></a>
+    	<a href="view?page=1"><button class="button">Back</button></a>
 	</center>
 </body>
 </html>

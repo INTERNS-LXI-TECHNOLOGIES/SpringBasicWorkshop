@@ -18,14 +18,31 @@ import java.util.List;
 public class ControllerClass {
 
     @RequestMapping(value="/view")
-    public String view(ModelMap model) {
+    public String view(@RequestParam String page,ModelMap model) {
         ContactDatabase contacts = new ContactDatabase();
 
+        int pageNumber = 1;
+        int totalContacts = 0;
+        int contactPerPage = 5;
+        int start = 0;
+        int numOfPage = 0;
 
-        List<Contact> list = contacts.viewDatabase();
+        if(page != null){
+            pageNumber = Integer.parseInt(page);
+        }
+        start = (pageNumber-1)*contactPerPage;
 
+        List<Contact> list = contacts.viewDatabase(start,contactPerPage);
+
+        totalContacts = contacts.numOfContacts();
+        numOfPage = totalContacts/contactPerPage;
+        if(totalContacts > numOfPage * contactPerPage){
+            numOfPage = numOfPage+1;
+        }
 
         model.addAttribute("contactList",list);
+        model.addAttribute("numOfPage",numOfPage);
+        model.addAttribute("currentPage",pageNumber);
 
 
         return "view.jsp";
@@ -86,8 +103,8 @@ public class ControllerClass {
 
             List<Contact> list = contacts.searchDatabase(name);
 
-
             model.addAttribute("contactList",list);
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
