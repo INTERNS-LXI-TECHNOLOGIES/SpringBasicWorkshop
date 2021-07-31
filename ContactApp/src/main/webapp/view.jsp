@@ -46,16 +46,6 @@
      </table>
      <br>
 
-     <%
-         int num = (Integer)request.getAttribute("numOfPage");
-         for(int j=1; j<=num; j++){
-             %>
-             <a href="view?page=<%=j%>"><%=j%></a>
-             &nbsp;&nbsp;&nbsp;&nbsp;
-         <%
-     	}
-     	%>
-    <br>
 
 
     	<br>

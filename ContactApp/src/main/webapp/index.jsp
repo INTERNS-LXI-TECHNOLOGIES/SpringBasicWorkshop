@@ -14,7 +14,7 @@
         <br>
         <br>
 		<h2>
-			<a href="view?page=1"><button class="button">View Contacts</button></a>
+			<a href="view"><button class="button">View Contacts</button></a>
 		</h2>
 		&nbsp
 	</center>

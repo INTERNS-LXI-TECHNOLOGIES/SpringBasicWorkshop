@@ -29,14 +29,14 @@ public class ContactDatabase {
             e.printStackTrace();
         }
     }
-    public List<Contact> viewDatabase(int start, int contactPerPage)
+    public List<Contact> viewDatabase()
     {
         createDatabaseConnection();
         List<Contact> list = new ArrayList<Contact>();
         Contact contact = null;
         try
         {
-            String sql  = "select SQL_CALC_FOUND_ROWS * from contacts order by name limit "+start+","+contactPerPage;
+            String sql  = "select * from contacts order by name";
             stmt = con.createStatement();
             rs = stmt.executeQuery(sql);
             //rs.absolute(start);
