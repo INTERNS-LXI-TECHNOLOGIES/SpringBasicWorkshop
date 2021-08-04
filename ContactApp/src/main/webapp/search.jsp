@@ -48,7 +48,7 @@
      <br>
     	<br>
     	<br>
-    	<a href="view"><button class="button">Back</button></a>
+    	<a href="viewContact"><button class="button">Back</button></a>
 	</center>
 </body>
 </html>

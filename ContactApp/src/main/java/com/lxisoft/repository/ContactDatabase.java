@@ -141,4 +141,22 @@ public class ContactDatabase {
         return searchList;
     }
 
+    public List<Contact> getEditingDetails(String id) throws SQLException {
+        createDatabaseConnection();
+        Contact edit = null;
+        List<Contact> editList = new ArrayList<Contact>();
+        stmt = con.createStatement();
+        rs = stmt.executeQuery("select * from contacts where sno = '"+id+"'");
+        if (rs != null){
+            while (rs.next()){
+                edit = new Contact();
+                edit.setId(rs.getInt("sno"));
+                edit.setName(rs.getString("name"));
+                edit.setNumber(rs.getString("number"));
+                edit.setEmail(rs.getString("email"));
+                editList.add(edit);
+            }
+        }
+        return editList;
+    }
 }

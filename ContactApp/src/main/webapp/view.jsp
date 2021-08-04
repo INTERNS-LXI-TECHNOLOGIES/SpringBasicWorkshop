@@ -39,7 +39,7 @@
     		   	<td><%out.print(contact.getName());%></td>
     			<td><%out.print(contact.getNumber());%></td>
     			<td><%out.print(contact.getEmail());%></td>
-    			<td><a href="editContact.jsp?id=<%=contact.getId()%>"><button class="button">Edit</button></a>
+    			<td><a href="editingContact?id=<%=contact.getId()%>"><button class="button">Edit</button></a>
                  	<a href="contactDelete?name=<%=contact.getName()%>"><button class="button button2">Delete</button></a></td>
     		</tr>
     		<%}%>

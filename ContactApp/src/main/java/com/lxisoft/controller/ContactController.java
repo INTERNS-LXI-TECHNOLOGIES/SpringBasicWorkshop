@@ -15,10 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class ControllerClass {
+public class ContactController {
 
-    @RequestMapping(value="/view")
-    public String view(ModelMap model) {
+    @RequestMapping(value="/viewContact")
+    public String viewContact(ModelMap model) {
         ContactDatabase contacts = new ContactDatabase();
 
 
@@ -29,8 +29,8 @@ public class ControllerClass {
         return "view.jsp";
     }
 
-    @RequestMapping(value = "/contactAdd")
-    public void contactAdd(@RequestParam(required = false) String name, String number, String mail , HttpServletResponse response){
+    @RequestMapping(value = "/addContact")
+    public void addContact(@RequestParam(required = false) String name, String number, String mail , HttpServletResponse response){
 
         try {
             ContactDatabase db = new ContactDatabase();
@@ -41,14 +41,28 @@ public class ControllerClass {
             contact.setEmail(mail);
             db.addToDatabase(contact);
 
-            response.sendRedirect("view");
+            response.sendRedirect("viewContact");
         }
         catch (Exception e){
             e.printStackTrace();
         }
     }
 
-    @RequestMapping(value = "/contactEdit")
+    @RequestMapping(value = "/editingContact")
+    public String editingContact(@RequestParam String id,ModelMap model) throws SQLException{
+        ContactDatabase database = new ContactDatabase();
+        List<Contact> editList =  database.getEditingDetails(id);
+        for(Contact contact : editList){
+            System.out.println(contact.getId());
+            System.out.println(contact.getName());
+            System.out.println(contact.getNumber());
+            System.out.println(contact.getEmail());
+        }
+        model.addAttribute("list",editList);
+        return "editContact.jsp";
+    }
+
+    @RequestMapping(value = "/editContact")
     public void editContact(@RequestParam String sno,String name,String number,String email, HttpServletResponse response) throws IOException {
         ContactDatabase database = new ContactDatabase();
 
@@ -59,10 +73,10 @@ public class ControllerClass {
         contact.setNumber(number);
         contact.setEmail(email);
         database.editList(contact);
-        response.sendRedirect("view");
+        response.sendRedirect("viewContact");
     }
 
-    @RequestMapping(value = "/contactDelete")
+    @RequestMapping(value = "/deleteContact")
     public void deleteContact(@RequestParam String name, HttpServletResponse response){
         try
         {

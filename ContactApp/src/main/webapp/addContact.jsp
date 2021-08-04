@@ -5,7 +5,7 @@
 </head>
 <body>
 	<h1>Adding Contact</h1>
-		<form action="contactAdd" method="get">
+		<form action="addContact" method="get">
 
 			Name:<input type="text" placeholder="Enter Name" name="name" required><br><br>
 			Number:<input type="text" placeholder="Enter Number" name="number" required><br><br>
@@ -14,6 +14,6 @@
 		</form>
 		<br>
 		<br>
-		<a href="view"><input type="submit" class="button" value="Back"></a>
+		<a href="viewContact"><input type="submit" class="button" value="Back"></a>
 </body>
 </html>
