@@ -29,14 +29,14 @@ public class ContactDatabase {
             e.printStackTrace();
         }
     }
-    public List<Contact> viewDatabase()
+    public List<Contact> viewDatabase(int start,int contactPerPage)
     {
         createDatabaseConnection();
         List<Contact> list = new ArrayList<Contact>();
         Contact contact = null;
         try
         {
-            String sql  = "select * from contacts order by name";
+            String sql  = "select SQL_CALC_FOUND_ROWS * from contacts order by name limit "+start+","+contactPerPage;
             stmt = con.createStatement();
             rs = stmt.executeQuery(sql);
             //rs.absolute(start);
@@ -123,12 +123,12 @@ public class ContactDatabase {
         }
     }
 
-    public List<Contact> searchDatabase(String name) throws SQLException {
+    public List<Contact> searchDatabase(String name, int start, int contactPerPage) throws SQLException {
         createDatabaseConnection();
         List<Contact> searchList = new ArrayList<Contact>();
         Contact search = null;
         stmt = con .createStatement();
-        rs = stmt.executeQuery("select * from contacts where name like '%"+name+"%' order by name");
+        rs = stmt.executeQuery("select SQL_CALC_FOUND_ROWS * from contacts where name like '%"+name+"%' order by name limit "+start+","+contactPerPage);
         if(rs != null){
             while(rs.next()){
                 search = new Contact();
@@ -139,6 +139,20 @@ public class ContactDatabase {
             }
         }
         return searchList;
+    }
+    public int numOfSearchedContacts(String name){
+        createDatabaseConnection();
+        int total = 0;
+        try{
+            stmt = con.createStatement();
+            rs = stmt.executeQuery("select count(*) from contacts where name like '%"+name+"%'");
+            rs.next();
+            total = rs.getInt(1);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return total;
     }
 
     public List<Contact> getEditingDetails(String id) throws SQLException {
@@ -159,4 +173,6 @@ public class ContactDatabase {
         }
         return editList;
     }
+
+
 }

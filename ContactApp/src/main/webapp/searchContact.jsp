@@ -46,6 +46,15 @@
     		<%}%>
      </table>
      <br>
+     <%
+         int num = (Integer)request.getAttribute("numOfPage");
+         for(int j=1; j<=num; j++){
+             %>
+             <a href="search?page=<%=j%>"><%=j%></a>
+             &nbsp;&nbsp;&nbsp;&nbsp;
+         <%
+     	}
+     	%>
     	<br>
     	<br>
     	<a href="viewContact"><button class="button">Back</button></a>

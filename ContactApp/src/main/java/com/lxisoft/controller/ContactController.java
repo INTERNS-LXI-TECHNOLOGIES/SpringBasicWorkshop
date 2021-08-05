@@ -18,15 +18,31 @@ import java.util.List;
 public class ContactController {
 
     @RequestMapping(value="/viewContact")
-    public String viewContact(ModelMap model) {
+    public String viewContact(@RequestParam(required = false) String page,ModelMap model) {
         ContactDatabase contacts = new ContactDatabase();
 
+        int pageNumber = 1;
+        int totalContacts = 0;
+        int contactPerPage = 5;
+        int start = 0;
+        int numOfPage = 0;
 
-        List<Contact> list = contacts.viewDatabase();
-
+        if(page != null){
+            pageNumber = Integer.parseInt(page);
+        }
+        //ContactDatabase contacts = new ContactDatabase();
+        start = (pageNumber-1)*contactPerPage;
+        List<Contact> list = contacts.viewDatabase(start,contactPerPage);
+        totalContacts = contacts.numOfContacts();
+        numOfPage = totalContacts/contactPerPage;
+        if(totalContacts > numOfPage * contactPerPage){
+            numOfPage = numOfPage+1;
+        }
+        model.addAttribute("numOfPage",numOfPage);
+        model.addAttribute("currentPage",pageNumber);
         model.addAttribute("contactList",list);
 
-        return "view.jsp";
+        return "viewContact.jsp";
     }
 
     @RequestMapping(value = "/addContact")
@@ -52,12 +68,7 @@ public class ContactController {
     public String editingContact(@RequestParam String id,ModelMap model) throws SQLException{
         ContactDatabase database = new ContactDatabase();
         List<Contact> editList =  database.getEditingDetails(id);
-        for(Contact contact : editList){
-            System.out.println(contact.getId());
-            System.out.println(contact.getName());
-            System.out.println(contact.getNumber());
-            System.out.println(contact.getEmail());
-        }
+
         model.addAttribute("list",editList);
         return "editContact.jsp";
     }
@@ -91,18 +102,35 @@ public class ContactController {
     }
 
     @RequestMapping(value = "/search")
-    public String searchContact(@RequestParam String name, ModelMap model){
+    public String searchContact(@RequestParam(value = "page",required = false) String page,String name, ModelMap model){
         try {
             ContactDatabase contacts = new ContactDatabase();
 
 
-            List<Contact> list = contacts.searchDatabase(name);
+            int pageNumber = 1;
+            int totalContacts = 0;
+            int contactPerPage = 5;
+            int start = 0;
+            int numOfPage = 0;
 
+            if(page != null){
+                pageNumber = Integer.parseInt(page);
+            }
+            //ContactDatabase contacts = new ContactDatabase();
+            start = (pageNumber-1)*contactPerPage;
+            List<Contact> list = contacts.searchDatabase(name,start,contactPerPage);
+            totalContacts = contacts.numOfSearchedContacts(name);
+            numOfPage = totalContacts/contactPerPage;
+            if(totalContacts > numOfPage * contactPerPage){
+                numOfPage = numOfPage+1;
+            }
+            model.addAttribute("numOfPage",numOfPage);
+            model.addAttribute("currentPage",pageNumber);
             model.addAttribute("contactList",list);
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return "search.jsp";
+        return "searchContact.jsp";
     }
 }
