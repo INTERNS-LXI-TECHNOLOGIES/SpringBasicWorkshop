@@ -1,7 +1,7 @@
 package com.lxisoft.controller;
 
 import com.lxisoft.model.Contact;
-import com.lxisoft.repository.ContactDatabase;
+import com.lxisoft.repository.ContactRepository;
 
 import org.springframework.stereotype.Controller;
 
@@ -18,26 +18,34 @@ import java.util.List;
 public class ContactController {
 
     @RequestMapping(value="/viewContact")
-    public String viewContact(@RequestParam(required = false) String page,ModelMap model) {
-        ContactDatabase contacts = new ContactDatabase();
+    public String viewContact(@RequestParam(required = false) String page,String name,ModelMap model) throws SQLException {
+        ContactRepository database = new ContactRepository();
 
         int pageNumber = 1;
         int totalContacts = 0;
         int contactPerPage = 5;
         int start = 0;
         int numOfPage = 0;
+        List<Contact> list = null;
 
         if(page != null){
             pageNumber = Integer.parseInt(page);
         }
-        //ContactDatabase contacts = new ContactDatabase();
         start = (pageNumber-1)*contactPerPage;
-        List<Contact> list = contacts.viewDatabase(start,contactPerPage);
-        totalContacts = contacts.numOfContacts();
+        if (name == null) {
+            list = database.viewDatabase(start, contactPerPage);
+            totalContacts = database.numOfContacts();
+        }
+        else{
+            list = database.searchDatabase(name,start,contactPerPage);
+            totalContacts = database.numOfSearchedContacts(name);
+        }
+
         numOfPage = totalContacts/contactPerPage;
         if(totalContacts > numOfPage * contactPerPage){
             numOfPage = numOfPage+1;
         }
+        model.addAttribute("name",name);
         model.addAttribute("numOfPage",numOfPage);
         model.addAttribute("currentPage",pageNumber);
         model.addAttribute("contactList",list);
@@ -49,7 +57,7 @@ public class ContactController {
     public void addContact(@RequestParam(required = false) String name, String number, String mail , HttpServletResponse response){
 
         try {
-            ContactDatabase db = new ContactDatabase();
+            ContactRepository db = new ContactRepository();
             List<Contact> contactList = new ArrayList<Contact>();
             Contact contact = new Contact();
             contact.setName(name);
@@ -66,7 +74,7 @@ public class ContactController {
 
     @RequestMapping(value = "/editingContact")
     public String editingContact(@RequestParam String id,ModelMap model) throws SQLException{
-        ContactDatabase database = new ContactDatabase();
+        ContactRepository database = new ContactRepository();
         List<Contact> editList =  database.getEditingDetails(id);
 
         model.addAttribute("list",editList);
@@ -75,7 +83,7 @@ public class ContactController {
 
     @RequestMapping(value = "/editContact")
     public void editContact(@RequestParam String sno,String name,String number,String email, HttpServletResponse response) throws IOException {
-        ContactDatabase database = new ContactDatabase();
+        ContactRepository database = new ContactRepository();
 
         Contact contact = new Contact();
 
@@ -91,7 +99,7 @@ public class ContactController {
     public void deleteContact(@RequestParam String name, HttpServletResponse response){
         try
         {
-            ContactDatabase db = new ContactDatabase();
+            ContactRepository db = new ContactRepository();
             db.deleteRecord(name);
             response.sendRedirect("deleteContact.jsp");
         }
@@ -99,38 +107,5 @@ public class ContactController {
         {
             e.printStackTrace();
         }
-    }
-
-    @RequestMapping(value = "/search")
-    public String searchContact(@RequestParam(value = "page",required = false) String page,String name, ModelMap model){
-        try {
-            ContactDatabase contacts = new ContactDatabase();
-
-
-            int pageNumber = 1;
-            int totalContacts = 0;
-            int contactPerPage = 5;
-            int start = 0;
-            int numOfPage = 0;
-
-            if(page != null){
-                pageNumber = Integer.parseInt(page);
-            }
-            //ContactDatabase contacts = new ContactDatabase();
-            start = (pageNumber-1)*contactPerPage;
-            List<Contact> list = contacts.searchDatabase(name,start,contactPerPage);
-            totalContacts = contacts.numOfSearchedContacts(name);
-            numOfPage = totalContacts/contactPerPage;
-            if(totalContacts > numOfPage * contactPerPage){
-                numOfPage = numOfPage+1;
-            }
-            model.addAttribute("numOfPage",numOfPage);
-            model.addAttribute("currentPage",pageNumber);
-            model.addAttribute("contactList",list);
-
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return "searchContact.jsp";
     }
 }

@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ContactDatabase {
+public class ContactRepository {
     Contact model = new Contact();
     Connection con = null;
     ResultSet rs= null;

@@ -13,7 +13,7 @@
     <br>
     <div align="center">
         <div class="search-container">
-            <form action="search">
+            <form action="viewContact">
     		    <input type="text" placeholder="Enter name to search" name="name">
     		    <button type="submit">Search</button>
     	    </form>
@@ -45,14 +45,26 @@
     		<%}%>
      </table>
      <br>
-     <%
-         int num = (Integer)request.getAttribute("numOfPage");
-         for(int j=1; j<=num; j++){
-             %>
-             <a href="viewContact?page=<%=j%>"><%=j%></a>
-             &nbsp;&nbsp;&nbsp;&nbsp;
+    <%
+    
+    if(request.getAttribute("name") != null){
+        int num = (Integer)request.getAttribute("numOfPage");
+        for(int j=1; j<=num; j++){
+        %>
+            <a href="viewContact?page=<%=j%> & name=<%=request.getAttribute("name")%>"><%=j%> page</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
          <%
-     	}
+        }
+    }
+    else{
+        int num = (Integer)request.getAttribute("numOfPage");
+        for(int j=1; j<=num; j++){
+        %>
+            <a href="viewContact?page=<%=j%>"><%=j%></a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+    <%
+        }
+    }
      %>
      <br>
 
