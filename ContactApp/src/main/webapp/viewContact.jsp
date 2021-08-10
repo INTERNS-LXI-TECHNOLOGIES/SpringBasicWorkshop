@@ -13,7 +13,7 @@
     <br>
     <div align="center">
         <div class="search-container">
-            <form action="viewContact">
+            <form action="view">
     		    <input type="text" placeholder="Enter name to search" name="name">
     		    <button type="submit">Search</button>
     	    </form>
@@ -39,8 +39,8 @@
     		   	<td><%out.print(contact.getName());%></td>
     			<td><%out.print(contact.getNumber());%></td>
     			<td><%out.print(contact.getEmail());%></td>
-    			<td><a href="editingContact?id=<%=contact.getId()%>"><button class="button">Edit</button></a>
-                 	<a href="contactDelete?name=<%=contact.getName()%>"><button class="button button2">Delete</button></a></td>
+    			<td><a href="showContact?id=<%=contact.getId()%>"><button class="button">Edit</button></a>
+                 	<a href="deleteContact?name=<%=contact.getName()%>"><button class="button button2">Delete</button></a></td>
     		</tr>
     		<%}%>
      </table>
@@ -48,10 +48,11 @@
     <%
     
     if(request.getAttribute("name") != null){
+        
         int num = (Integer)request.getAttribute("numOfPage");
         for(int j=1; j<=num; j++){
         %>
-            <a href="viewContact?page=<%=j%> & name=<%=request.getAttribute("name")%>"><%=j%> page</a>
+            <a href="view?page=<%=j%> & name=<%=request.getAttribute("name")%>"><%=j%> page</a>
             &nbsp;&nbsp;&nbsp;&nbsp;
          <%
         }
@@ -60,7 +61,7 @@
         int num = (Integer)request.getAttribute("numOfPage");
         for(int j=1; j<=num; j++){
         %>
-            <a href="viewContact?page=<%=j%>"><%=j%></a>
+            <a href="view?page=<%=j%>"><%=j%></a>
             &nbsp;&nbsp;&nbsp;&nbsp;
     <%
         }

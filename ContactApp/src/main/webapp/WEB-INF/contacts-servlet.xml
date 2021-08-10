@@ -6,17 +6,9 @@
     <ctx:annotation-config> </ctx:annotation-config>
     <ctx:component-scan base-package= "com.lxisoft.controller"></ctx:component-scan>
 
-    <bean
-            class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping" />
+    <bean class = "org.springframework.web.servlet.view.InternalResourceViewResolver">
+      <property name = "prefix" value = "/" />
+      <property name = "suffix" value = ".jsp" />
+   </bean>
 
-        <bean
-        class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix">
-            <value>/WEB-INF/</value>
-        </property>
-        <property name="suffix">
-            <value>.jsp</value>
-        </property>
-        <property name="order" value="2" />
-    </bean>
 </beans>

@@ -14,6 +14,6 @@
 		</form>
 		<br>
 		<br>
-		<a href="viewContact"><input type="submit" class="button" value="Back"></a>
+		<a href="view"><input type="submit" class="button" value="Back"></a>
 </body>
 </html>

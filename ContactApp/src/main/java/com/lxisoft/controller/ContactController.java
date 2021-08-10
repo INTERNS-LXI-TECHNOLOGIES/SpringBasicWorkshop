@@ -17,8 +17,8 @@ import java.util.List;
 @Controller
 public class ContactController {
 
-    @RequestMapping(value="/viewContact")
-    public String viewContact(@RequestParam(required = false) String page,String name,ModelMap model) throws SQLException {
+    @RequestMapping(value="/view")
+    public String viewContact(@RequestParam(required = false, value="page") String page,@RequestParam(required = false, value="name") String name,ModelMap model) throws SQLException {
         ContactRepository database = new ContactRepository();
 
         int pageNumber = 1;
@@ -29,7 +29,12 @@ public class ContactController {
         List<Contact> list = null;
 
         if(page != null){
-            pageNumber = Integer.parseInt(page);
+            try{
+                pageNumber = Integer.parseInt(page);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
         }
         start = (pageNumber-1)*contactPerPage;
         if (name == null) {
@@ -50,7 +55,7 @@ public class ContactController {
         model.addAttribute("currentPage",pageNumber);
         model.addAttribute("contactList",list);
 
-        return "viewContact.jsp";
+        return "viewContact";
     }
 
     @RequestMapping(value = "/addContact")
@@ -65,20 +70,20 @@ public class ContactController {
             contact.setEmail(mail);
             db.addToDatabase(contact);
 
-            response.sendRedirect("viewContact");
+            response.sendRedirect("view");
         }
         catch (Exception e){
             e.printStackTrace();
         }
     }
 
-    @RequestMapping(value = "/editingContact")
-    public String editingContact(@RequestParam String id,ModelMap model) throws SQLException{
+    @RequestMapping(value = "/showContact")
+    public String showContactDetails(@RequestParam String id,ModelMap model) throws SQLException{
         ContactRepository database = new ContactRepository();
         List<Contact> editList =  database.getEditingDetails(id);
 
         model.addAttribute("list",editList);
-        return "editContact.jsp";
+        return "editContact";
     }
 
     @RequestMapping(value = "/editContact")
@@ -92,7 +97,7 @@ public class ContactController {
         contact.setNumber(number);
         contact.setEmail(email);
         database.editList(contact);
-        response.sendRedirect("viewContact");
+        response.sendRedirect("view");
     }
 
     @RequestMapping(value = "/deleteContact")
@@ -101,7 +106,7 @@ public class ContactController {
         {
             ContactRepository db = new ContactRepository();
             db.deleteRecord(name);
-            response.sendRedirect("deleteContact.jsp");
+            response.sendRedirect("deleteContact");
         }
         catch(Exception e)
         {
