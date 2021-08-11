@@ -52,10 +52,18 @@
         int num = (Integer)request.getAttribute("numOfPage");
         for(int j=1; j<=num; j++){
         %>
-            <a href="view?page=<%=j%> & name=<%=request.getAttribute("name")%>"><%=j%> page</a>
+            <a href="view?page=<%=j%>&name=<%=request.getAttribute("name")%>"><%=j%> page</a>
             &nbsp;&nbsp;&nbsp;&nbsp;
          <%
         }
+    %>
+        <br>
+        <br>
+        <a href="addContact.jsp"><button class="button">Add Contacts</button></a>
+        <br>
+        <br>
+        <a href="view"><button class="button">Back</button></a>
+    <%
     }
     else{
         int num = (Integer)request.getAttribute("numOfPage");
@@ -65,18 +73,21 @@
             &nbsp;&nbsp;&nbsp;&nbsp;
     <%
         }
+        %>
+        <br>
+        <br>
+        <a href="addContact.jsp"><button class="button">Add Contacts</button></a>
+        <br>
+        <br>
+        <a href="index.jsp"><button class="button">Back</button></a>
+        <%
     }
      %>
      <br>
 
 
 
-    	<br>
-    	<br>
-    	<a href="addContact.jsp"><button class="button">Add Contacts</button></a>
-    	<br>
-    	<br>
-    	<a href="index.jsp"><button class="button">Back</button></a>
+
 	</center>
 </body>
 </html>
