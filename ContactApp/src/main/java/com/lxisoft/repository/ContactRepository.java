@@ -29,7 +29,7 @@ public class ContactRepository {
             e.printStackTrace();
         }
     }
-    public List<Contact> viewDatabase(int start,int contactPerPage)
+    public List<Contact> viewContactList(int start,int contactPerPage)
     {
         createDatabaseConnection();
         List<Contact> list = new ArrayList<Contact>();
@@ -75,7 +75,7 @@ public class ContactRepository {
         return total;
     }
 
-    public int addToDatabase(Contact model)
+    public int addToContactList(Contact model)
     {
         createDatabaseConnection();
         try
@@ -92,7 +92,7 @@ public class ContactRepository {
         return row;
     }
 
-    public void deleteRecord(String delete)
+    public void deleteContact(String delete)
     {
         createDatabaseConnection();
         try
@@ -109,7 +109,7 @@ public class ContactRepository {
         }
     }
 
-    public void editList(Contact contact)
+    public void editContact(Contact contact)
     {
         createDatabaseConnection();
         try
@@ -123,7 +123,7 @@ public class ContactRepository {
         }
     }
 
-    public List<Contact> searchDatabase(String name, int start, int contactPerPage) throws SQLException {
+    public List<Contact> searchInContactList(String name, int start, int contactPerPage) throws SQLException {
         createDatabaseConnection();
         List<Contact> searchList = new ArrayList<Contact>();
         Contact search = null;
@@ -132,6 +132,7 @@ public class ContactRepository {
         if(rs != null){
             while(rs.next()){
                 search = new Contact();
+                search.setId(rs.getInt("sno"));
                 search.setName(rs.getString("name"));
                 search.setNumber(rs.getString("number"));
                 search.setEmail(rs.getString("email"));
@@ -155,7 +156,7 @@ public class ContactRepository {
         return total;
     }
 
-    public List<Contact> getEditingDetails(String id) throws SQLException {
+    public List<Contact> getContactDetails(String id) throws SQLException {
         createDatabaseConnection();
         Contact edit = null;
         List<Contact> editList = new ArrayList<Contact>();

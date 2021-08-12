@@ -19,14 +19,14 @@ public class ContactController {
 
     @RequestMapping(value="/view")
     public String viewContact(@RequestParam(required = false, value="page") String page,@RequestParam(required = false, value="name") String name,ModelMap model) throws SQLException {
-        ContactRepository database = new ContactRepository();
+        ContactRepository repository = new ContactRepository();
 
         int pageNumber = 1;
         int totalContacts = 0;
         int contactPerPage = 5;
         int start = 0;
         int numOfPage = 0;
-        List<Contact> list = null;
+        List<Contact> contactList = null;
 
         if(page != null){
             try{
@@ -38,12 +38,12 @@ public class ContactController {
         }
         start = (pageNumber-1)*contactPerPage;
         if (name == null) {
-            list = database.viewDatabase(start, contactPerPage);
-            totalContacts = database.numOfContacts();
+            contactList = repository.viewContactList(start, contactPerPage);
+            totalContacts = repository.numOfContacts();
         }
         else{
-            list = database.searchDatabase(name,start,contactPerPage);
-            totalContacts = database.numOfSearchedContacts(name);
+            contactList = repository.searchInContactList(name,start,contactPerPage);
+            totalContacts = repository.numOfSearchedContacts(name);
         }
 
         numOfPage = totalContacts/contactPerPage;
@@ -53,7 +53,7 @@ public class ContactController {
         model.addAttribute("name",name);
         model.addAttribute("numOfPage",numOfPage);
         model.addAttribute("currentPage",pageNumber);
-        model.addAttribute("contactList",list);
+        model.addAttribute("contactList",contactList);
 
         return "viewContact";
     }
@@ -62,13 +62,13 @@ public class ContactController {
     public void addContact(@RequestParam(required = false) String name, String number, String mail , HttpServletResponse response){
 
         try {
-            ContactRepository db = new ContactRepository();
+            ContactRepository repository = new ContactRepository();
             List<Contact> contactList = new ArrayList<Contact>();
             Contact contact = new Contact();
             contact.setName(name);
             contact.setNumber(number);
             contact.setEmail(mail);
-            db.addToDatabase(contact);
+            repository.addToContactList(contact);
 
             response.sendRedirect("view");
         }
@@ -79,8 +79,8 @@ public class ContactController {
 
     @RequestMapping(value = "/showContact")
     public String showContactDetails(@RequestParam String id,ModelMap model) throws SQLException{
-        ContactRepository database = new ContactRepository();
-        List<Contact> editList =  database.getEditingDetails(id);
+        ContactRepository repository = new ContactRepository();
+        List<Contact> editList =  repository.getContactDetails(id);
 
         model.addAttribute("list",editList);
         return "editContact";
@@ -88,7 +88,7 @@ public class ContactController {
 
     @RequestMapping(value = "/editContact")
     public void editContact(@RequestParam String sno,String name,String number,String email, HttpServletResponse response) throws IOException {
-        ContactRepository database = new ContactRepository();
+        ContactRepository repository = new ContactRepository();
 
         Contact contact = new Contact();
 
@@ -96,7 +96,7 @@ public class ContactController {
         contact.setName(name);
         contact.setNumber(number);
         contact.setEmail(email);
-        database.editList(contact);
+        repository.editContact(contact);
         response.sendRedirect("view");
     }
 
@@ -104,8 +104,8 @@ public class ContactController {
     public void deleteContact(@RequestParam String name, HttpServletResponse response){
         try
         {
-            ContactRepository db = new ContactRepository();
-            db.deleteRecord(name);
+            ContactRepository repository = new ContactRepository();
+            repository.deleteContact(name);
             response.sendRedirect("deleteContact");
         }
         catch(Exception e)

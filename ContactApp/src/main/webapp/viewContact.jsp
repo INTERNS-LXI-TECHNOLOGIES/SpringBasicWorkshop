@@ -52,7 +52,7 @@
         int num = (Integer)request.getAttribute("numOfPage");
         for(int j=1; j<=num; j++){
         %>
-            <a href="view?page=<%=j%>&name=<%=request.getAttribute("name")%>"><%=j%> page</a>
+            <a href="view?page=<%=j%>&name=<%=request.getAttribute("name")%>"><%=j%></a>
             &nbsp;&nbsp;&nbsp;&nbsp;
          <%
         }
