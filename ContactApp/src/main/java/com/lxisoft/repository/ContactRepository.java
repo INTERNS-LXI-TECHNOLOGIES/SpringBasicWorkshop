@@ -92,12 +92,12 @@ public class ContactRepository {
         return row;
     }
 
-    public void deleteContact(String delete)
+    public void deleteContact(String name)
     {
         createDatabaseConnection();
         try
         {
-            String sql = "delete from contacts where name ='"+delete+"'";
+            String sql = "delete from contacts where name ='"+name+"'";
             stmt = con.createStatement();
             stmt.executeUpdate(sql);
 
