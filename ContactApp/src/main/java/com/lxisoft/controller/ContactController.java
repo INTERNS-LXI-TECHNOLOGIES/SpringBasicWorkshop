@@ -3,6 +3,7 @@ package com.lxisoft.controller;
 import com.lxisoft.model.Contact;
 import com.lxisoft.repository.ContactRepository;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.ModelMap;
@@ -17,9 +18,13 @@ import java.util.List;
 @Controller
 public class ContactController {
 
-    @RequestMapping(value="/view")
+    @Autowired
+    private ContactRepository repository;
+
+    @RequestMapping(value="/view", method = RequestMethod.POST)
+
     public String viewContact(@RequestParam(required = false, value="page") String page,@RequestParam(required = false, value="name") String name,ModelMap model) throws SQLException {
-        ContactRepository repository = new ContactRepository();
+        //ContactRepository repository = new ContactRepository();
 
         int pageNumber = 1;
         int totalContacts = 0;
@@ -34,7 +39,6 @@ public class ContactController {
             }catch (Exception e){
                 e.printStackTrace();
             }
-
         }
         start = (pageNumber-1)*contactPerPage;
         if (name == null) {
@@ -62,7 +66,7 @@ public class ContactController {
     public void addContact(@RequestParam(required = false) String name, String number, String mail , HttpServletResponse response){
 
         try {
-            ContactRepository repository = new ContactRepository();
+           // ContactRepository repository = new ContactRepository();
             List<Contact> contactList = new ArrayList<Contact>();
             Contact contact = new Contact();
             contact.setName(name);
@@ -79,7 +83,7 @@ public class ContactController {
 
     @RequestMapping(value = "/showContact")
     public String showContactDetails(@RequestParam String id,ModelMap model) throws SQLException{
-        ContactRepository repository = new ContactRepository();
+        //ContactRepository repository = new ContactRepository();
         List<Contact> editList =  repository.getContactDetails(id);
 
         model.addAttribute("list",editList);
@@ -88,7 +92,7 @@ public class ContactController {
 
     @RequestMapping(value = "/editContact")
     public void editContact(@RequestParam String sno,String name,String number,String email, HttpServletResponse response) throws IOException {
-        ContactRepository repository = new ContactRepository();
+       // ContactRepository repository = new ContactRepository();
 
         Contact contact = new Contact();
 
@@ -104,7 +108,7 @@ public class ContactController {
     public void deleteContact(@RequestParam String name, HttpServletResponse response){
         try
         {
-            ContactRepository repository = new ContactRepository();
+          //  ContactRepository repository = new ContactRepository();
             repository.deleteContact(name);
             response.sendRedirect("deleteContact");
         }

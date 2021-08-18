@@ -11,4 +11,10 @@
       <property name = "suffix" value = ".jsp" />
    </bean>
 
+   <bean id="repository" class="com.lxisoft.repository.ContactRepository"></bean>
+
+   <bean id="controller" class="com.lxisoft.controller.ContactController">
+     <property name="repository" ref="repo"></property>
+   </bean>
+
 </beans>
