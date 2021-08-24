@@ -18,8 +18,12 @@ import java.util.List;
 @Controller
 public class ContactController {
 
-    @Autowired
+
     private ContactRepository repository;
+    @Autowired
+    public ContactController(ContactRepository repository){
+        this.repository = repository;
+    }
 
     @RequestMapping(value="/view", method = RequestMethod.POST)
 
