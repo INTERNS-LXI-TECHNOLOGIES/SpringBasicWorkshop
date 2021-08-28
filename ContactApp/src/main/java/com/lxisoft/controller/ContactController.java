@@ -20,13 +20,12 @@ public class ContactController {
 
 
     private ContactRepository repository;
-    @Autowired
-    public ContactController(ContactRepository repository){
+
+    public void setRepository(ContactRepository repository){
         this.repository = repository;
     }
 
     @RequestMapping(value="/view", method = RequestMethod.POST)
-
     public String viewContact(@RequestParam(required = false, value="page") String page,@RequestParam(required = false, value="name") String name,ModelMap model) throws SQLException {
         //ContactRepository repository = new ContactRepository();
 

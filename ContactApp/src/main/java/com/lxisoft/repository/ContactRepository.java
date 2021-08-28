@@ -1,11 +1,13 @@
 package com.lxisoft.repository;
 
 import com.lxisoft.model.Contact;
+import org.springframework.stereotype.Service;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service("repository")
 public class ContactRepository {
     Contact model = new Contact();
     Connection con = null;
