@@ -1,0 +1,13 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation=" http://www.springframework.org/schema/beans">
+
+    <bean id="ContactController" class="com.lxisoft.controller.ContactController">
+        <property name="repository">
+            <ref bean="repo" />
+        </property>
+    </bean>
+
+    <bean id="repo" class="com.lxisoft.repository.ContactRepository"/>
+
+</beans>
