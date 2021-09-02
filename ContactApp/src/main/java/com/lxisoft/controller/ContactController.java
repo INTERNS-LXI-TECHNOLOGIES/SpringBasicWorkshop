@@ -3,9 +3,6 @@ package com.lxisoft.controller;
 import com.lxisoft.model.Contact;
 import com.lxisoft.repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,12 +16,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@Component
 public class ContactController {
     @Autowired
-    private ContactRepository repository;
+    ContactRepository repository;
+    @Autowired
+    Contact contact;
 
-    @RequestMapping(value="/view", method = RequestMethod.POST)
+    @RequestMapping(value="/view")
     public String viewContact(@RequestParam(required = false, value="page") String page,@RequestParam(required = false, value="name") String name,ModelMap model) throws SQLException {
         //ContactRepository repository = new ContactRepository();
 
@@ -70,7 +68,7 @@ public class ContactController {
         try {
            // ContactRepository repository = new ContactRepository();
             List<Contact> contactList = new ArrayList<Contact>();
-            Contact contact = new Contact();
+           // Contact contact = new Contact();
             contact.setName(name);
             contact.setNumber(number);
             contact.setEmail(mail);
@@ -96,7 +94,7 @@ public class ContactController {
     public void editContact(@RequestParam String sno,String name,String number,String email, HttpServletResponse response) throws IOException {
        // ContactRepository repository = new ContactRepository();
 
-        Contact contact = new Contact();
+       // Contact contact = new Contact();
 
         contact.setId(Integer.parseInt(sno));
         contact.setName(name);
