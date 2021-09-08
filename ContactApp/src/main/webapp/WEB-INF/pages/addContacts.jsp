@@ -5,7 +5,7 @@
 </head>
 <body>
 	<h1>Adding Contact</h1>
-		<form action="addContact" method="get">
+		<form action="saveContact" method="get">
 
 			Name:<input type="text" placeholder="Enter Name" name="name" required><br><br>
 			Number:<input type="text" placeholder="Enter Number" name="number" required><br><br>

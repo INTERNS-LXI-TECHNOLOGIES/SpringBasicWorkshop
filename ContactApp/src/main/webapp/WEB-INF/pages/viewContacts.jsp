@@ -40,15 +40,15 @@
     			<td><%out.print(contact.getNumber());%></td>
     			<td><%out.print(contact.getEmail());%></td>
     			<td><a href="showContact?id=<%=contact.getId()%>"><button class="button">Edit</button></a>
-                 	<a href="deleteContact?name=<%=contact.getName()%>"><button class="button button2">Delete</button></a></td>
+                 	 <a href="deleteEmployee?id=<%=contact.getId()%>>Delete</button></a></td>
     		</tr>
     		<%}%>
      </table>
      <br>
     <%
-    
+
     if(request.getAttribute("name") != null){
-        
+
         int num = (Integer)request.getAttribute("numOfPage");
         for(int j=1; j<=num; j++){
         %>
@@ -59,7 +59,7 @@
     %>
         <br>
         <br>
-        <a href="addContact.jsp"><button class="button">Add Contacts</button></a>
+        <a href="addContact"><button class="button">Add Contacts</button></a>
         <br>
         <br>
         <a href="view"><button class="button">Back</button></a>
