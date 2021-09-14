@@ -1,6 +1,6 @@
 package com.lxisoft.dao;
 
-import com.lxisoft.model.Contact;
+import com.lxisoft.entity.Contact;
 
 import java.util.List;
 

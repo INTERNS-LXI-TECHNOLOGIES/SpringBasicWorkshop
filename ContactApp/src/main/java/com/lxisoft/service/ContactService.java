@@ -1,6 +1,6 @@
 package com.lxisoft.service;
 
-import com.lxisoft.model.Contact;
+import com.lxisoft.entity.Contact;
 
 import java.util.List;
 

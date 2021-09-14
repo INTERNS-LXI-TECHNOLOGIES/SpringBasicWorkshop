@@ -1,7 +1,7 @@
 package com.lxisoft.service;
 
 import com.lxisoft.dao.ContactDAO;
-import com.lxisoft.model.Contact;
+import com.lxisoft.entity.Contact;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

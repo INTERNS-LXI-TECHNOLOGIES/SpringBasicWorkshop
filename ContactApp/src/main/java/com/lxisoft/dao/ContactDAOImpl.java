@@ -1,7 +1,6 @@
 package com.lxisoft.dao;
 
-import com.lxisoft.model.Contact;
-import com.mysql.cj.Session;
+import com.lxisoft.entity.Contact;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

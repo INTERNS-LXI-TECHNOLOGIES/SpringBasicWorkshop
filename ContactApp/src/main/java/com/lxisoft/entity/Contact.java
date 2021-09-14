@@ -1,4 +1,4 @@
-package com.lxisoft.model;
+package com.lxisoft.entity;
 
 import javax.persistence.*;
 
