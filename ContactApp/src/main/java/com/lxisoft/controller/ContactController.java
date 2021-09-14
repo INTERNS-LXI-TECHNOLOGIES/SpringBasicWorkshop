@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
+@RequestMapping(value = "contact")
 public class ContactController {
     @Autowired
     ContactService contactService;
@@ -41,7 +42,7 @@ public class ContactController {
         else {
             contactService.updateContact(contact);
         }
-        return new ModelAndView("redirect:/");
+        return new ModelAndView("/");
     }
 
     @RequestMapping(value = "editContact",method = RequestMethod.GET)
@@ -57,6 +58,6 @@ public class ContactController {
     public ModelAndView deleteContact(HttpServletRequest request){
         int sno = Integer.parseInt(request.getParameter("sno"));
         contactService.deleteContact(sno);
-        return new ModelAndView("redirect:/");
+        return new ModelAndView("/");
     }
 }

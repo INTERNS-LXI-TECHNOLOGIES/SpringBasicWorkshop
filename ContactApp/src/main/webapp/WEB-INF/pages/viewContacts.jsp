@@ -1,93 +1,67 @@
-<%@page import="com.lxisoft.controller.*"%>
-<%@page import="com.lxisoft.model.*"%>
-<%@page import="com.lxisoft.repository.*"%>
-<%@page import="java.util.*,java.sql.*"%>
-
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+ pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page isELIgnored="false" %>
+<!DOCTYPE html>
 <html>
-<head>
-	<title>Contacts</title>
+<title>Contacts</title>
 </head>
 <body>
-	<center><h1>Contact List</h1></center>
-    <br>
-    <br>
-    <div align="center">
-        <div class="search-container">
-            <form action="view">
-    		    <input type="text" placeholder="Enter name to search" name="name">
-    		    <button type="submit">Search</button>
-    	    </form>
-        </div>
+ <div class="container">
+  <div class="col-md-offset-1 col-md-10">
+   <h2>Contacts</h2>
+   <hr />
+
+   <input type="button" value="Add Contact"
+    onclick="window.location.href='showForm'; return false;"
+    class="btn btn-primary" />
+    <br/><br/>
+   <div class="panel panel-info">
+    <div class="panel-heading">
+     <div class="panel-title">Contact List</div>
     </div>
-    <br>
-    <br>
-    <center>
-	 <table style="width:50%" border="1" cellpadding="10" cellspacing="10">
-    		<tr>
-    			<th>Name</th>
-    			<th>Number</th>
-    			<th>E-Mail</th>
-    			<th>Actions</th>
-    		</tr>
-    		<%
-    		List<Contact> contacts = (List<Contact>)request.getAttribute("contactList");
-    		for(Contact contact : contacts){
+    <div class="panel-body">
+     <table class="table table-striped table-bordered">
+      <tr>
+       <th>Name</th>
+       <th>Number</th>
+       <th>Email</th>
+       <th>Action</th>
+      </tr>
 
-    		%>
-    		<!--<c:forEach var="contacts" items="${contactList}">-->
-    		<tr>
-    		   	<td><%out.print(contact.getName());%></td>
-    			<td><%out.print(contact.getNumber());%></td>
-    			<td><%out.print(contact.getEmail());%></td>
-    			<td><a href="showContact?id=<%=contact.getId()%>"><button class="button">Edit</button></a>
-                 	 <a href="deleteEmployee?id=<%=contact.getId()%>>Delete</button></a></td>
-    		</tr>
-    		<%}%>
+
+      <c:forEach var="tempContact" items="${contactList}">
+
+       <!-- construct an "update" link with customer id -->
+       <c:url var="updateLink" value="/contact/updateForm">
+        <c:param name="sno" value="${tempContact.id}" />
+       </c:url>
+
+       <c:url var="deleteLink" value="/contact/delete">
+        <c:param name="sno" value="${tempContact.id}" />
+       </c:url>
+
+       <tr>
+        <td>${tempContact.name}</td>
+        <td>${tempContact.number}</td>
+        <td>${tempContact.email}</td>
+
+        <td>
+         <a href="${updateLink}">Update</a>
+         | <a href="${deleteLink}"
+         onclick="if (!(confirm('Are you sure you want to delete this customer?'))) return false">Delete</a>
+        </td>
+
+       </tr>
+
+      </c:forEach>
+
      </table>
-     <br>
-    <%
 
-    if(request.getAttribute("name") != null){
+    </div>
+   </div>
+  </div>
 
-        int num = (Integer)request.getAttribute("numOfPage");
-        for(int j=1; j<=num; j++){
-        %>
-            <a href="view?page=<%=j%>&name=<%=request.getAttribute("name")%>"><%=j%></a>
-            &nbsp;&nbsp;&nbsp;&nbsp;
-         <%
-        }
-    %>
-        <br>
-        <br>
-        <a href="addContact"><button class="button">Add Contacts</button></a>
-        <br>
-        <br>
-        <a href="view"><button class="button">Back</button></a>
-    <%
-    }
-    else{
-        int num = (Integer)request.getAttribute("numOfPage");
-        for(int j=1; j<=num; j++){
-        %>
-            <a href="view?page=<%=j%>"><%=j%></a>
-            &nbsp;&nbsp;&nbsp;&nbsp;
-    <%
-        }
-        %>
-        <br>
-        <br>
-        <a href="addContact.jsp"><button class="button">Add Contacts</button></a>
-        <br>
-        <br>
-        <a href="index.jsp"><button class="button">Back</button></a>
-        <%
-    }
-     %>
-     <br>
-
-
-
-
-	</center>
+ </div>
 </body>
 </html>
