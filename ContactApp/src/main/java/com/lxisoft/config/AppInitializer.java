@@ -1,7 +1,6 @@
 package com.lxisoft.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
-import sun.awt.AppContext;
 
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
