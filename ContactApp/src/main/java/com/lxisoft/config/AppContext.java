@@ -33,10 +33,10 @@ public class AppContext {
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.driverClassName"));
-        dataSource.setUrl(environment.getRequiredProperty("jdbc.url"));
-        dataSource.setUsername(environment.getRequiredProperty("jdbc.username"));
-        dataSource.setPassword(environment.getRequiredProperty("jdbc.password"));
+        dataSource.setDriverClassName(environment.getRequiredProperty("database.driver"));
+        dataSource.setUrl(environment.getRequiredProperty("database.url"));
+        dataSource.setUsername(environment.getRequiredProperty("database.user"));
+        dataSource.setPassword(environment.getRequiredProperty("database.password"));
         return dataSource;
     }
 
