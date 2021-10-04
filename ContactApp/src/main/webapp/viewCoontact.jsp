@@ -1,42 +1,93 @@
-<!DOCTYPE html>
+<%@page import="com.lxisoft.controller.*"%>
+<%@page import="com.lxisoft.model.*"%>
+<%@page import="com.lxisoft.repository.*"%>
+<%@page import="java.util.*,java.sql.*"%>
+
 <html>
 <head>
-	<meta charset="utf-8">
 	<title>Contacts</title>
 </head>
-<body style="background-color: rgb(5, 5, 5);">
-	<%@ page import = "com.lxisoft.controller.*" %>
-	<%@ page import = "com.lxisoft.model.*" %>
-	<%@ page import = "com.lxisoft.repository.*" %>
-	<%@ page import = "java.util.*" %>
-	<center>
-		<h1>Contacts</h1>
+<body>
+	<center><h1>Contact List</h1></center>
+    <br>
+    <br>
+    <div align="center">
+        <div class="search-container">
+            <form action="view">
+    		    <input type="text" placeholder="Enter name to search" name="name">
+    		    <button type="submit">Search</button>
+    	    </form>
+        </div>
+    </div>
+    <br>
+    <br>
+    <center>
+	 <table style="width:50%" border="1" cellpadding="10" cellspacing="10">
+    		<tr>
+    			<th>Name</th>
+    			<th>Number</th>
+    			<th>E-Mail</th>
+    			<th>Actions</th>
+    		</tr>
+    		<%
+    		List<Contact> contacts = (List<Contact>)request.getAttribute("contactList");
+    		for(Contact contact : contacts){
+
+    		%>
+    		<!--<c:forEach var="contacts" items="${contactList}">-->
+    		<tr>
+    		   	<td><%out.print(contact.getName());%></td>
+    			<td><%out.print(contact.getNumber());%></td>
+    			<td><%out.print(contact.getEmail());%></td>
+    			<td><a href="showContact?id=<%=contact.getId()%>"><button class="button">Edit</button></a>
+                 	<a href="deleteContact?name=<%=contact.getName()%>"><button class="button button2">Delete</button></a></td>
+    		</tr>
+    		<%}%>
+     </table>
+     <br>
+    <%
+
+    if(request.getAttribute("name") != null){
+
+        int num = (Integer)request.getAttribute("numOfPage");
+        for(int j=1; j<=num; j++){
+        %>
+            <a href="view?page=<%=j%>&name=<%=request.getAttribute("name")%>"><%=j%></a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+         <%
+        }
+    %>
+        <br>
+        <br>
+        <a href="addContact.jsp"><button class="button">Add Contacts</button></a>
+        <br>
+        <br>
+        <a href="view"><button class="button">Back</button></a>
+    <%
+    }
+    else{
+        int num = (Integer)request.getAttribute("numOfPage");
+        for(int j=1; j<=num; j++){
+        %>
+            <a href="view?page=<%=j%>"><%=j%></a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+    <%
+        }
+        %>
+        <br>
+        <br>
+        <a href="addContact.jsp"><button class="button">Add Contacts</button></a>
+        <br>
+        <br>
+        <a href="index.jsp"><button class="button">Back</button></a>
+        <%
+    }
+     %>
+     <br>
+
+
+
+
 	</center>
-	<center>
-		<table align="utf-8" style="utf-8">
-			<tr>
-				<th>Name</th>
-				<th>Number</th>
-				<th>E-Mail</th>
-			</tr>
-			<%
-			List<Contact> contactList = (List<Contact>)request.getAttribute("contactList");
-		    for(Contact contact : contactList){
-		    %>
-		    <tr>
-		    	<td><% out.println(contact.getName()); %></td>
-		    	<td><% out.println(contact.getNumber()); %></td>
-		    	<td><% out.println(contact.getEmail()); %></td>
-		    </tr>
-		    <%
-		    }
-		    %>
-		</table>
-		<br>
-		<br>
-		<br>
-		<a href="getContact"><button class="button">Add Contact</button></a>
-	</center>
-	<a href="index.jsp"><button class="button">Back</button></a>
 </body>
 </html>

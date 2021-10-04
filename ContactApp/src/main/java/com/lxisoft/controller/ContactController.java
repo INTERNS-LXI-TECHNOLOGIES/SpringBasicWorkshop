@@ -2,7 +2,7 @@ package com.lxisoft.controller;
 
 import com.lxisoft.model.Contact;
 import com.lxisoft.repository.ContactRepository;
-import com.lxisoft.service.ContactService;
+//import com.lxisoft.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
