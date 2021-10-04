@@ -16,13 +16,5 @@ import org.springframework.context.annotation.PropertySource;
 //@PropertySource({"application.properties"})
 
 public class AppConfig {
-    @Bean
-    public ContactRepository repository(){
-        return new ContactRepository();
-    }
-    @Bean
-    public Contact contact(){
-        return new Contact();
-    }
 
 }
