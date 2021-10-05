@@ -12,8 +12,8 @@ public class ViewResolverConfig {
     public InternalResourceViewResolver viewResolver(){
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
         viewResolver.setViewClass(JstlView.class);
-        viewResolver.setPrefix(".jsp");
-        viewResolver.setSuffix("/");
+        viewResolver.setPrefix("/");
+        viewResolver.setSuffix(".jsp");
         return viewResolver;
     }
 }
