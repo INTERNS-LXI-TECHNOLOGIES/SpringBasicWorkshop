@@ -13,14 +13,12 @@ import org.springframework.web.servlet.view.JstlView;
 @EnableWebMvc
 @ComponentScan(basePackages = {"com.lxisoft"})
 public class WebConfig implements WebMvcConfigurer {
-
-    //The following method can be moved to another configuration class to achieve more RDD
-    /*    @Bean
+    /*@Bean
     public InternalResourceViewResolver viewResolver(){
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
         viewResolver.setViewClass(JstlView.class);
-        viewResolver.setPrefix(".jsp");
-        viewResolver.setSuffix("/");
+        viewResolver.setPrefix("/");
+        viewResolver.setSuffix(".jsp");
         return viewResolver;
     }*/
 

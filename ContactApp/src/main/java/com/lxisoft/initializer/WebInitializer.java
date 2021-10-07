@@ -1,5 +1,6 @@
 package com.lxisoft.initializer;
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoader;
 import org.springframework.web.context.ContextLoaderListener;
@@ -11,14 +12,13 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
+
 public class WebInitializer implements WebApplicationInitializer {
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
-        WebApplicationContext context = getContext();
-        //Uncommenting the below line will cause applicationcontext xml cannot be found error in tomcat
-        //servletContext.addListener(new ContextLoaderListener());
+        WebApplicationContext context = this.getContext();
+      //  servletContext.addListener(new ContextLoaderListener());
         ServletRegistration.Dynamic dispatcher = servletContext.addServlet("DispatcherServlet",new DispatcherServlet(context));
-        dispatcher.setLoadOnStartup(1);
         dispatcher.addMapping("/");
     }
 

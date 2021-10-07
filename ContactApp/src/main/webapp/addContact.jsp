@@ -1,29 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>AddContact</title>
+	<title></title>
 </head>
-<body>
-	<form id="login-form" class="form" modelAttribute="contact" action="addContact" method="GET">
-        <h3 class="text-center text-info">Add Contact</h3>
-        <div class="form-group">
-            <label for="name" class="text-info">Enter the Name</label><br>
-            <input type="name" name="name" id="name" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="number" class="text-info">Enter the Number</label><br>
-            <input type="number" name="number" id="number" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="email" class="text-info">Enter the Email Id</label><br>
-            <input type="email" name="email" id="email" class="form-control">
-        </div>
-
-        <div class="form-group">           
-            <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
-        </div>
-                          
-    </form>
+<body style="background-color:powderblue;">
+	<h1 style="background-color:white;">Adding Contact</h1>
+		<form action="addContact" method="get">
+			<tr>
+				<td>Name</td>
+				<td><input type="text" placeholder="Enter Name" name="name" required></td>
+			</tr>
+			<br>
+			<br>
+			<tr>
+				<td>Number</td>
+				<td><input type="text" placeholder="Enter Number" name="number" required></td>
+			</tr>
+			<br>
+			<br>
+			<tr>
+				<td>E-Mail</td>
+				<td><input type="text" placeholder="Enter Email id" name="mail" required></td>
+			</tr>
+			<br>
+			<br>
+		<!--	Name:<input type="text" placeholder="Enter Name" name="name" required><br><br>
+			Number:<input type="text" placeholder="Enter Number" name="number" required><br><br>
+			Email:<input type="text" placeholder="Enter Email id" name="mail" required><br><br>  -->
+		    <tr>
+		    	<td><input type="submit" class="button" style="background-color:silver;" value="Add"></td>
+		    </tr>
+		</form>
+		<br>
+		<br>
+		<a href="view"><input type="submit" class="button" style="background-color:silver;" value="Back"></a>
 </body>
 </html>

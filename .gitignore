@@ -90,3 +90,6 @@ local.properties
 
 # External tool builders
 .externalToolBuilders/**
+
+#target folder #
+*/target/*

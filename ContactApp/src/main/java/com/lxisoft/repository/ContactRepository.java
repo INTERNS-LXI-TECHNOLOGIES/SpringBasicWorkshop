@@ -10,8 +10,6 @@ import java.util.*;
 
 
 public class ContactRepository{
-    @Autowired
-    Contact model;
 
     Connection con = null;
     ResultSet rs= null;
