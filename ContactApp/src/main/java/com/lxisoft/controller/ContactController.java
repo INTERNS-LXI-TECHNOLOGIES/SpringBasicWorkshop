@@ -27,7 +27,7 @@ public class ContactController {
     Contact contact;
 
     @RequestMapping(value="/view")
-    public String viewContact(@RequestParam(required = false, value="page") String page, @RequestParam(required = false, value="name") String name, ModelMap model) throws SQLException {
+    public String viewAllContact(@RequestParam(required = false, value="page") String page, @RequestParam(required = false, value="name") String name, ModelMap model) throws SQLException {
         //ContactRepository repository = new ContactRepository();
 
         int pageNumber = 1;
@@ -46,8 +46,8 @@ public class ContactController {
         }
         start = (pageNumber-1)*contactPerPage;
         if (name == null) {
-            contactList = repository.viewContactList(start, contactPerPage);
-            totalContacts = repository.numOfContacts();
+            contactList = repository.viewAllContactList(start, contactPerPage);
+            totalContacts = repository.getNumOfContacts();
         }
         else{
             contactList = repository.searchInContactList(name,start,contactPerPage);
@@ -67,7 +67,7 @@ public class ContactController {
     }
 
     @RequestMapping(value = "/addContact")
-    public void addContact(@RequestParam(required = false) String name, String number, String mail , HttpServletResponse response){
+    public void addNewContact(@RequestParam(required = false) String name, String number, String mail , HttpServletResponse response){
 
         try {
             // ContactRepository repository = new ContactRepository();

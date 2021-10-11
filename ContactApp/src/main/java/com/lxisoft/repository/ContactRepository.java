@@ -32,7 +32,7 @@ public class ContactRepository{
             e.printStackTrace();
         }
     }
-    public List<Contact> viewContactList(int start,int contactPerPage)
+    public List<Contact> viewAllContactList(int start,int contactPerPage)
     {
         createDatabaseConnection();
         List<Contact> list = new ArrayList<Contact>();
@@ -63,7 +63,7 @@ public class ContactRepository{
         return list;
     }
 
-    public int numOfContacts() {
+    public int getNumOfContacts() {
         createDatabaseConnection();
         int total = 0;
         try{
