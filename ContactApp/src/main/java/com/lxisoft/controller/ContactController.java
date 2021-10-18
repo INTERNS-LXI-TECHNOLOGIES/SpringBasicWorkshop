@@ -1,5 +1,7 @@
 package com.lxisoft.controller;
 
+import com.lxisoft.dao.ContactDAO;
+import com.lxisoft.dao.ContactDAOImplementation;
 import com.lxisoft.model.Contact;
 import com.lxisoft.repository.ContactRepository;
 //import com.lxisoft.service.ContactService;
@@ -20,11 +22,13 @@ import java.util.List;
 
 @Controller
 public class ContactController {
-    @Autowired
-    ContactRepository repository;
+   // @Autowired
+   // ContactRepository repository;
 
     @Autowired
-    Contact contact;
+    ContactDAO contactDAO;
+
+
 
     @RequestMapping(value="/view")
     public String viewAllContact(@RequestParam(required = false, value="page") String page, @RequestParam(required = false, value="name") String name, ModelMap model) throws SQLException {
@@ -37,27 +41,27 @@ public class ContactController {
         int numOfPage = 0;
         List<Contact> contactList = null;
 
-        if(page != null){
+      /*  if(page != null){
             try{
                 pageNumber = Integer.parseInt(page);
             }catch (Exception e){
                 e.printStackTrace();
             }
         }
-        start = (pageNumber-1)*contactPerPage;
+        start = (pageNumber-1)*contactPerPage;*/
         if (name == null) {
-            contactList = repository.viewAllContactList(start, contactPerPage);
-            totalContacts = repository.getNumOfContacts();
+            contactList = contactDAO.getAllContacts(start, contactPerPage);
+            //totalContacts = contactDAO.getNumberOfContacts();
         }
-        else{
+        /*else{
             contactList = repository.searchInContactList(name,start,contactPerPage);
             totalContacts = repository.numOfSearchedContacts(name);
-        }
+        }*/
 
-        numOfPage = totalContacts/contactPerPage;
-        if(totalContacts > numOfPage * contactPerPage){
-            numOfPage = numOfPage+1;
-        }
+        //numOfPage = totalContacts/contactPerPage;
+       // if(totalContacts > numOfPage * contactPerPage){
+         //   numOfPage = numOfPage+1;
+        //}
         model.addAttribute("name",name);
         model.addAttribute("numOfPage",numOfPage);
         model.addAttribute("currentPage",pageNumber);
@@ -72,11 +76,11 @@ public class ContactController {
         try {
             // ContactRepository repository = new ContactRepository();
             List<Contact> contactList = new ArrayList<Contact>();
-            // Contact contact = new Contact();
+            Contact contact = new Contact();
             contact.setName(name);
             contact.setNumber(number);
             contact.setEmail(mail);
-            repository.addToContactList(contact);
+            contactDAO.saveContact(contact);
 
             response.sendRedirect("view");
         }
@@ -84,7 +88,7 @@ public class ContactController {
             e.printStackTrace();
         }
     }
-
+/*
     @RequestMapping(value = "/showContact")
     public String showContactDetails(@RequestParam String id,ModelMap model) throws SQLException{
         //ContactRepository repository = new ContactRepository();
@@ -120,6 +124,6 @@ public class ContactController {
         {
             e.printStackTrace();
         }
-    }
+    } */
 
 }

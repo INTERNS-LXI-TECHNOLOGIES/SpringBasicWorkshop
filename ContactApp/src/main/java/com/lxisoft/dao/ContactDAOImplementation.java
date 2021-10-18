@@ -31,8 +31,10 @@ public class ContactDAOImplementation implements ContactDAO{
     @Override
     public List<Contact> getAllContacts(int start,int contactPerPage) {
         List<Contact> list = new ArrayList<Contact>();
-        try {
-            String sql = "select SQL_CALC_FOUND_ROWS * from contacts order by name limit " + start + "," + contactPerPage;
+        try
+
+        {
+            String sql = "select SQL_CALC_FOUND_ROWS * from contacts order by name";
             list = jdbcTemplate.query(sql, new RowMapper<Contact>() {
                 @Override
                 public Contact mapRow(ResultSet rs, int i) throws SQLException {
@@ -52,6 +54,16 @@ public class ContactDAOImplementation implements ContactDAO{
         return list;
     }
 
+    /*@Override
+    public int getNumberOfContacts() {
+        int total = 0;
+        //String sql = "select count(*) from contacts";
+
+        return jdbcTemplate.queryForObject("select count(*) from contacts",Integer.class);
+
+
+    }*/
+
     @Override
     public void deleteContact(int sno) {
 
@@ -65,5 +77,15 @@ public class ContactDAOImplementation implements ContactDAO{
     @Override
     public void editContact(int sno) {
 
+    }
+
+    @Override
+    public void searchContactByName(String name) {
+
+    }
+
+    @Override
+    public int getNumberOfSearchedContacts() {
+        return 0;
     }
 }
