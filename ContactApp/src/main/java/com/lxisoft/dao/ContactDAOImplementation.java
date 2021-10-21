@@ -11,9 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ContactDAOImplementation implements ContactDAO{
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
     public  ContactDAOImplementation(DataSource dataSource){
-        jdbcTemplate = new JdbcTemplate();
+        jdbcTemplate = new JdbcTemplate(dataSource);
     }
     @Override
     public void saveContact(Contact contact) {
@@ -30,57 +30,76 @@ public class ContactDAOImplementation implements ContactDAO{
 
     @Override
     public List<Contact> getAllContacts(int start,int contactPerPage) {
-        List<Contact> list = new ArrayList<Contact>();
-        try
-
-        {
-            String sql = "select SQL_CALC_FOUND_ROWS * from contacts order by name";
-            list = jdbcTemplate.query(sql, new RowMapper<Contact>() {
-                @Override
-                public Contact mapRow(ResultSet rs, int i) throws SQLException {
-                    Contact contact = new Contact();
-                    contact.setId(rs.getInt("sno"));
-                    contact.setName(rs.getString("name"));
-                    contact.setNumber(rs.getString("number"));
-                    contact.setEmail(rs.getString("email"));
-                    return contact;
-                }
-            });
-        }
-        catch (Exception exception){
-            exception.printStackTrace();
-        }
-
-        return list;
+        List<Contact> contactList;
+        String sql = "select * from contacts order by name";
+        contactList = jdbcTemplate.query(sql, new RowMapper<Contact>() {
+            @Override
+            public Contact mapRow(ResultSet rs, int i) throws SQLException {
+                Contact contact = new Contact();
+                contact.setId(rs.getInt("sno"));
+                contact.setName(rs.getString("name"));
+                contact.setNumber(rs.getString("number"));
+                contact.setEmail(rs.getString("email"));
+                return contact;
+            }
+        });
+        return contactList;
     }
 
-    /*@Override
+    @Override
     public int getNumberOfContacts() {
         int total = 0;
-        //String sql = "select count(*) from contacts";
+        String sql = "select count(*) from contacts";
 
-        return jdbcTemplate.queryForObject("select count(*) from contacts",Integer.class);
-
-
-    }*/
-
-    @Override
-    public void deleteContact(int sno) {
-
+        return total;
     }
 
     @Override
-    public void getContactById(int sno) {
-
+    public void deleteContactByName(String name) {
+        String sql = "delete from contact where name=?";
+        jdbcTemplate.update(sql,name);
     }
 
     @Override
-    public void editContact(int sno) {
-
+    public List<Contact> getContactById(int sno) {
+        List<Contact> contactDetails;
+        String sql = "select * from contacts order where sno = '"+sno+"'";
+        contactDetails = jdbcTemplate.query(sql, new RowMapper<Contact>() {
+            @Override
+            public Contact mapRow(ResultSet rs, int i) throws SQLException {
+                Contact contact = new Contact();
+                contact.setId(rs.getInt("sno"));
+                contact.setName(rs.getString("name"));
+                contact.setNumber(rs.getString("number"));
+                contact.setEmail(rs.getString("email"));
+                return contact;
+            }
+        });
+        return contactDetails;
     }
 
     @Override
-    public void searchContactByName(String name) {
+    public void editContact(Contact contact) {
+        String sql = "update contacts set name = '"+contact.getName()+"', number ='"+contact.getNumber()+"', email='"+contact.getEmail()+"' where sno='"+contact.getId()+"'";
+        jdbcTemplate.update(sql);
+    }
+
+    @Override
+    public List<Contact> searchContactByName(String name) {
+        List<Contact> searchedList;
+        String sql = "select * from contacts where name like '%"+name+"%' order by name";
+        searchedList = jdbcTemplate.query(sql, new RowMapper<Contact>() {
+            @Override
+            public Contact mapRow(ResultSet rs, int i) throws SQLException {
+                Contact contact = new Contact();
+                contact.setId(rs.getInt("sno"));
+                contact.setName(rs.getString("name"));
+                contact.setNumber(rs.getString("number"));
+                contact.setEmail(rs.getString("email"));
+                return contact;
+            }
+        });
+        return searchedList;
 
     }
 

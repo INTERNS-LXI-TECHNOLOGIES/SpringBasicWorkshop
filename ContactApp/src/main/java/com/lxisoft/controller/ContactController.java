@@ -41,27 +41,27 @@ public class ContactController {
         int numOfPage = 0;
         List<Contact> contactList = null;
 
-      /*  if(page != null){
+        if(page != null){
             try{
                 pageNumber = Integer.parseInt(page);
             }catch (Exception e){
                 e.printStackTrace();
             }
         }
-        start = (pageNumber-1)*contactPerPage;*/
+        start = (pageNumber-1)*contactPerPage;
         if (name == null) {
-            contactList = contactDAO.getAllContacts(start, contactPerPage);
-            //totalContacts = contactDAO.getNumberOfContacts();
+            contactList = contactDAO.getAllContacts(start,contactPerPage);
+            totalContacts = contactDAO.getNumberOfContacts();
         }
-        /*else{
-            contactList = repository.searchInContactList(name,start,contactPerPage);
-            totalContacts = repository.numOfSearchedContacts(name);
-        }*/
+        else{
+            contactList = contactDAO.searchContactByName(name);
+            //totalContacts = repository.numOfSearchedContacts(name);
+        }
 
-        //numOfPage = totalContacts/contactPerPage;
-       // if(totalContacts > numOfPage * contactPerPage){
-         //   numOfPage = numOfPage+1;
-        //}
+        numOfPage = totalContacts/contactPerPage;
+        if(totalContacts > numOfPage * contactPerPage){
+            numOfPage = numOfPage+1;
+        }
         model.addAttribute("name",name);
         model.addAttribute("numOfPage",numOfPage);
         model.addAttribute("currentPage",pageNumber);
@@ -88,11 +88,11 @@ public class ContactController {
             e.printStackTrace();
         }
     }
-/*
+
     @RequestMapping(value = "/showContact")
     public String showContactDetails(@RequestParam String id,ModelMap model) throws SQLException{
         //ContactRepository repository = new ContactRepository();
-        List<Contact> editList =  repository.getContactDetails(id);
+        List<Contact> editList =  contactDAO.getContactById(Integer.parseInt(id));
 
         model.addAttribute("list",editList);
         return "editContact";
@@ -102,13 +102,13 @@ public class ContactController {
     public void editContact(@RequestParam String sno,String name,String number,String email, HttpServletResponse response) throws IOException {
         // ContactRepository repository = new ContactRepository();
 
-        // Contact contact = new Contact();
+         Contact contact = new Contact();
 
         contact.setId(Integer.parseInt(sno));
         contact.setName(name);
         contact.setNumber(number);
         contact.setEmail(email);
-        repository.editContact(contact);
+        contactDAO.editContact(contact);
         response.sendRedirect("view");
     }
 
@@ -117,13 +117,13 @@ public class ContactController {
         try
         {
             //  ContactRepository repository = new ContactRepository();
-            repository.deleteContact(name);
+            contactDAO.deleteContactByName(name);
             response.sendRedirect("deleteContact");
         }
         catch(Exception e)
         {
             e.printStackTrace();
         }
-    } */
+    }
 
 }
