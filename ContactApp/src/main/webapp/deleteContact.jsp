@@ -8,6 +8,6 @@
 </body>
 <script type="text/javascript">
 	window.alert("Contact Deleted");
-	window.location.href="http://localhost:8080/ContactApp/view";
+	window.location.href="http://localhost:8080/Contact/view";
 </script>
 </html>

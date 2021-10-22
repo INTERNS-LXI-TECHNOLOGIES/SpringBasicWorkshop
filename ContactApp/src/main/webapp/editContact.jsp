@@ -20,7 +20,7 @@
             Name &nbsp&nbsp &nbsp<input type="text" name="name" value="<%=contact.getName()%>"><br><br>
             Phone Number &nbsp&nbsp &nbsp <input type="text" name="number" value="<%=contact.getNumber()%>"><br><br>
             E-Mail  &nbsp &nbsp&nbsp &nbsp<input type="text" name="email" value="<%=contact.getEmail()%>"><br><br>
-            <button class="button" style="color:silver;">Change</button>
+            <button class="button" style="background-color:silver;">Change</button>
         </form>
     </div>
     <%}%>

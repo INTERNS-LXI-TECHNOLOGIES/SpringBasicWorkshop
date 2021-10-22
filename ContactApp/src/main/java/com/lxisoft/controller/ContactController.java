@@ -31,7 +31,7 @@ public class ContactController {
 
 
     @RequestMapping(value="/view")
-    public String viewAllContact(@RequestParam(required = false, value="page") String page, @RequestParam(required = false, value="name") String name, ModelMap model) throws SQLException {
+    public String viewAllContact(@RequestParam(required = false, value="page") String page, @RequestParam(required = false, value="name") String name, ModelMap model) throws Exception {
         //ContactRepository repository = new ContactRepository();
 
         int pageNumber = 1;
@@ -54,8 +54,8 @@ public class ContactController {
             totalContacts = contactDAO.getNumberOfContacts();
         }
         else{
-            contactList = contactDAO.searchContactByName(name);
-            //totalContacts = repository.numOfSearchedContacts(name);
+            contactList = contactDAO.searchContactByName(name,start,contactPerPage);
+            totalContacts = contactDAO.getNumberOfSearchedContacts(name);
         }
 
         numOfPage = totalContacts/contactPerPage;
@@ -113,17 +113,12 @@ public class ContactController {
     }
 
     @RequestMapping(value = "/deleteContact")
-    public void deleteContact(@RequestParam String name, HttpServletResponse response){
-        try
-        {
+    public String deleteContact(@RequestParam String name){
+
             //  ContactRepository repository = new ContactRepository();
-            contactDAO.deleteContactByName(name);
-            response.sendRedirect("deleteContact");
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
+        contactDAO.deleteContactByName(name);
+        return "deleteContact";
+
     }
 
 }

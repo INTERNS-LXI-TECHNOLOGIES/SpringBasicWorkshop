@@ -31,7 +31,7 @@ public class ContactDAOImplementation implements ContactDAO{
     @Override
     public List<Contact> getAllContacts(int start,int contactPerPage) {
         List<Contact> contactList;
-        String sql = "select * from contacts order by name";
+        String sql = "select SQL_CALC_FOUND_ROWS * from contacts order by name limit "+start+","+contactPerPage;
         contactList = jdbcTemplate.query(sql, new RowMapper<Contact>() {
             @Override
             public Contact mapRow(ResultSet rs, int i) throws SQLException {
@@ -47,23 +47,23 @@ public class ContactDAOImplementation implements ContactDAO{
     }
 
     @Override
-    public int getNumberOfContacts() {
+    public int getNumberOfContacts() throws Exception {
         int total = 0;
         String sql = "select count(*) from contacts";
-
+        total = jdbcTemplate.queryForObject(sql,Integer.class);
         return total;
     }
 
     @Override
     public void deleteContactByName(String name) {
-        String sql = "delete from contact where name=?";
+        String sql = "delete from contacts where name=?";
         jdbcTemplate.update(sql,name);
     }
 
     @Override
     public List<Contact> getContactById(int sno) {
         List<Contact> contactDetails;
-        String sql = "select * from contacts order where sno = '"+sno+"'";
+        String sql = "select * from contacts where sno = '"+sno+"'";
         contactDetails = jdbcTemplate.query(sql, new RowMapper<Contact>() {
             @Override
             public Contact mapRow(ResultSet rs, int i) throws SQLException {
@@ -85,9 +85,9 @@ public class ContactDAOImplementation implements ContactDAO{
     }
 
     @Override
-    public List<Contact> searchContactByName(String name) {
+    public List<Contact> searchContactByName(String name,int start,int contactPerPage) {
         List<Contact> searchedList;
-        String sql = "select * from contacts where name like '%"+name+"%' order by name";
+        String sql = "select SQL_CALC_FOUND_ROWS * from contacts where name like '%"+name+"%' order by name limit "+start+","+contactPerPage;
         searchedList = jdbcTemplate.query(sql, new RowMapper<Contact>() {
             @Override
             public Contact mapRow(ResultSet rs, int i) throws SQLException {
@@ -104,7 +104,10 @@ public class ContactDAOImplementation implements ContactDAO{
     }
 
     @Override
-    public int getNumberOfSearchedContacts() {
-        return 0;
+    public int getNumberOfSearchedContacts(String name) {
+        int total = 0;
+        String sql = "select count(*) from contacts where name like '%"+name+"%'";
+        total = jdbcTemplate.queryForObject(sql,Integer.class);
+        return total;
     }
 }
