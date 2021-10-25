@@ -1,18 +1,16 @@
 package com.lxisoft.controller;
 
 import com.lxisoft.dao.ContactDAO;
-import com.lxisoft.dao.ContactDAOImplementation;
+
 import com.lxisoft.model.Contact;
-import com.lxisoft.repository.ContactRepository;
-//import com.lxisoft.service.ContactService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
+
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
