@@ -1,11 +1,21 @@
 package com.lxisoft.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "contacts")
 public class Contact {
-
+    @Id
+    @Column(name = "sno")
     int id;
+    @Column(name = "name")
     String name;
+    @Column(name = "number")
     String number;
+    @Column(name = "email")
     String email;
 
     public int getId() {
@@ -38,5 +48,10 @@ public class Contact {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString(){
+        return "Contact [sno="+id+",name="+name+",number="+number+",email="+email+"]";
     }
 }

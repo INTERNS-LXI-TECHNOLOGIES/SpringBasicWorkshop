@@ -4,6 +4,7 @@ import com.lxisoft.dao.ContactDAO;
 
 import com.lxisoft.model.Contact;
 
+import com.lxisoft.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -22,6 +23,8 @@ import java.util.List;
 public class ContactController {
    // @Autowired
    // ContactRepository repository;
+    @Autowired
+    ContactService contactService;
 
     @Autowired
     ContactDAO contactDAO;
@@ -48,12 +51,12 @@ public class ContactController {
         }
         start = (pageNumber-1)*contactPerPage;
         if (name == null) {
-            contactList = contactDAO.getAllContacts(start,contactPerPage);
-            totalContacts = contactDAO.getNumberOfContacts();
+            contactList = contactService.getAllContacts(start,contactPerPage);
+            totalContacts = contactService.getNumberOfContacts();
         }
         else{
-            contactList = contactDAO.searchContactByName(name,start,contactPerPage);
-            totalContacts = contactDAO.getNumberOfSearchedContacts(name);
+            contactList = contactService.searchContactByName(name,start,contactPerPage);
+            totalContacts = contactService.getNumberOfSearchedContacts(name);
         }
 
         numOfPage = totalContacts/contactPerPage;
@@ -78,7 +81,7 @@ public class ContactController {
             contact.setName(name);
             contact.setNumber(number);
             contact.setEmail(mail);
-            contactDAO.saveContact(contact);
+            contactService.saveContact(contact);
 
             response.sendRedirect("view");
         }
@@ -114,7 +117,7 @@ public class ContactController {
     public String deleteContact(@RequestParam String name){
 
             //  ContactRepository repository = new ContactRepository();
-        contactDAO.deleteContactByName(name);
+        contactService.deleteContactByName(name);
         return "deleteContact";
 
     }
