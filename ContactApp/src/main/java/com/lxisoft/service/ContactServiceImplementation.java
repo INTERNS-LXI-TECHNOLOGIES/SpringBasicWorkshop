@@ -20,8 +20,8 @@ public class ContactServiceImplementation implements ContactService {
 
     @Override
     @Transactional
-    public List<Contact> getAllContacts(int start, int contactPerPage) {
-        return contactDAO.getAllContacts(start,contactPerPage);
+    public List<Contact> getAllContacts() {
+        return contactDAO.getAllContacts();
     }
 
     @Override

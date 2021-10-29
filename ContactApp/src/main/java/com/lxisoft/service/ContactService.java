@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ContactService {
     public void saveContact(Contact contact);
-    public List<Contact> getAllContacts(int start, int contactPerPage);
+    public List<Contact> getAllContacts();
     public int getNumberOfContacts() throws Exception;
     public  void deleteContactByName(String name);
     public List<Contact> getContactById(int sno);

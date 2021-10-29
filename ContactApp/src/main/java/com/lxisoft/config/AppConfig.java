@@ -1,10 +1,15 @@
 package com.lxisoft.config;
 
+import com.lxisoft.dao.ContactDAO;
+import com.lxisoft.dao.ContactDAOImplementation;
+import com.lxisoft.service.ContactService;
+import com.lxisoft.service.ContactServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
@@ -20,7 +25,7 @@ import java.util.Properties;
 @EnableTransactionManagement
 //@EnableJpaRepositories(basePackages = "com.lxisoft.repository")
 @ComponentScan({"com.lxisoft"})
-//@PropertySource({"application.properties"})
+@PropertySource("application.properties")
 
 public class AppConfig {
     @Autowired
@@ -60,16 +65,16 @@ public class AppConfig {
         transactionManager.setSessionFactory(sessionFactory().getObject());
         return transactionManager;
     }
-/*
+
     @Bean
     public ContactDAO contactDAO(){
-        return new ContactDAOImplementation(getDataSource());
+        return new ContactDAOImplementation();
     }
 
     @Bean
     public ContactService contactService(){
         return new ContactServiceImplementation();
     }
-*/
+
 }
 
