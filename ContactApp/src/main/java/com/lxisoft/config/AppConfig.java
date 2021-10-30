@@ -25,7 +25,7 @@ import java.util.Properties;
 @EnableTransactionManagement
 //@EnableJpaRepositories(basePackages = "com.lxisoft.repository")
 @ComponentScan({"com.lxisoft"})
-@PropertySource("application.properties")
+@PropertySource({"classpath:application.properties"})
 
 public class AppConfig {
     @Autowired
