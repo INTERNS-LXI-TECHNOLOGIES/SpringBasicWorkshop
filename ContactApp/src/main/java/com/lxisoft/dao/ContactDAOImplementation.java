@@ -27,7 +27,9 @@ public class ContactDAOImplementation implements ContactDAO{
     }*/
     @Override
     public void saveContact(Contact contact) {
-       /* try
+       Session session = sessionFactory.getCurrentSession();
+       session.save(contact);
+        /* try
         {
             jdbcTemplate.update("insert into contacts(name,number,email) values('"+contact.getName()+"','"+contact.getNumber()+"','"+contact.getEmail()+"')");
 
@@ -60,12 +62,24 @@ public class ContactDAOImplementation implements ContactDAO{
 
     @Override
     public void deleteContactByName(String name) {
+        Session session = sessionFactory.getCurrentSession();
+        Contact deleteContact = (Contact) session.byId(name);
+        session.delete(deleteContact);
         /*String sql = "delete from contacts where name=?";
         jdbcTemplate.update(sql,name);*/
     }
 
     @Override
     public List<Contact> getContactById(int sno) {
+        Session session = sessionFactory.getCurrentSession();
+        Contact contact = session.get(Contact.class,sno);
+        List<Contact> contactData = new ArrayList<Contact>();
+        contactData.add(new Contact());
+        contactData.get(0).setId(contact.getId());
+        contactData.get(0).setName(contact.getName());
+        contactData.get(0).setNumber(contact.getNumber());
+        contactData.get(0).setEmail(contact.getEmail());
+        return contactData;
         /*List<Contact> contactDetails;
         String sql = "select * from contacts where sno = '"+sno+"'";
         contactDetails = jdbcTemplate.query(sql, new RowMapper<Contact>() {
@@ -80,12 +94,15 @@ public class ContactDAOImplementation implements ContactDAO{
             }
         });
         return contactDetails; */
-        return null;
+        //return null;
     }
 
     @Override
     public void editContact(Contact contact) {
-      /*  String sql = "update contacts set name = '"+contact.getName()+"', number ='"+contact.getNumber()+"', email='"+contact.getEmail()+"' where sno='"+contact.getId()+"'";
+        Session session = sessionFactory.getCurrentSession();
+        session.update(contact);
+
+        /*  String sql = "update contacts set name = '"+contact.getName()+"', number ='"+contact.getNumber()+"', email='"+contact.getEmail()+"' where sno='"+contact.getId()+"'";
         jdbcTemplate.update(sql);*/
     }
 
