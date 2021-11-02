@@ -46,7 +46,7 @@ public class ContactDAOImplementation implements ContactDAO{
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaQuery<Contact> contactCriteriaQuery = criteriaBuilder.createQuery(Contact.class);
         Root<Contact> root = contactCriteriaQuery.from(Contact.class);
-        contactCriteriaQuery.select(root);
+        contactCriteriaQuery.orderBy(criteriaBuilder.asc(root.get("name")));
         Query query = session.createQuery(contactCriteriaQuery);
         return query.getResultList();
     }
@@ -61,9 +61,9 @@ public class ContactDAOImplementation implements ContactDAO{
     }
 
     @Override
-    public void deleteContactByName(String name) {
+    public void deleteContactByName(int sno) {
         Session session = sessionFactory.getCurrentSession();
-        Contact deleteContact = (Contact) session.byId(name);
+        Contact deleteContact = session.byId(Contact.class).load(sno);
         session.delete(deleteContact);
         /*String sql = "delete from contacts where name=?";
         jdbcTemplate.update(sql,name);*/

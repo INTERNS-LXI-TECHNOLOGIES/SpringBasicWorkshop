@@ -49,7 +49,7 @@
                 <td><%out.print(contact.getNumber());%></td>
                 <td><%out.print(contact.getEmail());%></td>
                 <td><a href="showContact?id=<%=contact.getId()%>"><button class="button">Edit</button></a>
-                    <a href="deleteContact?name=<%=contact.getName()%>"><button class="button button2">Delete</button></a></td>
+                    <a href="deleteContact?sno=<%=contact.getId()%>"><button class="button button2">Delete</button></a></td>
             </tr>
             <%}%>
      </table>

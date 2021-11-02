@@ -32,8 +32,8 @@ public class ContactServiceImplementation implements ContactService {
 
     @Override
     @Transactional
-    public void deleteContactByName(String name) {
-        contactDAO.deleteContactByName(name);
+    public void deleteContactByName(int sno) {
+        contactDAO.deleteContactByName(sno);
     }
 
     @Override

@@ -93,7 +93,7 @@ public class ContactController {
     @RequestMapping(value = "/showContact")
     public String showContactDetails(@RequestParam String id,ModelMap model) throws SQLException{
         //ContactRepository repository = new ContactRepository();
-        List<Contact> editList =  contactDAO.getContactById(Integer.parseInt(id));
+        List<Contact> editList =  contactService.getContactById(Integer.parseInt(id));
 
         model.addAttribute("list",editList);
         return "editContact";
@@ -109,15 +109,15 @@ public class ContactController {
         contact.setName(name);
         contact.setNumber(number);
         contact.setEmail(email);
-        contactDAO.editContact(contact);
+        contactService.editContact(contact);
         response.sendRedirect("view");
     }
 
     @RequestMapping(value = "/deleteContact")
-    public String deleteContact(@RequestParam String name){
+    public String deleteContact(@RequestParam int sno){
 
             //  ContactRepository repository = new ContactRepository();
-        contactService.deleteContactByName(name);
+        contactService.deleteContactByName(sno);
         return "deleteContact";
 
     }
