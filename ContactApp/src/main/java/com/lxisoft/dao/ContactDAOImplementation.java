@@ -4,16 +4,11 @@ import com.lxisoft.model.Contact;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,23 +36,31 @@ public class ContactDAOImplementation implements ContactDAO{
     }
 
     @Override
-    public List<Contact> getAllContacts() {
+    public List<Contact> getAllContacts(int start, int contactPerPage) {
         Session session = sessionFactory.getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaQuery<Contact> contactCriteriaQuery = criteriaBuilder.createQuery(Contact.class);
         Root<Contact> root = contactCriteriaQuery.from(Contact.class);
         contactCriteriaQuery.orderBy(criteriaBuilder.asc(root.get("name")));
         Query query = session.createQuery(contactCriteriaQuery);
+        query.setFirstResult(start);
+        query.setMaxResults(contactPerPage);
         return query.getResultList();
     }
 
     @Override
     public int getNumberOfContacts() throws Exception {
+        Session session = sessionFactory.getCurrentSession();
+        //Query query = session.createQuery("select count(*) from contacts");
+        long total = (Long) session.createQuery("select count(*) from Contact contacts").getSingleResult();
+        System.out.println("*****"+total+"*****");
+        return (int) total;
+
     /*    int total = 0;
         String sql = "select count(*) from contacts";
         total = jdbcTemplate.queryForObject(sql,Integer.class);
         return total; */
-        return 0;
+    //    return 0;
     }
 
     @Override

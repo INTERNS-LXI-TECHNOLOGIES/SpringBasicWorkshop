@@ -51,8 +51,9 @@ public class ContactController {
         }
         start = (pageNumber-1)*contactPerPage;
         if (name == null) {
-            contactList = contactService.getAllContacts();
+            contactList = contactService.getAllContacts(start,contactPerPage);
             totalContacts = contactService.getNumberOfContacts();
+            System.out.print("Controller  : "+totalContacts);
         }
         else{
             contactList = contactService.searchContactByName(name,start,contactPerPage);
