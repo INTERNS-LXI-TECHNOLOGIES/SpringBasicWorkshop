@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.ParameterExpression;
 import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
@@ -111,6 +112,19 @@ public class ContactDAOImplementation implements ContactDAO{
 
     @Override
     public List<Contact> searchContactByName(String name,int start,int contactPerPage) {
+        Session session = sessionFactory.getCurrentSession();
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<Contact> contactCriteriaQuery = criteriaBuilder.createQuery(Contact.class);
+        Root<Contact> root = contactCriteriaQuery.from(Contact.class);
+        ParameterExpression<Integer> p = criteriaBuilder.parameter(Integer.class);
+        contactCriteriaQuery.where(criteriaBuilder.gt(root.<Number>get("name"),p));
+        contactCriteriaQuery.orderBy(criteriaBuilder.asc(root.get("name")));
+        Query query = session.createQuery(contactCriteriaQuery);
+        query.setFirstResult(start);
+        query.setMaxResults(contactPerPage);
+        return query.getResultList();
+        //Session session = sessionFactory.getCurrentSession();
+        //Query query = session.createQuery("select * from Contact contacts where name like '%"+name+"'%'");
         /*List<Contact> searchedList;
         String sql = "select SQL_CALC_FOUND_ROWS * from contacts where name like '%"+name+"%' order by name limit "+start+","+contactPerPage;
         searchedList = jdbcTemplate.query(sql, new RowMapper<Contact>() {
@@ -125,7 +139,7 @@ public class ContactDAOImplementation implements ContactDAO{
             }
         });
         return searchedList;*/
-        return null;
+        //return null;
     }
 
     @Override
