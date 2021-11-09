@@ -1,5 +1,6 @@
-package com.lxisoft.dao;
+package com.lxisoft.repository;
 
+import com.lxisoft.dao.ContactDAO;
 import com.lxisoft.model.Contact;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -13,7 +14,7 @@ import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ContactDAOImplementation implements ContactDAO{
+public class ContactORMRepository implements ContactRepository {
     @Autowired
     SessionFactory sessionFactory;
 
@@ -65,7 +66,7 @@ public class ContactDAOImplementation implements ContactDAO{
     }
 
     @Override
-    public void deleteContactByName(int sno) {
+    public void deleteContactById(int sno) {
         Session session = sessionFactory.getCurrentSession();
         Contact deleteContact = session.byId(Contact.class).load(sno);
         session.delete(deleteContact);

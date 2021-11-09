@@ -2,61 +2,63 @@ package com.lxisoft.service;
 
 import com.lxisoft.dao.ContactDAO;
 import com.lxisoft.model.Contact;
+import com.lxisoft.repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.SQLException;
 import java.util.List;
 @Service
 public class ContactServiceImplementation implements ContactService {
     @Autowired
-    ContactDAO contactDAO;
+    ContactRepository contactRepository;
 
     @Override
     @Transactional
     public void saveContact(Contact contact) {
-        contactDAO.saveContact(contact);
+        contactRepository.saveContact(contact);
     }
 
     @Override
     @Transactional
     public List<Contact> getAllContacts(int start,int contactPerPage) {
-        return contactDAO.getAllContacts(start,contactPerPage);
+        return contactRepository.getAllContacts(start,contactPerPage);
     }
 
     @Override
     @Transactional
     public int getNumberOfContacts() throws Exception {
-        return contactDAO.getNumberOfContacts();
+        return contactRepository.getNumberOfContacts();
     }
 
     @Override
     @Transactional
     public void deleteContactByName(int sno) {
-        contactDAO.deleteContactByName(sno);
+        contactRepository.deleteContactById(sno);
     }
 
     @Override
     @Transactional
-    public List<Contact> getContactById(int sno) {
-        return contactDAO.getContactById(sno);
+    public List<Contact> getContactById(int sno) throws SQLException {
+        return contactRepository.getContactById(sno);
     }
 
     @Override
     @Transactional
     public void editContact(Contact contact) {
-        contactDAO.editContact(contact);
+        contactRepository.editContact(contact);
     }
 
     @Override
     @Transactional
-    public List<Contact> searchContactByName(String name, int start, int contactPerPage) {
-        return contactDAO.searchContactByName(name, start, contactPerPage);
+    public List<Contact> searchContactByName(String name, int start, int contactPerPage) throws SQLException {
+        return contactRepository.searchContactByName(name, start, contactPerPage);
     }
 
     @Override
     @Transactional
     public int getNumberOfSearchedContacts(String name) {
-        return contactDAO.getNumberOfSearchedContacts(name);
+        return contactRepository.getNumberOfSearchedContacts(name);
     }
 }

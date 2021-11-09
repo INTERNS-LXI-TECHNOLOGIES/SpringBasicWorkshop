@@ -26,11 +26,6 @@ public class ContactController {
     @Autowired
     ContactService contactService;
 
-    @Autowired
-    ContactDAO contactDAO;
-
-
-
     @RequestMapping(value="/view")
     public String viewAllContact(@RequestParam(required = false, value="page") String page, @RequestParam(required = false, value="name") String name, ModelMap model) throws Exception {
         //ContactRepository repository = new ContactRepository();

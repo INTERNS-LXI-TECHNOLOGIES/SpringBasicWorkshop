@@ -1,15 +1,15 @@
 package com.lxisoft.config;
 
 import com.lxisoft.dao.ContactDAO;
-import com.lxisoft.dao.ContactDAOImplementation;
+//import com.lxisoft.repository.ContactDAOImplementation;
+import com.lxisoft.repository.ContactJDBCRepository;
+import com.lxisoft.repository.ContactORMRepository;
+import com.lxisoft.repository.ContactRepository;
 import com.lxisoft.service.ContactService;
 import com.lxisoft.service.ContactServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.*;
 
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
@@ -67,8 +67,15 @@ public class AppConfig {
     }
 
     @Bean
-    public ContactDAO contactDAO(){
-        return new ContactDAOImplementation();
+    //@Primary
+    public ContactRepository contactJDBC(){
+        return new ContactJDBCRepository();
+    }
+
+    @Bean
+    @Primary
+    public ContactRepository contactORM(){
+        return new ContactORMRepository();
     }
 
     @Bean
