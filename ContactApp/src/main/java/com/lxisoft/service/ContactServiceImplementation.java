@@ -40,7 +40,7 @@ public class ContactServiceImplementation implements ContactService {
 
     @Override
     @Transactional
-    public List<Contact> getContactById(int sno) throws SQLException {
+    public Contact getContactById(int sno) throws SQLException {
         return contactRepository.getContactById(sno);
     }
 

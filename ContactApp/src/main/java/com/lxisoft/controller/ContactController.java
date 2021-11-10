@@ -89,9 +89,9 @@ public class ContactController {
     @RequestMapping(value = "/showContact")
     public String showContactDetails(@RequestParam String id,ModelMap model) throws SQLException{
         //ContactRepository repository = new ContactRepository();
-        List<Contact> editList =  contactService.getContactById(Integer.parseInt(id));
+        Contact contactToEdit =  contactService.getContactById(Integer.parseInt(id));
 
-        model.addAttribute("list",editList);
+        model.addAttribute("contact",contactToEdit);
         return "editContact";
     }
 

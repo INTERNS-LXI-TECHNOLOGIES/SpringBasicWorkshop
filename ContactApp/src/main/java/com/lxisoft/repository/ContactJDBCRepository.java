@@ -190,7 +190,7 @@ public class ContactJDBCRepository implements ContactRepository {
     }
 
     @Override
-    public List<Contact> getContactById(int sno) throws SQLException {
+    public Contact getContactById(int sno) throws SQLException {
         Contact edit = null;
         List<Contact> editList = new ArrayList<Contact>();
         stmt = con.createStatement();
@@ -202,10 +202,10 @@ public class ContactJDBCRepository implements ContactRepository {
                 edit.setName(rs.getString("name"));
                 edit.setNumber(rs.getString("number"));
                 edit.setEmail(rs.getString("email"));
-                editList.add(edit);
+                //editList.add(edit);
             }
         }
-        return editList;
+        return edit;
     }
 
     public void editContact(Contact contact)

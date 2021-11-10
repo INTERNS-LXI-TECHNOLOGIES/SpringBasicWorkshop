@@ -10,7 +10,7 @@ public interface ContactRepository {
     public List<Contact> getAllContacts(int start, int contactPerPage);
     public int getNumberOfContacts() throws Exception;
     public  void deleteContactById(int sno);
-    public List<Contact> getContactById(int sno) throws SQLException;
+    public Contact getContactById(int sno) throws SQLException;
     public void editContact(Contact contact);
     public List<Contact> searchContactByName(String name,int start,int contactPerPage) throws SQLException;
     public int getNumberOfSearchedContacts(String name);
