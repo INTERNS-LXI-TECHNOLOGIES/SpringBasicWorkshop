@@ -1,6 +1,5 @@
 package com.lxisoft.config;
 
-import com.lxisoft.dao.ContactDAO;
 //import com.lxisoft.repository.ContactDAOImplementation;
 import com.lxisoft.repository.ContactJDBCRepository;
 import com.lxisoft.repository.ContactORMRepository;

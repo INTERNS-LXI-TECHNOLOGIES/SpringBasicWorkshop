@@ -1,7 +1,5 @@
 package com.lxisoft.controller;
 
-import com.lxisoft.dao.ContactDAO;
-
 import com.lxisoft.model.Contact;
 
 import com.lxisoft.service.ContactService;

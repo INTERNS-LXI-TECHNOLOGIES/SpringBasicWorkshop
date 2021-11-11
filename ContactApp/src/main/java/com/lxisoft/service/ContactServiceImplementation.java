@@ -1,6 +1,6 @@
 package com.lxisoft.service;
 
-import com.lxisoft.dao.ContactDAO;
+
 import com.lxisoft.model.Contact;
 import com.lxisoft.repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;

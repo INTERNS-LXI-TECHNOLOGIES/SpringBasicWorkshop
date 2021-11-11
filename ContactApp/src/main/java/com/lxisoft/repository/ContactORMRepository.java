@@ -66,14 +66,12 @@ public class ContactORMRepository implements ContactRepository {
 
     @Override
     public List<Contact> searchContactByName(String name,int start,int contactPerPage) {
+        StringBuilder sql = new StringBuilder();
+        sql.append("select * from contacts where name like:searchKey");
+
         Session session = sessionFactory.getCurrentSession();
-        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-        CriteriaQuery<Contact> contactCriteriaQuery = criteriaBuilder.createQuery(Contact.class);
-        Root<Contact> root = contactCriteriaQuery.from(Contact.class);
-        ParameterExpression<Integer> p = criteriaBuilder.parameter(Integer.class);
-        contactCriteriaQuery.where(criteriaBuilder.gt(root.<Number>get("name"),p));
-        contactCriteriaQuery.orderBy(criteriaBuilder.asc(root.get("name")));
-        Query query = session.createQuery(contactCriteriaQuery);
+        Query query = session.createQuery(sql.toString());
+        query.setParameter("searchKey","%"+name+"%");
         query.setFirstResult(start);
         query.setMaxResults(contactPerPage);
         return query.getResultList();
