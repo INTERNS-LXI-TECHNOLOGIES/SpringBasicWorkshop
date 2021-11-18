@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.ParameterExpression;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
@@ -40,7 +39,6 @@ public class ContactORMRepository implements ContactRepository {
         Session session = sessionFactory.getCurrentSession();
         //Query query = session.createQuery("select count(*) from contacts");
         long total = (Long) session.createQuery("select count(*) from Contact contacts").getSingleResult();
-        System.out.println("*****"+total+"*****");
         return (int) total;
     }
 
@@ -65,26 +63,28 @@ public class ContactORMRepository implements ContactRepository {
     }
 
     @Override
-    public List<Contact> searchContactByName(String name,int start,int contactPerPage) {
-        StringBuilder sql = new StringBuilder();
-        sql.append("select * from contacts where name like:searchKey");
+    public List searchContactByName(String name, int start, int contactPerPage) {
 
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery(sql.toString());
-        query.setParameter("searchKey","%"+name+"%");
+        String hql = "from Contact contact where contact.name like '%"+name+"%' order by contact.name";
+        Query query = session.createQuery(hql);
         query.setFirstResult(start);
         query.setMaxResults(contactPerPage);
         return query.getResultList();
+        //return session.createQuery("from Contact contact where contact.name like '%"+name+"%'").list();
+
         //Session session = sessionFactory.getCurrentSession();
         //Query query = session.createQuery("select * from Contact contacts where name like '%"+name+"'%'");
     }
 
     @Override
     public int getNumberOfSearchedContacts(String name) {
-       /* int total = 0;
+       Session session = sessionFactory.getCurrentSession();
+       long total = (long) session.createQuery("select count(*) from Contact contacts where contacts.name like '%"+name+"%'").getSingleResult();
+       return (int) total;
+        /* int total = 0;
         String sql = "select count(*) from contacts where name like '%"+name+"%'";
         total = jdbcTemplate.queryForObject(sql,Integer.class);
         return total;*/
-        return 0;
     }
 }
