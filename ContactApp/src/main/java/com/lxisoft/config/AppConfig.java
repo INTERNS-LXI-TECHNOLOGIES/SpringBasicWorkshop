@@ -2,6 +2,7 @@ package com.lxisoft.config;
 
 //import com.lxisoft.repository.ContactDAOImplementation;
 import com.lxisoft.repository.ContactJDBCRepository;
+import com.lxisoft.repository.ContactJPARepository;
 import com.lxisoft.repository.ContactORMRepository;
 import com.lxisoft.repository.ContactRepository;
 import com.lxisoft.service.ContactService;
@@ -10,12 +11,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 
 import org.springframework.core.env.Environment;
+import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceException;
 import javax.sql.DataSource;
 import java.util.Properties;
 
@@ -31,13 +39,25 @@ public class AppConfig {
     Environment environment;
 
     @Bean
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(){
+        final LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
+        factoryBean.setDataSource(getDataSource());
+        factoryBean.setPackagesToScan(new String[]{"com.lxisoft.model"});
+
+        final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+        factoryBean.setJpaVendorAdapter(vendorAdapter);
+        factoryBean.setJpaProperties(hibernateProperties());
+        return factoryBean;
+    }
+
+    /*@Bean
     public LocalSessionFactoryBean sessionFactory(){
         LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
         sessionFactoryBean.setDataSource(getDataSource());
         sessionFactoryBean.setPackagesToScan(new String[]{"com.lxisoft.model"});
         sessionFactoryBean.setHibernateProperties(hibernateProperties());
         return sessionFactoryBean;
-    }
+    }*/
 
     @Bean
     public DataSource getDataSource(){
@@ -59,11 +79,22 @@ public class AppConfig {
     }
 
     @Bean
+    public PlatformTransactionManager transactionManager(final EntityManagerFactory emf){
+        final JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();
+        jpaTransactionManager.setEntityManagerFactory(emf);
+        return jpaTransactionManager;
+    }
+
+    @Bean
+    public PersistenceExceptionTranslationPostProcessor exceptionProcessor(){
+        return new PersistenceExceptionTranslationPostProcessor();
+    }
+    /*@Bean
     public HibernateTransactionManager hibernateTransactionManager(){
         HibernateTransactionManager transactionManager = new HibernateTransactionManager();
         transactionManager.setSessionFactory(sessionFactory().getObject());
         return transactionManager;
-    }
+    }*/
 
     @Bean
     //@Primary
@@ -72,11 +103,17 @@ public class AppConfig {
     }
 
     @Bean
-    @Primary
+    //@Primary
     public ContactRepository contactORM(){
         return new ContactORMRepository();
     }
-
+/*
+    @Bean
+    @Primary
+    public ContactRepository contactJPA(){
+        return new ContactJPARepository();
+    }
+*/
     @Bean
     public ContactService contactService(){
         return new ContactServiceImplementation();
