@@ -12,6 +12,7 @@ import org.springframework.context.annotation.*;
 
 import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -30,6 +31,7 @@ import java.util.Properties;
 @EnableWebMvc
 @Configuration
 @EnableTransactionManagement
+@EnableJpaRepositories(basePackages = "com.lxisoft.repository")
 //@EnableJpaRepositories(basePackages = "com.lxisoft.repository")
 @ComponentScan({"com.lxisoft"})
 @PropertySource({"classpath:application.properties"})
@@ -96,7 +98,7 @@ public class AppConfig {
         return transactionManager;
     }*/
 
-    @Bean
+/*    @Bean
     //@Primary
     public ContactRepository contactJDBC(){
         return new ContactJDBCRepository();
@@ -107,7 +109,7 @@ public class AppConfig {
     public ContactRepository contactORM(){
         return new ContactORMRepository();
     }
-/*
+
     @Bean
     @Primary
     public ContactRepository contactJPA(){
@@ -115,7 +117,7 @@ public class AppConfig {
     }
 */
     @Bean
-    public ContactService contactService(){
+    public ContactServiceImplementation contactService(){
         return new ContactServiceImplementation();
     }
 

@@ -2,24 +2,33 @@ package com.lxisoft.service;
 
 
 import com.lxisoft.model.Contact;
+import com.lxisoft.repository.ContactJPARepository;
 import com.lxisoft.repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.SQLException;
 import java.util.List;
-@Service
-public class ContactServiceImplementation implements ContactService {
-    @Autowired
-    ContactRepository contactRepository;
 
-    @Override
+
+@Service
+public class ContactServiceImplementation {//implements ContactService {
+    @Autowired
+    ContactJPARepository contactJPARepository;
+
     @Transactional
-    public void saveContact(Contact contact) {
-        contactRepository.saveContact(contact);
+    public List<Contact> getAllContacts(){
+        return contactJPARepository.findAll(Sort.unsorted());
     }
 
+   // @Override
+    @Transactional
+    public void saveContact(Contact contact) {
+        contactJPARepository.save(contact);
+    }
+/*
     @Override
     @Transactional
     public List<Contact> getAllContacts(int start,int contactPerPage) {
@@ -31,23 +40,23 @@ public class ContactServiceImplementation implements ContactService {
     public int getNumberOfContacts() throws Exception {
         return contactRepository.getNumberOfContacts();
     }
-
-    @Override
+*/
+ //   @Override
     @Transactional
     public void deleteContactByName(int sno) {
-        contactRepository.deleteContactById(sno);
+        contactJPARepository.deleteById(sno);
     }
-
-    @Override
+/*
+   // @Override
     @Transactional
     public Contact getContactById(int sno) throws SQLException {
-        return contactRepository.getContactById(sno);
+        return contactJPARepository.getOne(sno);
     }
 
-    @Override
+   // @Override
     @Transactional
     public void editContact(Contact contact) {
-        contactRepository.editContact(contact);
+        Contact contact1 = contactJPARepository.findById(contact.getId());
     }
 
     @Override
@@ -61,4 +70,5 @@ public class ContactServiceImplementation implements ContactService {
     public int getNumberOfSearchedContacts(String name) {
         return contactRepository.getNumberOfSearchedContacts(name);
     }
+ */
 }

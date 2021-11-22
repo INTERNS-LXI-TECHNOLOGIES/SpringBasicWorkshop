@@ -3,6 +3,7 @@ package com.lxisoft.controller;
 import com.lxisoft.model.Contact;
 
 import com.lxisoft.service.ContactService;
+import com.lxisoft.service.ContactServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -22,7 +23,7 @@ public class ContactController {
    // @Autowired
    // ContactRepository repository;
     @Autowired
-    ContactService contactService;
+   ContactServiceImplementation contactService;
 
     @RequestMapping(value="/view")
     public String viewAllContact(@RequestParam(required = false, value="page") String page, @RequestParam(required = false, value="name") String name, ModelMap model) throws Exception {
@@ -44,13 +45,14 @@ public class ContactController {
         }
         start = (pageNumber-1)*contactPerPage;
         if (name == null) {
-            contactList = contactService.getAllContacts(start,contactPerPage);
-            totalContacts = contactService.getNumberOfContacts();
+            contactList = contactService.getAllContacts();
+            //totalContacts = contactService.getNumberOfContacts();
             System.out.print("Controller  : "+totalContacts);
         }
         else{
-            contactList = contactService.searchContactByName(name,start,contactPerPage);
-            totalContacts = contactService.getNumberOfSearchedContacts(name);
+            //contactList = contactService.searchContactByName(name,start,contactPerPage);
+            //totalContacts = contactService.getNumberOfSearchedContacts(name);
+            System.out.println("No Searches");
         }
 
         numOfPage = totalContacts/contactPerPage;
@@ -83,7 +85,7 @@ public class ContactController {
             e.printStackTrace();
         }
     }
-
+/*
     @RequestMapping(value = "/showContact")
     public String showContactDetails(@RequestParam String id,ModelMap model) throws SQLException{
         //ContactRepository repository = new ContactRepository();
@@ -106,7 +108,7 @@ public class ContactController {
         contactService.editContact(contact);
         response.sendRedirect("view");
     }
-
+*/
     @RequestMapping(value = "/deleteContact")
     public String deleteContact(@RequestParam int sno){
 

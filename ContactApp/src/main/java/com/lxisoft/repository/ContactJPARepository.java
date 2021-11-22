@@ -6,7 +6,8 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.SQLException;
 import java.util.List;
-@Repository("ContactRepository")
+@Repository("ContactJPARepository")
 public interface ContactJPARepository extends JpaRepository<Contact,Integer> {
+
 
 }
