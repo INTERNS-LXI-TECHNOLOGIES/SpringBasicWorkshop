@@ -20,7 +20,7 @@ public class ContactServiceImplementation {//implements ContactService {
 
     @Transactional
     public List<Contact> getAllContacts(){
-        return contactJPARepository.findAll(Sort.unsorted());
+        return contactJPARepository.findAll(Sort.by("name"));
     }
 
    // @Override
@@ -43,10 +43,10 @@ public class ContactServiceImplementation {//implements ContactService {
 */
  //   @Override
     @Transactional
-    public void deleteContactByName(int sno) {
+    public void deleteContactById(int sno) {
         contactJPARepository.deleteById(sno);
     }
-/*
+
    // @Override
     @Transactional
     public Contact getContactById(int sno) throws SQLException {
@@ -56,10 +56,10 @@ public class ContactServiceImplementation {//implements ContactService {
    // @Override
     @Transactional
     public void editContact(Contact contact) {
-        Contact contact1 = contactJPARepository.findById(contact.getId());
+        contactJPARepository.save(contact);
     }
 
-    @Override
+   /* @Override
     @Transactional
     public List<Contact> searchContactByName(String name, int start, int contactPerPage) throws SQLException {
         return contactRepository.searchContactByName(name, start, contactPerPage);
@@ -69,6 +69,5 @@ public class ContactServiceImplementation {//implements ContactService {
     @Transactional
     public int getNumberOfSearchedContacts(String name) {
         return contactRepository.getNumberOfSearchedContacts(name);
-    }
- */
+    }*/
 }

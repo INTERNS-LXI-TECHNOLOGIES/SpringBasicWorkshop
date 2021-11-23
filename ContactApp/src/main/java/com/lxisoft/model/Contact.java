@@ -1,10 +1,11 @@
 package com.lxisoft.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "contacts")
-public class Contact {
+public class Contact implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "sno")
@@ -48,8 +49,9 @@ public class Contact {
         this.email = email;
     }
 
-    @Override
+   /* @Override
     public String toString(){
         return "Contact [sno="+id+",name="+name+",number="+number+",email="+email+"]";
     }
+*/
 }

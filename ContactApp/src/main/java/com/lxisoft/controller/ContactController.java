@@ -85,7 +85,7 @@ public class ContactController {
             e.printStackTrace();
         }
     }
-/*
+
     @RequestMapping(value = "/showContact")
     public String showContactDetails(@RequestParam String id,ModelMap model) throws SQLException{
         //ContactRepository repository = new ContactRepository();
@@ -108,12 +108,12 @@ public class ContactController {
         contactService.editContact(contact);
         response.sendRedirect("view");
     }
-*/
+
     @RequestMapping(value = "/deleteContact")
     public String deleteContact(@RequestParam int sno){
 
             //  ContactRepository repository = new ContactRepository();
-        contactService.deleteContactByName(sno);
+        contactService.deleteContactById(sno);
         return "deleteContact";
 
     }
