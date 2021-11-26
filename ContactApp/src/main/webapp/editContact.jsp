@@ -8,6 +8,7 @@
 	<title>Edit Contact</title>
 </head>
 <body style="background-color:powderblue;">
+    <center>
 
 	<%
 	Contact contactToEdit = new Contact();
@@ -15,9 +16,9 @@
     // for(Contact editContact : contact){
     %>
     <div class="container">
-        <form action="editContact" method="GET">
+        <form action="editContact" method="GET" modelAttribute="contact">
             <h2>Add Details</h2>
-            Sno &nbsp&nbsp &nbsp<input type="text" name="sno" value="<%=contactToEdit.getId()%>"><br><br>
+            <input type="hidden" name="sno" value="<%=contactToEdit.getId()%>"><br><br>
             Name &nbsp&nbsp &nbsp<input type="text" name="name" value="<%=contactToEdit.getName()%>"><br><br>
             Phone Number &nbsp&nbsp &nbsp <input type="text" name="number" value="<%=contactToEdit.getNumber()%>"><br><br>
             E-Mail  &nbsp &nbsp&nbsp &nbsp<input type="text" name="email" value="<%=contactToEdit.getEmail()%>"><br><br>
@@ -27,6 +28,6 @@
     <%// }%>
 	<br>
 	<a href="view"><button class="button">Back</button></a>
-
+</center>
 </body>
 </html>

@@ -3,14 +3,13 @@ package com.lxisoft.service;
 
 import com.lxisoft.model.Contact;
 import com.lxisoft.repository.ContactJPARepository;
-import com.lxisoft.repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -19,14 +18,21 @@ public class ContactServiceImplementation {//implements ContactService {
     ContactJPARepository contactJPARepository;
 
     @Transactional
-    public List<Contact> getAllContacts(){
+    public List<Contact> getAllContacts(int pageNumber){
         return contactJPARepository.findAll(Sort.by("name"));
+        //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
     }
 
    // @Override
     @Transactional
     public void saveContact(Contact contact) {
         contactJPARepository.save(contact);
+    }
+
+    @Transactional
+    public int getNumberOfContacts(){
+        int count = (int) contactJPARepository.count();
+        return count;
     }
 /*
     @Override
@@ -49,14 +55,21 @@ public class ContactServiceImplementation {//implements ContactService {
 
    // @Override
     @Transactional
-    public Contact getContactById(int sno) throws SQLException {
-        return contactJPARepository.getOne(sno);
+    public Contact getContactById(int sno) {
+        Optional<Contact> contactToEdit = contactJPARepository.findById(sno);
+
+        return contactToEdit.get();
     }
 
    // @Override
     @Transactional
     public void editContact(Contact contact) {
         contactJPARepository.save(contact);
+    }
+
+    @Transactional
+    public List<Contact> searchContactByName(String name){
+        return contactJPARepository.searchResult(name);
     }
 
    /* @Override

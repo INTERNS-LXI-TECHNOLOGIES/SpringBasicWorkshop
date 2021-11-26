@@ -39,7 +39,7 @@
                 <th style="color:blue; font-style: italic;">Actions</th>
             </tr>
             <%
-            List<Contact> contacts = (List<Contact>)request.getAttribute("contactList");
+            List<Contact> contacts = (List<Contact>) request.getAttribute("contactList");
             for(Contact contact : contacts){
 
             %>

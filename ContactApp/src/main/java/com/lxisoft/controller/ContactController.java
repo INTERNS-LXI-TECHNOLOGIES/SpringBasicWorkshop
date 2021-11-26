@@ -2,19 +2,20 @@ package com.lxisoft.controller;
 
 import com.lxisoft.model.Contact;
 
-import com.lxisoft.service.ContactService;
 import com.lxisoft.service.ContactServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,14 +46,14 @@ public class ContactController {
         }
         start = (pageNumber-1)*contactPerPage;
         if (name == null) {
-            contactList = contactService.getAllContacts();
-            //totalContacts = contactService.getNumberOfContacts();
+            contactList = contactService.getAllContacts(pageNumber);
+            totalContacts = contactService.getNumberOfContacts();
             System.out.print("Controller  : "+totalContacts);
         }
         else{
-            //contactList = contactService.searchContactByName(name,start,contactPerPage);
+            contactList = contactService.searchContactByName(name);
             //totalContacts = contactService.getNumberOfSearchedContacts(name);
-            System.out.println("No Searches");
+            //System.out.println("No Searches");
         }
 
         numOfPage = totalContacts/contactPerPage;
@@ -87,7 +88,7 @@ public class ContactController {
     }
 
     @RequestMapping(value = "/showContact")
-    public String showContactDetails(@RequestParam String id,ModelMap model) throws SQLException{
+    public String showContactDetails(@RequestParam String id,ModelMap model){
         //ContactRepository repository = new ContactRepository();
         Contact contactToEdit =  contactService.getContactById(Integer.parseInt(id));
 
@@ -96,16 +97,18 @@ public class ContactController {
     }
 
     @RequestMapping(value = "/editContact")
-    public void editContact(@RequestParam String sno,String name,String number,String email, HttpServletResponse response) throws IOException {
+    public void editContact(@ModelAttribute("contact") Contact contact, HttpServletResponse response, HttpServletRequest request) throws IOException {
         // ContactRepository repository = new ContactRepository();
-
+/*
          Contact contact = new Contact();
 
         contact.setId(Integer.parseInt(sno));
         contact.setName(name);
         contact.setNumber(number);
-        contact.setEmail(email);
-        contactService.editContact(contact);
+        contact.setEmail(email); */
+        int id = Integer.parseInt(request.getParameter("sno"));
+        contactService.deleteContactById(id);
+        contactService.saveContact(contact);
         response.sendRedirect("view");
     }
 
