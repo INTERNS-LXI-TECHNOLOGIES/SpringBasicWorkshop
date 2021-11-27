@@ -1,12 +1,7 @@
 package com.lxisoft.config;
 
 //import com.lxisoft.repository.ContactDAOImplementation;
-import com.lxisoft.repository.ContactJDBCRepository;
-import com.lxisoft.repository.ContactJPARepository;
-import com.lxisoft.repository.ContactORMRepository;
-import com.lxisoft.repository.ContactRepository;
 import com.lxisoft.service.ContactService;
-import com.lxisoft.service.ContactServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 
@@ -14,8 +9,6 @@ import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate5.HibernateTransactionManager;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
@@ -24,7 +17,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceException;
 import javax.sql.DataSource;
 import java.util.Properties;
 
@@ -117,8 +109,8 @@ public class AppConfig {
     }
 */
     @Bean
-    public ContactServiceImplementation contactService(){
-        return new ContactServiceImplementation();
+    public ContactService contactService(){
+        return new ContactService();
     }
 
 }

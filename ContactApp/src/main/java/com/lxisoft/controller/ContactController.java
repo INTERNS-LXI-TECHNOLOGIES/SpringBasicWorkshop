@@ -2,9 +2,8 @@ package com.lxisoft.controller;
 
 import com.lxisoft.model.Contact;
 
-import com.lxisoft.service.ContactServiceImplementation;
+import com.lxisoft.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.ModelMap;
@@ -24,13 +23,13 @@ public class ContactController {
    // @Autowired
    // ContactRepository repository;
     @Autowired
-   ContactServiceImplementation contactService;
+   ContactService contactService;
 
     @RequestMapping(value="/view")
     public String viewAllContact(@RequestParam(required = false, value="page") String page, @RequestParam(required = false, value="name") String name, ModelMap model) throws Exception {
         //ContactRepository repository = new ContactRepository();
 
-        int pageNumber = 1;
+        int pageNumber = 0;
         int totalContacts = 0;
         int contactPerPage = 5;
         int start = 0;
@@ -46,9 +45,9 @@ public class ContactController {
         }
         start = (pageNumber-1)*contactPerPage;
         if (name == null) {
-            contactList = contactService.getAllContacts(pageNumber);
+            contactList = contactService.getAllContacts(pageNumber,contactPerPage);
             totalContacts = contactService.getNumberOfContacts();
-            System.out.print("Controller  : "+totalContacts);
+            System.out.print("Controller  : "+ page);
         }
         else{
             contactList = contactService.searchContactByName(name);

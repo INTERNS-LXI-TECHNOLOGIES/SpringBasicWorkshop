@@ -9,7 +9,7 @@
 		<h1 style="background-color:white;">Welcome</h1>
 		<br>
 		<br>
-		<h2><a href="view"><button class="button" style="background-color:silver;">View Contacts</button></a></h2>
+		<h2><a href="view?page=0"><button class="button" style="background-color:silver;">View Contacts</button></a></h2>
 	</center>
 </body>
 </html>
