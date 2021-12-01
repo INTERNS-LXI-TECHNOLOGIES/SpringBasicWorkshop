@@ -1,5 +1,7 @@
 package com.lxisoft.model;
 
+import org.hibernate.engine.internal.Cascade;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -16,6 +18,10 @@ public class Contact implements Serializable {
     String number;
     @Column(name = "email")
     String email;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    private Address address;
 
     public int getId() {
         return id;
