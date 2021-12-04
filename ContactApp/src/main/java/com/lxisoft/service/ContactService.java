@@ -1,8 +1,10 @@
 package com.lxisoft.service;
 
 
+
 import com.lxisoft.model.Contact;
-import com.lxisoft.repository.ContactJPARepository;
+//import com.lxisoft.repository.AddressRepository;
+import com.lxisoft.repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
@@ -15,12 +17,15 @@ import java.util.Optional;
 @Service
 public class ContactService {//implements ContactService {
     @Autowired
-    ContactJPARepository contactJPARepository;
+    ContactRepository contactRepository;
+
+  //  @Autowired
+  //  AddressRepository addressRepository;
 
     @Transactional
     public List<Contact> getAllContacts(int start,int contactPerPage){
         Pageable pageable = PageRequest.of(start,contactPerPage,Sort.by("name"));
-        Page<Contact> page = contactJPARepository.findAll(pageable);
+        Page<Contact> page = contactRepository.findAll(pageable);
 
         return page.getContent();
         //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
@@ -29,12 +34,12 @@ public class ContactService {//implements ContactService {
    // @Override
     @Transactional
     public void saveContact(Contact contact) {
-        contactJPARepository.save(contact);
+        contactRepository.save(contact);
     }
 
     @Transactional
     public int getNumberOfContacts(){
-        int count = (int) contactJPARepository.count();
+        int count = (int) contactRepository.count();
         return count;
     }
 /*
@@ -53,13 +58,13 @@ public class ContactService {//implements ContactService {
  //   @Override
     @Transactional
     public void deleteContactById(int sno) {
-        contactJPARepository.deleteById(sno);
+        contactRepository.deleteById(sno);
     }
 
    // @Override
     @Transactional
     public Contact getContactById(int sno) {
-        Optional<Contact> contactToEdit = contactJPARepository.findById(sno);
+        Optional<Contact> contactToEdit = contactRepository.findById(sno);
 
         return contactToEdit.get();
     }
@@ -67,14 +72,25 @@ public class ContactService {//implements ContactService {
    // @Override
     @Transactional
     public void editContact(Contact contact) {
-        contactJPARepository.save(contact);
+        contactRepository.save(contact);
     }
 
     @Transactional
     public List<Contact> searchContactByName(String name){
-        return contactJPARepository.searchResult(name);
+        return contactRepository.searchResult(name);
     }
 
+   /* @Transactional
+    public void saveAddress(Address address) {
+        addressRepository.save(address);
+    }
+
+    @Transactional
+    public Address getAddressById(int id) {
+        Optional<Address> addressById = addressRepository.findById(id);
+        return  addressById.get();
+    }
+*/
    /* @Override
     @Transactional
     public List<Contact> searchContactByName(String name, int start, int contactPerPage) throws SQLException {

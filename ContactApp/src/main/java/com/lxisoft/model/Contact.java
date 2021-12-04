@@ -19,10 +19,9 @@ public class Contact implements Serializable {
     @Column(name = "email")
     String email;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id", referencedColumnName = "id")
+ /*   @OneToOne(mappedBy = "contact",cascade = CascadeType.ALL)
     private Address address;
-
+*/
     public int getId() {
         return id;
     }
@@ -55,9 +54,9 @@ public class Contact implements Serializable {
         this.email = email;
     }
 
-   /* @Override
+    @Override
     public String toString(){
         return "Contact [sno="+id+",name="+name+",number="+number+",email="+email+"]";
     }
-*/
+
 }

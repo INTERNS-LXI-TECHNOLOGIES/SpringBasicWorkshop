@@ -36,6 +36,7 @@
                 <th style="color:blue; font-style: italic;">Name</th>
                 <th style="color:blue; font-style: italic;">Number</th>
                 <th style="color:blue; font-style: italic;">E-Mail</th>
+                <th style="color:blue; font-style: italic;">Address</th>
                 <th style="color:blue; font-style: italic;">Actions</th>
             </tr>
             <%
@@ -48,7 +49,9 @@
                 <td><%out.print(contact.getName());%></td>
                 <td><%out.print(contact.getNumber());%></td>
                 <td><%out.print(contact.getEmail());%></td>
-                <td><a href="showContact?id=<%=contact.getId()%>"><button class="button">Edit</button></a>
+                <td><a href="viewContactAddress?id=<%=contact.getId()%>"><button class="button">View Address</button></a>
+                <td><a href="addAddress.jsp?id=<%=contact.getId()%>"><button class="button">Add Address</button></a>
+                    <a href="showContact?id=<%=contact.getId()%>"><button class="button">Edit</button></a>
                     <a href="deleteContact?sno=<%=contact.getId()%>"><button class="button button2">Delete</button></a></td>
             </tr>
             <%}%>
@@ -61,7 +64,7 @@
         int num = (Integer)request.getAttribute("numOfPage");
         for(int j=1; j<=num; j++){
         %>
-            <a href="view?page=<%=j%>&name=<%=request.getAttribute("name")%>"><%=j%></a>
+            <a href="view?page=<%=(j-1)%>&name=<%=request.getAttribute("name")%>"><%=j%></a>
             &nbsp;&nbsp;&nbsp;&nbsp;
          <%
         }

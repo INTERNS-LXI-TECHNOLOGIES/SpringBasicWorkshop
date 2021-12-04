@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 @Repository("ContactJPARepository")
-public interface ContactJPARepository extends JpaRepository<Contact,Integer> {
+public interface ContactRepository extends JpaRepository<Contact,Integer> {
 
    // @Query(value = "from Contact contacts order by contacts.name limit ?start , ?contactPerPage")
 

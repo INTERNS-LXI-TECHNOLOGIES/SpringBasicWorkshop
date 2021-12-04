@@ -1,5 +1,6 @@
 package com.lxisoft.controller;
 
+//import com.lxisoft.model.Address;
 import com.lxisoft.model.Contact;
 
 import com.lxisoft.service.ContactService;
@@ -39,6 +40,7 @@ public class ContactController {
         if(page != null){
             try{
                 pageNumber = Integer.parseInt(page);
+                pageNumber--;
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -68,23 +70,26 @@ public class ContactController {
     }
 
     @RequestMapping(value = "/addContact")
-    public void addNewContact(@RequestParam(required = false) String name, String number, String mail , HttpServletResponse response){
+    public void addNewContact(@ModelAttribute("contact") Contact contact, HttpServletResponse response){
 
         try {
             // ContactRepository repository = new ContactRepository();
-            List<Contact> contactList = new ArrayList<Contact>();
+            /*
             Contact contact = new Contact();
             contact.setName(name);
             contact.setNumber(number);
-            contact.setEmail(mail);
+            contact.setEmail(mail); */
             contactService.saveContact(contact);
-
             response.sendRedirect("view");
         }
         catch (Exception e){
             e.printStackTrace();
         }
     }
+   /* @RequestMapping(value = "/addContactAddress")
+    public void addContactAddress(@ModelAttribute("address")Address address,HttpServletResponse response){
+        contactService.saveAddress(address);
+    } */
 
     @RequestMapping(value = "/showContact")
     public String showContactDetails(@RequestParam String id,ModelMap model){
@@ -94,6 +99,12 @@ public class ContactController {
         model.addAttribute("contact",contactToEdit);
         return "editContact";
     }
+   /* @RequestMapping(value = "viewContactAddress")
+    public String viewAddress(@RequestParam String id,ModelMap model){
+        Address contactAddress = contactService.getAddressById(Integer.parseInt(id));
+        model.addAttribute("address",contactAddress);
+        return "viewAddress";
+    }*/
 
     @RequestMapping(value = "/editContact")
     public void editContact(@ModelAttribute("contact") Contact contact, HttpServletResponse response, HttpServletRequest request) throws IOException {

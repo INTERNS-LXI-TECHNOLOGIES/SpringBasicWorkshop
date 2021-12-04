@@ -1,9 +1,12 @@
 package com.lxisoft.model;
 
-import javax.persistence.*;
+//import javax.persistence.*;
+import java.io.Serializable;
 
-public class Address {
-    @Id
+public class Address implements Serializable {
+/*    @Id
+    @Column(name = "contact_id")
+    String contactId;
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     int id;
@@ -12,7 +15,9 @@ public class Address {
     @Column(name = "nationality")
     String nationality;
 
+
     @OneToOne(mappedBy = "contacts")
+    @JoinColumn(name = "sno",nullable = false)
     private Contact contact;
 
     public int getId() {
@@ -38,4 +43,14 @@ public class Address {
     public void setNationality(String nationality) {
         this.nationality = nationality;
     }
+
+    public String getContactId() {
+        return contactId;
+    }
+
+    public void setContactId(String contactId) {
+        this.contactId = contactId;
+    }
+
+ */
 }
