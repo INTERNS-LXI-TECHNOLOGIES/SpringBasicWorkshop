@@ -19,9 +19,9 @@ public class Contact implements Serializable {
     @Column(name = "email")
     String email;
 
- /*   @OneToOne(mappedBy = "contact",cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "contact")
     private Address address;
-*/
+
     public int getId() {
         return id;
     }

@@ -1,22 +1,22 @@
 package com.lxisoft.model;
 
-//import javax.persistence.*;
+import javax.persistence.*;
 import java.io.Serializable;
 
 public class Address implements Serializable {
-/*    @Id
-    @Column(name = "contact_id")
-    String contactId;
+   // @Id
+   // @Column(name = "")
+   // String contactId;
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     int id;
-    @Column(name = "house_name")
+    @Column(name = "place_name")
     String houseName;
     @Column(name = "nationality")
     String nationality;
 
 
-    @OneToOne(mappedBy = "contacts")
+    @OneToOne(fetch = FetchType.LAZY,optional = false)
     @JoinColumn(name = "sno",nullable = false)
     private Contact contact;
 
@@ -44,13 +44,13 @@ public class Address implements Serializable {
         this.nationality = nationality;
     }
 
-    public String getContactId() {
+  /*  public String getContactId() {
         return contactId;
     }
 
     public void setContactId(String contactId) {
         this.contactId = contactId;
     }
+    */
 
- */
 }

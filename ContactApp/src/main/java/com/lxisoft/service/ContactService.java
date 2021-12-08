@@ -1,9 +1,7 @@
 package com.lxisoft.service;
 
-
-
 import com.lxisoft.model.Contact;
-//import com.lxisoft.repository.AddressRepository;
+import com.lxisoft.repository.AddressRepository;
 import com.lxisoft.repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
@@ -19,8 +17,8 @@ public class ContactService {//implements ContactService {
     @Autowired
     ContactRepository contactRepository;
 
-  //  @Autowired
-  //  AddressRepository addressRepository;
+    @Autowired
+    AddressRepository addressRepository;
 
     @Transactional
     public List<Contact> getAllContacts(int start,int contactPerPage){

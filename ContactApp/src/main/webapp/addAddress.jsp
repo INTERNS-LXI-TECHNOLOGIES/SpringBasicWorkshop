@@ -16,7 +16,7 @@
 				</tr>
 			<tr>
 				<td>House Name</td>
-				<td><input type="text" placeholder="Enter House Name" name="houseName" required></td>
+				<td><input type="text" placeholder="Enter State Name" name="placeName" required></td>
 			</tr>
 			<br>
 			<br>
@@ -26,10 +26,6 @@
 			</tr>
 			<br>
 			<br>
-			
-		<!--	Name:<input type="text" placeholder="Enter Name" name="name" required><br><br>
-			Number:<input type="text" placeholder="Enter Number" name="number" required><br><br>
-			Email:<input type="text" placeholder="Enter Email id" name="mail" required><br><br>  -->
 		    <tr>
 		    	<td><input type="submit" class="button" style="background-color:silver;" value="Add"></td>
 		    </tr>
