@@ -16,9 +16,17 @@ public class Address implements Serializable {
     String nationality;
 
 
-    @OneToOne(fetch = FetchType.LAZY,optional = false)
-    @JoinColumn(name = "sno",nullable = false)
-    private Contact contact;
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "sno", nullable = false)
+    public Contact contact;
+
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
+    }
 
     public int getId() {
         return id;

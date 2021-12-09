@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-@Repository("ContactJPARepository")
+@Repository("ContactRepository")
 public interface ContactRepository extends JpaRepository<Contact,Integer> {
 
    // @Query(value = "from Contact contacts order by contacts.name limit ?start , ?contactPerPage")
