@@ -2,9 +2,9 @@ package com.lxisoft.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
-
+@Entity
 public class Address implements Serializable {
-   // @Id
+    @Id
    // @Column(name = "")
    // String contactId;
     @GeneratedValue(strategy = GenerationType.AUTO)

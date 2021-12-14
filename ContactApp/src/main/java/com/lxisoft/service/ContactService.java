@@ -1,5 +1,6 @@
 package com.lxisoft.service;
 
+import com.lxisoft.model.Address;
 import com.lxisoft.model.Contact;
 import com.lxisoft.repository.AddressRepository;
 import com.lxisoft.repository.ContactRepository;
@@ -78,11 +79,11 @@ public class ContactService {//implements ContactService {
         return contactRepository.searchResult(name);
     }
 
-   /* @Transactional
+    @Transactional
     public void saveAddress(Address address) {
         addressRepository.save(address);
     }
-
+/*
     @Transactional
     public Address getAddressById(int id) {
         Optional<Address> addressById = addressRepository.findById(id);

@@ -1,6 +1,7 @@
 package com.lxisoft.controller;
 
 //import com.lxisoft.model.Address;
+import com.lxisoft.model.Address;
 import com.lxisoft.model.Contact;
 
 import com.lxisoft.service.ContactService;
@@ -86,10 +87,11 @@ public class ContactController {
             e.printStackTrace();
         }
     }
-   /* @RequestMapping(value = "/addContactAddress")
-    public void addContactAddress(@ModelAttribute("address")Address address,HttpServletResponse response){
+    @RequestMapping(value = "/addContactAddress")
+    public void addContactAddress(@ModelAttribute("address") Address address, HttpServletResponse response) throws IOException {
         contactService.saveAddress(address);
-    } */
+        response.sendRedirect("view");
+    }
 
     @RequestMapping(value = "/showContact")
     public String showContactDetails(@RequestParam String id,ModelMap model){
