@@ -4,6 +4,8 @@ import org.hibernate.engine.internal.Cascade;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "contacts")
@@ -19,16 +21,23 @@ public class Contact implements Serializable {
     @Column(name = "email")
     String email;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "contact")
-    public Address address;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "contact")
+    public List<Address> address = new ArrayList<Address>();
 
-    public Address getAddress() {
+    public List<Address> getAddress() {
+        return address;
+    }
+
+    public void setAddress(List<Address> address) {
+        this.address = address;
+    }
+    /*public Address getAddress() {
         return address;
     }
 
     public void setAddress(Address address) {
         this.address = address;
-    }
+    }*/
 
     public int getId() {
         return id;

@@ -6,13 +6,11 @@
 <body style="background-color:powderblue;">
 	<h1 style="background-color:white;">Adding Contact</h1>
 		<form action="addContactAddress" method="get" modelAttribute="address">
-			<%
-				// String contactId = (String)request.getAttribute("id");
-			%>
+
 			<table>
 				<tr>
 					<td>Contact Id</td>
-					<td><input type="text" name="contactId" value= <%=request.getAttribute("id")%>></td>
+					<td><input type="text" name="contactId" value= <%=request.getParameter("id")%>></td>
 				</tr>
 			<tr>
 				<td>House Name</td>

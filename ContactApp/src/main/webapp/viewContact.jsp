@@ -50,7 +50,7 @@
                 <td><%out.print(contact.getNumber());%></td>
                 <td><%out.print(contact.getEmail());%></td>
                 <td><a href="viewContactAddress?id=<%=contact.getId()%>"><button class="button">View Address</button></a>
-                <td><a href="addAddress.jsp?id=<%=contact.getId()%>"><button class="button">Add Address</button></a>
+                <td><a href="addAddress?id=<%=contact.getId()%>"><button class="button">Add Address</button></a>
                     <a href="showContact?id=<%=contact.getId()%>"><button class="button">Edit</button></a>
                     <a href="deleteContact?sno=<%=contact.getId()%>"><button class="button button2">Delete</button></a></td>
             </tr>

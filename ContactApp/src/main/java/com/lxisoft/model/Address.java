@@ -11,13 +11,13 @@ public class Address implements Serializable {
     @Column(name = "id")
     int id;
     @Column(name = "place_name")
-    String houseName;
+    String placeName;
     @Column(name = "nationality")
     String nationality;
 
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "sno", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "sno",referencedColumnName = "sno", nullable = false)
     public Contact contact;
 
     public Contact getContact() {
@@ -36,12 +36,12 @@ public class Address implements Serializable {
         this.id = id;
     }
 
-    public String getHouseName() {
-        return houseName;
+    public String getPlaceName() {
+        return placeName;
     }
 
-    public void setHouseName(String houseName) {
-        this.houseName = houseName;
+    public void setPlaceName(String placeName) {
+        this.placeName = placeName;
     }
 
     public String getNationality() {

@@ -71,15 +71,15 @@ public class ContactController {
     }
 
     @RequestMapping(value = "/addContact")
-    public void addNewContact(@ModelAttribute("contact") Contact contact, HttpServletResponse response){
+    public void addNewContact(@RequestParam(required = true, value = "name")String name,@RequestParam(required = true, value = "number")String number,@RequestParam(required = true, value = "mail")String mail, HttpServletResponse response){
 
         try {
             // ContactRepository repository = new ContactRepository();
-            /*
+
             Contact contact = new Contact();
             contact.setName(name);
             contact.setNumber(number);
-            contact.setEmail(mail); */
+            contact.setEmail(mail);
             contactService.saveContact(contact);
             response.sendRedirect("view");
         }
@@ -87,8 +87,17 @@ public class ContactController {
             e.printStackTrace();
         }
     }
+    @RequestMapping(value = "/addAddress")
+    public String addAddress(@RequestParam String id, ModelMap model) throws IOException {
+        model.addAttribute(id);
+        return "addAddress";
+        /*contactService.saveAddress(address);
+        response.sendRedirect("view");*/
+    }
     @RequestMapping(value = "/addContactAddress")
-    public void addContactAddress(@ModelAttribute("address") Address address, HttpServletResponse response) throws IOException {
+    public void saveContactAddress(@ModelAttribute("address")Address address, HttpServletResponse response) throws IOException {
+        /*model.addAttribute(id);
+        return "addAddress";*/
         contactService.saveAddress(address);
         response.sendRedirect("view");
     }
