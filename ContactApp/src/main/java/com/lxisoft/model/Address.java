@@ -3,6 +3,7 @@ package com.lxisoft.model;
 import javax.persistence.*;
 import java.io.Serializable;
 @Entity
+@Table(name = "address")
 public class Address implements Serializable {
     @Id
    // @Column(name = "")
@@ -14,7 +15,6 @@ public class Address implements Serializable {
     String placeName;
     @Column(name = "nationality")
     String nationality;
-
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "sno",referencedColumnName = "sno", nullable = false)

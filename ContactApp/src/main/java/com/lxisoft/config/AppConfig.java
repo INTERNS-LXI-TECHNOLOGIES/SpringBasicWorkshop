@@ -1,6 +1,7 @@
 package com.lxisoft.config;
 
 //import com.lxisoft.repository.ContactDAOImplementation;
+import com.lxisoft.service.AddressService;
 import com.lxisoft.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
@@ -111,6 +112,11 @@ public class AppConfig {
     @Bean
     public ContactService contactService(){
         return new ContactService();
+    }
+
+    @Bean
+    public AddressService addressService(){
+        return new AddressService();
     }
 
 }

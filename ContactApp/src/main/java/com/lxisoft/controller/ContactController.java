@@ -4,6 +4,7 @@ package com.lxisoft.controller;
 import com.lxisoft.model.Address;
 import com.lxisoft.model.Contact;
 
+import com.lxisoft.service.AddressService;
 import com.lxisoft.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,9 @@ public class ContactController {
    // ContactRepository repository;
     @Autowired
    ContactService contactService;
+
+    @Autowired
+    AddressService addressService;
 
     @RequestMapping(value="/view")
     public String viewAllContact(@RequestParam(required = false, value="page") String page, @RequestParam(required = false, value="name") String name, ModelMap model) throws Exception {
@@ -95,10 +99,13 @@ public class ContactController {
         response.sendRedirect("view");*/
     }
     @RequestMapping(value = "/addContactAddress")
-    public void saveContactAddress(@ModelAttribute("address")Address address, HttpServletResponse response) throws IOException {
+    public void saveContactAddress(@RequestParam(value = "contactId")String id,@RequestParam(value = "placeName")String placename,@RequestParam(value = "nationality")String nationality, HttpServletResponse response) throws IOException {
         /*model.addAttribute(id);
         return "addAddress";*/
-        contactService.saveAddress(address);
+        Address address = new Address();
+        address.setPlaceName(placename);
+        address.setNationality(nationality);
+        addressService.saveAddress(address);
         response.sendRedirect("view");
     }
 
