@@ -9,6 +9,7 @@ import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,6 +34,10 @@ public class ContactService {//implements ContactService {
    // @Override
     @Transactional
     public void saveContact(Contact contact) {
+        /*List<Address> addresses = new ArrayList<>();
+        addresses.add(address);
+        //Contact contact = new Contact();
+        contact.setAddress(addresses);*/
         contactRepository.save(contact);
     }
 

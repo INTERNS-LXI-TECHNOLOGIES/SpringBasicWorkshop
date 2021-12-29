@@ -9,15 +9,15 @@ public class Address implements Serializable {
    // @Column(name = "")
    // String contactId;
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+
     int id;
     @Column(name = "place_name")
     String placeName;
     @Column(name = "nationality")
     String nationality;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "sno",referencedColumnName = "sno", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "sno",nullable = false)
     public Contact contact;
 
     public Contact getContact() {
