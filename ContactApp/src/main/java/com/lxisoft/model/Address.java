@@ -6,18 +6,18 @@ import java.io.Serializable;
 @Table(name = "address")
 public class Address implements Serializable {
     @Id
-   // @Column(name = "")
-   // String contactId;
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-
     int id;
+    
     @Column(name = "place_name")
     String placeName;
+    
     @Column(name = "nationality")
     String nationality;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "sno",nullable = false)
+    @JoinColumn(name = "contact_id",nullable = false)
     public Contact contact;
 
     public Contact getContact() {

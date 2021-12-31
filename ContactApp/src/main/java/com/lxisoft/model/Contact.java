@@ -8,16 +8,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "contacts")
+@Table(name = "contact")
 public class Contact implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "sno")
+    @Column(name = "id")
     int id;
+    
     @Column(name = "name")
     String name;
+    
     @Column(name = "number")
     String number;
+    
     @Column(name = "email")
     String email;
 
