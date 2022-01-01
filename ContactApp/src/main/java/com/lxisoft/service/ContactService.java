@@ -33,11 +33,11 @@ public class ContactService {//implements ContactService {
 
    // @Override
     @Transactional
-    public void saveContact(Contact contact) {
-        /*List<Address> addresses = new ArrayList<>();
+    public void saveContact(Contact contact,Address address) {
+        List<Address> addresses = new ArrayList<>();
         addresses.add(address);
         //Contact contact = new Contact();
-        contact.setAddress(addresses);*/
+        contact.setAddress(addresses);
         contactRepository.save(contact);
     }
 

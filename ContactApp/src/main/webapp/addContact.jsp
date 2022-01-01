@@ -24,6 +24,25 @@
 			</tr>
 			<br>
 			<br>
+			<table>
+            				<tr>
+            					<td>Contact Id</td>
+            					<td><input type="text" name="contactId" value= <%=request.getParameter("id")%>></td>
+            				</tr>
+            			<tr>
+            				<td>House Name</td>
+            				<td><input type="text" placeholder="Enter State Name" name="placeName" required></td>
+            			</tr>
+            			<br>
+            			<br>
+            			<tr>
+            				<td>Nationality</td>
+            				<td><input type="text" placeholder="Enter Nationality" name="nationality" required></td>
+            			</tr>
+            			<br>
+            			<br>
+
+            		</table>
 		<!--	Name:<input type="text" placeholder="Enter Name" name="name" required><br><br>
 			Number:<input type="text" placeholder="Enter Number" name="number" required><br><br>
 			Email:<input type="text" placeholder="Enter Email id" name="mail" required><br><br>  -->
