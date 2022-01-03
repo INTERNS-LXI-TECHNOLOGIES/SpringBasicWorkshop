@@ -120,12 +120,12 @@ public class ContactController {
         model.addAttribute("contact",contactToEdit);
         return "editContact";
     }
-   /* @RequestMapping(value = "viewContactAddress")
+    @RequestMapping(value = "viewContactAddress")
     public String viewAddress(@RequestParam String id,ModelMap model){
-        Address contactAddress = contactService.getAddressById(Integer.parseInt(id));
+        Address contactAddress = addressService.getAddressById(Integer.parseInt(id));
         model.addAttribute("address",contactAddress);
         return "viewAddress";
-    }*/
+    }
 
    /* @RequestMapping(value = "/editContact")
     public void editContact(@ModelAttribute("contact") Contact contact, HttpServletResponse response, HttpServletRequest request) throws IOException {

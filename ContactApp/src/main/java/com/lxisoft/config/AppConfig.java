@@ -1,4 +1,4 @@
-package com.lxisoft;
+package com.lxisoft.config;
 
 //import com.lxisoft.repository.ContactDAOImplementation;
 import com.lxisoft.service.AddressService;

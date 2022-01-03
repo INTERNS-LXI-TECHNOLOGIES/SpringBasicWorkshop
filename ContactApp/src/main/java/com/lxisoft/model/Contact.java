@@ -24,7 +24,8 @@ public class Contact implements Serializable {
     @Column(name = "email")
     String email;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "contact")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "contact_id", referencedColumnName = "id")
     public List<Address> address = new ArrayList<Address>();
 
     public List<Address> getAddress() {

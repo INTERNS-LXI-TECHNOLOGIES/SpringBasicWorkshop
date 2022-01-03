@@ -16,7 +16,7 @@ public class Address implements Serializable {
     @Column(name = "nationality")
     String nationality;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    /*@OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "contact_id",nullable = false)
     public Contact contact;
 
@@ -26,7 +26,7 @@ public class Address implements Serializable {
 
     public void setContact(Contact contact) {
         this.contact = contact;
-    }
+    }*/
 
     public int getId() {
         return id;
