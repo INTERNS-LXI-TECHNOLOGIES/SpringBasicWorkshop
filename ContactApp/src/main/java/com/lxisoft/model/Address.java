@@ -6,8 +6,11 @@ import java.io.Serializable;
 @Table(name = "address")
 public class Address implements Serializable {
     @Id
-    @Column(name = "id")
+
+   // @Column(name = "")
+   // String contactId;
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     int id;
     
     @Column(name = "place_name")

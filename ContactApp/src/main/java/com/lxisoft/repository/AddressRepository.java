@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository("AddressRepository")
 public interface AddressRepository extends JpaRepository<Address,Integer> {
-    public Address findByContact_Id(Integer contact_id);
+    //public Address findByContact_Id(Integer contact_id);
 }

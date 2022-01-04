@@ -25,13 +25,13 @@ public class AddressService {
         addresses.add(address);
         Contact contact = new Contact();
         contact.setAddress(addresses);
-        contactRepository.save(contact);
+        addressRepository.save(address);
     }
 
     @Transactional
     public Address getAddressById(int contact_id) {
-        Address addressById = addressRepository.findByContact_Id(contact_id);
-        return addressById;
+        Optional<Address> addressById = addressRepository.findById(contact_id);
+        return addressById.get();
     }
 }
 
