@@ -30,7 +30,7 @@
             					<td><input type="text" name="contactId" value= <%=request.getParameter("id")%>></td>
             				</tr>
             			<tr>
-            				<td>House Name</td>
+            				<td>Place Name</td>
             				<td><input type="text" placeholder="Enter State Name" name="placeName" required></td>
             			</tr>
             			<br>

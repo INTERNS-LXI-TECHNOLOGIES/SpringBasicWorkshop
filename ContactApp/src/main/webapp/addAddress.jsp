@@ -4,7 +4,7 @@
 	<title></title>
 </head>
 <body style="background-color:powderblue;">
-	<h1 style="background-color:white;">Adding Contact</h1>
+	<h1 style="background-color:white;">Adding Address</h1>
 		<form action="addContactAddress" method="get" modelAttribute="address">
 
 			<table>
@@ -13,8 +13,8 @@
 					<td><input type="text" name="contactId" value= <%=request.getParameter("id")%>></td>
 				</tr>
 			<tr>
-				<td>House Name</td>
-				<td><input type="text" placeholder="Enter State Name" name="placeName" required></td>
+				<td>Place Name</td>
+				<td><input type="text" placeholder="Enter House Name" name="placeName" required></td>
 			</tr>
 			<br>
 			<br>

@@ -11,9 +11,10 @@
     <center>
 
     <%
-    Address address = new Address();
-    address = (Address)request.getAttribute("address");
-    // for(Contact editContact : contact){
+    List<Contact> contactWithAddress = (List<Contact>)request.getAttribute("contactAddress");
+
+    for(Contact contactAddress : contactWithAddress){
+
     %>
     <table style="width:50%" border="2" cellpadding="10" cellspacing="10">
         <tr>
@@ -24,9 +25,9 @@
         
             <!--<c:forEach var="contacts" items="${contactList}">-->
         <tr>
-            <td><%out.print(address.getId());%></td>
-            <td><%out.print(contact.getPlaceName());%></td>
-            <td><%out.print(contact.getNationality());%></td>
+            <td><%out.print(contactAddress.getId());%></td>
+            <td><%out.print(contactAddress.getPlaceName());%></td>
+            <td><%out.print(contactAddress.getNationality());%></td>
         </tr>
     </table>
     <%// }%>

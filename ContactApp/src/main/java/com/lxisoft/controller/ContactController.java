@@ -83,11 +83,11 @@ public class ContactController {
             Contact contact = new Contact();
             contact.setName(name);
             contact.setNumber(number);
-            contact.setEmail(mail);
+            contact.setEmail(mail);/*
             Address address = new Address();
             address.setPlaceName(placename);
-            address.setNationality(nationality);
-            contactService.saveContact(contact,address);
+            address.setNationality(nationality);*/
+            contactService.saveContact(contact);
             response.sendRedirect("view");
         }
         catch (Exception e){
@@ -122,26 +122,27 @@ public class ContactController {
     }
     @RequestMapping(value = "viewContactAddress")
     public String viewAddress(@RequestParam String id,ModelMap model){
-        Address contactAddress = addressService.getAddressById(Integer.parseInt(id));
+        ArrayList<Contact> contactAddress = (ArrayList<Contact>) addressService.getAddressById(Integer.parseInt(id));
         model.addAttribute("address",contactAddress);
         return "viewAddress";
     }
 
-   /* @RequestMapping(value = "/editContact")
+    @RequestMapping(value = "/editContact")
     public void editContact(@ModelAttribute("contact") Contact contact, HttpServletResponse response, HttpServletRequest request) throws IOException {
         // ContactRepository repository = new ContactRepository();
-/*
-         Contact contact = new Contact();
 
-        contact.setId(Integer.parseInt(sno));
+         //Contact contacts = new Contact();
+         //contacts = contact;
+
+        /*contact.setId(Integer.parseInt(sno));
         contact.setName(name);
         contact.setNumber(number);
         contact.setEmail(email);
         int id = Integer.parseInt(request.getParameter("sno"));
-        contactService.deleteContactById(id);
+        contactService.deleteContactById(id);*/
         contactService.saveContact(contact);
         response.sendRedirect("view");
-    }*/
+    }
 
     @RequestMapping(value = "/deleteContact")
     public String deleteContact(@RequestParam int sno){

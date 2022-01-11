@@ -29,9 +29,9 @@ public class AddressService {
     }
 
     @Transactional
-    public Address getAddressById(int contact_id) {
-        Optional<Address> addressById = addressRepository.findById(contact_id);
-        return addressById.get();
+    public List<Contact> getAddressById(int contact_id) {
+        List<Contact> contactById = contactRepository.findAllById(Collections.singleton(contact_id));
+        return contactById;
     }
 }
 
