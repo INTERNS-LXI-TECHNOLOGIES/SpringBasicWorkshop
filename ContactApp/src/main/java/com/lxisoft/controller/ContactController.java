@@ -122,24 +122,24 @@ public class ContactController {
     }
     @RequestMapping(value = "viewContactAddress")
     public String viewAddress(@RequestParam String id,ModelMap model){
-        ArrayList<Contact> contactAddress = (ArrayList<Contact>) addressService.getAddressById(Integer.parseInt(id));
+        Address contactAddress = addressService.getAddressById(Integer.parseInt(id));
         model.addAttribute("address",contactAddress);
         return "viewAddress";
     }
 
     @RequestMapping(value = "/editContact")
-    public void editContact(@ModelAttribute("contact") Contact contact, HttpServletResponse response, HttpServletRequest request) throws IOException {
+    public void editContact( @RequestParam(value = "sno")String id,@RequestParam(value = "name")String name,@RequestParam(value = "number")String number,@RequestParam(value = "email")String email/*@ModelAttribute("contact") Contact contact*/, HttpServletResponse response, HttpServletRequest request) throws IOException {
         // ContactRepository repository = new ContactRepository();
 
-         //Contact contacts = new Contact();
+         Contact contact = new Contact();
          //contacts = contact;
 
-        /*contact.setId(Integer.parseInt(sno));
+        contact.setId(Integer.parseInt(id));
         contact.setName(name);
         contact.setNumber(number);
         contact.setEmail(email);
-        int id = Integer.parseInt(request.getParameter("sno"));
-        contactService.deleteContactById(id);*/
+        //int id = Integer.parseInt(request.getParameter("sno"));
+       // contactService.deleteContactById(id);*/
         contactService.saveContact(contact);
         response.sendRedirect("view");
     }

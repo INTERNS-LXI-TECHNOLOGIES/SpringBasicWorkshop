@@ -11,9 +11,9 @@
     <center>
 
     <%
-    List<Contact> contactWithAddress = (List<Contact>)request.getAttribute("contactAddress");
+    Address contactAddress = request.getAttribute("address");
 
-    for(Contact contactAddress : contactWithAddress){
+    // for(Address contactAddress : contactWithAddress){
 
     %>
     <table style="width:50%" border="2" cellpadding="10" cellspacing="10">
