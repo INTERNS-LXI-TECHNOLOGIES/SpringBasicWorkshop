@@ -25,11 +25,7 @@
 			<br>
 			<br>
 			<table>
-            				<tr>
-            					<td>Contact Id</td>
-            					<td><input type="text" name="contactId" value= <%=request.getParameter("id")%>></td>
-            				</tr>
-            			<tr>
+
             				<td>Place Name</td>
             				<td><input type="text" placeholder="Enter State Name" name="placeName" required></td>
             			</tr>

@@ -10,6 +10,6 @@ import java.util.List;
 
 @Repository("AddressRepository")
 public interface AddressRepository extends JpaRepository<Address,Integer> {
-    @Query("from Address address where address.contactId = :contactId")
+    //@Query("from Address address where address.contactId = :contactId")
     public Address findByContactId(@Param("contactId") int contactId);
 }

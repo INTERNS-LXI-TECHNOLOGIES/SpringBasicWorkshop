@@ -7,8 +7,6 @@ import java.io.Serializable;
 public class Address implements Serializable {
     @Id
 
-   // @Column(name = "")
-   // String contactId;
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     int id;
@@ -19,8 +17,8 @@ public class Address implements Serializable {
     @Column(name = "nationality")
     String nationality;
 
-    /*@OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "contact_id",nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    //@JoinColumn(name = "contact_id",nullable = false)*/
     public Contact contact;
 
     public Contact getContact() {
@@ -29,7 +27,7 @@ public class Address implements Serializable {
 
     public void setContact(Contact contact) {
         this.contact = contact;
-    }*/
+    }
 
     public int getId() {
         return id;
@@ -55,13 +53,13 @@ public class Address implements Serializable {
         this.nationality = nationality;
     }
 
-  /*  public String getContactId() {
-        return contactId;
-    }
 
-    public void setContactId(String contactId) {
-        this.contactId = contactId;
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", placeName='" + placeName + '\'' +
+                ", nationality='" + nationality + '\'' +
+                '}';
     }
-    */
-
 }

@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -26,11 +24,12 @@ public class ContactController {
    // @Autowired
    // ContactRepository repository;
     @Autowired
-   ContactService contactService;
+    ContactService contactService;
 
     @Autowired
     AddressService addressService;
 
+    //View Contacts
     @RequestMapping(value="/view")
     public String viewAllContact(@RequestParam(required = false, value="page") String page, @RequestParam(required = false, value="name") String name, ModelMap model) throws Exception {
         //ContactRepository repository = new ContactRepository();
@@ -54,7 +53,7 @@ public class ContactController {
         if (name == null) {
             contactList = contactService.getAllContacts(pageNumber,contactPerPage);
             totalContacts = contactService.getNumberOfContacts();
-            System.out.print("Controller  : "+ page);
+            //System.out.print("Controller  : "+ page);
         }
         else{
             contactList = contactService.searchContactByName(name);
@@ -74,52 +73,52 @@ public class ContactController {
         return "viewContact";
     }
 
+    //Adding Contact
     @RequestMapping(value = "/addContact")
-    public void addNewContact(@RequestParam(required = true, value = "name")String name,@RequestParam(required = true, value = "number")String number,@RequestParam(required = true, value = "mail")String mail,@RequestParam(value = "placeName")String placename,@RequestParam(value = "nationality")String nationality, HttpServletResponse response){
+    public void addNewContact(@RequestParam(required = true, value = "name")String name,@RequestParam(required = true, value = "number")String number,@RequestParam(required = true, value = "mail")String mail,@RequestParam(value = "placeName")String placeName,@RequestParam(value = "nationality")String nationality, HttpServletResponse response){
 
         try {
             // ContactRepository repository = new ContactRepository();
-
             Contact contact = new Contact();
             contact.setName(name);
             contact.setNumber(number);
-            contact.setEmail(mail);/*
+            contact.setEmail(mail);
             Address address = new Address();
-            address.setPlaceName(placename);
-            address.setNationality(nationality);*/
-            contactService.saveContact(contact);
+            address.setPlaceName(placeName);
+            address.setNationality(nationality);
+            contactService.saveContact(contact,address);
             response.sendRedirect("view");
         }
         catch (Exception e){
             e.printStackTrace();
         }
     }
-    @RequestMapping(value = "/addAddress")
-    public String addAddress(@RequestParam String id, ModelMap model) throws IOException {
-        model.addAttribute(id);
-        return "addAddress";
-        /*contactService.saveAddress(address);
-        response.sendRedirect("view");*/
-    }
-    @RequestMapping(value = "/addContactAddress")
+
+    //Adding Address
+   /* @RequestMapping(value = "/addContactAddress")
     public void saveContactAddress(@RequestParam(value = "contactId")String id,@RequestParam(value = "placeName")String placename,@RequestParam(value = "nationality")String nationality, HttpServletResponse response) throws IOException {
-        /*model.addAttribute(id);
-        return "addAddress";*/
+        *//*model.addAttribute(id);
+        return "addAddress";*//*
         Address address = new Address();
         address.setPlaceName(placename);
         address.setNationality(nationality);
         addressService.saveAddress(address);
         response.sendRedirect("view");
-    }
+    }*/
 
+    //Get Contact and Address by Id
     @RequestMapping(value = "/showContact")
     public String showContactDetails(@RequestParam String id,ModelMap model){
         //ContactRepository repository = new ContactRepository();
         Contact contactToEdit =  contactService.getContactById(Integer.parseInt(id));
-
+        Address addressToEdit = addressService.getAddressById(Integer.parseInt(id));
         model.addAttribute("contact",contactToEdit);
+        model.addAttribute("address",addressToEdit);
         return "editContact";
     }
+
+
+    //Get Address by Id
     @RequestMapping(value = "viewContactAddress")
     public String viewAddress(@RequestParam String id,ModelMap model){
         Address contactAddress = addressService.getAddressById(Integer.parseInt(id));
@@ -127,23 +126,31 @@ public class ContactController {
         return "viewAddress";
     }
 
+
+    //Edit Contact and Address
     @RequestMapping(value = "/editContact")
-    public void editContact( @RequestParam(value = "sno")String id,@RequestParam(value = "name")String name,@RequestParam(value = "number")String number,@RequestParam(value = "email")String email/*@ModelAttribute("contact") Contact contact*/, HttpServletResponse response, HttpServletRequest request) throws IOException {
+    public void editContact( @RequestParam(value = "sno")String id,@RequestParam(value = "name")String name,@RequestParam(value = "number")String number,@RequestParam(value = "email")String email,@RequestParam(value = "placeName")String placeName,@RequestParam(value = "nationality")String nationality, HttpServletResponse response, HttpServletRequest request) throws IOException {
         // ContactRepository repository = new ContactRepository();
 
-         Contact contact = new Contact();
-         //contacts = contact;
+        Contact contact = new Contact();
+
 
         contact.setId(Integer.parseInt(id));
         contact.setName(name);
         contact.setNumber(number);
         contact.setEmail(email);
+
+        Address address = new Address();
+        address.setPlaceName(placeName);
+        address.setNationality(nationality);
         //int id = Integer.parseInt(request.getParameter("sno"));
-       // contactService.deleteContactById(id);*/
-        contactService.saveContact(contact);
+       // contactService.deleteContactById(id);
+        contactService.saveContact(contact, address);
         response.sendRedirect("view");
     }
 
+
+    //Delete Contact and Address
     @RequestMapping(value = "/deleteContact")
     public String deleteContact(@RequestParam int sno){
 

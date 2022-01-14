@@ -14,7 +14,7 @@
 				</tr>
 			<tr>
 				<td>Place Name</td>
-				<td><input type="text" placeholder="Enter House Name" name="placeName" required></td>
+				<td><input type="text" placeholder="Enter Place Name" name="placeName" required></td>
 			</tr>
 			<br>
 			<br>

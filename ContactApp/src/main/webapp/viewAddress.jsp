@@ -5,13 +5,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Edit Contact</title>
+    <title>View Address</title>
+    <style>
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+        th, td {
+          background-color: #69A4A4;
+        }
+    </style>
 </head>
 <body style="background-color:powderblue;">
     <center>
 
     <%
-    Address contactAddress = request.getAttribute("address");
+    Address contactAddress = (Address)request.getAttribute("address");
 
     // for(Address contactAddress : contactWithAddress){
 

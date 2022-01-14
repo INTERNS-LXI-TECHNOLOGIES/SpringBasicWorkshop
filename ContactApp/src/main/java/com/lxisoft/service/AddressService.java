@@ -19,14 +19,14 @@ public class AddressService {
     @Autowired
     public ContactRepository contactRepository;
 
-    @Transactional
+   /* @Transactional
     public void saveAddress(Address address){
         List<Address> addresses = new ArrayList<>();
         addresses.add(address);
         Contact contact = new Contact();
         contact.setAddress(addresses);
         addressRepository.save(address);
-    }
+    }*/
 
     @Transactional
     public Address getAddressById(int contactId) {

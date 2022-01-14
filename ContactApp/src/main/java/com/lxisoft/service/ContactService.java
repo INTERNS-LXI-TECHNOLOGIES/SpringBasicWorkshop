@@ -27,17 +27,28 @@ public class ContactService {//implements ContactService {
         Pageable pageable = PageRequest.of(start,contactPerPage,Sort.by("name"));
         Page<Contact> page = contactRepository.findAll(pageable);
 
+        Contact contact = new Contact();
+        ArrayList<Address> contactAddress = (ArrayList<Address>) contact.getAddress();
+        if(contactAddress.isEmpty()){
+            System.out.println("List is empty");
+        }
+        else{
+            for(Address address : contactAddress){
+                System.out.println(address.getNationality());
+                System.out.println(address.getPlaceName());
+                System.out.println(address.getId());
+            }
+        }
         return page.getContent();
-        //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
     }
 
 
     @Transactional
-    public void saveContact(Contact contact/*,Address address*/) {
-       // List<Address> addresses = new ArrayList<>();
-        //addresses.add(address);
+    public void saveContact(Contact contact,Address address) {
+        List<Address> addresses = new ArrayList<>();
+        addresses.add(address);
         //Contact contact = new Contact();
-       // contact.setAddress(addresses);
+        contact.setAddress(addresses);
         contactRepository.save(contact);
     }
 
