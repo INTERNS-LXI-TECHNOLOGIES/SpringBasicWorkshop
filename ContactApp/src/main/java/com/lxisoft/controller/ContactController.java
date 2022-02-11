@@ -74,6 +74,13 @@ public class ContactController {
         return "viewContact";
     }
 
+    //Redirect to AddContact
+    @RequestMapping(value = "/addNewContact")
+    public String addNewContact(ModelMap model){
+
+        return "addContact";
+    }
+
     //Adding Contact
     @RequestMapping(value = "/addContact")
     public void addNewContact(@RequestParam(required = true, value = "name")String name,@RequestParam(required = true, value = "number")String number,@RequestParam(required = true, value = "mail")String mail,@RequestParam(value = "placeName")String placeName,@RequestParam(value = "nationality")String nationality, HttpServletResponse response){
@@ -95,17 +102,6 @@ public class ContactController {
         }
     }
 
-    //Adding Address
-   /* @RequestMapping(value = "/addContactAddress")
-    public void saveContactAddress(@RequestParam(value = "contactId")String id,@RequestParam(value = "placeName")String placename,@RequestParam(value = "nationality")String nationality, HttpServletResponse response) throws IOException {
-        *//*model.addAttribute(id);
-        return "addAddress";*//*
-        Address address = new Address();
-        address.setPlaceName(placename);
-        address.setNationality(nationality);
-        addressService.saveAddress(address);
-        response.sendRedirect("view");
-    }*/
 
     //Get Contact and Address by Id
     @RequestMapping(value = "/showContact")

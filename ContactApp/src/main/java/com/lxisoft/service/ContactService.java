@@ -22,28 +22,29 @@ public class ContactService {//implements ContactService {
     @Autowired
     AddressRepository addressRepository;
 
-    @Transactional
+
     public List<Contact> getAllContacts(int start,int contactPerPage){
         Pageable pageable = PageRequest.of(start,contactPerPage,Sort.by("name"));
         Page<Contact> page = contactRepository.findAll(pageable);
 
         Contact contact = new Contact();
         ArrayList<Address> contactAddress = (ArrayList<Address>) contact.getAddress();
-        if(contactAddress.isEmpty()){
+        /*if(contactAddress.isEmpty()){
             System.out.println("List is empty");
         }
-        else{
-            for(Address address : contactAddress){
+        else {
+            for (Address address : contactAddress) {
                 System.out.println(address.getNationality());
                 System.out.println(address.getPlaceName());
                 System.out.println(address.getId());
             }
-        }
+        }*/
+
         return page.getContent();
     }
 
 
-    @Transactional
+
     public void saveContact(Contact contact,Address address) {
         List<Address> addresses = new ArrayList<>();
         addresses.add(address);

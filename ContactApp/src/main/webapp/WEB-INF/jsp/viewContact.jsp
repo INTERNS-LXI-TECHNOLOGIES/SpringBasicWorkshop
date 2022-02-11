@@ -88,10 +88,10 @@
         %>
         <br>
         <br>
-        <a href="addContact.jsp"><button class="button">Add Contacts</button></a>
+        <a href="addNewContact"><button class="button">Add Contacts</button></a>
         <br>
         <br>
-        <a href="index.jsp"><button class="button">Back</button></a>
+        <a href="/"><button class="button">Back</button></a>
         <%
     }
      %>
