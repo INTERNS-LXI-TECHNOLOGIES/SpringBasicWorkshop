@@ -5,16 +5,17 @@
 </head>
 <body style="background-color:powderblue;">
 	<h1 style="background-color:white;">Adding Contact</h1>
+
 		<form action="addContact" method="get" modelAttribute="contact">
 			<tr>
 				<td>Name</td>
-				<td><input type="text" placeholder="Enter Name" name="name" required></td>
+				<td><input type="text" placeholder="Enter Name of Contact" name="name" required></td>
 			</tr>
 			<br>
 			<br>
 			<tr>
 				<td>Number</td>
-				<td><input type="text" placeholder="Enter Number" name="number" required></td>
+				<td><input type="text" placeholder="Enter Number of Contact" name="number" required></td>
 			</tr>
 			<br>
 			<br>
@@ -27,7 +28,7 @@
 			<table>
 
             				<td>Place Name</td>
-            				<td><input type="text" placeholder="Enter State Name" name="placeName" required></td>
+            				<td><input type="text" placeholder="Enter Place Name" name="placeName" required></td>
             			</tr>
             			<br>
             			<br>

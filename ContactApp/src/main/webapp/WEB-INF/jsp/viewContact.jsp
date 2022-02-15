@@ -88,7 +88,7 @@
         %>
         <br>
         <br>
-        <a href="addNewContact"><button class="button">Add Contacts</button></a>
+        <a href="addContact"><button class="button">Add Contacts</button></a>
         <br>
         <br>
         <a href="/"><button class="button">Back</button></a>

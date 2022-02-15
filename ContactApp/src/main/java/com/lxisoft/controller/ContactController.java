@@ -20,6 +20,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+//import static com.sun.tools.javac.jvm.ByteCodes.ret;
+
 @Controller
 public class ContactController {
    // @Autowired
@@ -77,16 +79,20 @@ public class ContactController {
     //Redirect to AddContact
     @RequestMapping(value = "/addNewContact")
     public String addNewContact(ModelMap model){
-
+        Contact contact = new Contact();
+        Address address = new Address();
+        model.addAttribute("contact",contact);
+        model.addAttribute("address",address);
         return "addContact";
     }
 
     //Adding Contact
     @RequestMapping(value = "/addContact")
-    public void addNewContact(@RequestParam(required = true, value = "name")String name,@RequestParam(required = true, value = "number")String number,@RequestParam(required = true, value = "mail")String mail,@RequestParam(value = "placeName")String placeName,@RequestParam(value = "nationality")String nationality, HttpServletResponse response){
-
-        try {
-            // ContactRepository repository = new ContactRepository();
+    public String addNewContact(@RequestParam(required = false, value = "name")String name,@RequestParam(required = false,value = "number")String number,@RequestParam(required = false, value = "mail")String mail,@RequestParam(required = false,value = "placeName")String placeName,@RequestParam(required = false,value = "nationality")String nationality,ModelMap model, HttpServletResponse response){
+        if(name==null&&number==null&&mail==null&&placeName==null&&nationality==null){
+            return "addContact";
+        }
+        else {
             Contact contact = new Contact();
             contact.setName(name);
             contact.setNumber(number);
@@ -95,10 +101,7 @@ public class ContactController {
             address.setPlaceName(placeName);
             address.setNationality(nationality);
             contactService.saveContact(contact,address);
-            response.sendRedirect("view");
-        }
-        catch (Exception e){
-            e.printStackTrace();
+            return "addingContactMessage";
         }
     }
 
@@ -126,7 +129,7 @@ public class ContactController {
 
     //Edit Contact and Address
     @RequestMapping(value = "/editContact")
-    public void editContact( @RequestParam(value = "sno")String id,@RequestParam(value = "name")String name,@RequestParam(value = "number")String number,@RequestParam(value = "email")String email,@RequestParam(value = "placeName")String placeName,@RequestParam(value = "nationality")String nationality, HttpServletResponse response, HttpServletRequest request) throws IOException {
+    public String editContact( @RequestParam(value = "sno")String id,@RequestParam(value = "name")String name,@RequestParam(value = "number")String number,@RequestParam(value = "email")String email,@RequestParam(value = "placeName")String placeName,@RequestParam(value = "nationality")String nationality, HttpServletResponse response, HttpServletRequest request) throws IOException {
         // ContactRepository repository = new ContactRepository();
 
         Contact contact = new Contact();
@@ -143,7 +146,7 @@ public class ContactController {
         //int id = Integer.parseInt(request.getParameter("sno"));
        // contactService.deleteContactById(id);
         contactService.saveContact(contact, address);
-        response.sendRedirect("view");
+        return "editingContactMessage";
     }
 
 

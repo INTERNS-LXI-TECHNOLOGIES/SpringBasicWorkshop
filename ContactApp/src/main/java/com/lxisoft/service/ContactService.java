@@ -7,7 +7,7 @@ import com.lxisoft.repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +53,7 @@ public class ContactService {//implements ContactService {
         contactRepository.save(contact);
     }
 
-    @Transactional
+
     public int getNumberOfContacts(){
         int count = (int) contactRepository.count();
         return count;
@@ -72,13 +72,13 @@ public class ContactService {//implements ContactService {
     }
 */
  //   @Override
-    @Transactional
+
     public void deleteContactById(int sno) {
         contactRepository.deleteById(sno);
     }
 
    // @Override
-    @Transactional
+
     public Contact getContactById(int sno) {
         Optional<Contact> contactToEdit = contactRepository.findById(sno);
 
@@ -86,17 +86,17 @@ public class ContactService {//implements ContactService {
     }
 
    // @Override
-    @Transactional
+
     public void editContact(Contact contact) {
         contactRepository.save(contact);
     }
 
-    @Transactional
+
     public List<Contact> searchContactByName(String name){
         return contactRepository.searchResult(name);
     }
 
-    @Transactional
+
     public void saveAddress(Address address) {
         addressRepository.save(address);
     }
