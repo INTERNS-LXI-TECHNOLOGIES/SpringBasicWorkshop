@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 //import org.springframework.web.bind.annotation.RestController;
@@ -77,29 +78,29 @@ public class ContactController {
     }
 
     //Redirect to AddContact
-    @RequestMapping(value = "/addNewContact")
+   /* @RequestMapping(value = "/addNewContact")
     public String addNewContact(ModelMap model){
-        Contact contact = new Contact();
+        *//*Contact contact = new Contact();
         Address address = new Address();
         model.addAttribute("contact",contact);
-        model.addAttribute("address",address);
+        model.addAttribute("address",address);*//*
         return "addContact";
-    }
+    }*/
 
     //Adding Contact
     @RequestMapping(value = "/addContact")
-    public String addNewContact(@RequestParam(required = false, value = "name")String name,@RequestParam(required = false,value = "number")String number,@RequestParam(required = false, value = "mail")String mail,@RequestParam(required = false,value = "placeName")String placeName,@RequestParam(required = false,value = "nationality")String nationality,ModelMap model, HttpServletResponse response){
-        if(name==null&&number==null&&mail==null&&placeName==null&&nationality==null){
+    public String addNewContact(@ModelAttribute("contact") Contact contact,@ModelAttribute("address") Address address/*@RequestParam(required = false, value = "name")String name,@RequestParam(required = false,value = "number")String number,@RequestParam(required = false, value = "mail")String mail,@RequestParam(required = false,value = "placeName")String placeName,@RequestParam(required = false,value = "nationality")String nationality*/, ModelMap model, HttpServletResponse response){
+        if(contact.getName()==null&&address.getPlaceName()==null/*name==null&&number==null&&mail==null&&placeName==null&&nationality==null*/){
             return "addContact";
         }
-        else {
-            Contact contact = new Contact();
+        else{
+            /*Contact contact = new Contact();
             contact.setName(name);
             contact.setNumber(number);
             contact.setEmail(mail);
             Address address = new Address();
             address.setPlaceName(placeName);
-            address.setNationality(nationality);
+            address.setNationality(nationality);*/
             contactService.saveContact(contact,address);
             return "addingContactMessage";
         }

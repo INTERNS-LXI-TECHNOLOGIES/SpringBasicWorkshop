@@ -6,7 +6,7 @@
 <body style="background-color:powderblue;">
 	<h1 style="background-color:white;">Adding Contact</h1>
 
-		<form action="addContact" method="get" modelAttribute="contact">
+		<form action="addContact" method="post" modelAttribute="contact" modelAttribute="address">
 			<tr>
 				<td>Name</td>
 				<td><input type="text" placeholder="Enter Name of Contact" name="name" required></td>
@@ -21,7 +21,7 @@
 			<br>
 			<tr>
 				<td>E-Mail</td>
-				<td><input type="text" placeholder="Enter Email id" name="mail" required></td>
+				<td><input type="text" placeholder="Enter Email id" name="email" required></td>
 			</tr>
 			<br>
 			<br>
