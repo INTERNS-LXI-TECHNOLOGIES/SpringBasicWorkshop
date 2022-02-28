@@ -2,6 +2,7 @@
 <%@page import="com.lxisoft.model.*"%>
 <%@page import="com.lxisoft.repository.*"%>
 <%@page import="java.util.*,java.sql.*"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
 <html>
 <head>
@@ -17,6 +18,12 @@
     </style>
 </head>
 <body style="background-color:powderblue;">
+    <a href="logout" style="float: right;"><button class="button">Log out</button></a>
+    <security:authorize access= "isAuthenticated()">
+        <center> WELCOME <sec:authentication property = "name"/> </center>
+    </security:authorize>
+    <br>
+    <br>
     <center><h1 style="background-color: white; color: black; font-style: italic;">Contact List</h1></center>
     <br>
     <br>
@@ -30,65 +37,76 @@
     </div>
     <br>
     <br>
-    <center>
-     <table style="width:50%" border="2" cellpadding="10" cellspacing="10">
+
+        
+        <br>
+        <br>
+        <center>
+        <table style="width:50%" border="2" cellpadding="10" cellspacing="10">
             <tr>
                 <th style="color:blue; font-style: italic;">Name</th>
                 <th style="color:blue; font-style: italic;">Number</th>
                 <th style="color:blue; font-style: italic;">E-Mail</th>
                 <th style="color:blue; font-style: italic;">Address</th>
-                <th style="color:blue; font-style: italic;">Actions</th>
+                
+                <security:authorize ifAnyGranted = "admin">
+                    <th style="color:blue; font-style: italic;">Action</th>
+                </security:authorize>
+                
             </tr>
             <%
-            List<Contact> contacts = (List<Contact>) request.getAttribute("contactList");
-            for(Contact contact : contacts){
+            List<Contact> contactsForUser = (List<Contact>) request.getAttribute("contactList");
+            for(Contact contact : contactsForUser){
 
             %>
-            <!--<c:forEach var="contacts" items="${contactList}">-->
+           
             <tr>
                 <td><%out.print(contact.getName());%></td>
                 <td><%out.print(contact.getNumber());%></td>
                 <td><%out.print(contact.getEmail());%></td>
                 <td><a href="viewContactAddress?id=<%=contact.getId()%>"><button class="button">View Address</button></a>
-                <td>
-                    <a href="showContact?id=<%=contact.getId()%>"><button class="button">Edit</button></a>
-                    <a href="deleteContact?sno=<%=contact.getId()%>"><button class="button button2">Delete</button></a></td>
+                
+                <security:authorize ifAnyGranted = "admin">
+                    <td><a href="showContact?id=<%=contact.getId()%>"><button class="button">edit</button></a><a href="deleteContact?id=<%=contact.getId()%>"><button class="button">delete</button></a></td>
+                </security:authorize>
+                
             </tr>
             <%}%>
-     </table>
-     <br>
-    <%
+        </table>
+        <br>
+        <%
 
-    if(request.getAttribute("name") != null){
+        if(request.getAttribute("name") != null){
 
-        int num = (Integer)request.getAttribute("numOfPage");
-        for(int j=1; j<=num; j++){
+            int num = (Integer)request.getAttribute("numOfPage");
+            for(int j=1; j<=num; j++){
         %>
-            <a href="view?page=<%=(j-1)%>&name=<%=request.getAttribute("name")%>"><%=j%></a>
+        <a href="view?page=<%=(j-1)%>&name=<%=request.getAttribute("name")%>"><%=j%></a>
             &nbsp;&nbsp;&nbsp;&nbsp;
-         <%
+        <%
         }
-    %>
+        %>
         <br>
         <br>
-        <a href="addContact.jsp"><button class="button">Add Contacts</button></a>
+        
         <br>
         <br>
+        
         <a href="view"><button class="button">Back</button></a>
-    <%
-    }
-    else{
-        int num = (Integer)request.getAttribute("numOfPage");
-        for(int j=1; j<=num; j++){
+        <%
+         }
+        else{
+            int num = (Integer)request.getAttribute("numOfPage");
+            for(int j=1; j<=num; j++){
         %>
-            <a href="view?page=<%=j%>"><%=j%></a>
+        <a href="view?page=<%=j%>"><%=j%></a>
             &nbsp;&nbsp;&nbsp;&nbsp;
-    <%
+        <%
         }
         %>
         <br>
         <br>
-        <a href="addContact"><button class="button">Add Contacts</button></a>
+        
         <br>
         <br>
         <a href="/"><button class="button">Back</button></a>
@@ -96,10 +114,9 @@
     }
      %>
      <br>
-
-
-
-
     </center>
+    
+
+   
 </body>
 </html>

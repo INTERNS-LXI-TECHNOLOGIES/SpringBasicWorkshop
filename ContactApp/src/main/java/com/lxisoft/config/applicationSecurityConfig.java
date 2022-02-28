@@ -22,7 +22,7 @@ public class applicationSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configAuthentication(AuthenticationManagerBuilder authBuilder) throws Exception{
         authBuilder.inMemoryAuthentication()
-                .withUser("user1").password("{noop}user").authorities("read")
+                .withUser("user1").password("{noop}user").authorities("user")
                 .and()
                 .withUser("admin1").password("{noop}admin").authorities("admin")
                 ;
@@ -38,6 +38,7 @@ public class applicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/index.jsp").permitAll()
                 .antMatchers("/view").authenticated()
                 .antMatchers("/addContact").hasAuthority("admin")
+                .antMatchers("/showContact").hasAuthority("admin")
                 .antMatchers("/editContact").hasAuthority("admin")
                 .antMatchers("/deleteContact").hasAuthority("admin")
                 .and()
