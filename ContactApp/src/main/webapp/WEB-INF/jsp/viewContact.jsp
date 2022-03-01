@@ -20,7 +20,7 @@
 <body style="background-color:powderblue;">
     <a href="logout" style="float: right;"><button class="button">Log out</button></a>
     <security:authorize access= "isAuthenticated()">
-        <center> WELCOME <sec:authentication property = "name"/> </center>
+        <center> WELCOME <security:authentication property = "name"/> </center>
     </security:authorize>
     <br>
     <br>
@@ -49,7 +49,7 @@
                 <th style="color:blue; font-style: italic;">E-Mail</th>
                 <th style="color:blue; font-style: italic;">Address</th>
                 
-                <security:authorize ifAnyGranted = "admin">
+                <security:authorize access = "hasAuthority('admin')">
                     <th style="color:blue; font-style: italic;">Action</th>
                 </security:authorize>
                 
@@ -66,7 +66,7 @@
                 <td><%out.print(contact.getEmail());%></td>
                 <td><a href="viewContactAddress?id=<%=contact.getId()%>"><button class="button">View Address</button></a>
                 
-                <security:authorize ifAnyGranted = "admin">
+                <security:authorize access = "hasAuthority('admin')">
                     <td><a href="showContact?id=<%=contact.getId()%>"><button class="button">edit</button></a><a href="deleteContact?id=<%=contact.getId()%>"><button class="button">delete</button></a></td>
                 </security:authorize>
                 

@@ -7,6 +7,9 @@ import com.lxisoft.model.Contact;
 import com.lxisoft.service.AddressService;
 import com.lxisoft.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.ModelMap;
@@ -73,6 +76,9 @@ public class ContactController {
         model.addAttribute("numOfPage",numOfPage);
         model.addAttribute("currentPage",pageNumber);
         model.addAttribute("contactList",contactList);
+
+        //use logs instead of sysouts...
+        SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream().map(GrantedAuthority::getAuthority).forEach(System.out::println);
 
         return "viewContact";
     }
