@@ -17,6 +17,11 @@
     </style>
 </head>
 <body style="background-color:powderblue;">
+<h4 style="float: right;"><security:authentication property = "name"/>  <security:authentication property = "principal.authorities"/></h4>
+    <br>
+    <br>
+    <a href="logout" style="float: right;"><button class="button">Log out</button></a>
+    <br>
     <center>
 
     <%
@@ -27,14 +32,12 @@
     %>
     <table style="width:50%" border="2" cellpadding="10" cellspacing="10">
         <tr>
-            <th style="color:blue; font-style: italic;">Id</th>
             <th style="color:blue; font-style: italic;">Place Name</th>
             <th style="color:blue; font-style: italic;">Nationality</th>
         </tr>
         
             <!--<c:forEach var="contacts" items="${contactList}">-->
         <tr>
-            <td><%out.print(contactAddress.getId());%></td>
             <td><%out.print(contactAddress.getPlaceName());%></td>
             <td><%out.print(contactAddress.getNationality());%></td>
         </tr>

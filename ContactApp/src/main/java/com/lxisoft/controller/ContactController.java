@@ -7,14 +7,12 @@ import com.lxisoft.model.Contact;
 import com.lxisoft.service.AddressService;
 import com.lxisoft.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 //import org.springframework.web.bind.annotation.RestController;
 
@@ -35,6 +33,11 @@ public class ContactController {
 
     @Autowired
     AddressService addressService;
+
+    @RequestMapping(value = "/")
+    public void startUppage(HttpServletResponse response) throws IOException {
+        response.sendRedirect("view");
+    }
 
     //View Contacts
     @RequestMapping(value="/view")
@@ -77,9 +80,6 @@ public class ContactController {
         model.addAttribute("currentPage",pageNumber);
         model.addAttribute("contactList",contactList);
 
-        //use logs instead of sysouts...
-        SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream().map(GrantedAuthority::getAuthority).forEach(System.out::println);
-
         return "viewContact";
     }
 
@@ -92,14 +92,21 @@ public class ContactController {
         model.addAttribute("address",address);*//*
         return "addContact";
     }*/
+    //Redirect to AddContact.jsp
+    @RequestMapping(value = "/addNewContact")
+    public String  addContact(){
+        System.out.println("reached addNewContact Controller");
+        return "addContact";
+    }
 
     //Adding Contact
-    @RequestMapping(value = "/addContact")
+    @RequestMapping(value = "/addContact", method = RequestMethod.GET)
     public String addNewContact(@ModelAttribute("contact") Contact contact,@ModelAttribute("address") Address address/*@RequestParam(required = false, value = "name")String name,@RequestParam(required = false,value = "number")String number,@RequestParam(required = false, value = "mail")String mail,@RequestParam(required = false,value = "placeName")String placeName,@RequestParam(required = false,value = "nationality")String nationality*/, ModelMap model, HttpServletResponse response){
-        if(contact.getName()==null&&address.getPlaceName()==null/*name==null&&number==null&&mail==null&&placeName==null&&nationality==null*/){
+        System.out.println("Reached addContact controller");
+        /*if(contact.getName()==null&&address.getPlaceName()==null){
             return "addContact";
         }
-        else{
+        else{*/
             /*Contact contact = new Contact();
             contact.setName(name);
             contact.setNumber(number);
@@ -107,9 +114,9 @@ public class ContactController {
             Address address = new Address();
             address.setPlaceName(placeName);
             address.setNationality(nationality);*/
-            contactService.saveContact(contact,address);
-            return "addingContactMessage";
-        }
+        contactService.saveContact(contact,address);
+        return "addingContactMessage";
+
     }
 
 

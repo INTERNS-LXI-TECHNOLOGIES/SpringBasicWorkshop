@@ -4,9 +4,14 @@
 	<title></title>
 </head>
 <body style="background-color:powderblue;">
+<h4 style="float: right;"><security:authentication property = "name"/>  <security:authentication property = "principal.authorities"/></h4>
+    <br>
+    <br>
+    <a href="logout" style="float: right;"><button class="button">Log out</button></a>
+    <br>
 	<h1 style="background-color:white;">Adding Contact</h1>
 
-		<form action="addContact" method="post" modelAttribute="contact" modelAttribute="address">
+		<form action="addContact" method="get" modelAttribute="contact" modelAttribute="address">
 			<tr>
 				<td>Name</td>
 				<td><input type="text" placeholder="Enter Name of Contact" name="name" required></td>

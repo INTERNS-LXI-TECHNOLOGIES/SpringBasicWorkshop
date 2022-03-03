@@ -8,6 +8,11 @@
 	<title>Edit Contact</title>
 </head>
 <body style="background-color:powderblue;">
+<h4 style="float: right;"><security:authentication property = "name"/>  <security:authentication property = "principal.authorities"/></h4>
+    <br>
+    <br>
+    <a href="logout" style="float: right;"><button class="button">Log out</button></a>
+    <br>
     <center>
 
 	<%
