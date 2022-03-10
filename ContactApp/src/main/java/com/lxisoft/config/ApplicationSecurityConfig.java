@@ -21,17 +21,17 @@ public class applicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configAuthentication(AuthenticationManagerBuilder authBuilder) throws Exception{
-        authBuilder.inMemoryAuthentication()
+        /*authBuilder.inMemoryAuthentication()
                 .withUser("user1").password("{noop}user").authorities("user")
                 .and()
                 .withUser("admin1").password("{noop}admin").authorities("admin")
                 .and()
                 .withUser("controller").password("{noop}controller").authorities("admin","user")
-        ;
-    /*jdbcAuthentication().passwordEncoder(new BCryptPasswordEncoder())
+        ;*/
+        authBuilder.jdbcAuthentication().passwordEncoder(new BCryptPasswordEncoder())
                 .dataSource(dataSource)
                 .usersByUsernameQuery("select user_name,password from user where user_name = ?")
-                .authoritiesByUsernameQuery("select user_name,user_role from user where user_name=?");*/
+                .authoritiesByUsernameQuery("select user_name,user_role from user where user_name=?");
     }
 
     @Override

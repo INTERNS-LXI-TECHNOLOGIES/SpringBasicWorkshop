@@ -1,20 +1,26 @@
 package com.lxisoft.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "user")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "userId")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_Id")
     int userId;
     @Column(name = "user_name")
     String userName;
     @Column(name = "password")
     String password;
-    @Column(name = "user_role")
-    String userRole;
+    @Column(name = "enabled")
+    boolean enabled;
+
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinTable(name = "user_roles",joinColumns = @JoinColumn(name = "user_id"),inverseJoinColumns = @JoinColumn(name = "role_id"))
+    public Set<Role> roles = new HashSet<>();
 
     public int getUserId() {
         return userId;
@@ -40,11 +46,12 @@ public class User {
         this.password = password;
     }
 
-    public String getUserRole() {
-        return userRole;
+    public boolean isEnabled() {
+        return enabled;
     }
 
-    public void setUserRole(String userRole) {
-        this.userRole = userRole;
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
+
 }

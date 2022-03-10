@@ -93,20 +93,20 @@ public class ContactController {
         return "addContact";
     }*/
     //Redirect to AddContact.jsp
-    @RequestMapping(value = "/addNewContact")
+    /*@RequestMapping(value = "/addNewContact")
     public String  addContact(){
         System.out.println("reached addNewContact Controller");
         return "addContact";
-    }
+    }*/
 
     //Adding Contact
     @RequestMapping(value = "/addContact", method = RequestMethod.GET)
     public String addNewContact(@ModelAttribute("contact") Contact contact,@ModelAttribute("address") Address address/*@RequestParam(required = false, value = "name")String name,@RequestParam(required = false,value = "number")String number,@RequestParam(required = false, value = "mail")String mail,@RequestParam(required = false,value = "placeName")String placeName,@RequestParam(required = false,value = "nationality")String nationality*/, ModelMap model, HttpServletResponse response){
         System.out.println("Reached addContact controller");
-        /*if(contact.getName()==null&&address.getPlaceName()==null){
+        if(contact.getName()==null&&address.getPlaceName()==null){
             return "addContact";
         }
-        else{*/
+        else {
             /*Contact contact = new Contact();
             contact.setName(name);
             contact.setNumber(number);
@@ -114,8 +114,9 @@ public class ContactController {
             Address address = new Address();
             address.setPlaceName(placeName);
             address.setNationality(nationality);*/
-        contactService.saveContact(contact,address);
-        return "addingContactMessage";
+            contactService.saveContact(contact, address);
+            return "addingContactMessage";
+        }
 
     }
 
@@ -130,7 +131,6 @@ public class ContactController {
         model.addAttribute("address",addressToEdit);
         return "editContact";
     }
-
 
     //Get Address by Id
     @RequestMapping(value = "viewContactAddress")
