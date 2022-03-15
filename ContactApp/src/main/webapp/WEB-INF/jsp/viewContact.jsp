@@ -49,7 +49,7 @@
                     <th style="color:blue; font-style: italic;">Number</th>
                     <th style="color:blue; font-style: italic;">E-Mail</th>
                     <th style="color:blue; font-style: italic;">Address</th>
-                    <security:authorize access="hasAuthority('admin')">
+                    <security:authorize access="hasAuthority('ADMIN')">
                         <th style="color:blue; font-style: italic;">Action</th>
                     </security:authorize>
                     
@@ -65,7 +65,7 @@
                     <td><%out.print(contact.getNumber());%></td>
                     <td><%out.print(contact.getEmail());%></td>
                     <td><a href="viewContactAddress?id=<%=contact.getId()%>"><button class="button">View Address</button></a>
-                        <security:authorize access="hasAuthority('admin')"><td><a href="showContact?id=<%=contact.getId()%>"><button class="button">edit</button></a><a href="deleteContact?sno=<%=contact.getId()%>"><button class="button">delete</button></a></td></security:authorize>
+                        <security:authorize access="hasAuthority('ADMIN')"><td><a href="showContact?id=<%=contact.getId()%>"><button class="button">edit</button></a><a href="deleteContact?sno=<%=contact.getId()%>"><button class="button">delete</button></a></td></security:authorize>
                         
 
                     </tr>
@@ -86,8 +86,8 @@
                 %>
                 <br>
                 <br>
-                <security:authorize access="hasAuthority('admin')">
-                    <a href="addNewContact"><button class="button">Add Contact</button></a>
+                <security:authorize access="hasAuthority('ADMIN')">
+                    <a href="addContact"><button class="button">Add Contact</button></a>
                 </security:authorize>
                 <br>
                 <br>
@@ -106,8 +106,8 @@
             %>
             <br>
             <br>
-            <security:authorize access="hasAuthority('admin')">
-                <a href="addNewContact"><button class="button">Add Contact</button></a>
+            <security:authorize access="hasAuthority('ADMIN')">
+                <a href="addContact"><button class="button">Add Contact</button></a>
             </security:authorize>
             <br>
             <br>

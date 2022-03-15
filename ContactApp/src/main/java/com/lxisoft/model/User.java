@@ -54,4 +54,11 @@ public class User {
         this.enabled = enabled;
     }
 
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
 }
