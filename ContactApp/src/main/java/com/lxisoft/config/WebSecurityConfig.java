@@ -22,7 +22,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements configure {
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
     @Autowired
     DataSource dataSource;
 
@@ -49,7 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements c
     }
 
     @Override
-    public void configAuthentication(AuthenticationManagerBuilder authBuilder) throws Exception{
+    public void configure(AuthenticationManagerBuilder authBuilder) throws Exception{
         /*authBuilder.inMemoryAuthentication()
                 .withUser("user1").password("{noop}user").authorities("user")
                 .and()
