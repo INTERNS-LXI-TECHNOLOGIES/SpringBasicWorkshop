@@ -1,6 +1,7 @@
 package com.lxisoft.validator;
 
 import com.lxisoft.model.User;
+import com.lxisoft.service.UserService;
 import com.lxisoft.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.boot.autoconfigure.security.SecurityProperties;
@@ -12,7 +13,7 @@ import org.springframework.validation.Validator;
 @Component
 public class UserValidator implements Validator {
     @Autowired
-    private UserServiceImpl userService;
+    private UserService userService;
 
     @Override
     public boolean supports(Class<?> aClass) {
@@ -24,10 +25,10 @@ public class UserValidator implements Validator {
         User user = (User) target;
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmpty");
         if (user.getUserName().length() < 6 || user.getUserName().length() > 32) {
-            errors.rejectValue("username", "Size.userForm.username");
+            errors.rejectValue("userName", "Size.userForm.username");
         }
         if (userService.findByUserName(user.getUserName()) != null) {
-            errors.rejectValue("username", "Duplicate.userForm.username");
+            errors.rejectValue("userName", "Duplicate.userForm.username");
         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");

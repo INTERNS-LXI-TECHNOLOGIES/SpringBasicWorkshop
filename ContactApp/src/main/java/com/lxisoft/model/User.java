@@ -15,13 +15,18 @@ public class User {
     String userName;
     @Column(name = "password")
     String password;
+    @Transient
+    String passwordConfirm;
     @Column(name = "enabled")
     boolean enabled;
 
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinTable(name = "user_roles",joinColumns = @JoinColumn(name = "user_id"),inverseJoinColumns = @JoinColumn(name = "role_id"))
-    public Set<Role> roles = new HashSet<>();
+    @ManyToMany
+    private Set<Role> roles;
 
+    /*@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+        @JoinTable(name = "user_roles",joinColumns = @JoinColumn(name = "user_id"),inverseJoinColumns = @JoinColumn(name = "role_id"))
+        public Set<Role> roles = new HashSet<>();
+    */
     public int getUserId() {
         return userId;
     }
@@ -52,6 +57,14 @@ public class User {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
+
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
     }
 
     public Set<Role> getRoles() {
