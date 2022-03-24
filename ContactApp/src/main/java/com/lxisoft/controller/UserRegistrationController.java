@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class UserController {
+public class UserRegistrationController {
     @Autowired
     private UserService userService;
 
@@ -56,8 +56,8 @@ public class UserController {
         return "login";
     }
 
-    @GetMapping({"/", "/welcome"})
+    /*@GetMapping({"/", "/welcome"})
     public String welcome(Model model) {
         return "welcome";
-    }
+    }*/
 }

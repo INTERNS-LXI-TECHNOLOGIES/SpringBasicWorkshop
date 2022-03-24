@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 //import org.springframework.security.config.annotation.authentication.configurers.userdetails.DaoAuthenticationConfigurer;
@@ -13,6 +14,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 //import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 //import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetailsService;
 //import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -29,6 +32,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
     @Bean
     public UserDetailsService userDetailsService(){
         return new UserDetailsServiceImpl();
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(){
+        return new AuthenticationManager() {
+            @Override
+            public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+                return null;
+            }
+        };
     }
     /*@Bean
     public UserDetailsService userDetailsService(){
@@ -64,6 +77,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
     protected void configure(HttpSecurity httpSecurity) throws Exception{
         httpSecurity.authorizeRequests()
                 .antMatchers("/index.jsp").permitAll()
+                .antMatchers("/login.jsp").permitAll()
+                .antMatchers("/registration.jsp").permitAll()
                 .antMatchers("/view").authenticated()
                 .antMatchers("/addNewContact").hasAuthority("ADMIN")
                 .antMatchers("/addContact").hasAuthority("ADMIN")
