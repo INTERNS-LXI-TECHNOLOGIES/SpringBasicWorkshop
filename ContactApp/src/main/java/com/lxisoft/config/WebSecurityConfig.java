@@ -35,13 +35,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(){
-        return new AuthenticationManager() {
-            @Override
-            public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-                return null;
-            }
-        };
+    public AuthenticationManager customAuthenticationManager() throws Exception{
+        return  authenticationManager();
     }
     /*@Bean
     public UserDetailsService userDetailsService(){
@@ -77,8 +72,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
     protected void configure(HttpSecurity httpSecurity) throws Exception{
         httpSecurity.authorizeRequests()
                 .antMatchers("/index.jsp").permitAll()
-                .antMatchers("/login.jsp").permitAll()
-                .antMatchers("/registration.jsp").permitAll()
+                .antMatchers("/login").permitAll()
+                .antMatchers("/registration").permitAll()
                 .antMatchers("/view").authenticated()
                 .antMatchers("/addNewContact").hasAuthority("ADMIN")
                 .antMatchers("/addContact").hasAuthority("ADMIN")

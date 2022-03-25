@@ -35,8 +35,9 @@ public class ContactController {
     AddressService addressService;
 
     @RequestMapping(value = "/")
-    public void startUpPage(HttpServletResponse response) throws IOException {
-        response.sendRedirect("login");
+    public String startUpPage(HttpServletResponse response) throws IOException {
+        //response.sendRedirect("login");
+        return "login";
     }
 
     //View Contacts
