@@ -24,11 +24,11 @@ public class UserValidator implements Validator {
     public void validate(Object target, Errors errors) {
         User user = (User) target;
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmpty");
-        if (user.getUserName().length() < 6 || user.getUserName().length() > 32) {
-            errors.rejectValue("userName", "Size.userForm.username");
+        if (user.getUsername().length() < 6 || user.getUsername().length() > 32) {
+            errors.rejectValue("username", "Size.userForm.username");
         }
-        if (userService.findByUserName(user.getUserName()) != null) {
-            errors.rejectValue("userName", "Duplicate.userForm.username");
+        if (userService.findByUserName(user.getUsername()) != null) {
+            errors.rejectValue("username", "Duplicate.userForm.userName");
         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");

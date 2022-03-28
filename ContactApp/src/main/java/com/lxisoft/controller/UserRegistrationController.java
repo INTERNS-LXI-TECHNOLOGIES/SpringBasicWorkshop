@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 @Controller
 public class UserRegistrationController {
     @Autowired
@@ -25,7 +28,8 @@ public class UserRegistrationController {
 
     @GetMapping("/registration")
     public String registration(Model model) {
-        model.addAttribute("userForm", new User());
+        User user = new User();
+        model.addAttribute("userForm", user);
 
         return "registration";
     }
@@ -40,7 +44,7 @@ public class UserRegistrationController {
 
         userService.saveUser(userForm);
 
-        securityService.autoLogin(userForm.getUserName(), userForm.getPasswordConfirm());
+        securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
 
         return "redirect:/welcome";
     }
@@ -56,8 +60,13 @@ public class UserRegistrationController {
         return "login";
     }
 
-    /*@GetMapping({"/", "/welcome"})
-    public String welcome(Model model) {
-        return "welcome";
-    }*/
+    @GetMapping({"/welcome"})
+    public void welcome(Model model, HttpServletResponse response) {
+        try {
+            response.sendRedirect("view");
+        } catch (IOException e) {
+            System.out.println(e+" --->at /welcome <---");
+            e.printStackTrace();
+        }
+    }
 }
