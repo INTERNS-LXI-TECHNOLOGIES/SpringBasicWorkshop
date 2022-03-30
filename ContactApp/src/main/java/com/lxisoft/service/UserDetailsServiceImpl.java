@@ -1,6 +1,5 @@
 package com.lxisoft.service;
 
-import com.lxisoft.config.MyUserDetails;
 import com.lxisoft.model.Role;
 import com.lxisoft.model.User;
 import com.lxisoft.repository.UserRepository;
@@ -22,7 +21,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserRepository userRepository;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findUserByName(username);
+        User user = userRepository.findByUsername(username);
         if(user == null){
             throw new UsernameNotFoundException("User Name Not Found");
         }

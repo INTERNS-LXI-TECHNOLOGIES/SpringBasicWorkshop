@@ -28,12 +28,13 @@ public class UserValidator implements Validator {
             errors.rejectValue("username", "Size.userForm.username");
         }
         if (userService.findByUserName(user.getUsername()) != null) {
-            System.out.println("USerName already exists");
+            System.out.println("UserName already exists");
+            errors.rejectValue("username", "Duplicate.userForm.username");
         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");
         if (user.getPassword().length() < 3 || user.getPassword().length() > 32) {
-            errors.rejectValue("password", "Size.userForm.password");
+            errors.rejectValue("password", "Size");
         }
     }
 }
