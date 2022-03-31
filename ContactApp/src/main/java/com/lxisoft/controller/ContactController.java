@@ -37,7 +37,7 @@ public class ContactController {
     @RequestMapping(value = "/")
     public String startUpPage(HttpServletResponse response) throws IOException {
         //response.sendRedirect("login");
-        return "login";
+        return "index";
     }
 
     //View Contacts
@@ -103,7 +103,7 @@ public class ContactController {
     //Adding Contact
     @RequestMapping(value = "/addContact", method = RequestMethod.GET)
     public String addNewContact(@ModelAttribute("contact") Contact contact,@ModelAttribute("address") Address address/*@RequestParam(required = false, value = "name")String name,@RequestParam(required = false,value = "number")String number,@RequestParam(required = false, value = "mail")String mail,@RequestParam(required = false,value = "placeName")String placeName,@RequestParam(required = false,value = "nationality")String nationality*/, ModelMap model, HttpServletResponse response){
-        System.out.println("Reached addContact controller");
+        //System.out.println("Reached addContact controller");
         if(contact.getName()==null&&address.getPlaceName()==null){
             return "addContact";
         }
