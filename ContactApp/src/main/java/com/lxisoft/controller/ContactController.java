@@ -9,6 +9,7 @@ import com.lxisoft.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,9 +36,9 @@ public class ContactController {
     AddressService addressService;
 
     @RequestMapping(value = "/")
-    public String startUpPage(HttpServletResponse response) throws IOException {
-        //response.sendRedirect("login");
-        return "index";
+    public void startUpPage(HttpServletResponse response) throws IOException {
+        response.sendRedirect("view");
+        //return "index";
     }
 
     //View Contacts
@@ -173,6 +174,18 @@ public class ContactController {
         contactService.deleteContactById(sno);
         return "deleteContact";
 
+    }
+
+    //GET request for login page
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login(Model model, String error, String logout) {
+        if (error != null)
+            model.addAttribute("errorMsg", "Your username and password are invalid.");
+
+        if (logout != null)
+            model.addAttribute("msg", "You have been logged out successfully.");
+
+        return "login";
     }
 
 }

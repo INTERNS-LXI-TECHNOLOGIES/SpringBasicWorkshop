@@ -55,21 +55,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
 
     @Override
     public void configure(AuthenticationManagerBuilder authBuilder) throws Exception{
-        /*authBuilder.inMemoryAuthentication()
+        authBuilder.inMemoryAuthentication()
                 .withUser("user1").password("{noop}user").authorities("user")
                 .and()
                 .withUser("admin1").password("{noop}admin").authorities("admin")
                 .and()
                 .withUser("controller").password("{noop}controller").authorities("admin","user")
-        ;*/
-        authBuilder.authenticationProvider(authenticationProvider());
+        ;
+       // authBuilder.authenticationProvider(authenticationProvider());
     }
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception{
         httpSecurity.authorizeRequests()
-                .antMatchers("/index.jsp").permitAll()
-                .antMatchers("/login").permitAll()
+                /*.antMatchers("/index.jsp").permitAll()
+                .antMatchers("/login").permitAll()*/
                 .antMatchers("/registration").permitAll()
                 .antMatchers("/view").authenticated()
                 .antMatchers("/addNewContact").hasAuthority("ADMIN")
@@ -79,7 +79,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
                 .antMatchers("/deleteContact").hasAuthority("ADMIN")
                 .and()
                 .formLogin().permitAll()
-                .loginPage("/index.jsp").permitAll()
+                .loginPage("/login.jsp").permitAll()
                 .and()
                 .logout().permitAll();
     }
