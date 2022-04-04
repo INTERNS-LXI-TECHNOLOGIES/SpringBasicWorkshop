@@ -68,8 +68,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception{
         httpSecurity.authorizeRequests()
-                /*.antMatchers("/index.jsp").permitAll()
-                .antMatchers("/login").permitAll()*/
+                .antMatchers("/index.jsp").permitAll()
+                .antMatchers("/login").permitAll()
                 .antMatchers("/registration").permitAll()
                 .antMatchers("/view").authenticated()
                 .antMatchers("/addNewContact").hasAuthority("ADMIN")

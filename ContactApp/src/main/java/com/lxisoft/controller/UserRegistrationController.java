@@ -49,7 +49,7 @@ public class UserRegistrationController {
         return "redirect:/welcome";
     }
 
-    @GetMapping("/login")
+    /*@GetMapping("/login")
     public String login(Model model, String error, String logout) {
         if (error != null)
             model.addAttribute("error", "Your username and password is invalid.");
@@ -58,7 +58,7 @@ public class UserRegistrationController {
             model.addAttribute("message", "You have been logged out successfully.");
 
         return "login";
-    }
+    }*/
 
     @GetMapping({"/welcome"})
     public void welcome(Model model, HttpServletResponse response) {
