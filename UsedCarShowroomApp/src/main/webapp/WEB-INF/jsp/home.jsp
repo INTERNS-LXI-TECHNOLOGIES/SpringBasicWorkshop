@@ -32,9 +32,9 @@
 					<th>TOTAL KILOMETERS</th>
 					<th>EXPECTED PRICE</th>
 					<th>OTHER DETAILS</th>
-					<% if (request.isUserInRole("admin")) { %>
+					<c:if test="${pageContext.request.isUserInRole('admin')}">
 					<th>ACTIONS</th>
-					<% } %>
+					</c:if>
 				</tr>
 				<c:forEach var="car" items="${carList}">
 					<tr>
@@ -46,13 +46,13 @@
 						<td>${car.totalKilometers}</td>
 						<td>${car.expectedPrice}</td>
 						<td>${car.otherDetails}</td>
-						<% if (request.isUserInRole("admin")) { %>
+						<c:if test="${pageContext.request.isUserInRole('admin')}">
 						<td>
 							<a href="edit/${car.carId}">Edit</a>
 							&nbsp;&nbsp;&nbsp;&nbsp;
 							<a href="delete/${car.carId}" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
 						</td>
-						<% } %>
+						</c:if>
 					</tr>
 				</c:forEach>
 			</table>

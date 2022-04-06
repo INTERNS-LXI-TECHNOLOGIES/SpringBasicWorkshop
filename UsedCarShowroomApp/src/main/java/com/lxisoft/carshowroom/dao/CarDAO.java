@@ -10,7 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.ServletContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lxisoft.carshowroom.model.Car;
@@ -22,11 +24,14 @@ public class CarDAO {
 	private String jdbcPassword;
 	private Connection jdbcConnection;
 
+	@Autowired
+	private ServletContext context;
+
 	@PostConstruct
     private void postConstruct() {
-		this.jdbcURL = "jdbc:mysql://localhost:3306/carshowroom";
-		this.jdbcUsername = "appUser";
-		this.jdbcPassword = "123456";
+		this.jdbcURL = context.getInitParameter("jdbcURL");
+		this.jdbcUsername = context.getInitParameter("jdbcUsername");
+		this.jdbcPassword = context.getInitParameter("jdbcPassword");
 	}
 
 	protected void connect() throws SQLException {

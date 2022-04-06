@@ -15,7 +15,7 @@
 			<form method="POST" action="j_security_check">
 				Username: <input type="text" name="j_username"><br><br>
 				Password: <input type="password" name="j_password"><br><br>
-				<input type="submit" value="LOGIN" style="background: #040505; color: white; border-radius: 12px; padding: 6px 12px;">
+				<input type="submit" value="LOGIN" style="background: #040505; color: white; border-radius: 12px; padding: 6px 12px; cursor: pointer;">
 			</form>
 		</div>
 	</body>

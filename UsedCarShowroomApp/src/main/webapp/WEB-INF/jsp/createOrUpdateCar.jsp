@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <html>
 	<head>
@@ -16,81 +17,74 @@
 			<h2 class="links">
 				<a href="${contextPath}">Home</a>
 				&nbsp;&nbsp;|&nbsp;&nbsp;
-				<a href="create">Add New Car</a>
+				<a href="${contextPath}/create">Add New Car</a>
 				&nbsp;&nbsp;|&nbsp;&nbsp;
-				<a href="logout">Logout</a>
+				<a href="${contextPath}/logout">Logout</a>
 			</h2>
 		</div>
 		<div align="center">
-			<c:if test="${car != null}">
-				<form action="${contextPath}/update" method="post">
-	        </c:if>
-	        <c:if test="${car == null}">
-				<form action="${contextPath}/insert" method="post">
-	        </c:if>
+			<form:form action="${contextPath}/${action}" method="post" modelAttribute="car">
 		        <table border="1" cellpadding="5" cellspacing="0" style="text-transform: uppercase;">
 		            <caption>
 		            	<h2>
-		            		<c:if test="${car != null}">
+		            		<c:if test="${action == 'update'}">
 		            			EDIT CAR
 		            		</c:if>
-		            		<c:if test="${car == null}">
+		            		<c:if test="${action == 'insert'}">
 		            			ADD NEW CAR
 		            		</c:if>
 		            	</h2>
 		            </caption>
-		        		<c:if test="${car != null}">
-		        			<input type="hidden" name="carId" value="${car.carId}" />
-		        		</c:if>            
 		            <tr>
+		            	<form:hidden path="carId"/>
 		                <th>Manufacturer</th>
 		                <td>
-		                	<input type="text" name="manufacturer" value="${car.manufacturer}" />
+		                	<form:input path="manufacturer"/>
 		                </td>
 		            </tr>
 		            <tr>
 		                <th>Model</th>
 		                <td>
-		                	<input type="text" name="model" value="${car.model}" />
-		                </td>
+		                	<form:input path="model"/>	
+		         	   	</td>
 		            </tr>
 		            <tr>
 		                <th>Variant</th>
 		                <td>
-		                	<input type="text" name="variant" value="${car.variant}" />
+		                	<form:input path="variant"/>
 		                </td>
 		            </tr>
 		            <tr>
 		                <th>Year</th>
 		                <td>
-		                	<input type="text" name="year" value="${car.year}" />
+		                	<form:input path="year"/>
 		                </td>
 		            </tr>
 		            <tr>
 		                <th>Total Kilometers</th>
 		                <td>
-		                	<input type="text" name="totalKilometers" value="${car.totalKilometers}" />
+		                	<form:input path="totalKilometers"/>
 		                </td>
 		            </tr>
 		            <tr>
 		                <th>Expected Price</th>
 		                <td>
-		                	<input type="text" name="expectedPrice" value="${car.expectedPrice}" />
+		                	<form:input path="expectedPrice"/>
 		                </td>
 		            </tr>
 		            <tr>
 		                <th>Other Details</th>
 		                <td>
-		                	<input type="text" name="otherDetails" value="${car.otherDetails}" />
+		                	<form:input path="otherDetails"/>
 		                </td>
 		            </tr>
 		            <tr>
 		            	<td colspan="2" align="center">
-		            		<input type="submit" value="Save" style="background: #040505; color: white; border-radius: 12px; padding: 6px 12px;" />
+		            		<input type="submit" value="Save" style="background: #040505; color: white; border-radius: 12px; padding: 6px 12px; cursor: pointer;" />
 		            	</td>
 		            </tr>
 		        </table>
-	        </form>
+	        </form:form>
 	    </div>	
 	</body>
 </html>

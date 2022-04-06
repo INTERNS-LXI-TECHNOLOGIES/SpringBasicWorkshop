@@ -1,20 +1,20 @@
 package com.lxisoft.carshowroom.model;
 
 public class Car {
-	private int carId;
+	private Integer carId;
 	private String manufacturer;
 	private String model;
 	private String variant;
-	private int year;
-	private int totalKilometers;
-	private int expectedPrice;
+	private Integer year;
+	private Integer totalKilometers;
+	private Integer expectedPrice;
 	private String otherDetails;
 
-	public int getCarId() {
+	public Integer getCarId() {
 		return carId;
 	}
 
-	public void setCarId(int carId) {
+	public void setCarId(Integer carId) {
 		this.carId = carId;
 	}
 
@@ -42,27 +42,27 @@ public class Car {
 		this.variant = variant;
 	}
 
-	public int getYear() {
+	public Integer getYear() {
 		return year;
 	}
 
-	public void setYear(int year) {
+	public void setYear(Integer year) {
 		this.year = year;
 	}
 
-	public int getTotalKilometers() {
+	public Integer getTotalKilometers() {
 		return totalKilometers;
 	}
 
-	public void setTotalKilometers(int totalKilometers) {
+	public void setTotalKilometers(Integer totalKilometers) {
 		this.totalKilometers = totalKilometers;
 	}
 
-	public int getExpectedPrice() {
+	public Integer getExpectedPrice() {
 		return expectedPrice;
 	}
 
-	public void setExpectedPrice(int expectedPrice) {
+	public void setExpectedPrice(Integer expectedPrice) {
 		this.expectedPrice = expectedPrice;
 	}
 

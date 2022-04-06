@@ -43,7 +43,9 @@ public class CarController {
 	}
 
 	@GetMapping("/create")
-	public String createCar() {
+	public String createCar(Model model) {
+		model.addAttribute("car", new Car());
+		model.addAttribute("action", "insert");
 		return "createOrUpdateCar";
 	}
 
@@ -59,6 +61,7 @@ public class CarController {
 	public String editCar(@PathVariable int carId, Model model) throws SQLException {
 		Car car = carDAO.getCar(carId);
 		model.addAttribute("car", car);
+		model.addAttribute("action", "update");
 		return "createOrUpdateCar";
 	}
 
