@@ -35,11 +35,11 @@ public class ContactController {
     @Autowired
     AddressService addressService;
 
-    /*@RequestMapping(value = "/")
+    @RequestMapping(value = "/")
     public String startUpPage(HttpServletResponse response) throws IOException {
         //response.sendRedirect("login");
         return "index";
-    }*/
+    }
 
     //View Contacts
     @RequestMapping(value="/view")
