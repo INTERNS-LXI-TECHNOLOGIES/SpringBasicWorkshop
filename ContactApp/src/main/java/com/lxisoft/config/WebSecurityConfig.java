@@ -79,7 +79,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
                 .antMatchers("/deleteContact").hasAuthority("ADMIN")
                 .and()
                 .formLogin().permitAll()
-                .loginPage("/login.jsp").permitAll()
+                .loginPage("/login").permitAll()
                 .and()
                 .logout().permitAll();
     }
