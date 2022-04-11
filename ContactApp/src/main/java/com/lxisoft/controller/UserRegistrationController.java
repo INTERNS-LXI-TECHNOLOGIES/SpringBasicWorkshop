@@ -29,7 +29,7 @@ public class UserRegistrationController {
     @GetMapping("/registration")
     public String registration(Model model) {
         User user = new User();
-        model.addAttribute("userForm", user);
+        model.addAttribute("user", user);
 
         return "registration";
     }
