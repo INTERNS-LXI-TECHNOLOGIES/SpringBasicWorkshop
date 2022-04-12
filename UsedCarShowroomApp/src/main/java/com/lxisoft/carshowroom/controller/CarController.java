@@ -3,9 +3,6 @@ package com.lxisoft.carshowroom.controller;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -65,10 +62,8 @@ public class CarController {
 		return "createOrUpdateCar";
 	}
 
-	@GetMapping("/logout")
-	public String logout(HttpServletRequest request) throws SQLException {
-		HttpSession session = request.getSession();
-		session.invalidate();
-		return "redirect:/";
+	@GetMapping("/login")
+	public String login() {
+		return "login";
 	}
 }
