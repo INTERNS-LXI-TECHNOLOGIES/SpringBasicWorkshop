@@ -80,6 +80,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
                 .and()
                 .formLogin().permitAll()
                 .loginPage("/login").permitAll()
+                .loginProcessingUrl("login")
                 .and()
                 .logout().permitAll();
     }
