@@ -44,7 +44,7 @@ public class UserRegistrationController {
 
         userService.saveUser(userForm);
 
-        securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
+        securityService.autoLogin(userForm.getUsername(), userForm.getPassword());
 
         return "redirect:/view";
     }

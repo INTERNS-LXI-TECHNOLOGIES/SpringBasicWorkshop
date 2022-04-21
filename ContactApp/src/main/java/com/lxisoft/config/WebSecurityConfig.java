@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -53,7 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
         return authProvider;
     }
 
-    @Override
+    /*@Override
     public void configure(AuthenticationManagerBuilder authBuilder) throws Exception{
         authBuilder.inMemoryAuthentication()
                 .withUser("user1").password("{noop}user").authorities("user")
@@ -63,13 +64,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
                 .withUser("controller").password("{noop}controller").authorities("admin","user")
         ;
        // authBuilder.authenticationProvider(authenticationProvider());
-    }
+    }*/
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception{
         httpSecurity.authorizeRequests()
                 .antMatchers("/index.jsp").permitAll()
-                .antMatchers("/login").permitAll()
+                .antMatchers(HttpMethod.POST,"/login*").permitAll()
                 .antMatchers("/registration").permitAll()
                 .antMatchers("/view").authenticated()
                 .antMatchers("/addNewContact").hasAuthority("ADMIN")
@@ -78,9 +79,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
                 .antMatchers("/editContact").hasAuthority("ADMIN")
                 .antMatchers("/deleteContact").hasAuthority("ADMIN")
                 .and()
-                .formLogin().permitAll()
-                .loginPage("/login").permitAll()
-                .loginProcessingUrl("login")
+                .formLogin()
+                .loginPage("/login")
+                .permitAll()
+                .defaultSuccessUrl("/loginSuccess")
+                //.loginProcessingUrl("login")
                 .and()
                 .logout().permitAll();
     }

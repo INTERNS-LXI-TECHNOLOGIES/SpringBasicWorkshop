@@ -85,7 +85,7 @@ label{
 }
 input{
     display: block;
-    height: 50px;
+    height: 30px;
     width: 100%;
     background-color: rgba(255,255,255,0.07);
     border-radius: 3px;
@@ -98,12 +98,12 @@ input{
     color: #e5e5e5;
 }
 button{
-    margin-top: 50px;
+    margin-top: 25px;
     width: 100%;
     background-color: #ffffff;
     color: #080710;
     padding: 15px 0;
-    font-size: 18px;
+    font-size: 12px;
     font-weight: 600;
     border-radius: 5px;
     cursor: pointer;
@@ -138,18 +138,18 @@ button{
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
-    <form action="login" method="POST" class="form-signin">
+    <form action="/login" method="post" class="form-signin">
         <h3>Login Here</h3>
 
         <label for="username">Username</label>
-        <input type="text" placeholder="Username " id="username">
+        <input type="text" name="username" class="form-control" placeholder="Username " id="username">
 
         <label for="password">Password</label>
-        <input type="password" placeholder="Password" id="password">
+        <input type="password" name="password" class="form-control" placeholder="Password" id="password">
 
         <button>Log In</button>
         <div>
-            <a href="registration.jsp"><button class="button">Sign Up</button></a>
+            <a href="registration.jsp"><button>Sign Up</button></a>
         </div>
     </form>
 </body>

@@ -2,6 +2,7 @@ package com.lxisoft.model;
 
 import javax.persistence.*;
 //import java.util.HashSet;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -15,18 +16,17 @@ public class User {
     String username;
     @Column(name = "password")
     String password;
-    @Transient
-    String passwordConfirm;
+    /*@Transient
+    String passwordConfirm;*/
     @Column(name = "enabled")
     boolean enabled;
 
-    @ManyToMany
-    private Set<Role> roles;
+   /* @ManyToMany
+    private Set<Role> roles;*/
 
-    /*@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
         @JoinTable(name = "user_roles",joinColumns = @JoinColumn(name = "user_id"),inverseJoinColumns = @JoinColumn(name = "role_id"))
         public Set<Role> roles = new HashSet<>();
-    */
 
     public int getUserId() {
         return userId;
@@ -52,13 +52,13 @@ public class User {
         this.password = password;
     }
 
-    public String getPasswordConfirm() {
+    /*public String getPasswordConfirm() {
         return passwordConfirm;
     }
 
     public void setPasswordConfirm(String passwordConfirm) {
         this.passwordConfirm = passwordConfirm;
-    }
+    }*/
 
     public boolean isEnabled() {
         return enabled;
