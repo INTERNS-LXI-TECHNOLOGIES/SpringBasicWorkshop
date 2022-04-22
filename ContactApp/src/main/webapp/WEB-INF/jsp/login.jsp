@@ -85,7 +85,7 @@ label{
 }
 input{
     display: block;
-    height: 30px;
+    height: 50px;
     width: 100%;
     background-color: rgba(255,255,255,0.07);
     border-radius: 3px;
@@ -98,12 +98,12 @@ input{
     color: #e5e5e5;
 }
 button{
-    margin-top: 25px;
+    margin-top: 50px;
     width: 100%;
     background-color: #ffffff;
     color: #080710;
     padding: 15px 0;
-    font-size: 12px;
+    font-size: 18px;
     font-weight: 600;
     border-radius: 5px;
     cursor: pointer;
@@ -138,7 +138,7 @@ button{
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
-    <form action="login" method="POST" class="form-signin" id="login-form">
+    <form action="login" method="post" class="form-signin">
         <h3>Login Here</h3>
 
         <label for="username">Username</label>
@@ -147,12 +147,10 @@ button{
         <label for="password">Password</label>
         <input type="password" name="password" class="form-control" placeholder="Password" id="password">
 
-        <button type="submit" form="login-form">Log In</button>
-
+        <button>Log In</button>
         <div>
-          <a href="/registration">Sign up</input></a>
+            <a href="register">Sign Up</a>
         </div>
     </form>
-
 </body>
 </html>

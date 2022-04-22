@@ -54,17 +54,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
         return authProvider;
     }
 
-    @Override
+    /*@Override
     public void configure(AuthenticationManagerBuilder authBuilder) throws Exception{
         authBuilder.inMemoryAuthentication()
                 .withUser("user").password(passwordEncoder().encode("user")).authorities("user")
                 .and()
-                .withUser("admin").password(passwordEncoder().encode("admin")).authorities("admin")
+                .withUser("admin").password(passwordEncoder().encode("admin")).authorities("ADMIN")
                 .and()
-                .withUser("controller").password(passwordEncoder().encode("controller")).authorities("admin","user")
+                .withUser("controller").password(passwordEncoder().encode("controller")).authorities("ADMIN","user")
         ;
        // authBuilder.authenticationProvider(authenticationProvider());
-    }
+    }*/
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception{
@@ -84,7 +84,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
                 .loginPage("/login")
                 .loginProcessingUrl("/login")
                 .permitAll()
-                .defaultSuccessUrl("/loginSuccess")
                 //.loginProcessingUrl("login")
                 .and()
                 .logout().permitAll();

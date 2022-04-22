@@ -1,45 +1,45 @@
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-      <meta charset="utf-8">
-      <title>Create an account</title>
-
-      <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
-      <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
-  </head>
-
-  <body>
-
-    <div class="container">
-
-        <form:form method="POST" modelAttribute="user" class="form-signin">
-            <h2 class="form-signin-heading">Create your account</h2>
-            <spring:bind path="username">
-                <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <form:input type="text" path="username" class="form-control" placeholder="Username"
-                                autofocus="true"></form:input>
-                    <form:errors path="username"></form:errors>
-                </div>
-            </spring:bind>
-
-            <spring:bind path="password">
-                <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <form:input type="password" path="password" class="form-control" placeholder="Password"></form:input>
-                    <form:errors path="password"></form:errors>
-                </div>
-            </spring:bind>
-
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
-        </form:form>
-
-    </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
-  </body>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Sign Up</title>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <!--Stylesheet-->
+    <style media="screen">
+      *,
+*:before,
+*:after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #080710;
+}
+.background{
+    width: 430px;
+    height: 520px;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    top: 50%;
+}
+</style>
+</head>
+<body>
+	<div class="background"></div>
+	<div>
+		<center>
+			<form action="userRegistration" method="post" modelAttribute="user" modelAttribute="role">
+			<label for="username">Username</label>
+			<input type="text" name="username" placeholder="Username" id="username">
+			<label for="password">Password</label>
+			<input type="text" name="password" placeholder="Password">
+			<button class="btn">Sign Up</button>			
+			</form>
+		</center>
+	</div>
+</body>
 </html>
