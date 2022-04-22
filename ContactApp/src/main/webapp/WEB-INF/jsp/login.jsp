@@ -138,7 +138,7 @@ button{
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
-    <form action="/login" method="post" class="form-signin">
+    <form action="login" method="POST" class="form-signin" id="login-form">
         <h3>Login Here</h3>
 
         <label for="username">Username</label>
@@ -147,10 +147,12 @@ button{
         <label for="password">Password</label>
         <input type="password" name="password" class="form-control" placeholder="Password" id="password">
 
-        <button>Log In</button>
+        <button type="submit" form="login-form">Log In</button>
+
         <div>
-            <a href="registration.jsp"><button>Sign Up</button></a>
+          <a href="/registration">Sign up</input></a>
         </div>
     </form>
+
 </body>
 </html>

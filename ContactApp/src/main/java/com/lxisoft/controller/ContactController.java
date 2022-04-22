@@ -7,14 +7,12 @@ import com.lxisoft.model.Contact;
 import com.lxisoft.service.AddressService;
 import com.lxisoft.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 //import org.springframework.web.bind.annotation.RestController;
 
 
@@ -184,8 +182,20 @@ public class ContactController {
 
         if (logout != null)
             model.addAttribute("msg", "You have been logged out successfully.");
-
+        System.out.println("login get method works");
         return "login";
+    }
+
+    @PostMapping(value = "/abcd")
+    public String loginTest(Model model, String error, String logout) {
+        System.out.println("login post method works");
+        if (error != null)
+            model.addAttribute("errorMsg", "Your username and password are invalid.");
+
+        if (logout != null)
+            model.addAttribute("msg", "You have been logged out successfully.");
+
+        return "registration";
     }
 
 }

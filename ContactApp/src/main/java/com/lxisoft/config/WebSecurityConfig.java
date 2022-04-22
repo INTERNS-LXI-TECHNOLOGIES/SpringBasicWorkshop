@@ -54,23 +54,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
         return authProvider;
     }
 
-    /*@Override
+    @Override
     public void configure(AuthenticationManagerBuilder authBuilder) throws Exception{
         authBuilder.inMemoryAuthentication()
-                .withUser("user1").password("{noop}user").authorities("user")
+                .withUser("user").password(passwordEncoder().encode("user")).authorities("user")
                 .and()
-                .withUser("admin1").password("{noop}admin").authorities("admin")
+                .withUser("admin").password(passwordEncoder().encode("admin")).authorities("admin")
                 .and()
-                .withUser("controller").password("{noop}controller").authorities("admin","user")
+                .withUser("controller").password(passwordEncoder().encode("controller")).authorities("admin","user")
         ;
        // authBuilder.authenticationProvider(authenticationProvider());
-    }*/
+    }
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception{
-        httpSecurity.authorizeRequests()
+        httpSecurity.csrf().disable()
+                .authorizeRequests()
                 .antMatchers("/index.jsp").permitAll()
-                .antMatchers(HttpMethod.POST,"/login*").permitAll()
+                .antMatchers("/login").permitAll()
                 .antMatchers("/registration").permitAll()
                 .antMatchers("/view").authenticated()
                 .antMatchers("/addNewContact").hasAuthority("ADMIN")
@@ -81,6 +82,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
                 .and()
                 .formLogin()
                 .loginPage("/login")
+                .loginProcessingUrl("/login")
                 .permitAll()
                 .defaultSuccessUrl("/loginSuccess")
                 //.loginProcessingUrl("login")
