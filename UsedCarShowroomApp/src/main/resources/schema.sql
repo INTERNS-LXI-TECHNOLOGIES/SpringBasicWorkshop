@@ -1,7 +1,7 @@
 create schema carshowroom;
 use carshowroom;
 
-create table CAR (
+create table car (
     car_id int not null auto_increment, 
     manufacturer varchar(100) not null,
     model varchar(100) not null,
@@ -13,33 +13,17 @@ create table CAR (
     primary key (car_id)
 );
 
-create table users (
-  username varchar(15) not null primary key,
-  password varchar(15) not null
-);
-INSERT INTO `carshowroom`.`users` VALUES ('admin', 'admin');
-INSERT INTO `carshowroom`.`users` VALUES ('user', 'user');
-
-create table roles (
+create table role (
   role_name varchar(15) not null primary key
 );
-INSERT INTO roles VALUES ('admin');
-INSERT INTO roles VALUES ('user');
+INSERT INTO role VALUES ('ROLE_ADMIN');
+INSERT INTO role VALUES ('ROLE_USER');
 
-create table users_roles (
-  username varchar(15) not null,
-  role_name varchar(15) not null,
-  primary key (username, role_name),
-
-  FOREIGN KEY (username)
-    REFERENCES users (username)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-
-  FOREIGN KEY (role_name)
-    REFERENCES roles (role_name)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE
+create table user (
+  username varchar(15) not null primary key,
+  password varchar(100) not null,
+  role varchar(15) not null,
+  FOREIGN KEY (role) REFERENCES role (role_name)
 );
-INSERT INTO users_roles VALUES ('admin', 'admin');
-INSERT INTO users_roles VALUES ('user', 'user');
+INSERT INTO user VALUES ('admin', '$2a$10$giqt6IFjTXvUXghLzKRoxOVW08hi0Q4ArbCH6xR4TX14v5BxpDXjm', 'ROLE_ADMIN');
+INSERT INTO user VALUES ('user', '$2a$10$PWtOUr63Wy8ExoTN.2Nc/Oaa51wH.lmqh16ntcXL5hfeCn1NxWHFC', 'ROLE_USER');

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
@@ -32,9 +33,9 @@
 					<th>TOTAL KILOMETERS</th>
 					<th>EXPECTED PRICE</th>
 					<th>OTHER DETAILS</th>
-					<c:if test="${pageContext.request.isUserInRole('admin')}">
+					<sec:authorize access="hasRole('ADMIN')">
 					<th>ACTIONS</th>
-					</c:if>
+					</sec:authorize>
 				</tr>
 				<c:forEach var="car" items="${carList}">
 					<tr>
@@ -46,13 +47,13 @@
 						<td>${car.totalKilometers}</td>
 						<td>${car.expectedPrice}</td>
 						<td>${car.otherDetails}</td>
-						<c:if test="${pageContext.request.isUserInRole('admin')}">
+						<sec:authorize access="hasRole('ADMIN')">
 						<td>
 							<a href="edit/${car.carId}">Edit</a>
 							&nbsp;&nbsp;&nbsp;&nbsp;
 							<a href="delete/${car.carId}" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
 						</td>
-						</c:if>
+						</sec:authorize>
 					</tr>
 				</c:forEach>
 			</table>
