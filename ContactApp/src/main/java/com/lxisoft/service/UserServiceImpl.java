@@ -1,5 +1,6 @@
 package com.lxisoft.service;
 
+import com.lxisoft.model.Role;
 import com.lxisoft.model.User;
 import com.lxisoft.repository.RoleRepository;
 import com.lxisoft.repository.UserRepository;
@@ -19,13 +20,13 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public void saveUser(User user){
+    public void saveUser(User user, Role role){
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setRoles(new HashSet<>(roleRepository.findAll()));
         userRepository.save(user);
     }
 
-    public User findByUserName(String userName){
-        return userRepository.findByUsername(userName);
+    public User findByUsername(String username){
+        return userRepository.findByUsername(username);
     }
 }

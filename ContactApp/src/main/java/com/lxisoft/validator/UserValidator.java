@@ -2,7 +2,6 @@ package com.lxisoft.validator;
 
 import com.lxisoft.model.User;
 import com.lxisoft.service.UserService;
-import com.lxisoft.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.boot.autoconfigure.security.SecurityProperties;
 //import org.springframework.security.core.userdetails.User;
@@ -27,7 +26,7 @@ public class UserValidator implements Validator {
         if (user.getUsername().length() < 3 || user.getUsername().length() > 32) {
             errors.rejectValue("username", "Size.userForm.username");
         }
-        if (userService.findByUserName(user.getUsername()) != null) {
+        if (userService.findByUsername(user.getUsername()) != null) {
             System.out.println("UserName already exists");
             errors.rejectValue("username", "Duplicate.userForm.username");
         }
