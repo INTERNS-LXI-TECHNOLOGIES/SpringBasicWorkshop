@@ -4,6 +4,11 @@ public class Contact {
     private Integer id;
     private String name;
     private String email;
+    private String address;
+    private String phone;
+
+    public Contact() {
+    }
 
     public Contact(Integer id, String name, String email, String address, String phone) {
         this(name,email,address,phone);
@@ -18,8 +23,7 @@ public class Contact {
         this.phone = phone;
     }
 
-    private String address;
-    private String phone;
+
     public Integer getId() {
         return id;
     }
