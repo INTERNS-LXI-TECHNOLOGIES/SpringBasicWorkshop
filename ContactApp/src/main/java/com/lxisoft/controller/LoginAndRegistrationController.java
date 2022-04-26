@@ -13,9 +13,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class UserRegistrationController {
+public class LoginAndRegistrationController {
     @Autowired
     UserService userService;
+
+    //GET request for login page
+    @RequestMapping(value = "/login")
+    public String login(Model model, String error, String logout) {
+        if (error != null)
+            model.addAttribute("errorMsg", "Your username and password are invalid.");
+
+        if (logout != null)
+            model.addAttribute("msg", "You have been logged out successfully.");
+       // System.out.println("login get method works");
+        return "login";
+    }
+
+   /* @PostMapping(value = "/abcd")
+    public String loginTest(Model model, String error, String logout) {
+        System.out.println("login post method works");
+        if (error != null)
+            model.addAttribute("errorMsg", "Your username and password are invalid.");
+
+        if (logout != null)
+            model.addAttribute("msg", "You have been logged out successfully.");
+
+        return "registration";
+    }*/
 
     @RequestMapping(value = "/register")
     public String userRegister(){
@@ -24,7 +48,7 @@ public class UserRegistrationController {
 
     @RequestMapping(value = "/userRegistration",method = RequestMethod.POST)
     public String userRegistration(Model model, @ModelAttribute("user") User user, @ModelAttribute("roles")Role role){
-        System.out.println("Reached Registration");
+        //System.out.println("Reached Registration");
         userService.saveUser(user,role);
         return "userAddedMessage";
     }

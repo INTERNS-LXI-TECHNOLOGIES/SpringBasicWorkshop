@@ -141,6 +141,15 @@ button{
     <form action="login" method="post" class="form-signin">
         <h3>Login Here</h3>
 
+        <%if (request.getParameter("errorMsg") != null) {
+            %>
+            <p><%= request.getParameter("errorMsg") %></p>
+        <%}
+        if (request.getParameter("msg") != null) {
+           %>
+           <p><%= request.getParameter("msg") %></p>
+        <%}%>
+
         <label for="username">Username</label>
         <input type="text" name="username" class="form-control" placeholder="Username " id="username">
 

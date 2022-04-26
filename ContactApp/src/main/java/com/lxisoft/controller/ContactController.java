@@ -174,28 +174,4 @@ public class ContactController {
 
     }
 
-    //GET request for login page
-    @RequestMapping(value = "/login")
-    public String login(Model model, String error, String logout) {
-        if (error != null)
-            model.addAttribute("errorMsg", "Your username and password are invalid.");
-
-        if (logout != null)
-            model.addAttribute("msg", "You have been logged out successfully.");
-        System.out.println("login get method works");
-        return "login";
-    }
-
-    @PostMapping(value = "/abcd")
-    public String loginTest(Model model, String error, String logout) {
-        System.out.println("login post method works");
-        if (error != null)
-            model.addAttribute("errorMsg", "Your username and password are invalid.");
-
-        if (logout != null)
-            model.addAttribute("msg", "You have been logged out successfully.");
-
-        return "registration";
-    }
-
 }
