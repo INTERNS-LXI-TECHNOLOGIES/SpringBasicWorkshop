@@ -5,20 +5,4 @@
 		http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	id="WebApp_ID" version="3.1">
 	<display-name>Used Car Showroom Application</display-name>
-
-	<context-param>
-		<param-name>jdbcURL</param-name>
-		<param-value>jdbc:mysql://localhost:3306/carshowroom</param-value>
-	</context-param>
-
-	<context-param>
-		<param-name>jdbcUsername</param-name>
-		<param-value>appUser</param-value>
-	</context-param>
-
-	<context-param>
-		<param-name>jdbcPassword</param-name>
-		<param-value>123456</param-value>
-	</context-param>
-
 </web-app>
