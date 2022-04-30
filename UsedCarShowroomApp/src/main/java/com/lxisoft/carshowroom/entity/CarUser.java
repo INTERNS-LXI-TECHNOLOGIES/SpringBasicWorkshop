@@ -1,9 +1,20 @@
-package com.lxisoft.carshowroom.model;
+package com.lxisoft.carshowroom.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "user")
 public class CarUser {
 
+	@Id
+	@Column
 	private String username;
+	@Column
 	private String password;
+	@Column
 	private String role;
 
 	public String getUsername() {

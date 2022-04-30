@@ -1,10 +1,10 @@
-package com.lxisoft.carshowroom.dao;
+package com.lxisoft.carshowroom.service;
 
 import java.util.List;
 
 import com.lxisoft.carshowroom.entity.Car;
 
-public interface CarDAO {
+public interface CarService {
 
 	List<Car> listAllCars();
 

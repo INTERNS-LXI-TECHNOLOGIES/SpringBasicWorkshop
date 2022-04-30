@@ -1,13 +1,38 @@
-package com.lxisoft.carshowroom.model;
+package com.lxisoft.carshowroom.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Car {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "car_id")
 	private Integer carId;
+
+	@Column(name = "manufacturer")
 	private String manufacturer;
+
+	@Column(name = "model")
 	private String model;
+
+	@Column(name = "variant")
 	private String variant;
+
+	@Column(name = "year")
 	private Integer year;
+
+	@Column(name = "total_kilometers")
 	private Integer totalKilometers;
+
+	@Column(name = "expected_price")
 	private Integer expectedPrice;
+
+	@Column(name = "other_details")
 	private String otherDetails;
 
 	public Integer getCarId() {

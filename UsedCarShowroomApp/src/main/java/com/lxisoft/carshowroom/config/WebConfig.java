@@ -52,7 +52,7 @@ public class WebConfig {
 	public LocalSessionFactoryBean sessionFactory() {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(mysqlDataSource());
-		sessionFactory.setPackagesToScan(new String[] { "com.lxisoft.carshowroom.model" });
+		sessionFactory.setPackagesToScan(new String[] { "com.lxisoft.carshowroom.entity" });
 		sessionFactory.setHibernateProperties(hibernateProperties());
 		return sessionFactory;
 	}

@@ -23,17 +23,10 @@
 			</h2>
 		</div>
 		<div align="center">
-			<form:form action="${contextPath}/${action}" method="post" modelAttribute="car">
+			<form:form action="${contextPath}/save" method="post" modelAttribute="car">
 		        <table border="1" cellpadding="5" cellspacing="0" style="text-transform: uppercase;">
 		            <caption>
-		            	<h2>
-		            		<c:if test="${action == 'update'}">
-		            			EDIT CAR
-		            		</c:if>
-		            		<c:if test="${action == 'insert'}">
-		            			ADD NEW CAR
-		            		</c:if>
-		            	</h2>
+		            	<h2>${caption}</h2>
 		            </caption>
 		            <tr>
 		            	<form:hidden path="carId"/>
