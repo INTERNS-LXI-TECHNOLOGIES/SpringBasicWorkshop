@@ -6,7 +6,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Contact Manager Home</title>
+        <title>Contact Home Manager </title>
     </head>
     <body>
         <div align="center">
@@ -22,11 +22,11 @@
 
                 <c:forEach var="contact" items="${listContact}" varStatus="status">
                 <tr>
-                    <td>${status.index + 1}</td>
+                   <td><c:out value="${status.index + 1}" /></td>
                     <td>${contact.name}</td>
                     <td>${contact.email}</td>
                     <td>${contact.address}</td>
-                    <td>${contact.telephone}</td>
+                    <td>${contact.phone}</td>
                     <td>
                         <a href="/editContact?id=${contact.id}">Edit</a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
