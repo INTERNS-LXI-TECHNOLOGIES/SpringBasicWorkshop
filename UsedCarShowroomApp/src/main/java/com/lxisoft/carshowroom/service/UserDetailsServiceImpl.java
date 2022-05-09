@@ -8,19 +8,19 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.lxisoft.carshowroom.dao.CarUserDAO;
 import com.lxisoft.carshowroom.entity.CarUser;
+import com.lxisoft.carshowroom.repository.CarUserRepository;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
-	CarUserDAO userDAO;
+	CarUserRepository carUserRepository;
 
 	@Override
 	@Transactional
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		final CarUser carUser = userDAO.getUser(username);
+		final CarUser carUser = carUserRepository.findById(username).orElse(null);
 		if (carUser == null) {
 			throw new UsernameNotFoundException(username);
 		}

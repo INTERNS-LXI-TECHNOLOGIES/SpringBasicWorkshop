@@ -6,37 +6,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.lxisoft.carshowroom.dao.CarDAO;
+import com.lxisoft.carshowroom.repository.CarRepository;
 import com.lxisoft.carshowroom.entity.Car;
 
 @Service
+@Transactional
 public class CarServiceImpl implements CarService {
 
 	@Autowired
-	private CarDAO carDao;
+	private CarRepository carRepository;
 
 	@Override
-	@Transactional
 	public List<Car> listAllCars() {
-		return carDao.listAllCars();
+		return carRepository.findAll();
 	}
 
 	@Override
-	@Transactional
 	public void saveCar(Car car) {
-		carDao.saveCar(car);
+		carRepository.save(car);
 	}
 
 	@Override
-	@Transactional
 	public void deleteCar(int carId) {
-		carDao.deleteCar(carId);
+		carRepository.deleteById(carId);
 	}
 
 	@Override
-	@Transactional
 	public Car getCar(int carId) {
-		return carDao.getCar(carId);
+		return carRepository.findById(carId).get();
 	}
 
 }

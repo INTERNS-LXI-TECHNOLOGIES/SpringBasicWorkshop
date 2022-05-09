@@ -2,6 +2,7 @@ package com.lxisoft.carshowroom.config;
 
 import java.util.Properties;
 
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +11,11 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate5.HibernateTransactionManager;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -24,6 +27,7 @@ import org.springframework.web.servlet.view.JstlView;
 @EnableTransactionManagement
 @PropertySource("classpath:database.properties")
 @ComponentScan(basePackages = "com.lxisoft.carshowroom")
+@EnableJpaRepositories("com.lxisoft.carshowroom.repository")
 public class WebConfig {
 
 	@Autowired
@@ -41,20 +45,11 @@ public class WebConfig {
 	@Bean
 	public DataSource mysqlDataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.driverClassName"));
-        dataSource.setUrl(environment.getRequiredProperty("jdbc.url"));
-        dataSource.setUsername(environment.getRequiredProperty("jdbc.username"));
-        dataSource.setPassword(environment.getRequiredProperty("jdbc.password"));
+		dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.driverClassName"));
+		dataSource.setUrl(environment.getRequiredProperty("jdbc.url"));
+		dataSource.setUsername(environment.getRequiredProperty("jdbc.username"));
+		dataSource.setPassword(environment.getRequiredProperty("jdbc.password"));
 		return dataSource;
-	}
-
-	@Bean
-	public LocalSessionFactoryBean sessionFactory() {
-		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-		sessionFactory.setDataSource(mysqlDataSource());
-		sessionFactory.setPackagesToScan(new String[] { "com.lxisoft.carshowroom.entity" });
-		sessionFactory.setHibernateProperties(hibernateProperties());
-		return sessionFactory;
 	}
 
 	private Properties hibernateProperties() {
@@ -67,9 +62,20 @@ public class WebConfig {
 	}
 
 	@Bean
-	public HibernateTransactionManager getTransactionManager() {
-		HibernateTransactionManager transactionManager = new HibernateTransactionManager();
-		transactionManager.setSessionFactory(sessionFactory().getObject());
+	public EntityManagerFactory entityManagerFactory() {
+		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
+		factory.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+		factory.setJpaProperties(hibernateProperties());
+		factory.setPackagesToScan("com.lxisoft.carshowroom.entity");
+		factory.setDataSource(mysqlDataSource());
+		factory.afterPropertiesSet();
+		return factory.getObject();
+	}
+
+	@Bean
+	public JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
+		JpaTransactionManager transactionManager = new JpaTransactionManager();
+		transactionManager.setEntityManagerFactory(entityManagerFactory);
 		return transactionManager;
 	}
 }
