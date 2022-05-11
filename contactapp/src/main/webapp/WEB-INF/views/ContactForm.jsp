@@ -11,9 +11,9 @@
 <body>
     <div align="center">
         <h1>New/Edit Contact</h1>
-        <form:form action="saveContact" method="post" modelAttribute="contact">
+        <form:form action="insert" method="post" modelAttribute="contact">
         <table>
-            <form:hidden path="id"/>
+            <form:hidden path="contact_id"/>
             <tr>
                 <td>Name:</td>
                 <td><form:input path="name" /></td>

@@ -1,7 +1,7 @@
 package com.lxisoft.spring.model;
 
 public class Contact {
-    private Integer id;
+    private Integer contact_id;
     private String name;
     private String email;
     private String address;
@@ -10,9 +10,9 @@ public class Contact {
     public Contact() {
     }
 
-    public Contact(Integer id, String name, String email, String address, String phone) {
+    public Contact(Integer contact_id, String name, String email, String address, String phone) {
         this(name,email,address,phone);
-        this.id =id;
+        this.contact_id =contact_id;
     }
 
     public Contact(String name, String email, String address, String phone) {
@@ -23,12 +23,12 @@ public class Contact {
         this.phone = phone;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getContact_id() {
+        return contact_id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setContact_id(Integer contact_id) {
+        this.contact_id = contact_id;
     }
 
     public String getName() {
@@ -66,7 +66,7 @@ public class Contact {
     @Override
     public String toString() {
         return "Contact{" +
-                "id=" + id +
+                "contact_id=" + contact_id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", address='" + address + '\'' +

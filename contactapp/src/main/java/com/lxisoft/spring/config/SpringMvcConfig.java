@@ -1,13 +1,16 @@
 package com.lxisoft.spring.config;
 
 import com.lxisoft.spring.dao.ContactDAO;
-import com.lxisoft.spring.dao.ContactDAOImpl;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
@@ -35,8 +38,10 @@ public class SpringMvcConfig implements WebMvcConfigurer {
         return resolver;
     }
     @Bean
-    public ContactDAO getContactDAO(){
-        return new ContactDAOImpl(getDataSource());
-
+    @Autowired
+    public JdbcTemplate jdbcTemplate(DataSource getDataSource) {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate();
+        jdbcTemplate.setDataSource(getDataSource);
+        return jdbcTemplate;
     }
 }
