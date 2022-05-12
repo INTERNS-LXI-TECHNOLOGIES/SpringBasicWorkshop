@@ -7,28 +7,80 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>New/Edit Contact</title>
+<style>
+.login-card label {
+    font-family: Calibri;
+    font-size: 11pt;
+    font-style: normal;
+    text-align:center;
+    margin-left:auto;
+    margin-right:auto;
+}
+tr {
+    text-align: center;
+}
+.login-card h1 {
+    font-weight: 73;
+    text-align: center;
+    font-size: 3em;
+}
+.login-card input[type=submit] {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+    position: center;
+}
+.login-card input[type=text], input[type=password] {
+    height: 44px;
+    font-size: 16px;
+    width: 100%;
+    margin-bottom: 10px;
+    -webkit-appearance: none;
+    background: #fff;
+    border: 1px solid #d9d9d9;
+    border-top: 1px solid #c0c0c0;
+    /* border-radius: 2px; */
+    padding: 0 8px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+</style>
 </head>
-<body>
-    <div align="center">
-        <h1>New/Edit Contact</h1>
-        <form:form action="insert" method="post" modelAttribute="contact">
+<body style="background-color:#B0C4DE;">
+    <div align="center" class="login-card">
+     <h1>Add New Contact</h1>
+        <form:form action="insert" method="post" modelAttribute="contact" style="background-color:#E6E6FA">
+
         <table>
+        <tr>
+                        <td>
+
+                                            </td>
             <form:hidden path="contact_id"/>
+            </tr>
             <tr>
-                <td>Name:</td>
+                                   <td>
+                                       <form:label path="name">Name</form:label>
+                                   </td>
                 <td><form:input path="name" /></td>
             </tr>
             <tr>
-                <td>Email:</td>
+                                    <td>
+                                        <form:label path="email">Email</form:label>
+                                    </td>
                 <td><form:input path="email" /></td>
             </tr>
             <tr>
-                <td>Address:</td>
+                                    <td>
+                                        <form:label path="address">Address</form:label>
+                                    </td>
                 <td><form:input path="address" /></td>
             </tr>
             <tr>
-                <td>Telephone:</td>
-                <td><form:input path="phone" /></td>
+
+                                    <td>
+                                        <form:label path="phone">Phone</form:label>
+                                    </td>                <td><form:input path="phone" /></td>
             </tr>
             <tr>
                 <td colspan="2" align="center"><input type="submit" value="Save"></td>
@@ -37,3 +89,4 @@
         </form:form>
     </div>
 </body>
+</html>

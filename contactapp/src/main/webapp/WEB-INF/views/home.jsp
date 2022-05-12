@@ -7,8 +7,34 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Contact Home Manager </title>
+  <style>
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid hsl(0, 20%, 50%);
+  padding: 8px;
+}
+
+#customers tr:nth-child(odd){background-color:  hsl(0, 20%, 50%);}
+
+#customers tr:hover {background-color:#006B54;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #A2242F;
+  color: white;
+}
+th:nth-child(even) {background-color: hsl(0, 20%, 50%);}
+
+</style>
     </head>
-    <body>
+    <body style="background-color:RGB(146, 168, 209);">
         <div align="center">
             <h1>Contact List</h1>
             <h3>
@@ -17,7 +43,7 @@
             <a href="${contextPath}/create">New Contact</a>
             &nbsp;&nbsp;||&nbsp;&nbsp;
             </h3>
-            <table border="1">
+           <table id="customers">
                 <th>No</th>
                 <th>Name</th>
                 <th>Email</th>
@@ -40,6 +66,13 @@
 
                 </tr>
                 </c:forEach>
+                 <tfoot>
+                      <tr>
+                        <th colspan='7'>
+                        <center>  Interns @ LXISOFT    <center>
+                        </th>
+                      </tr>
+                    </tfoot>
             </table>
         </div>
     </body>
