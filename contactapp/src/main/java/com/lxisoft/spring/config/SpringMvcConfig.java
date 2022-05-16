@@ -8,10 +8,10 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 
@@ -20,7 +20,7 @@ import javax.sql.DataSource;
 @Configuration
 @ComponentScan(basePackages = "com.lxisoft.spring")
 @EnableWebMvc
-public class SpringMvcConfig implements WebMvcConfigurer {
+public class SpringMvcConfig  {
     @Bean
     public DataSource getDataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -44,4 +44,8 @@ public class SpringMvcConfig implements WebMvcConfigurer {
         jdbcTemplate.setDataSource(getDataSource);
         return jdbcTemplate;
     }
+
+
+
+
 }

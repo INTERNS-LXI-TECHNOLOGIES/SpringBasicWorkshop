@@ -49,7 +49,7 @@ tr {
 <body style="background-color:#B0C4DE;">
     <div align="center" class="login-card">
      <h1>Add New Contact</h1>
-        <form:form action="insert" method="post" modelAttribute="contact" style="background-color:#E6E6FA">
+        <form:form action="${pageContext.request.contextPath}/insert" method="post" modelAttribute="contact" style="background-color:#E6E6FA">
 
         <table>
         <tr>
