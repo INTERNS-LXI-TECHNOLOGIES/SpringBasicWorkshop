@@ -54,7 +54,10 @@ public class ContactController {
         Contact contact = contactDAO.getContact(contact_id);
         model.addAttribute("contact", contact);
         model.addAttribute("action", "update");
-        return "ContactUp";
+        return "ContactForm";
     }
-
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
 }

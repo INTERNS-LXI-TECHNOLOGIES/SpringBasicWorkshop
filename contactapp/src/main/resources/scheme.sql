@@ -8,3 +8,5 @@ CREATE TABLE `contact` (
   UNIQUE KEY `contactid_UNIQUE` (`contact_id`),
   UNIQUE KEY `phone_UNIQUE` (`phone`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+

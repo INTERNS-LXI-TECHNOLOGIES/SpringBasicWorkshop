@@ -42,6 +42,7 @@ th:nth-child(even) {background-color: hsl(0, 20%, 50%);}
             &nbsp;&nbsp;||&nbsp;&nbsp;
             <a href="${contextPath}/create">New Contact</a>
             &nbsp;&nbsp;||&nbsp;&nbsp;
+            <a href="${contextPath}/logout">Logout</a>
             </h3>
            <table id="customers">
                 <th>No</th>
@@ -61,7 +62,7 @@ th:nth-child(even) {background-color: hsl(0, 20%, 50%);}
                     <td>
                         <a href="edit/${contact.contact_id}">Edit</a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="delete/${contact.contact_id}">Delete</a>
+                        <a href="delete/${contact.contact_id}" onclick="return confirm('Are you sure you want to delete This?')">Delete</a>
                     </td>
 
                 </tr>
