@@ -1,27 +1,23 @@
-package com.lxisoft.spring.model;
+package com.lxisoft.spring.entity;
 
+
+import javax.persistence.*;
+
+@Entity
 public class Contact {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "contact_id")
     private Integer contact_id;
+
+    @Column(name = "name")
     private String name;
+    @Column(name = "email")
     private String email;
+    @Column(name = "address")
     private String address;
+    @Column(name = "phone")
     private String phone;
-
-    public Contact() {
-    }
-
-    public Contact(Integer contact_id, String name, String email, String address, String phone) {
-        this(name,email,address,phone);
-        this.contact_id =contact_id;
-    }
-
-    public Contact(String name, String email, String address, String phone) {
-
-        this.name = name;
-        this.email = email;
-        this.address = address;
-        this.phone = phone;
-    }
 
     public Integer getContact_id() {
         return contact_id;
@@ -62,15 +58,6 @@ public class Contact {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-
-    @Override
-    public String toString() {
-        return "Contact{" +
-                "contact_id=" + contact_id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", address='" + address + '\'' +
-                ", phone='" + phone + '\'' +
-                '}';
-    }
 }
+
+

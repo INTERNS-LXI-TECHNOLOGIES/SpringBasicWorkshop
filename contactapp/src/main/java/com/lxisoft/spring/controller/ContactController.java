@@ -1,7 +1,8 @@
 package com.lxisoft.spring.controller;
 
 import com.lxisoft.spring.dao.ContactDAO;
-import com.lxisoft.spring.model.Contact;
+import com.lxisoft.spring.entity.Contact;
+import com.lxisoft.spring.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,48 +13,43 @@ import java.util.List;
 
 @Controller
 public class ContactController {
+
     @Autowired
-    private ContactDAO contactDAO;
+    private ContactService contactService;
 
     @GetMapping("/")
     public String home(Model model) throws SQLException {
-        List<Contact> contactList = contactDAO.listAllContact();
+        List<Contact> contactList = contactService.listAllContacts();
         model.addAttribute("contactList", contactList);
         return "home";
     }
 
-    @PostMapping("/insert")
-    public String insertContact(@ModelAttribute Contact contact) throws SQLException {
-        contactDAO.insertContact(contact);
+    @PostMapping("/save")
+    public String saveContact(@ModelAttribute Contact contact) throws SQLException {
+        contactService.saveContact(contact);
         return "redirect:/";
     }
 
-    @PostMapping("/update")
-    public String updateContact(@ModelAttribute Contact contact) throws SQLException {
-        contactDAO.updateContact(contact);
-        return "redirect:/";
-    }
 
     @GetMapping("/create")
     public String createContact(Model model) {
         model.addAttribute("contact", new Contact());
-        model.addAttribute("action", "insert");
+        model.addAttribute("caption", "ADD NEW CONTACT");
         return "ContactForm";
     }
 
     @GetMapping("/delete/{contact_id}")
-    public String deleteContact(@PathVariable int contact_id) throws SQLException {
-        Contact contact = new Contact();
-        contact.setContact_id(contact_id);
-        contactDAO.deleteContact(contact);
+    public String deleteContact(@PathVariable int contact_id){
+
+        contactService.deleteContact(contact_id);
         return "redirect:/";
     }
 
     @GetMapping("/edit/{contact_id}")
-    public String editContact(@PathVariable int contact_id, Model model) throws SQLException {
-        Contact contact = contactDAO.getContact(contact_id);
+    public String editContact(@PathVariable int contact_id, Model model){
+        Contact contact = contactService.getContact(contact_id);
         model.addAttribute("contact", contact);
-        model.addAttribute("action", "update");
+        model.addAttribute("caption", "UPDATE CONTACT");
         return "ContactForm";
     }
     @GetMapping("/login")

@@ -2,6 +2,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <html>
     <head>
@@ -50,7 +51,9 @@ th:nth-child(even) {background-color: hsl(0, 20%, 50%);}
                 <th>Email</th>
                 <th>Address</th>
                 <th>Telephone</th>
+                <sec:authorize access="hasRole('ADMIN')">
                 <th>Action</th>
+                </sec:authorize>
 
                 <c:forEach var="contact" items="${contactList}" varStatus="status">
                 <tr>
@@ -59,11 +62,13 @@ th:nth-child(even) {background-color: hsl(0, 20%, 50%);}
                     <td>${contact.email}</td>
                     <td>${contact.address}</td>
                     <td>${contact.phone}</td>
+                     <sec:authorize access="hasRole('ADMIN')">
                     <td>
                         <a href="edit/${contact.contact_id}">Edit</a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <a href="delete/${contact.contact_id}" onclick="return confirm('Are you sure you want to delete This?')">Delete</a>
                     </td>
+                    </sec:authorize>
 
                 </tr>
                 </c:forEach>

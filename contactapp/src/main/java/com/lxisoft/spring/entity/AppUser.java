@@ -1,8 +1,20 @@
-package com.lxisoft.spring.model;
+package com.lxisoft.spring.entity;
 
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "user")
 public class AppUser {
+    @Id
+    @Column
     private String username;
+    @Column
     private String password;
+    @Column
     private String role;
 
     public String getUsername() {
