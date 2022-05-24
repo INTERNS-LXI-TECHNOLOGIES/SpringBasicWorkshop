@@ -35,6 +35,7 @@ public class ContactServiceImpl implements ContactService{
     @Override
     @Transactional
     public Contact getContact(int contact_id) {
+
         return contactDao.getContact(contact_id);
     }
 }

@@ -18,7 +18,7 @@ public class ContactController {
     private ContactService contactService;
 
     @GetMapping("/")
-    public String home(Model model) throws SQLException {
+    public String home(Model model) {
         List<Contact> contactList = contactService.listAllContacts();
         model.addAttribute("contactList", contactList);
         return "home";

@@ -4,6 +4,7 @@ package com.lxisoft.spring.entity;
 import javax.persistence.*;
 
 @Entity
+@Table(name ="contact")
 public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

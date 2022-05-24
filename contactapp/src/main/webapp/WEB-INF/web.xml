@@ -6,5 +6,5 @@
         id="WebApp_ID" version="4.0">
 
   <!-- Config here. -->
-
+  <display-name>ContactApplication</display-name>
 </web-app>
