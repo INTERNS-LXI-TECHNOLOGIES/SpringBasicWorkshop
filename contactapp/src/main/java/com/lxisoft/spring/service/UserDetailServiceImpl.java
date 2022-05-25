@@ -1,7 +1,7 @@
 package com.lxisoft.spring.service;
 
-import com.lxisoft.spring.dao.AppUserDAO;
 import com.lxisoft.spring.entity.AppUser;
+import com.lxisoft.spring.repository.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,12 +14,12 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserDetailServiceImpl implements UserDetailsService {
 
     @Autowired
-    AppUserDAO userDAO;
+    AppUserRepository appRepo;
 
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        final AppUser appUser = userDAO.getUser(username);
+        final AppUser appUser = appRepo.findById(username).orElse(null);
         if (appUser == null) {
             throw new UsernameNotFoundException(username);
         }

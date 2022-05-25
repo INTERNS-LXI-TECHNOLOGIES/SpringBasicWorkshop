@@ -1,6 +1,5 @@
 package com.lxisoft.spring.controller;
 
-import com.lxisoft.spring.dao.ContactDAO;
 import com.lxisoft.spring.entity.Contact;
 import com.lxisoft.spring.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;

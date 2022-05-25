@@ -1,7 +1,7 @@
 package com.lxisoft.spring.service;
 
-import com.lxisoft.spring.dao.ContactDAO;
 import com.lxisoft.spring.entity.Contact;
+import com.lxisoft.spring.repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,33 +9,34 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class ContactServiceImpl implements ContactService{
 
     @Autowired
-    private ContactDAO contactDao;
+    private ContactRepository contactRepo;
 
     @Override
-    @Transactional
+
     public List<Contact> listAllContacts() {
-        return contactDao.listAllContacts();
+        return contactRepo.findAll();
     }
 
     @Override
-    @Transactional
+
     public void saveContact(Contact contact) {
-        contactDao.saveContact(contact);
+        contactRepo.save(contact);
     }
 
     @Override
-    @Transactional
+
     public void deleteContact(int contact_id) {
-        contactDao.deleteContact(contact_id);
+        contactRepo.deleteById(contact_id);
     }
 
     @Override
-    @Transactional
+
     public Contact getContact(int contact_id) {
 
-        return contactDao.getContact(contact_id);
+        return contactRepo.findById(contact_id).get();
     }
 }
