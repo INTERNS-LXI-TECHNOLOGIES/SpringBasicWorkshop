@@ -48,14 +48,7 @@ public class SpringMvcConfig  {
         resolver.setSuffix(".jsp");
         return resolver;
     }
-/*    @Bean
-    public LocalSessionFactoryBean sessionFactory() {
-        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-        sessionFactory.setDataSource(mysqlDataSource());
-        sessionFactory.setPackagesToScan(new String[] { "com.lxisoft.spring.entity" });
-        sessionFactory.setHibernateProperties(hibernateProperties());
-        return sessionFactory;
-    }*/
+
 
     private Properties hibernateProperties() {
         Properties properties = new Properties();
