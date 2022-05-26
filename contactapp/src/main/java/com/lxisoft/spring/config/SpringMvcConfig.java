@@ -48,14 +48,14 @@ public class SpringMvcConfig  {
         resolver.setSuffix(".jsp");
         return resolver;
     }
-    @Bean
+/*    @Bean
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(mysqlDataSource());
         sessionFactory.setPackagesToScan(new String[] { "com.lxisoft.spring.entity" });
         sessionFactory.setHibernateProperties(hibernateProperties());
         return sessionFactory;
-    }
+    }*/
 
     private Properties hibernateProperties() {
         Properties properties = new Properties();
@@ -82,15 +82,5 @@ public class SpringMvcConfig  {
         transactionManager.setEntityManagerFactory(entityManagerFactory);
         return transactionManager;
     }
-
-   /* @Autowired
-    public JdbcTemplate jdbcTemplate(DataSource getDataSource) {
-        JdbcTemplate jdbcTemplate = new JdbcTemplate();
-        jdbcTemplate.setDataSource(getDataSource);
-        return jdbcTemplate;
-    }*/
-
-
-
 
 }
