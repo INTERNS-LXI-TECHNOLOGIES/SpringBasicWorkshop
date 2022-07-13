@@ -26,4 +26,13 @@ public class Word {
     public void setMeaning(String meaning) {
         this.meaning = meaning;
     }
+
+    @Override
+    public String toString() {
+        return "Word{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", meaning='" + meaning + '\'' +
+                '}';
+    }
 }

@@ -60,7 +60,7 @@
 				</thead>
 				<tbody>
 
-					<c:forEach var="word" items="${wordList}" varStatus="status">
+					<c:forEach var="word" items="${wordsList}" varStatus="status">
 						<tr>
 							<td><c:out value="${status.index + 1}" /></td>
                             <td>${word.name}</td>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Logger;
 
 @Repository
 public class DictionaryDAO {
@@ -15,12 +16,9 @@ public class DictionaryDAO {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
-    public boolean insertWord(Word word) throws SQLException {
-        String sql = "INSERT INTO dictionary (Words, Meanings) VALUES (?,?)";
-        int result = jdbcTemplate.update(sql, new Object[] { word.getName(),word.getMeaning() });
-        boolean rowInserted = result > 0;
-        return rowInserted;
-    }
+
+    private static final Logger LOGGER = Logger.getLogger(DictionaryDAO.class.getName());
+
 
     public List<Word> listAllWords() throws SQLException {
 
@@ -28,10 +26,20 @@ public class DictionaryDAO {
         String sql = "SELECT * FROM dictionary";
 
 
-        List<Word> wordList = jdbcTemplate.query(sql, new BeanPropertyRowMapper<Word>(Word.class));
+        List<Word> wordList = jdbcTemplate.query(sql, new BeanPropertyRowMapper< Word >(Word.class));
+        LOGGER.info("wordList" + wordList);
 
         return wordList;
     }
+    public boolean insertWord(Word word) throws SQLException {
+        String sql = "INSERT INTO dictionary (Words, Meanings) VALUES (?,?)";
+        int result = jdbcTemplate.update(sql, new Object[] { word.getName(),word.getMeaning() });
+
+        boolean rowInserted = result > 0;
+        return rowInserted;
+    }
+
+
 
 
     public boolean deleteWord(Word word) throws SQLException {
@@ -53,11 +61,12 @@ public class DictionaryDAO {
 
     public Word getWord(int id) throws SQLException {
 
-        String sql = "SELECT * FROM dictionary WHERE id = ?";
+        String sql = "select id,Words,Meanings from dictionary where id =?";
 
        Word word = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Word>(Word.class), new Object[] {id });
 
         return word;
     }
+
 }
 

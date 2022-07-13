@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Logger;
 
 @Controller
 public class DictionaryController {
@@ -20,11 +21,15 @@ public class DictionaryController {
     @Autowired
     private DictionaryDAO dictionaryDAO;
 
+    private static final Logger LOGGER = Logger.getLogger(DictionaryController.class.getName());
+
     @GetMapping("/")
 
     public String home(Model model) throws SQLException {
-        List<Word> wordList = dictionaryDAO.listAllWords();
-        model.addAttribute("wordList", wordList);
+        List<Word> wordsList = dictionaryDAO.listAllWords();
+        model.addAttribute("wordsList", wordsList);
+
+        LOGGER.info("wordList" + wordsList);
         return "data-list";
     }
 
@@ -70,6 +75,7 @@ public class DictionaryController {
         session.invalidate();
         return "redirect:/";
     }
+
 }
 
 
