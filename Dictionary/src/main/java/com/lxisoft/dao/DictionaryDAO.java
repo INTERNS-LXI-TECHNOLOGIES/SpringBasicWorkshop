@@ -1,8 +1,8 @@
 package main.java.com.lxisoft.dao;
 
+import main.java.com.lxisoft.controller.WordRowMapper;
 import main.java.com.lxisoft.model.Word;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -20,13 +20,13 @@ public class DictionaryDAO {
     private static final Logger LOGGER = Logger.getLogger(DictionaryDAO.class.getName());
 
 
-    public List<Word> listAllWords() throws SQLException {
+    public List<Word> listAllWords() {
 
 
         String sql = "SELECT * FROM dictionary";
 
 
-        List<Word> wordList = jdbcTemplate.query(sql, new BeanPropertyRowMapper< Word >(Word.class));
+        List<Word> wordList = jdbcTemplate.query(sql, new WordRowMapper());
         LOGGER.info("wordList" + wordList);
 
         return wordList;
@@ -53,7 +53,7 @@ public class DictionaryDAO {
     public boolean updateWord(Word word) throws SQLException {
         String sql = "UPDATE dictionary SET Words = ?, Meanings= ? WHERE id = ?";
 
-        int result = jdbcTemplate.update(sql, new Object[] {word.getName(), word.getMeaning() });
+        int result = jdbcTemplate.update(sql, new Object[] {word.getName(), word.getMeaning(),word.getId() });
         boolean rowUpdated = result > 0;
         return rowUpdated;
     }
@@ -61,9 +61,9 @@ public class DictionaryDAO {
 
     public Word getWord(int id) throws SQLException {
 
-        String sql = "select id,Words,Meanings from dictionary where id =?";
+        String sql = "SELECT * FROM dictionary WHERE id = ?";
 
-       Word word = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Word>(Word.class), new Object[] {id });
+       Word word = jdbcTemplate.queryForObject(sql, new  WordRowMapper(), new Object[] {id });
 
         return word;
     }
