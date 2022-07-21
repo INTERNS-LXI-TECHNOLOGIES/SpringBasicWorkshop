@@ -1,4 +1,5 @@
 package main.java.com.lxisoft.controller;
+
 import main.java.com.lxisoft.dao.DictionaryDAO;
 import main.java.com.lxisoft.model.Word;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +10,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Logger;
@@ -23,7 +22,7 @@ public class DictionaryController {
 
     private static final Logger LOGGER = Logger.getLogger(DictionaryController.class.getName());
 
-    @GetMapping("/")
+    @GetMapping()
 
     public String home(Model model) throws SQLException {
         List<Word> wordsList = dictionaryDAO.listAllWords();
@@ -69,13 +68,6 @@ public class DictionaryController {
         model.addAttribute("action", "update");
         return "data-form";
     }
-    @GetMapping("/logout")
-    public String logout(HttpServletRequest request) throws SQLException {
-        HttpSession session = request.getSession();
-        session.invalidate();
-        return "redirect:/";
-    }
-
 }
 
 
