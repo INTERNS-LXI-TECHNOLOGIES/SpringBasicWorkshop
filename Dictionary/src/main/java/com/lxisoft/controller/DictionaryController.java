@@ -22,7 +22,7 @@ public class DictionaryController {
 
     private static final Logger LOGGER = Logger.getLogger(DictionaryController.class.getName());
 
-    @GetMapping()
+    @GetMapping("/")
 
     public String home(Model model) throws SQLException {
         List<Word> wordsList = dictionaryDAO.listAllWords();
@@ -67,6 +67,10 @@ public class DictionaryController {
         model.addAttribute("word", word);
         model.addAttribute("action", "update");
         return "data-form";
+    }
+    @GetMapping("/Login-form")
+    public String login() {
+        return "Login-form";
     }
 }
 

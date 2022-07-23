@@ -3,7 +3,6 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
-<body onload='document.loginForm.username.focus();'>
 	<head>
 		<title>Dictionary Application</title>
 
@@ -13,9 +12,16 @@
    <div
    style="background: #14eddb; color: rgb(8, 0, 0); text-align: center;">
    <h2>Dictionary Application</h2>
-
-   <c:if test="${not empty message}"><div>${message}</div></c:if>
 </div>
+
+<div align="center">
+		<c:if test="${param.error != null}">
+	        <span style="color: #d13232;"><br><br>Invalid username or password<br><br></span>
+	    </c:if>
+	    <c:if test="${param.logout != null}">
+	        <span style="color: #247d94;"><br><br>You have been successfully logged out<br><br></span>
+	    </c:if>
+		</div>
 
 <div align="center">
 
@@ -23,7 +29,7 @@
 		<div align="center">
 
 			<h3>Log In</h3>
-			<form name='login' action="<c:url value='/Login-form' />" method='POST'>
+			<form method="POST" action="${contextPath}/Login-form">
 				Username: <input type="text" name="username"><br><br>
 				Password: <input type="password"  name="password" ><br><br>
 				<input type="submit" value="Log In" style="background: #54b0b0; color: white; border-radius: 15px; padding: 6px 12px; ">
