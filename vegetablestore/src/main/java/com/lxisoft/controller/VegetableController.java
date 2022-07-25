@@ -9,8 +9,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.imageio.ImageIO;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
@@ -219,5 +225,103 @@ public void delete(@RequestParam("id")int id) {
 
 }
 
+@GetMapping("search")
+public void search(@RequestParam("search")String word){
+
+    List <Vegetable>vegetables = new ArrayList<Vegetable>();
+
+
+    String sql = "select * from vegetablestore where name like'%"+word+"%';";
+
+    System.out.println(sql);
+
+    try {
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/lxisoft","root","Mubashir24092000");
+
+        Statement st = con.createStatement();
+
+        ResultSet rs = st.executeQuery(sql);
+
+        while(rs.next()){
+
+
+            Blob blob = rs.getBlob(6);
+
+            InputStream inputStream = blob.getBinaryStream();
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            byte[] buffer = new byte[4096];
+            int bytesRead = -1;
+
+            while ((bytesRead = inputStream.read(buffer)) != -1) {
+                outputStream.write(buffer, 0, bytesRead);
+            }
+
+            byte[] imageBytes = outputStream.toByteArray();
+            String base64Image = Base64.getEncoder().encodeToString(imageBytes);
+
+
+            inputStream.close();
+            outputStream.close();
+
+            vegetables.add( new Vegetable(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),base64Image));
+
+
+        }
+
+        ModelAndView mav = new ModelAndView("view/vegetable");
+
+        mav.addObject("vegetable",vegetables);
+
+
+
+    }catch(Exception e){
+
+        e.printStackTrace();
+
+
+    }
 
 }
+@GetMapping("image")
+public void image(@RequestParam("name")String name, HttpServletResponse response) throws IOException {
+
+    System.out.println(name);
+    String path ="../../../vegetablestore/src/main/resources/picture/"+ name;
+
+    byte [] image = getImageAsBytes(path);
+
+    response.setContentType("image/jpeg");
+    response.setContentLength(image.length);
+    response.getOutputStream().write(image);
+
+
+}
+
+    private byte[] getImageAsBytes(String name) {
+
+
+        File imgPath = new File(name);
+        System.out.println("can read: "+imgPath.canRead()+"\n"+
+                        "exists: "+imgPath.exists()+"\n"+
+                        "absolute path: "+imgPath.getAbsolutePath()+"\n"+
+                        "file? :"+imgPath.isFile()+"\n"
+        );
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        try{
+            BufferedImage bufferedImage = ImageIO.read(imgPath);
+            ImageIO.write(bufferedImage, "jpg", bos );
+        }
+        catch(IOException e) {
+            e.printStackTrace();
+        }
+        return bos.toByteArray();
+
+    }
+
+
+
+}
+

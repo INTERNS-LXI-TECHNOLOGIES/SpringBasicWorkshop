@@ -84,7 +84,7 @@ border:none;
 
   <div 
   style= "text-align: leftt;">
-  <a href = "vegetable-list"  ><img src ="image?name=refresh.jpg" alt="google-play" height = 50px  ></a>
+  <a href = "/"  ><img src ="image?name=refresh.jpg" alt="google-play" height = 50px  ></a>
 </div>
 
 
@@ -95,7 +95,7 @@ border:none;
 
 
  <% if (request.isUserInRole("admin")) {  %>
-  <a href = "add-vegetable"><img src ="image?name=add.jpeg" alt="google-play" height = 50px  class="vegetableBtn"></a>
+  <a href = "add-form"><img src ="image?name=add.jpeg" alt="google-play" height = 50px  class="vegetableBtn"></a>
 
 <%}%>
 
@@ -132,7 +132,7 @@ border:none;
 
 <% if (request.isUserInRole("admin")) {  %>
 
-  <td><form action = "update-vegetable" method = "GET">
+  <td><form action = "select-vegetable">
 
     <center><input type = "hidden" name ="id" value= <%=vegetable.getId()%>
       <input type = "submit" ><button class = "editBtn">Edit</button></input></center></form>

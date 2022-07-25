@@ -24,7 +24,7 @@ text-shadow:4px 3px black;
 
 			<h2>Invalid username or password</h2>
 
-<a href =  "vegetable-list">Login again</a>
+<a href =  "/">Login again</a>
 
 	</body>
 </html>

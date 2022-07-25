@@ -47,10 +47,10 @@ margin:50px;
 <center><h1>VEGETABLE UPDATE FORM</h1></center>
 
 
-<a href = "vegetable-list"><img src ="image?name=home.jpeg" alt="google-play" height = 60px  class="homeBtn">
+<a href = "/"><img src ="image?name=home.jpeg" alt="google-play" height = 60px  class="homeBtn">
 </a>
    
-   <form action ="<%=request.getContextPath() %>/update-vegetable" method ="post">
+   <form action ="<%=request.getContextPath() %>/update-vegetable">
 
 
    <%List<Vegetable> vegetables = (ArrayList<Vegetable>)request.getAttribute("vegetable");

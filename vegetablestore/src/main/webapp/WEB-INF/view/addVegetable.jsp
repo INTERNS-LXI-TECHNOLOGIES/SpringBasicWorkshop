@@ -64,12 +64,12 @@ margin:50px;
 <div align = "left">
 
   
-  <a href = "vegetable-list"><img src ="image?name=home.jpeg" alt="google-play" height = 60px  class="homeBtn">
+  <a href = "/"><img src ="image?name=home.jpeg" alt="google-play" height = 60px  class="homeBtn">
     </a>
     
     </div>
 
-<form action ="<%=request.getContextPath() %>/add-vegetable" enctype="multipart/form-data" method ="POST">
+<form action ="<%=request.getContextPath() %>/create-vegetable" enctype="multipart/form-data" method ="POST">
 
 <table style = "width: 80%">
 
