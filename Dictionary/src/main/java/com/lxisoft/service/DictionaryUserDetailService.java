@@ -9,11 +9,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-
 @Service
 public class DictionaryUserDetailService implements UserDetailsService {
 
-    @Autowired(required = false)
+    @Autowired
     DictionaryUserDAO userDAO;
 
     @Override

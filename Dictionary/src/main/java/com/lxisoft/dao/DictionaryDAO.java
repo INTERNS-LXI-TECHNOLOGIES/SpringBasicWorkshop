@@ -20,9 +20,7 @@ public class DictionaryDAO {
 
     public List<Word> listAllWords() {
 
-
         String sql = "SELECT * FROM dictionary";
-
 
         List<Word> wordList = jdbcTemplate.query(sql, new WordRowMapper());
         LOGGER.info("wordList" + wordList);
@@ -36,9 +34,6 @@ public class DictionaryDAO {
         boolean rowInserted = result > 0;
         return rowInserted;
     }
-
-
-
 
     public boolean deleteWord(Word word)  {
         String sql = "DELETE FROM dictionary where id = ?";
