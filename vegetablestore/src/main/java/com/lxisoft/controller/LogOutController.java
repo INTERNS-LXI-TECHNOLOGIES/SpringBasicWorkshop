@@ -12,7 +12,7 @@ public class LogOutController {
 
         HttpSession session = request.getSession();
         session.invalidate();
-      return "redirect:/";
+      return "login";
 
 
 

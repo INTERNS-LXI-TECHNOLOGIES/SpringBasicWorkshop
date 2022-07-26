@@ -1,4 +1,4 @@
-package main.java.com.lxisoft.servlets;
+package main.java.com.lxisoft.controller;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.ServletException;
