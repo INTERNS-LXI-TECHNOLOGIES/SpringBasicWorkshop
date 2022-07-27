@@ -48,34 +48,31 @@
 
 			<br>
 			<table class="table table-bordered">
-				<thead>
+
 					<tr>
 						<th>ID</th>
 						<th>Word</th>
 						<th>Meaning</th>
-						<sec:authorize access="hasRole('ADMIN')">
+						<% if (request.isUserInRole("ADMIN")) { %>
 						<th>Actions</th>
-						</sec:authorize>
+						<% } %>
 					</tr>
-				</thead>
-				<tbody>
 
 					<c:forEach var="word" items="${wordsList}" varStatus="status">
 						<tr>
 							<td><c:out value="${status.index + 1}" /></td>
                             <td>${word.name}</td>
                             <td>${word.meaning}</td>
-							<sec:authorize access="hasRole('ADMIN')">
+							<% if (request.isUserInRole("ADMIN")) { %>
 							<td>
 							<a href="edit/${word.id}">Edit</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;
                            <a href="delete/${word.id}" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
                            </td>
-						</sec:authorize>
+						<% } %>
 						</tr>
 					</c:forEach>
 
-				</tbody>
 
 			</table>
 		</div>
