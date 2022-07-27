@@ -8,11 +8,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.imageio.ImageIO;
 import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -25,7 +26,7 @@ import java.util.List;
 
 @Controller
 @MultipartConfig
-public class VegetableController {
+public class VegetableStoreController {
 
 
     @GetMapping("/")
@@ -80,23 +81,15 @@ public String readVegetable(Model model) {
     }
 @GetMapping("add-form")
 public String addVegetableForm(){
+    System.out.println("add veg");
 
 return "addVegetable";
 }
 @PostMapping("create-vegetable")
-public String createVegetable(@RequestParam("name,price,stock,orderQuantity,image")String name,String price,String stock,String orderQuantity,javax.servlet.http.Part image) throws IOException {
-
+public String createVegetable(@RequestParam("name") String name,@RequestParam("price") String price,@RequestParam("stock") String stock,@RequestParam("orderQuantity") String orderQuantity,@RequestParam("image") javax.servlet.http.Part image) throws IOException {
     VegetableDao vegetableDao = new VegetableDao();
 
     System.out.println("add method working");
-
-  	/*name = request.getParameter("name");
-  price = request.getParameter("price");
-    stock = request.getParameter("stock");
-  orderQuantity = request.getParameter("orderQuantity");
-   image = request.getPart("image");
-
-    System.out.println(request.getParts());*/
 
     System.out.println("image: "+ image);
 
@@ -120,13 +113,13 @@ public String createVegetable(@RequestParam("name,price,stock,orderQuantity,imag
         e.printStackTrace();
     }
 
-    return "vegetableConfirm";
+    return "redirect:/";
 }
 
 @GetMapping("select-vegetable")
 public String selectVegetable(@RequestParam("id")int id,Model model) {
 
-    System.out.println("update");
+    System.out.println("select");
 
     List <Vegetable>vegetable = new ArrayList<Vegetable>();
     try{
@@ -171,14 +164,10 @@ public String selectVegetable(@RequestParam("id")int id,Model model) {
 }
 
 @GetMapping("update-vegetable")
-    public void updateVegetable(@RequestParam("id,name,price,stock,orderQuantity")int id,String name,String price,String stock,String orderQuantity){
+    public String updateVegetable(@RequestParam("id")int id,@RequestParam("name") String name,@RequestParam("price") String price,@RequestParam("stock") String stock,@RequestParam("orderQuantity") String orderQuantity){
         System.out.println("update Vegetable");
 
-
-         /*name = request.getParameter("name");
-        price = request.getParameter("price");
-        stock = request.getParameter("stock");
-        orderQuantity = request.getParameter("orderQuantity");*/
+    System.out.println(id+name+price+stock+orderQuantity);
 
         Vegetable vegetable = new Vegetable(id,name,price,stock,orderQuantity);
 
@@ -191,15 +180,12 @@ public String selectVegetable(@RequestParam("id")int id,Model model) {
             e.printStackTrace();
 
         }
-
-        //response.sendRedirect("vegetable-list");
+return "redirect:/";
     }
 
-
-
 @PostMapping("delete-vegetable")
-public void delete(@RequestParam("id")int id) {
-
+public String delete(@RequestParam("id")int id) {
+        System.out.println(id);
     VegetableDao vegetableDao = new VegetableDao();
 
     System.out.println("Delete method working");
@@ -216,7 +202,7 @@ public void delete(@RequestParam("id")int id) {
 
     }
 
-
+return "redirect:/";
 }
 
 @GetMapping("search")
@@ -314,6 +300,14 @@ public void image(@RequestParam("name")String name, HttpServletResponse response
 
     }
 
+    @GetMapping("log-out")
+public String logOut(HttpServletRequest request){
+
+    HttpSession session = request.getSession();
+    session.invalidate();
+
+        return "redirect:/";
+}
 
 
 }

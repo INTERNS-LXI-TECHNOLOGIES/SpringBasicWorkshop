@@ -84,7 +84,7 @@ border:none;
 
   <div 
   style= "text-align: leftt;">
-  <a href = "/"  ><img src ="image?name=refresh.jpg" alt="google-play" height = 50px  ></a>
+  <a href = "<%=request.getContextPath() %>"><img src ="image?name=refresh.jpg" alt="google-play" height = 50px  ></a>
 </div>
 
 
