@@ -32,19 +32,12 @@
 		<div class="card">
 			<div class="card-body">
 
-				<form:form action="${contextPath}/${action}" method="post" modelAttribute="word">
+				<form:form action="${contextPath}/save" method="post" modelAttribute="word">
 
 				<table border="1" cellpadding="5" cellspacing="0" style="text-transform: uppercase;">
 
 				<caption>
-					<h2>
-						<c:if test="${action == 'update'}">
-            			Edit Word
-            		</c:if>
-						<c:if test="${action == 'insert'}">
-            			Add New Word
-            		</c:if>
-					</h2>
+					<h2>${caption}</h2>
 				</caption>
 
 				   <tr>

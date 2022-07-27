@@ -1,21 +1,23 @@
 package main.java.com.lxisoft.service;
 
 import main.java.com.lxisoft.dao.DictionaryUserDAO;
-import main.java.com.lxisoft.model.DictionaryUser;
+import main.java.com.lxisoft.entity.DictionaryUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class DictionaryUserDetailService implements UserDetailsService {
+public class DictionaryDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     DictionaryUserDAO userDAO;
 
     @Override
+    @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         final DictionaryUser dictionaryUser = userDAO.getUser(username);
         if (dictionaryUser == null) {

@@ -1,7 +1,7 @@
 package main.java.com.lxisoft.controller;
 
-import main.java.com.lxisoft.dao.DictionaryDAO;
-import main.java.com.lxisoft.model.Word;
+import main.java.com.lxisoft.entity.Word;
+import main.java.com.lxisoft.service.DictionaryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -18,29 +17,23 @@ import java.util.logging.Logger;
 public class DictionaryController {
 
     @Autowired
-    private DictionaryDAO dictionaryDAO;
+    private DictionaryService dictionaryService;
 
     private static final Logger LOGGER = Logger.getLogger(DictionaryController.class.getName());
 
     @GetMapping("/")
 
-    public String home(Model model) throws SQLException {
-        List<Word> wordsList = dictionaryDAO.listAllWords();
+    public String home(Model model)  {
+        List<Word> wordsList =dictionaryService.listAllWords();
         model.addAttribute("wordsList", wordsList);
 
         LOGGER.info("wordList" + wordsList);
         return "data-list";
     }
 
-    @PostMapping("/insert")
-    public String insertWord(@ModelAttribute Word word) throws SQLException {
-        dictionaryDAO.insertWord(word);
-        return "redirect:/";
-    }
-
-    @PostMapping("/update")
-    public String updateWord(@ModelAttribute Word word) throws SQLException {
-        dictionaryDAO.updateWord(word);
+    @PostMapping("/save")
+    public String saveCar(@ModelAttribute Word word) {
+        dictionaryService.saveWord(word);
         return "redirect:/";
     }
 
@@ -48,24 +41,22 @@ public class DictionaryController {
     public String createWord(Model model) {
 
         model.addAttribute("word", new Word());
-        model.addAttribute("action", "insert");
+        model.addAttribute("caption", "ADD NEW WORD");
 
         return "data-form";
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteWord(@PathVariable int id) throws SQLException {
-        Word word = new Word();
-        word.setId(id);
-        dictionaryDAO.deleteWord(word);
+    public String deleteCar(@PathVariable int id) {
+        dictionaryService.deleteWord(id);
         return "redirect:/";
     }
 
     @GetMapping("/edit/{id}")
-    public String editWord(@PathVariable int id, Model model) throws SQLException {
-        Word word = dictionaryDAO.getWord(id);
+    public String editCar(@PathVariable int id, Model model) {
+        Word word = dictionaryService.getWord(id);
         model.addAttribute("word", word);
-        model.addAttribute("action", "update");
+        model.addAttribute("caption", "EDIT WORD");
         return "data-form";
     }
     @GetMapping("/Login-form")

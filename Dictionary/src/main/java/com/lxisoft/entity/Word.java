@@ -1,8 +1,18 @@
-package main.java.com.lxisoft.model;
+package main.java.com.lxisoft.entity;
+
+import javax.persistence.*;
+
+@Entity
 public class Word {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
 
     private Integer id;
+    @Column(name = "Words")
     private String name;
+
+    @Column(name = "Meanings")
     private String meaning;
 
     public Integer getId() {

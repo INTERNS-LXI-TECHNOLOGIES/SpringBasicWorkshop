@@ -1,10 +1,10 @@
-package main.java.com.lxisoft.dao;
+package main.java.com.lxisoft.service;
 
 import main.java.com.lxisoft.entity.Word;
 
 import java.util.List;
 
-public interface DictionaryDAO {
+public interface DictionaryService {
 
     List<Word> listAllWords();
 
