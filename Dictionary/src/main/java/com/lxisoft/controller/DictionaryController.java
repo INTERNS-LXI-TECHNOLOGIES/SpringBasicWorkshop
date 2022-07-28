@@ -32,7 +32,7 @@ public class DictionaryController {
     }
 
     @PostMapping("/save")
-    public String saveCar(@ModelAttribute Word word) {
+    public String saveWord(@ModelAttribute Word word) {
         dictionaryService.saveWord(word);
         return "redirect:/";
     }

@@ -6,6 +6,7 @@
 <html>
 <head>
 <title>Dictionary Application</title>
+
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -19,6 +20,7 @@
 			<div>
         <a href="https://www.javaguides.net" class="navbar-brand"> Dictionary App </a>
 			</div>
+
             <h5 class="links">
 				<a href="${contextPath}">Words List</a>
 				&nbsp;&nbsp;|&nbsp;&nbsp;
@@ -26,7 +28,9 @@
                 &nbsp;&nbsp;|&nbsp;&nbsp;
                 <a href="${contextPath}/logout">Log Out</a>
                 </h5>
-	</header>
+
+               </header>
+
 	<br>
 	<div class="container col-md-5">
 		<div class="card">

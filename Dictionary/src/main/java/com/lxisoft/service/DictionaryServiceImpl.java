@@ -3,10 +3,11 @@ package main.java.com.lxisoft.service;
 import main.java.com.lxisoft.dao.DictionaryDAO;
 import main.java.com.lxisoft.entity.Word;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
+@Component
 public class DictionaryServiceImpl  implements DictionaryService {
 
     @Autowired

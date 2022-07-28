@@ -1,7 +1,8 @@
 package main.java.com.lxisoft.entity;
-
+import javax.persistence.Column;
+import javax.persistence.Table;
 import javax.persistence.*;
-
+@Table(name = "dictionary")
 @Entity
 public class Word {
     @Id
