@@ -5,9 +5,7 @@ import main.java.com.lxisoft.vegetable.Vegetable;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.imageio.ImageIO;
 import javax.servlet.annotation.MultipartConfig;
@@ -85,17 +83,16 @@ public String addVegetableForm(){
 
 return "addVegetable";
 }
-@PostMapping("create-vegetable")
-public String createVegetable(@RequestParam("name") String name,@RequestParam("price") String price,@RequestParam("stock") String stock,@RequestParam("orderQuantity") String orderQuantity,@RequestParam("image") javax.servlet.http.Part image) throws IOException {
+@ResponseBody @RequestMapping("create-vegetable")
+public String createVegetable(@RequestBody Vegetable veg) throws IOException {
     VegetableDao vegetableDao = new VegetableDao();
 
     System.out.println("add method working");
-
-    System.out.println("image: "+ image);
+    System.out.println(veg.getName()+veg.getPrice());
+    /*System.out.println("image: "+ image);
 
     InputStream inputStream  = image.getInputStream();
     System.out.println(image);
-
 
 
     Vegetable veg = new Vegetable();
@@ -105,7 +102,7 @@ public String createVegetable(@RequestParam("name") String name,@RequestParam("p
     veg.setPrice(price);
     veg.setStock(stock);
     veg.setOrderQuantity(orderQuantity);
-    veg.setImage(inputStream);
+    veg.setImage(inputStream);*/
 
     try{
         vegetableDao.addVegetable(veg);
@@ -267,7 +264,6 @@ return "vegetable";
 @GetMapping("image")
 public void image(@RequestParam("name")String name, HttpServletResponse response) throws IOException {
 
-    System.out.println(name);
     String path ="../../../vegetablestore/src/main/resources/picture/"+ name;
 
     byte [] image = getImageAsBytes(path);
@@ -283,11 +279,7 @@ public void image(@RequestParam("name")String name, HttpServletResponse response
 
 
         File imgPath = new File(name);
-        System.out.println("can read: "+imgPath.canRead()+"\n"+
-                        "exists: "+imgPath.exists()+"\n"+
-                        "absolute path: "+imgPath.getAbsolutePath()+"\n"+
-                        "file? :"+imgPath.isFile()+"\n"
-        );
+
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         try{
             BufferedImage bufferedImage = ImageIO.read(imgPath);
