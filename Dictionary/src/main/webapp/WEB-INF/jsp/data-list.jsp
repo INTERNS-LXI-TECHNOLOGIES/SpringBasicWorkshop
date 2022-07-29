@@ -19,15 +19,17 @@
 			style="background-color: blue">
 			<div>
 
-				<a href="https://www.javaguides.net" class="navbar-brand"> Dictionary App </a>
-			</div>
+				<h3 class="navbar-brand"> Dictionary App </h3>
+
 			<h5 class="links">
-            				<a href="${contextPath}">Words List</a>
+
+            				<a style= "color:white" href="${contextPath}">Words List</a>
             				&nbsp;&nbsp;|&nbsp;&nbsp;
-            				<a href="create">Add New Word</a>
+            				<a style= "color:white" href="create">Add New Word</a>
             				&nbsp;&nbsp;|&nbsp;&nbsp;
-            				<a href="logout">Log Out</a>
+            				<a style= "color:white"  href="logout">Log Out</a>
             			</h5>
+            			</div>
        </header>
 	<br>
 
