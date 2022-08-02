@@ -83,7 +83,7 @@ border:none;
   <h1><center>VEGETABLE STORE</center></h1>
 
   <div 
-  style= "text-align: leftt;">
+  style= "text-align: left;">
   <a href = "<%=request.getContextPath() %>"><img src ="image?name=refresh.jpg" alt="google-play" height = 50px  ></a>
 </div>
 
@@ -132,7 +132,7 @@ border:none;
 
 <% if (request.isUserInRole("admin")) {  %>
 
-  <td><form action = "select-vegetable">
+  <td><form action = "select-vegetable" method = "GET">
 
     <center><input type = "hidden" name ="id" value= <%=vegetable.getId()%>
       <input type = "submit" ><button class = "editBtn">Edit</button></input></center></form>

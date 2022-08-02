@@ -2,6 +2,8 @@ package main.java.com.lxisoft.controller;
 
 import main.java.com.lxisoft.dao.VegetableDao;
 import main.java.com.lxisoft.vegetable.Vegetable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
@@ -77,13 +79,13 @@ public String readVegetable(Model model) {
 
         return "vegetable";
     }
-@GetMapping("add-form")
+@GetMapping("/add-form")
 public String addVegetableForm(){
     System.out.println("add veg");
 
 return "addVegetable";
 }
-@ResponseBody @RequestMapping("create-vegetable")
+@ResponseBody @RequestMapping("/create-vegetable")
 public String createVegetable(@RequestBody Vegetable veg) throws IOException {
     VegetableDao vegetableDao = new VegetableDao();
 
@@ -113,7 +115,7 @@ public String createVegetable(@RequestBody Vegetable veg) throws IOException {
     return "redirect:/";
 }
 
-@GetMapping("select-vegetable")
+@GetMapping("/select-vegetable")
 public String selectVegetable(@RequestParam("id")int id,Model model) {
 
     System.out.println("select");
@@ -160,27 +162,28 @@ public String selectVegetable(@RequestParam("id")int id,Model model) {
     return "updateVegetable";
 }
 
-@GetMapping("update-vegetable")
-    public String updateVegetable(@RequestParam("id")int id,@RequestParam("name") String name,@RequestParam("price") String price,@RequestParam("stock") String stock,@RequestParam("orderQuantity") String orderQuantity){
+//@RequestMapping("update-vegetable")
+@PostMapping("/update-vegetable")
+    public ResponseEntity updateVegetable(@RequestBody Vegetable veg){
         System.out.println("update Vegetable");
 
-    System.out.println(id+name+price+stock+orderQuantity);
+    System.out.println(veg.getId()+veg.getName()+veg.getPrice()+veg.getStock()+veg.getOrderQuantity());
 
-        Vegetable vegetable = new Vegetable(id,name,price,stock,orderQuantity);
+
 
         VegetableDao vegetableDao = new VegetableDao();
 
         try {
-            vegetableDao.updateVegetable(vegetable);
+            vegetableDao.updateVegetable(veg);
 
         }catch( Exception e) {
             e.printStackTrace();
 
         }
-return "redirect:/";
+return ResponseEntity.ok(HttpStatus.OK);
     }
 
-@PostMapping("delete-vegetable")
+@PostMapping("/delete-vegetable")
 public String delete(@RequestParam("id")int id) {
         System.out.println(id);
     VegetableDao vegetableDao = new VegetableDao();
@@ -202,7 +205,7 @@ public String delete(@RequestParam("id")int id) {
 return "redirect:/";
 }
 
-@GetMapping("search")
+@GetMapping("/search")
 public String search(@RequestParam("search")String word,Model model){
 
     List <Vegetable>vegetables = new ArrayList<Vegetable>();
@@ -261,7 +264,7 @@ public String search(@RequestParam("search")String word,Model model){
     }
 return "vegetable";
 }
-@GetMapping("image")
+@GetMapping("/image")
 public void image(@RequestParam("name")String name, HttpServletResponse response) throws IOException {
 
     String path ="../../../vegetablestore/src/main/resources/picture/"+ name;
@@ -292,7 +295,7 @@ public void image(@RequestParam("name")String name, HttpServletResponse response
 
     }
 
-    @GetMapping("log-out")
+    @GetMapping("/log-out")
 public String logOut(HttpServletRequest request){
 
     HttpSession session = request.getSession();
