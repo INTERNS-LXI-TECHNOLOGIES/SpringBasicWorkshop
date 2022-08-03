@@ -95,5 +95,6 @@ margin:50px;
  </center>
 
  <%}%>
+ </form>
 </body>
 </html>

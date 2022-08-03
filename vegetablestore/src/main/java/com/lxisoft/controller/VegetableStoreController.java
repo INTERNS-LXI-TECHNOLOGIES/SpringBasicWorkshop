@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.imageio.ImageIO;
@@ -162,14 +163,8 @@ public String selectVegetable(@RequestParam("id")int id,Model model) {
     return "updateVegetable";
 }
 
-//@RequestMapping("update-vegetable")
 @PostMapping("/update-vegetable")
-    public ResponseEntity updateVegetable(@RequestBody Vegetable veg){
-        System.out.println("update Vegetable");
-
-    System.out.println(veg.getId()+veg.getName()+veg.getPrice()+veg.getStock()+veg.getOrderQuantity());
-
-
+    public String updateVegetable(@ModelAttribute("SpringWeb") Vegetable veg){
 
         VegetableDao vegetableDao = new VegetableDao();
 
@@ -180,18 +175,13 @@ public String selectVegetable(@RequestParam("id")int id,Model model) {
             e.printStackTrace();
 
         }
-return ResponseEntity.ok(HttpStatus.OK);
+return"redirect:/";
     }
 
 @PostMapping("/delete-vegetable")
 public String delete(@RequestParam("id")int id) {
-        System.out.println(id);
+
     VegetableDao vegetableDao = new VegetableDao();
-
-    System.out.println("Delete method working");
-
-
-
     try {
 
         vegetableDao.deleteVegetable(id);
