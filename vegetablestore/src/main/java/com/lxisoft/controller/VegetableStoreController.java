@@ -2,13 +2,14 @@ package main.java.com.lxisoft.controller;
 
 import main.java.com.lxisoft.dao.VegetableDao;
 import main.java.com.lxisoft.vegetable.Vegetable;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+
+
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
-import org.springframework.util.MultiValueMap;
+
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
 import javax.servlet.annotation.MultipartConfig;
@@ -86,29 +87,20 @@ public String addVegetableForm(){
 
 return "addVegetable";
 }
-@ResponseBody @RequestMapping("/create-vegetable")
-public String createVegetable(@RequestBody Vegetable veg) throws IOException {
+@PostMapping("/create-vegetable")
+public String createVegetable(@ModelAttribute("SpringWeb")Vegetable veg,MultipartFile image) throws IOException {
     VegetableDao vegetableDao = new VegetableDao();
 
     System.out.println("add method working");
-    System.out.println(veg.getName()+veg.getPrice());
-    /*System.out.println("image: "+ image);
+    System.out.println(veg.getName());
+    System.out.println("image: "+ image);
 
     InputStream inputStream  = image.getInputStream();
     System.out.println(image);
 
 
-    Vegetable veg = new Vegetable();
-
-
-    veg.setName(name);
-    veg.setPrice(price);
-    veg.setStock(stock);
-    veg.setOrderQuantity(orderQuantity);
-    veg.setImage(inputStream);*/
-
     try{
-        vegetableDao.addVegetable(veg);
+       // vegetableDao.addVegetable(veg);
     }catch(Exception e)  {
         e.printStackTrace();
     }

@@ -1,6 +1,7 @@
 package main.java.com.lxisoft.dao;
 import java.sql.*;
 import main.java.com.lxisoft.vegetable.Vegetable;
+import org.springframework.web.multipart.MultipartFile;
 
 public class VegetableDao {
 
