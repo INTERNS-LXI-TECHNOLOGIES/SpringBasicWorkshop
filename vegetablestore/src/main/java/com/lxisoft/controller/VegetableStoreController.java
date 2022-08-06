@@ -30,73 +30,39 @@ import java.util.List;
 @MultipartConfig
 public class VegetableStoreController {
 
+VegetableDao vegetableDao = new VegetableDao();
 
-    @GetMapping("/")
-public String readVegetable(Model model) {
+
+@GetMapping("/")
+public String readVegetable(Model model){
 
         System.out.println("controller read method working");
-        List<Vegetable> vegetables = new ArrayList<Vegetable>();
 
-        try {
+       List<Vegetable> vegetable= vegetableDao.readVegetable();
 
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/lxisoft", "root", "Mubashir24092000");
-
-            Statement st = con.createStatement();
-
-            ResultSet rs = st.executeQuery("select * from vegetablestore;");
-
-
-            while (rs.next()) {
-
-                Blob blob = rs.getBlob(6);
-
-                InputStream inputStream = blob.getBinaryStream();
-                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-                byte[] buffer = new byte[4096];
-                int bytesRead = -1;
-
-                while ((bytesRead = inputStream.read(buffer)) != -1) {
-                    outputStream.write(buffer, 0, bytesRead);
-                }
-
-                byte[] imageBytes = outputStream.toByteArray();
-                String base64Image = Base64.getEncoder().encodeToString(imageBytes);
-
-
-                inputStream.close();
-                outputStream.close();
-
-
-                vegetables.add(new Vegetable(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), base64Image));
-            }
-            model.addAttribute("vegetable", vegetables);
-
-
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
-        return "vegetable";
+    model.addAttribute("vegetable",vegetable);
+    return "vegetable";
     }
+
+
 @GetMapping("/add-form")
 public String addVegetableForm(){
     System.out.println("add veg");
 
 return "addVegetable";
 }
+
+
 @PostMapping("/create-vegetable")
-public String createVegetable(@ModelAttribute("SpringWeb")Vegetable veg,MultipartFile image) throws IOException {
+public String createVegetable(HttpServletRequest request) throws IOException {
     VegetableDao vegetableDao = new VegetableDao();
-
+    System.out.printf("%s",request.getHeaderNames());
     System.out.println("add method working");
-    System.out.println(veg.getName());
-    System.out.println("image: "+ image);
+    //System.out.println(veg.getName());
+    //System.out.println("image: "+ image);
 
-    InputStream inputStream  = image.getInputStream();
-    System.out.println(image);
+    //InputStream inputStream  = image.getInputStream();
+    //System.out.println(image);
 
 
     try{
@@ -108,52 +74,20 @@ public String createVegetable(@ModelAttribute("SpringWeb")Vegetable veg,Multipar
     return "redirect:/";
 }
 
+
 @GetMapping("/select-vegetable")
 public String selectVegetable(@RequestParam("id")int id,Model model) {
 
     System.out.println("select");
 
-    List <Vegetable>vegetable = new ArrayList<Vegetable>();
-    try{
-
-
-        String select_SQL ="select * from vegetablestore where id=?; ";
-
-        Class.forName("com.mysql.cj.jdbc.Driver");
-
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/lxisoft","root","Mubashir24092000");
-
-        PreparedStatement ps = 	con.prepareStatement(select_SQL );
-
-        ps.setInt(1,id);
-
-        System.out.println(ps);
-
-        ResultSet rs = ps.executeQuery();
-
-        while(rs.next()){
-
-            int vegId = rs.getInt(1);
-            String name = rs.getString(2);
-            String price = rs.getString(3);
-            String stock = rs.getString(4);
-            String orderQuantity = rs.getString(5);
-
-            vegetable.add( new Vegetable(vegId,name,price,stock,orderQuantity));
-
-        }
-
-
+    List <Vegetable>vegetable = vegetableDao.selectData(id);
 
         model.addAttribute("vegetable",vegetable);
 
-
-    }catch(Exception e) {
-        e.printStackTrace();
-
-    }
     return "updateVegetable";
 }
+
+
 
 @PostMapping("/update-vegetable")
     public String updateVegetable(@ModelAttribute("SpringWeb") Vegetable veg){
@@ -170,10 +104,12 @@ public String selectVegetable(@RequestParam("id")int id,Model model) {
 return"redirect:/";
     }
 
+
+
 @PostMapping("/delete-vegetable")
 public String delete(@RequestParam("id")int id) {
 
-    VegetableDao vegetableDao = new VegetableDao();
+
     try {
 
         vegetableDao.deleteVegetable(id);
@@ -187,65 +123,23 @@ public String delete(@RequestParam("id")int id) {
 return "redirect:/";
 }
 
+
+
+
 @GetMapping("/search")
 public String search(@RequestParam("search")String word,Model model){
 
-    List <Vegetable>vegetables = new ArrayList<Vegetable>();
-
-
-    String sql = "select * from vegetablestore where name like'%"+word+"%';";
-
-    System.out.println(sql);
-
-    try {
-
-        Class.forName("com.mysql.cj.jdbc.Driver");
-
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/lxisoft","root","Mubashir24092000");
-
-        Statement st = con.createStatement();
-
-        ResultSet rs = st.executeQuery(sql);
-
-        while(rs.next()){
-
-
-            Blob blob = rs.getBlob(6);
-
-            InputStream inputStream = blob.getBinaryStream();
-            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            byte[] buffer = new byte[4096];
-            int bytesRead = -1;
-
-            while ((bytesRead = inputStream.read(buffer)) != -1) {
-                outputStream.write(buffer, 0, bytesRead);
-            }
-
-            byte[] imageBytes = outputStream.toByteArray();
-            String base64Image = Base64.getEncoder().encodeToString(imageBytes);
-
-
-            inputStream.close();
-            outputStream.close();
-
-            vegetables.add( new Vegetable(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),base64Image));
-
-
-        }
+    List <Vegetable>vegetables = vegetableDao.search(word);
 
 
         model.addAttribute("vegetable",vegetables);
 
-
-
-    }catch(Exception e){
-
-        e.printStackTrace();
-
-
-    }
 return "vegetable";
 }
+
+
+
+
 @GetMapping("/image")
 public void image(@RequestParam("name")String name, HttpServletResponse response) throws IOException {
 
