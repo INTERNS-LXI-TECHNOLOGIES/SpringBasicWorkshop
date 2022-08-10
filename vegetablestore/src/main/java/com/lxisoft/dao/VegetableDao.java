@@ -1,6 +1,5 @@
 package main.java.com.lxisoft.dao;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
@@ -8,8 +7,6 @@ import java.util.Base64;
 import java.util.List;
 
 import main.java.com.lxisoft.vegetable.Vegetable;
-import org.springframework.ui.Model;
-import org.springframework.web.multipart.MultipartFile;
 
 public class VegetableDao {
 
@@ -95,7 +92,7 @@ public int addVegetable(Vegetable vegetable) throws ClassNotFoundException  {
 		ps.setString(2,vegetable.getPrice());
 		ps.setString(3,vegetable.getStock());
 		ps.setString(4,vegetable.getOrderQuantity());
-		ps.setBlob(5,vegetable.getImage());
+		ps.setBlob(5, vegetable.getImage());
 		
 		System.out.println(ps);
 		
@@ -122,8 +119,6 @@ public boolean updateVegetable(Vegetable vegetable) throws SQLException, ClassNo
 		ps.setString(4,vegetable.getOrderQuantity());
 
 		
-		System.out.println(ps);
-		
 		rowUpdated = ps.executeUpdate() >0;
 		
 	
@@ -134,11 +129,10 @@ public boolean updateVegetable(Vegetable vegetable) throws SQLException, ClassNo
 public boolean deleteVegetable(int id) throws SQLException, ClassNotFoundException  {
 	boolean rowDeleted;
 	
-	ps= 	connection.prepareStatement(DELETE_SQL);
+	ps= connection.prepareStatement(DELETE_SQL);
 		
 		ps.setInt(1,id);
-		
-		System.out.println(ps);
+
 		int result= ps.executeUpdate();
 		
  rowDeleted = result >0;
@@ -154,7 +148,6 @@ public boolean deleteVegetable(int id) throws SQLException, ClassNotFoundExcepti
 			 ps = connection.prepareStatement(SELECT_SQL);
 			ps.setInt(1,id);
 
-			System.out.println(ps);
 
 			ResultSet rs = ps.executeQuery();
 
@@ -188,14 +181,10 @@ try {
 
 	 Statement st = connection.prepareStatement(SEARCH_SQL);
 
-	System.out.println(SEARCH_SQL);
-
-
 	ResultSet rs = st.executeQuery(SEARCH_SQL);
 
-	System.out.println(SEARCH_SQL);
 
-	while(rs.next()){
+	while(rs.next()) {
 
 
 		Blob blob = rs.getBlob(6);
@@ -213,11 +202,11 @@ try {
 		String base64Image = Base64.getEncoder().encodeToString(imageBytes);
 
 
+
 		inputStream.close();
 		outputStream.close();
 
-		vegetables.add( new Vegetable(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),base64Image));
-
+		vegetables.add(new Vegetable(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), base64Image));
 
 	}
 

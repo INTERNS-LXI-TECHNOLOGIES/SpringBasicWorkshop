@@ -4,12 +4,13 @@ import main.java.com.lxisoft.dao.VegetableDao;
 import main.java.com.lxisoft.vegetable.Vegetable;
 
 
+import main.java.com.lxisoft.vegetable.VegetableMultipart;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+
 
 import javax.imageio.ImageIO;
 import javax.servlet.annotation.MultipartConfig;
@@ -21,9 +22,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 
 @Controller
@@ -36,7 +34,6 @@ VegetableDao vegetableDao = new VegetableDao();
 @GetMapping("/")
 public String readVegetable(Model model){
 
-        System.out.println("controller read method working");
 
        List<Vegetable> vegetable= vegetableDao.readVegetable();
 
@@ -47,38 +44,33 @@ public String readVegetable(Model model){
 
 @GetMapping("/add-form")
 public String addVegetableForm(){
-    System.out.println("add veg");
+
 
 return "addVegetable";
 }
 
 
 @PostMapping("/create-vegetable")
-public String createVegetable(HttpServletRequest request) throws IOException {
+public String createVegetable(@ModelAttribute VegetableMultipart vegetableMultipart) throws IOException {
     VegetableDao vegetableDao = new VegetableDao();
-    System.out.printf("%s",request.getHeaderNames());
-    System.out.println("add method working");
-    //System.out.println(veg.getName());
-    //System.out.println("image: "+ image);
 
-    //InputStream inputStream  = image.getInputStream();
-    //System.out.println(image);
-
+    InputStream inputStream  = vegetableMultipart.getImageFile().getInputStream();
+   Vegetable vegetable = vegetableMultipart;
+   vegetable.setImage(inputStream);
 
     try{
-       // vegetableDao.addVegetable(veg);
+        vegetableDao.addVegetable(vegetable);
     }catch(Exception e)  {
         e.printStackTrace();
     }
 
-    return "redirect:/";
+    return "vegetableConfirm";
 }
 
 
 @GetMapping("/select-vegetable")
 public String selectVegetable(@RequestParam("id")int id,Model model) {
 
-    System.out.println("select");
 
     List <Vegetable>vegetable = vegetableDao.selectData(id);
 

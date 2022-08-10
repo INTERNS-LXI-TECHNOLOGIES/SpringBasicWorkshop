@@ -96,7 +96,7 @@ margin:50px;
 
 <tr>
   <td>Select Photo</td>
-  <td><input type="file" name="image"></td>
+  <td><input type="file" name="imageFile"></td>
   </tr>
 
  </table>
