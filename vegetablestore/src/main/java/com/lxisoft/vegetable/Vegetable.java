@@ -1,18 +1,33 @@
 
 package main.java.com.lxisoft.vegetable;
 
+import javax.persistence.*;
 import java.io.InputStream;
 
-
-
+@Entity
+@Table(name = "vegetablestore")
 public class Vegetable {
- 
+
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
 private int id;
+
+	@Column(name = "name")
 private String name;
+
+	@Column(name = "price")
 private String price;
+
+	@Column(name = "stock")
 private String stock;
+
+	@Column(name = "minOrderQuantity")
 private String orderQuantity;
 private String base64Image;
+
+	@Column(name = "image")
 private InputStream image;
 
 public Vegetable() {

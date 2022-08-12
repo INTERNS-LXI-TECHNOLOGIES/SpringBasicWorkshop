@@ -6,7 +6,11 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
+import main.java.com.lxisoft.config.HibernateUtil;
 import main.java.com.lxisoft.vegetable.Vegetable;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
 
 public class VegetableDao {
 
@@ -93,8 +97,7 @@ public int addVegetable(Vegetable vegetable) throws ClassNotFoundException  {
 		ps.setString(3,vegetable.getStock());
 		ps.setString(4,vegetable.getOrderQuantity());
 		ps.setBlob(5, vegetable.getImage());
-		
-		System.out.println(ps);
+
 		
 		result = ps.executeUpdate();
 		
@@ -126,20 +129,21 @@ public boolean updateVegetable(Vegetable vegetable) throws SQLException, ClassNo
 	
 }
 
-public boolean deleteVegetable(int id) throws SQLException, ClassNotFoundException  {
-	boolean rowDeleted;
-	
-	ps= connection.prepareStatement(DELETE_SQL);
-		
-		ps.setInt(1,id);
-
-		int result= ps.executeUpdate();
-		
- rowDeleted = result >0;
-		
-	return rowDeleted;
+public void deleteVegetable(int id) {
+	try {
+		Transaction transaction = null;
+		Vegetable veg = null;
+		Session session = (Session) HibernateUtil.getSessionFactory();
+		transaction = session.beginTransaction();
+		veg = session.get(Vegetable.class, id);
+		session.delete(veg);
+		transaction.commit();
+	}catch(Exception e) {
+		e.printStackTrace();
+	}
 
 }
+
 
 	public List<Vegetable> selectData(int id){
 
