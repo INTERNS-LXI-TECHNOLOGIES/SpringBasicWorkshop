@@ -1,52 +1,60 @@
 package main.java.com.lxisoft.dao;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
+import java.io.*;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
-import main.java.com.lxisoft.config.HibernateUtil;
 import main.java.com.lxisoft.vegetable.Vegetable;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+import org.springframework.web.multipart.MultipartFile;
 
 
 public class VegetableDao {
 
-	
-private static final	String INSERT_SQL = "insert into vegetablestore" +
+
+	private static final String INSERT_SQL = "insert into vegetablestore" +
 			"(name,price,stock,minOrderQuantity,image) values" +
-					"(?,?,?,?,?);";
-			
-					private static final	String EDIT_SQL ="update vegetablestore set name = ?,price = ?,stock = ?,minOrderQuantity = ? where id =?;";
+			"(?,?,?,?,?);";
 
-					private static final String READ_SQL ="select * from vegetablestore;";
+	private static final String EDIT_SQL = "update vegetablestore set name = ?,price = ?,stock = ?,minOrderQuantity = ? where id =?;";
 
-					private static final	String DELETE_SQL = "delete from vegetablestore where id = ?;";
+	private static final String READ_SQL = "select * from vegetablestore;";
 
-	private static final String SELECT_SQL ="select * from vegetablestore where id=?; ";
 
-	
+	private static final String SELECT_SQL = "select * from vegetablestore where id=?; ";
+
+
 	Connection connection;
 
-	public VegetableDao()  {
+	public VegetableDao() {
 
 
-try {
-	Class.forName("com.mysql.cj.jdbc.Driver");
-	connection =  DriverManager.getConnection("jdbc:mysql://localhost:3306/lxisoft","root","Mubashir24092000");
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/vegetablestore", "root", "Mubashir24092000");
 
-} catch (Exception e) {
-	e.printStackTrace();
-}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 	}
+
 	PreparedStatement ps;
+	SessionFactory sessionFactory = new Configuration().configure(new File("D:/vegetablestore/src/main/resources/hibernate.cfg.xml")).buildSessionFactory();
+
+	Session session = sessionFactory.openSession();
+
+	Transaction tx = session.beginTransaction();
+
 	public List<Vegetable> readVegetable() {
 
 
-		List<Vegetable> vegetables = new ArrayList<Vegetable>();
+		List<Vegetable> vegetables = new ArrayList<>();
 		try {
 
 			Statement st = connection.createStatement();
@@ -76,103 +84,74 @@ try {
 
 				vegetables.add(new Vegetable(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), base64Image));
 			}
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return  vegetables;
-		}
-
-
- 
-public int addVegetable(Vegetable vegetable) throws ClassNotFoundException  {
-	
-	int result = 0;
-	
-	try {
-	
-	 ps = 	connection.prepareStatement(INSERT_SQL);
-		
-		ps.setString(1,vegetable.getName());
-		ps.setString(2,vegetable.getPrice());
-		ps.setString(3,vegetable.getStock());
-		ps.setString(4,vegetable.getOrderQuantity());
-		ps.setBlob(5, vegetable.getImage());
-
-		
-		result = ps.executeUpdate();
-		
-	}catch (Exception e) {
-		e.printStackTrace();
-	}
-	return result;
-	
-	
-}
-
-public boolean updateVegetable(Vegetable vegetable) throws SQLException, ClassNotFoundException  {
-
-	boolean rowUpdated;
-		
-		ps = 	connection.prepareStatement(EDIT_SQL);
-
-		ps.setInt(5,vegetable.getId());
-		ps.setString(1,vegetable.getName());
-		ps.setString(2,vegetable.getPrice());
-		ps.setString(3,vegetable.getStock());
-		ps.setString(4,vegetable.getOrderQuantity());
-
-		
-		rowUpdated = ps.executeUpdate() >0;
-		
-	
-	return rowUpdated;
-	
-}
-
-public void deleteVegetable(int id) {
-	try {
-		Transaction transaction = null;
-		Vegetable veg = null;
-		Session session = (Session) HibernateUtil.getSessionFactory();
-		transaction = session.beginTransaction();
-		veg = session.get(Vegetable.class, id);
-		session.delete(veg);
-		transaction.commit();
-	}catch(Exception e) {
-		e.printStackTrace();
+		return vegetables;
 	}
 
-}
+
+	public void addVegetable(Vegetable vegetable) throws IOException {
+
+		InputStream inputStream =  new BufferedInputStream(vegetable.getImageFile().getInputStream());
+
+		byte[]image = new byte[inputStream.available()];
+
+		inputStream.read(image);
+		vegetable.setImage(image);
+
+		System.out.println(vegetable.getName()+"/t"+vegetable.getPrice()+"/t"+vegetable.getStock()+"/t"+vegetable.getOrderQuantity()+"/t"+vegetable.getImage());
 
 
-	public List<Vegetable> selectData(int id){
+		session.save(vegetable);
+		tx.commit();
+		System.out.println("saved");
+		session.close();
 
-		List<Vegetable>vegetable = new ArrayList<>();
-		try {
-			 ps = connection.prepareStatement(SELECT_SQL);
-			ps.setInt(1,id);
-
-
-			ResultSet rs = ps.executeQuery();
-
-			while(rs.next()) {
-
-				int vegId = rs.getInt(1);
-				String name = rs.getString(2);
-				String price = rs.getString(3);
-				String stock = rs.getString(4);
-				String orderQuantity = rs.getString(5);
-
-				vegetable.add(new Vegetable(vegId, name, price, stock, orderQuantity));
-
-			}
-		}catch(Exception e){
-
-			e.printStackTrace();
-		}
-
-		return vegetable;
 	}
+
+	public void updateVegetable(Vegetable vegetable){
+
+		session.update(vegetable);
+
+		tx.commit();
+
+		System.out.println("vegetable updated");
+
+
+	}
+
+	public void deleteVegetable(int id) {
+		Vegetable v = new Vegetable();
+		v.setId(id);
+
+		session.beginTransaction();
+		session.delete(v);
+		session.getTransaction().commit();
+		session.close();
+
+	}
+
+
+	public List<Vegetable> selectData(int id) {
+
+		List<Vegetable> vegetables = new ArrayList<>();
+
+	Vegetable vegetable =session.get(Vegetable.class,id);
+
+		session.beginTransaction().commit();
+
+		session.close();
+		System.out.println(vegetable.getId()+vegetable.getName()+vegetable.getPrice()+vegetable.getStock()+vegetable.getOrderQuantity());
+
+		vegetables.add(vegetable);
+
+
+		return vegetables;
+
+	}
+
+
 
 	public List<Vegetable> search(String word) {
 

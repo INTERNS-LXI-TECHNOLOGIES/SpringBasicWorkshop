@@ -1,8 +1,9 @@
 
 package main.java.com.lxisoft.vegetable;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.persistence.*;
-import java.io.InputStream;
 
 @Entity
 @Table(name = "vegetablestore")
@@ -10,7 +11,7 @@ public class Vegetable {
 
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 private int id;
 
@@ -25,10 +26,15 @@ private String stock;
 
 	@Column(name = "minOrderQuantity")
 private String orderQuantity;
+
+	@Transient
 private String base64Image;
 
-	@Column(name = "image")
-private InputStream image;
+@Lob
+@Column(name = "image",columnDefinition = "blob")
+private byte[]image;
+@Transient
+	private MultipartFile imageFile;
 
 public Vegetable() {
 
@@ -129,14 +135,22 @@ this.orderQuantity = orderQuantity;
         this.base64Image = base64Image;
     }
 
-				public InputStream getImage() {
 
-					return image;
-				}
-				public void setImage(InputStream image)  {
-			
-				this.image= image;
-				}     
-			
+	public byte[] getImage() {
 
+		return image;
+	}
+	public void setImage(byte[] image)  {
+
+		this.image= image;
+	}
+
+
+	public MultipartFile getImageFile() {
+		return imageFile;
+	}
+
+	public void setImageFile(MultipartFile imageFile) {
+		this.imageFile = imageFile;
+	}
 }

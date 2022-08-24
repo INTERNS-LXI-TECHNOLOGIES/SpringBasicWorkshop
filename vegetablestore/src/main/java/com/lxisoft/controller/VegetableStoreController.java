@@ -4,7 +4,6 @@ import main.java.com.lxisoft.dao.VegetableDao;
 import main.java.com.lxisoft.vegetable.Vegetable;
 
 
-import main.java.com.lxisoft.vegetable.VegetableMultipart;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
@@ -22,6 +21,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Blob;
 import java.util.List;
 
 @Controller
@@ -35,7 +35,7 @@ VegetableDao vegetableDao = new VegetableDao();
 public String readVegetable(Model model){
 
 
-       List<Vegetable> vegetable= vegetableDao.readVegetable();
+       List<Vegetable> vegetable= vegetableDao.readVegetable(); 
 
     model.addAttribute("vegetable",vegetable);
     return "vegetable";
@@ -51,19 +51,14 @@ return "addVegetable";
 
 
 @PostMapping("/create-vegetable")
-public String createVegetable(@ModelAttribute VegetableMultipart vegetableMultipart) throws IOException {
-    VegetableDao vegetableDao = new VegetableDao();
+public String createVegetable(@ModelAttribute Vegetable vegetable){
 
-    InputStream inputStream  = vegetableMultipart.getImageFile().getInputStream();
-   Vegetable vegetable = vegetableMultipart;
-   vegetable.setImage(inputStream);
+try {
+    vegetableDao.addVegetable(vegetable);
 
-    try{
-        vegetableDao.addVegetable(vegetable);
-    }catch(Exception e)  {
-        e.printStackTrace();
-    }
+}catch(Exception e){
 
+}
     return "vegetableConfirm";
 }
 
