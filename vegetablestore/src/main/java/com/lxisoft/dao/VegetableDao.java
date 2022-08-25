@@ -17,10 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 public class VegetableDao {
 
 
-	private static final String INSERT_SQL = "insert into vegetablestore" +
-			"(name,price,stock,minOrderQuantity,image) values" +
-			"(?,?,?,?,?);";
-
 	private static final String EDIT_SQL = "update vegetablestore set name = ?,price = ?,stock = ?,minOrderQuantity = ? where id =?;";
 
 	private static final String READ_SQL = "select * from vegetablestore;";
@@ -45,7 +41,7 @@ public class VegetableDao {
 	}
 
 	PreparedStatement ps;
-	SessionFactory sessionFactory = new Configuration().configure(new File("D:/vegetablestore/src/main/resources/hibernate.cfg.xml")).buildSessionFactory();
+	SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 
 	Session session = sessionFactory.openSession();
 
@@ -100,17 +96,20 @@ public class VegetableDao {
 		inputStream.read(image);
 		vegetable.setImage(image);
 
-		System.out.println(vegetable.getName()+"/t"+vegetable.getPrice()+"/t"+vegetable.getStock()+"/t"+vegetable.getOrderQuantity()+"/t"+vegetable.getImage());
-
-
 		session.save(vegetable);
 		tx.commit();
-		System.out.println("saved");
 		session.close();
 
 	}
 
-	public void updateVegetable(Vegetable vegetable){
+	public void updateVegetable(Vegetable vegetable) throws IOException {
+
+		InputStream inputStream =  new BufferedInputStream(vegetable.getImageFile().getInputStream());
+
+		byte[]image = new byte[inputStream.available()];
+
+		inputStream.read(image);
+		vegetable.setImage(image);
 
 		session.update(vegetable);
 
@@ -125,7 +124,6 @@ public class VegetableDao {
 		Vegetable v = new Vegetable();
 		v.setId(id);
 
-		session.beginTransaction();
 		session.delete(v);
 		session.getTransaction().commit();
 		session.close();
@@ -135,17 +133,17 @@ public class VegetableDao {
 
 	public List<Vegetable> selectData(int id) {
 
+
 		List<Vegetable> vegetables = new ArrayList<>();
 
 	Vegetable vegetable =session.get(Vegetable.class,id);
 
-		session.beginTransaction().commit();
+		session.getTransaction().commit();
 
 		session.close();
-		System.out.println(vegetable.getId()+vegetable.getName()+vegetable.getPrice()+vegetable.getStock()+vegetable.getOrderQuantity());
+		System.out.println(vegetable.getId()+vegetable.getName()+vegetable.getPrice()+vegetable.getStock()+vegetable.getOrderQuantity()+vegetable.getImage());
 
 		vegetables.add(vegetable);
-
 
 		return vegetables;
 

@@ -77,12 +77,10 @@ public String selectVegetable(@RequestParam("id")int id,Model model) {
 
 
 @PostMapping("/update-vegetable")
-    public String updateVegetable(@ModelAttribute("SpringWeb") Vegetable veg){
-
-        VegetableDao vegetableDao = new VegetableDao();
+    public String updateVegetable(@ModelAttribute Vegetable vegetable){
 
         try {
-            vegetableDao.updateVegetable(veg);
+            vegetableDao.updateVegetable(vegetable);
 
         }catch( Exception e) {
             e.printStackTrace();

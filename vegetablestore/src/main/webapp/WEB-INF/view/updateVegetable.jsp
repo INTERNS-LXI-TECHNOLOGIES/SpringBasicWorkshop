@@ -85,7 +85,12 @@ margin:50px;
     <td>Enter OrderQuantity</td>
     <td><input type = "text" name = "orderQuantity"  value =<%=vegetable.getOrderQuantity()%>></td>
     </tr>
-    
+
+   <tr>
+     <td>Select Photo</td>
+     <td><input type="file" name="imageFile"></td>
+     </tr>
+
      </table>
      
      <input type = "submit" value = "submit" class ="subBtn"/>
