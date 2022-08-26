@@ -50,7 +50,7 @@ margin:50px;
 <a href = "<%=request.getContextPath() %>"><img src ="image?name=home.jpeg" alt="google-play" height = 60px  class="homeBtn">
 </a>
    
-   <form action ="update-vegetable" method = "POST">
+   <form action ="update-vegetable" enctype="multipart/form-data" method = "POST">
 
 
    <%List<Vegetable> vegetables = (ArrayList<Vegetable>)request.getAttribute("vegetable");
@@ -88,7 +88,7 @@ margin:50px;
 
    <tr>
      <td>Select Photo</td>
-     <td><input type="file" name="imageFile"></td>
+     <td><input type="file" name="imageFile" value = <%=vegetable.getImage()%>></td>
      </tr>
 
      </table>

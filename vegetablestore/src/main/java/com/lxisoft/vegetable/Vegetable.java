@@ -4,6 +4,7 @@ package main.java.com.lxisoft.vegetable;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
+import java.util.Base64;
 
 @Entity
 @Table(name = "vegetablestore")
@@ -128,6 +129,9 @@ this.orderQuantity = orderQuantity;
  
  
     public String getBase64Image() {
+
+	base64Image = Base64.getEncoder().encodeToString(this.image);
+
         return base64Image;
     }
  

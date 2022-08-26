@@ -32,7 +32,7 @@ VegetableDao vegetableDao = new VegetableDao();
 
 
 @GetMapping("/")
-public String readVegetable(Model model){
+public String readVegetable(Model model) throws IOException {
 
 
        List<Vegetable> vegetable= vegetableDao.readVegetable(); 
