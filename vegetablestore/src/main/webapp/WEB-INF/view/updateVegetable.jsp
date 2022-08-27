@@ -60,8 +60,10 @@ margin:50px;
 
 <center>
 <table style = "width: 80%">
- 
-  
+
+
+<td> <center><img src="data:image/jpg;base64,<%= vegetable.getBase64Image()%>"width = "200" height ="140"> </center></td>
+
    <td><input type = "hidden" name = "id" value =<%=vegetable.getId()%>></td>
    </tr>
    

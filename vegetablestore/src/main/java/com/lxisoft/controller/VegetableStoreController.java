@@ -1,16 +1,11 @@
 package main.java.com.lxisoft.controller;
 
+
 import main.java.com.lxisoft.dao.VegetableDao;
 import main.java.com.lxisoft.vegetable.Vegetable;
-
-
 import org.springframework.stereotype.Controller;
-
 import org.springframework.ui.Model;
-
 import org.springframework.web.bind.annotation.*;
-
-
 import javax.imageio.ImageIO;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
@@ -20,9 +15,6 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.sql.Blob;
-import java.util.List;
 
 @Controller
 @MultipartConfig
@@ -34,17 +26,13 @@ VegetableDao vegetableDao = new VegetableDao();
 @GetMapping("/")
 public String readVegetable(Model model) throws IOException {
 
-
-       List<Vegetable> vegetable= vegetableDao.readVegetable(); 
-
-    model.addAttribute("vegetable",vegetable);
+    model.addAttribute("vegetable",vegetableDao.readVegetable());
     return "vegetable";
     }
 
 
 @GetMapping("/add-form")
 public String addVegetableForm(){
-
 
 return "addVegetable";
 }
@@ -66,10 +54,7 @@ try {
 @GetMapping("/select-vegetable")
 public String selectVegetable(@RequestParam("id")int id,Model model) {
 
-
-    List <Vegetable>vegetable = vegetableDao.selectData(id);
-
-        model.addAttribute("vegetable",vegetable);
+        model.addAttribute("vegetable",vegetableDao.selectData(id));
 
     return "updateVegetable";
 }
@@ -77,15 +62,10 @@ public String selectVegetable(@RequestParam("id")int id,Model model) {
 
 
 @PostMapping("/update-vegetable")
-    public String updateVegetable(@ModelAttribute Vegetable vegetable){
+    public String updateVegetable(@ModelAttribute Vegetable vegetable) throws IOException {
 
-        try {
             vegetableDao.updateVegetable(vegetable);
 
-        }catch( Exception e) {
-            e.printStackTrace();
-
-        }
 return"redirect:/";
     }
 
@@ -94,16 +74,7 @@ return"redirect:/";
 @PostMapping("/delete-vegetable")
 public String delete(@RequestParam("id")int id) {
 
-
-    try {
-
         vegetableDao.deleteVegetable(id);
-
-    } catch (Exception e) {
-
-        e.printStackTrace();
-
-    }
 
 return "redirect:/";
 }
@@ -114,10 +85,7 @@ return "redirect:/";
 @GetMapping("/search")
 public String search(@RequestParam("search")String word,Model model){
 
-    List <Vegetable>vegetables = vegetableDao.search(word);
-
-
-        model.addAttribute("vegetable",vegetables);
+        model.addAttribute("vegetable", vegetableDao.search(word));
 
 return "vegetable";
 }
